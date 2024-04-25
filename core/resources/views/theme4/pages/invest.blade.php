@@ -162,6 +162,7 @@
                                         ->where('payment_status', 1)
                                         ->count();
                                 @endphp
+                                @if($plan->vip_status <= auth()->user()->vip_status)
                                 <div class="col-md-6 col-xxl-3">
                                     <div class="card card-bordered pricing">
                                         <div class="pricing-head">
@@ -233,6 +234,10 @@
                                                         <span class="ms-auto"> {{ __('NO') }}</span>
                                                     </li>
                                                 @endif
+                                                <li>
+                                                    <span class="w-50">{{ __('Required Vip') }} </span>
+                                                    <span class="ms-auto"> {{ $plan->vip_status }}</span>
+                                                </li>
                                             </ul>
                                             @if ($plan_exist >= $plan->invest_limit)
                                                 <div class="pricing-action"><a
@@ -254,6 +259,99 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {{-- lock plans --}}
+                                @else
+                                <div class="col-md-6 col-xxl-3 vip-lock-plan">
+                                    <div class="card card-bordered pricing">
+                                        <div class="pricing-head">
+                                            <div class="pricing-title">
+                                                <h4 class="card-title title">{{ $plan->plan_name }}</h4>
+                                                {{-- <p class="sub-text"></p> --}}
+                                            </div>
+                                            <div class="card-text">
+                                                <div class="row">
+                                                    <div class="col-6"><span class="h4 fw-500">
+                                                            {{ __('ROI') }}
+                                                        </span><span
+                                                            class="sub-text">{{ number_format($plan->return_interest, 2) }}
+                                                            @if ($plan->interest_status == 'percentage')
+                                                                {{ '%' }}
+                                                            @else
+                                                                {{ @$general->site_currency }}
+                                                            @endif
+                                                        </span></div>
+                                                    <div class="col-6"><span class="h4 fw-500">
+                                                            {{ __('Every') }} </span><span class="sub-text">
+                                                            {{ $plan->time->name }}</span></div>
+                                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-body">
+                                            <ul class="pricing-features">
+                                                @if ($plan->amount_type == 0)
+                                                    <li>
+                                                        <span class="w-50">{{ __('Minimum') }} </span>
+                                                        <span class="ms-auto">
+                                                            {{ number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="w-50">{{ __('Maximum') }} </span>
+                                                        <span class="ms-auto">
+                                                            {{ number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="w-50">{{ __('Amount') }} </span>
+                                                        <span class="ms-auto">
+                                                            {{ number_format($plan->amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                @endif
+
+                                                @if ($plan->return_for == 1)
+                                                    <li>
+                                                        <span class="w-50">{{ __('For') }} </span>
+                                                        <span class="ms-auto"> {{ $plan->how_many_time }}
+                                                            {{ __('Times') }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="w-50">{{ __('For') }} </span>
+                                                        <span class="ms-auto"> {{ __('Lifetime') }}</span>
+                                                    </li>
+                                                @endif
+
+                                                @if ($plan->capital_back == 1)
+                                                    <li>
+                                                        <span class="w-50">{{ __('Capital Back') }} </span>
+                                                        <span class="ms-auto"> {{ __('YES') }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="w-50">{{ __('Capital Back') }} </span>
+                                                        <span class="ms-auto"> {{ __('NO') }}</span>
+                                                    </li>
+                                                @endif
+                                                <li>
+                                                    <span class="w-50">{{ __('Required Vip') }} </span>
+                                                    <span class="ms-auto"> {{ $plan->vip_status }}</span>
+                                                </li>
+                                            </ul>
+                                            @if ($plan_exist >= $plan->invest_limit)
+                                                <div class="pricing-action"><a
+                                                        class="btn btn-outline-light main-btn plan-btn disabled">{{ __('Max Limit exceeded') }}</a>
+                                                </div>
+                                            @else
+                                                <div class="pricing-action"><a
+                                                        href="#" disabled
+                                                        class="btn btn-outline-danger ">{{ __('Locked') }}</a>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             @empty
                             @endforelse
                         </div>

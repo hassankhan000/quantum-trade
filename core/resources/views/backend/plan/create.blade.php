@@ -139,9 +139,22 @@
 
                                     <div class="form-group col-md-3">
                                         <label class="font-weight-bold">{{ __('Status') }}</label>
-                                        <select name="status" class="form-control selectric">
+                                        <select name="status" class="form-control">
                                             <option value="0" selected>{{ __('Disable') }}</option>
                                             <option value="1">{{ __('Active') }}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label class="font-weight-bold">{{ __('Vip Status') }}</label>
+                                        <select name="vip_status" class="form-control selectric">
+                                            <option value="" selected disabled>{{ __('Select Vip Status') }}</option>
+                                            <option value="1">{{ __('Vip 1') }}</option>
+                                            <option value="2">{{ __('Vip 2') }}</option>
+                                            <option value="3">{{ __('Vip 3') }}</option>
+                                            <option value="4">{{ __('Vip 4') }}</option>
+                                            <option value="5">{{ __('Vip 5') }}</option>
+                                            <option value="6">{{ __('Vip 6') }}</option>
                                         </select>
                                     </div>
 

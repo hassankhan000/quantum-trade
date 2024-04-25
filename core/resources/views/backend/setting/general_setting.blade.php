@@ -133,6 +133,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <label>{{ __('VIP 1 Deposit Limit') }}</label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip1_anmt_limit" placeholder="@lang('VIP 1 Deposit Limit')"
+                                               value="{{$general->vip1_amount}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group col-md-12">
                                         <label for="sitename">{{ __('Map Link') }}</label>
                                         <input type="text" name="map_link" placeholder="@lang('Map Link')"

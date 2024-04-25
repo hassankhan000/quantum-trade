@@ -128,9 +128,10 @@ class GeneralSettingController extends Controller
             'trans_charge' => $request->trans_charge,
             'min_amount' => $request->min_amount,
             'max_amount' => $request->max_amount,
-
+            
             'user_kyc' => $request->user_kyc == 'on' ? 1 : 0,
-
+            
+            'vip1_amount' => $request->vip1_anmt_limit,
         ]);
 
         $this->setEnv([

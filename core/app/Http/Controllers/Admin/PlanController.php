@@ -53,7 +53,8 @@ class PlanController extends Controller
             'amount' => 'required_if:amount_type,==,1',
             'interest' => 'required',
             'repeat_time' => 'required_if:return_for,==,1',
-            'limit' => 'required|gte:0'
+            'limit' => 'required|gte:0',
+            'vip_status' => 'required'
         ], [
             'minimum.required_if' => 'Minimum Amount is required ',
             'maximum.required_if' => 'Maximum Amount is required ',
@@ -74,7 +75,8 @@ class PlanController extends Controller
             'capital_back' => $request->capital_back,
             'status' => $request->status,           
             'interest_status'=>$request->interest_status,
-            'invest_limit' => $request->limit
+            'invest_limit' => $request->limit,
+            'vip_status' => $request->vip_status
 
         ]);
 
@@ -100,7 +102,8 @@ class PlanController extends Controller
             'amount' => 'required_if:amount_type,==,1',
             'interest' => 'required',
             'repeat_time' => 'required_if:return_for,==,1',
-            'limit' => 'required|gte:0'
+            'limit' => 'required|gte:0',
+            'vip_status' => 'required'
         ], [
             'minimum.required_if' => 'Minimum Amount is required ',
             'maximum.required_if' => 'Maximum Amount is required ',
@@ -123,7 +126,8 @@ class PlanController extends Controller
             'capital_back' => $request->capital_back,
             'status' => $request->status,           
             'interest_status'=>$request->interest_status,
-            'invest_limit' => $request->limit
+            'invest_limit' => $request->limit,
+            'vip_status' => $request->vip_status
         ]);
 
         $notify[] = ['success', 'Plan Updated Successfully'];

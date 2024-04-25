@@ -49,6 +49,51 @@ class UserController extends Controller
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
+
+        $referred_users = DB::table('users')
+            ->select('id')
+            ->where('reffered_by', Auth::id())
+            ->pluck('id')
+            ->toArray(); // Get the IDs as an array
+
+        $check_ids_deposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $referred_users)
+            ->first();
+
+        $totalAmount = $check_ids_deposit->total_amount ?? 0;
+        $general = GeneralSetting::first();
+
+        if ($totalAmount >= 6000) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 6;
+            $user->save();
+        } elseif ($totalAmount >= 5000) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 5;
+            $user->save();
+        } elseif ($totalAmount >= 4000) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 4;
+            $user->save();
+        } elseif ($totalAmount >= 3000) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 3;
+            $user->save();
+        } elseif ($totalAmount >= 2000) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 2;
+            $user->save();
+        } elseif ($totalAmount >= $general->vip1_amount) {
+            $user = User::find(Auth::id());
+            $user->vip_status = 1;
+            $user->save();
+        } else {
+            $user = User::find(Auth::id());
+            $user->vip_status = 0;
+            $user->save();
+        }
+
         return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit'));
     }
 
@@ -64,7 +109,7 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
 
-    
+
 
         $request->validate([
             'fname' => 'required',
@@ -379,7 +424,7 @@ class UserController extends Controller
                                             'gateway_id' => 0,
                                             'amount' => $invest->amount,
                                             'currency' => @$general->site_currency,
-                                            'details' => 'Capital Back For Plan '. $invest->plan->plan_name,
+                                            'details' => 'Capital Back For Plan ' . $invest->plan->plan_name,
                                             'charge' => 0,
                                             'type' => '+',
                                             'gateway_transaction' => '',
@@ -391,7 +436,6 @@ class UserController extends Controller
                                     }
                                 }
                             }
-
                         } else {
 
                             $updatePayment->next_payment_date = $updatePaymentDate;
@@ -413,8 +457,7 @@ class UserController extends Controller
 
                             $updatePayment->save();
                             $user->save();
-                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount,$invest->plan->id);
-
+                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount, $invest->plan->id);
                         }
                     }
                 }
