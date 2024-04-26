@@ -149,6 +149,7 @@
                                         <label class="font-weight-bold">{{ __('Vip Status') }}</label>
                                         <select name="vip_status" class="form-control selectric">
                                             <option value="" selected disabled>{{ __('Select Vip Status') }}</option>
+                                            <option value="0">{{ __('Vip 0') }}</option>
                                             <option value="1">{{ __('Vip 1') }}</option>
                                             <option value="2">{{ __('Vip 2') }}</option>
                                             <option value="3">{{ __('Vip 3') }}</option>

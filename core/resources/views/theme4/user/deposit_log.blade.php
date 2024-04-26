@@ -133,9 +133,7 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    @if ($transactions->hasPages())
-                                        {{ $transactions->links() }}
-                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>

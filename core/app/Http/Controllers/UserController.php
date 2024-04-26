@@ -49,7 +49,6 @@ class UserController extends Controller
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
-
         $referred_users = DB::table('users')
             ->select('id')
             ->where('reffered_by', Auth::id())
@@ -359,20 +358,30 @@ class UserController extends Controller
 
                 if ($user) {
 
+                    $interestRate = $invest->plan->return_interest;
+                    $returnAmount = 0;
+
+                    if ($invest->plan->interest_status == 'percentage') {
+                        $returnAmount = ($invest->amount * $interestRate) / 100;
+                    }
+                    if ($invest->plan->interest_status == 'fixed') {
+                        $returnAmount = $invest->plan->return_interest;
+                    }
+
+                    if ($user->reffered_by && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
+                        $uplinerProfit = $returnAmount * 10 / 100;
+                        $upliner = User::find($user->reffered_by);
+                        if ($upliner && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
+                            $upliner->balance += $uplinerProfit;
+                            $upliner->save();
+                        }
+                    }
+
                     if (now()->greaterThanOrEqualTo($invest->next_payment_date)) {
                         //find interest rate
 
-                        $interestRate = $invest->plan->return_interest;
-                        $returnAmount = 0;
-
-                        if ($invest->plan->interest_status == 'percentage') {
-                            $returnAmount = ($invest->amount * $interestRate) / 100;
-                        }
-                        if ($invest->plan->interest_status == 'fixed') {
-                            $returnAmount = $invest->plan->return_interest;
-                        }
-
                         $user->balance += $returnAmount;
+
                         $updatePaymentDate = $invest->next_payment_date->addHour($invest->plan->time->time);
                         $interestAmount = $returnAmount;
 
@@ -382,11 +391,12 @@ class UserController extends Controller
                         $count = Payment::where('plan_id', $invest->plan_id)->where('next_payment_date', $invest->next_payment_date)->sum('pay_count');
 
                         if ($invest->plan->return_for == 1) {
-
                             if ($count < $invest->plan->how_many_time) {
                                 $updatePayment->next_payment_date = $updatePaymentDate;
                                 $updatePayment->interest_amount += $interestAmount;
                                 $updatePayment->pay_count += 1;
+
+
 
                                 UserInterest::create([
                                     'user_id' => $user->id,
