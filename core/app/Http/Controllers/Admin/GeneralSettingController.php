@@ -132,6 +132,11 @@ class GeneralSettingController extends Controller
             'user_kyc' => $request->user_kyc == 'on' ? 1 : 0,
             
             'vip1_amount' => $request->vip1_anmt_limit,
+            'vip2_amount' => $request->vip2_anmt_limit,
+            'vip3_amount' => $request->vip3_anmt_limit,
+            'vip4_amount' => $request->vip4_anmt_limit,
+            'vip5_amount' => $request->vip5_anmt_limit,
+            'vip6_amount' => $request->vip6_anmt_limit
         ]);
 
         $this->setEnv([

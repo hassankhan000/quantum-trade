@@ -131,14 +131,51 @@
                                         </div>
                                     </div>
 
+                                    
                                     <div class="col-md-4">
-                                        <label><?php echo e(__('VIP 1 Deposit Limit')); ?></label>
+                                        <label class="mt-3"><?php echo e(__('VIP 1 Deposit Limit')); ?></label>
                                         <div class="input-group">
                                             <input type="text" name="vip1_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 1 Deposit Limit'); ?>"
                                                value="<?php echo e($general->vip1_amount); ?>" class="form-control form_control">
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 2 Deposit Limit')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip2_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 2 Deposit Limit'); ?>"
+                                               value="<?php echo e($general->vip2_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 3 Deposit Limit')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip3_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 3 Deposit Limit'); ?>"
+                                               value="<?php echo e($general->vip3_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 4 Deposit Limit')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip4_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 4 Deposit Limit'); ?>"
+                                               value="<?php echo e($general->vip4_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 5 Deposit Limit')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip5_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 5 Deposit Limit'); ?>"
+                                               value="<?php echo e($general->vip5_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 6 Deposit Limit')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip6_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 6 Deposit Limit'); ?>"
+                                               value="<?php echo e($general->vip6_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
 
+                                    
                                     <div class="form-group col-md-12">
                                         <label for="sitename"><?php echo e(__('Map Link')); ?></label>
                                         <input type="text" name="map_link" placeholder="<?php echo app('translator')->get('Map Link'); ?>"

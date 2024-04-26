@@ -64,23 +64,23 @@ class UserController extends Controller
         $totalAmount = $check_ids_deposit->total_amount ?? 0;
         $general = GeneralSetting::first();
 
-        if ($totalAmount >= 6000) {
+        if ($totalAmount >= $general->vip6_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 6;
             $user->save();
-        } elseif ($totalAmount >= 5000) {
+        } elseif ($totalAmount >= $general->vip5_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 5;
             $user->save();
-        } elseif ($totalAmount >= 4000) {
+        } elseif ($totalAmount >= $general->vip4_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 4;
             $user->save();
-        } elseif ($totalAmount >= 3000) {
+        } elseif ($totalAmount >= $general->vip3_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 3;
             $user->save();
-        } elseif ($totalAmount >= 2000) {
+        } elseif ($totalAmount >= $general->vip2_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 2;
             $user->save();
