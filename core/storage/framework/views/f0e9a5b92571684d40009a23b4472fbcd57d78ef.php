@@ -38,50 +38,49 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-     <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
 
-    main {
-      padding: 2rem;
-    }
+        main {
+            padding: 2rem;
+        }
 
-    .container {
-      max-width: 600px;
-    }
+        .container {
+            max-width: 600px;
+        }
 
-    .card {
-      margin-bottom: 1rem;
-    }
+        .card {
+            margin-bottom: 1rem;
+        }
 
-    .card-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-    .card-subtitle {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1rem;
-    }
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
 
-    .card-content {
-      font-size: 0.9rem;
-    }
+        .card-content {
+            font-size: 0.9rem;
+        }
 
-    .btn {
-      margin-top: 1rem;
-    }
-  </style>
+        .btn {
+            margin-top: 1rem;
+        }
+    </style>
 
 </head>
 
 <body class="nk-body npc-invest bg-lighter">
-    
     <div class="nk-app-root">
         <div class="nk-wrap">
             <div class="nk-header nk-header-fluid is-theme is-regular">
@@ -1000,9 +999,6 @@
             Investment Platform?
         </div>
     </a>
-
-
-
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/bundlee5ca.js?ver=3.2.3')); ?>"></script>
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/scriptse5ca.js?ver=3.2.3')); ?>"></script>
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/demo-settingse5ca.js?ver=3.2.3')); ?>"></script>
@@ -1111,78 +1107,104 @@
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
+<script>
     // Add your JavaScript code here
-class TradingBot {
-  constructor(config) {
-    this.config = config;
-    this.balance = 0;
-    this.prices = [];
+    class TradingBot {
+        constructor(config) {
+            this.config = config;
+            this.balance = 0;
+            this.prices = [];
 
-    // Initialize other necessary properties
-  }
+            // Initialize other necessary properties
+        }
 
-  async initialize() {
-    // Connect to the exchange's API
-    // Fetch the initial balance
-    // Set up websockets or interval-based price updates
-  }
+        async initialize() {
+            // Connect to the exchange's API
+            // Fetch the initial balance
+            // Set up websockets or interval-based price updates
+        }
 
-  shouldBuy(currentPrice) {
-    // Implement your buying logic here
-    // Return true if the bot should buy, false otherwise
-  }
+        shouldBuy(currentPrice) {
+            // Implement your buying logic here
+            // Return true if the bot should buy, false otherwise
+        }
 
-  shouldSell(currentPrice) {
-    // Implement your selling logic here
-    // Return true if the bot should sell, false otherwise
-  }
+        shouldSell(currentPrice) {
+            // Implement your selling logic here
+            // Return true if the bot should sell, false otherwise
+        }
 
-  async buy() {
-    // Place a buy order through the exchange's API
-    // Update the balance and prices
-  }
+        async buy() {
+            // Place a buy order through the exchange's API
+            // Update the balance and prices
+        }
 
-  async sell() {
-    // Place a sell order through the exchange's API
-    // Update the balance and prices
-  }
+        async sell() {
+            // Place a sell order through the exchange's API
+            // Update the balance and prices
+        }
 
-  async updatePrices() {
-    // Fetch the latest prices from the exchange's API
-    // Update the prices property
-  }
+        async updatePrices() {
+            // Fetch the latest prices from the exchange's API
+            // Update the prices property
+        }
 
-  async run() {
-    await this.initialize();
+        async run() {
+            await this.initialize();
 
-    setInterval(async () => {
-      await this.updatePrices();
+            setInterval(async () => {
+                await this.updatePrices();
 
-      const currentPrice = this.prices[this.prices.length - 1];
+                const currentPrice = this.prices[this.prices.length - 1];
 
-      if (this.shouldBuy(currentPrice)) {
-        await this.buy();
-      }
+                if (this.shouldBuy(currentPrice)) {
+                    await this.buy();
+                }
 
-      if (this.shouldSell(currentPrice)) {
-        await this.sell();
-      }
-    }, this.config.updateInterval);
-  }
-}
+                if (this.shouldSell(currentPrice)) {
+                    await this.sell();
+                }
+            }, this.config.updateInterval);
+        }
+    }
 
-const config = {
-  updateInterval: 60000, // Check for updates every 60 seconds
-  // Add other configuration properties here
-};
+    const config = {
+        updateInterval: 60000, // Check for updates every 60 seconds
+        // Add other configuration properties here
+    };
 
-const bot = new TradingBot(config);
-bot.run();
+    const bot = new TradingBot(config);
+    bot.run();
+</script>
+<script>
+    $(document).ready(function() {
+        cryptoList.append('<li> LOADING </li>');
+        $.ajax({
+            url: 'https://scanner.tradingview.com/crypto/scan',
+            type: 'GET',
+            success: function(response) {
+                $('#loadingIndicator').hide(); // Hide loading indicator
 
+                if (response && response.data) {
+                    var cryptos = response.data;
+                    var cryptoList = $('#cryptoList');
 
-  </script>
-
+                    $.each(cryptos, function(index, crypto) {
+                        if (crypto && crypto.s) {
+                            cryptoList.append('<li>' + crypto.s + '</li>');
+                        }
+                    });
+                } else {
+                    cryptoList.append('<li>No data available</li>');
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#loadingIndicator').hide(); // Hide loading indicator
+                console.error('Error fetching data:', error);
+            }
+        });
+    });
+</script>
 
 </html>
 <?php /**PATH C:\xampp\htdocs\quantum\core\resources\views/theme4/layout/master2.blade.php ENDPATH**/ ?>

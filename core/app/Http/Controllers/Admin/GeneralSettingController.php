@@ -128,6 +128,7 @@ class GeneralSettingController extends Controller
             'trans_charge' => $request->trans_charge,
             'min_amount' => $request->min_amount,
             'max_amount' => $request->max_amount,
+            'is_vip_reward' => $request->vip_reward_status,
             
             'user_kyc' => $request->user_kyc == 'on' ? 1 : 0,
             
@@ -136,7 +137,14 @@ class GeneralSettingController extends Controller
             'vip3_amount' => $request->vip3_anmt_limit,
             'vip4_amount' => $request->vip4_anmt_limit,
             'vip5_amount' => $request->vip5_anmt_limit,
-            'vip6_amount' => $request->vip6_anmt_limit
+            'vip6_amount' => $request->vip6_anmt_limit,
+
+            'vip1_reward_amount' => $request->vip1_rwd_limit,
+            'vip2_reward_amount' => $request->vip2_rwd_limit,
+            'vip3_reward_amount' => $request->vip3_rwd_limit,
+            'vip4_reward_amount' => $request->vip4_rwd_limit,
+            'vip5_reward_amount' => $request->vip5_rwd_limit,
+            'vip6_reward_amount' => $request->vip6_rwd_limit
         ]);
 
         $this->setEnv([

@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                     
                                     <div class="col-md-4">
                                         <label class="mt-3"><?php echo e(__('VIP 1 Deposit Limit')); ?></label>
@@ -175,7 +175,61 @@
                                         </div>
                                     </div>
 
+
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 1 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip1_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 1 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip1_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 2 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip2_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 2 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip2_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 3 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip3_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 3 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip3_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 4 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip4_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 4 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip4_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 5 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip5_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 5 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip5_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('VIP 6 Reward Amount')); ?></label>
+                                        <div class="input-group">
+                                            <input type="text" name="vip6_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 6 Reward Amount'); ?>"
+                                               value="<?php echo e($general->vip6_reward_amount); ?>" class="form-control form_control">
+                                        </div>
+                                    </div>
+
                                     
+
+                                    <div class="col-md-4">
+                                        <label class="mt-3"><?php echo e(__('Vip Reward Status')); ?></label>
+                                        <div class="input-group">
+                                            <select name="vip_reward_status" class="form-control form_control">
+                                                <option value="0" <?php echo e($general->is_vip_reward == 0 ? 'selected' : ''); ?>>Deactive</option>
+                                                <option value="1" <?php echo e($general->is_vip_reward == 1 ? 'selected' : ''); ?>>Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group col-md-12">
                                         <label for="sitename"><?php echo e(__('Map Link')); ?></label>
                                         <input type="text" name="map_link" placeholder="<?php echo app('translator')->get('Map Link'); ?>"
