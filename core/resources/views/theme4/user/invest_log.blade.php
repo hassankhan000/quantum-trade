@@ -2,7 +2,50 @@
 
 
 @section('content2')
-    
+<script>
+    'use strict'
+
+
+    function firePayment(elementId) {
+        $.ajax({
+            url: "{{ route('returninterest') }}",
+            method: "GET",
+            success: function(response) {
+                if (response) {
+                    document.getElementById(elementId).innerHTML = "COMPLETE";
+
+                    return
+                }
+
+                window.location.href = "{{ url()->current() }}"
+            }
+        })
+    }
+
+
+
+
+    function getCountDown(elementId, seconds) {
+        var times = seconds;
+
+        var x = setInterval(function() {
+            var distance = times * 1000;
+
+            if (distance < 0) {
+                clearInterval(x);
+                firePayment(elementId);
+                return
+            }
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById(elementId).innerHTML = days + "d " + hours + "h " + minutes + "m " +
+                seconds + "s ";
+            times--;
+        }, 1000);
+    }
+</script>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
@@ -91,6 +134,7 @@
                                             @endforelse
                                         </tbody>
                                     </table>
+                                    
                                 </div>
                             </div>
                         </div>

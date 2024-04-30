@@ -1,15 +1,16 @@
 @extends(template() . 'layout.master2')
 <style>
-.nk-content.nk-content-fluid{
-    padding-top: 0;
-}
-.main-card{
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    border-radius: 20px;
-    background: black;
-}
+    .nk-content.nk-content-fluid {
+        padding-top: 0;
+    }
+
+    .main-card {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border-radius: 20px;
+        background: black;
+    }
 </style>
 @section('content2')
     <div class="nk-content nk-content-fluid">
@@ -72,9 +73,9 @@
                             </div>
                         </div>
                     </div> --}}
-                            <div class="col-md-4 mt-2 mb-2">
-                                <div class="main-card"></div>
-                            </div>
+                    <div class="col-md-4 mt-2 mb-2">
+                        <div class="main-card"></div>
+                    </div>
                     <div class="nk-block">
                         <div class="row g-gs">
                             <div class="col-md-4">
@@ -118,6 +119,15 @@
                                                     {{ $general->site_currency }}</span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-bordered card-full">
+                                    <div class="card-inner">
+                                        <ul id="cryptoSelect">
+                                            <li>INITIAL</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

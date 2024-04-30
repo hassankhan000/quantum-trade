@@ -185,6 +185,7 @@ unset($__errorArgs, $__bag); ?>
                                         <select name="vip_status" class="form-control selectric">
                                             <option value="" selected disabled>
                                                 <?php echo e($plan->vip_status); ?> </option>
+                                                <option value="0"><?php echo e(__('Vip 0')); ?></option>
                                                 <option value="1"><?php echo e(__('Vip 1')); ?></option>
                                                 <option value="2"><?php echo e(__('Vip 2')); ?></option>
                                                 <option value="3"><?php echo e(__('Vip 3')); ?></option>

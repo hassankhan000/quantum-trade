@@ -49,7 +49,6 @@ class UserController extends Controller
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
-
         $referred_users = DB::table('users')
             ->select('id')
             ->where('reffered_by', Auth::id())
@@ -67,26 +66,110 @@ class UserController extends Controller
         if ($totalAmount >= $general->vip6_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 6;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip6_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip6_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } elseif ($totalAmount >= $general->vip5_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 5;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip5_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip5_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } elseif ($totalAmount >= $general->vip4_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 4;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip4_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip4_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } elseif ($totalAmount >= $general->vip3_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 3;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip3_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip3_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } elseif ($totalAmount >= $general->vip2_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 2;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip2_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip2_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } elseif ($totalAmount >= $general->vip1_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 1;
+            if ($general->is_vip_reward == 1) {
+                $user->balance += $general->vip1_reward_amount;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general->vip1_reward_amount,
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
             $user->save();
         } else {
             $user = User::find(Auth::id());
@@ -359,20 +442,30 @@ class UserController extends Controller
 
                 if ($user) {
 
+                    $interestRate = $invest->plan->return_interest;
+                    $returnAmount = 0;
+
+                    if ($invest->plan->interest_status == 'percentage') {
+                        $returnAmount = ($invest->amount * $interestRate) / 100;
+                    }
+                    if ($invest->plan->interest_status == 'fixed') {
+                        $returnAmount = $invest->plan->return_interest;
+                    }
+
+                    if ($user->reffered_by && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
+                        $uplinerProfit = $returnAmount * 10 / 100;
+                        $upliner = User::find($user->reffered_by);
+                        if ($upliner && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
+                            $upliner->balance += $uplinerProfit;
+                            $upliner->save();
+                        }
+                    }
+
                     if (now()->greaterThanOrEqualTo($invest->next_payment_date)) {
                         //find interest rate
 
-                        $interestRate = $invest->plan->return_interest;
-                        $returnAmount = 0;
-
-                        if ($invest->plan->interest_status == 'percentage') {
-                            $returnAmount = ($invest->amount * $interestRate) / 100;
-                        }
-                        if ($invest->plan->interest_status == 'fixed') {
-                            $returnAmount = $invest->plan->return_interest;
-                        }
-
                         $user->balance += $returnAmount;
+
                         $updatePaymentDate = $invest->next_payment_date->addHour($invest->plan->time->time);
                         $interestAmount = $returnAmount;
 
@@ -382,11 +475,12 @@ class UserController extends Controller
                         $count = Payment::where('plan_id', $invest->plan_id)->where('next_payment_date', $invest->next_payment_date)->sum('pay_count');
 
                         if ($invest->plan->return_for == 1) {
-
                             if ($count < $invest->plan->how_many_time) {
                                 $updatePayment->next_payment_date = $updatePaymentDate;
                                 $updatePayment->interest_amount += $interestAmount;
                                 $updatePayment->pay_count += 1;
+
+
 
                                 UserInterest::create([
                                     'user_id' => $user->id,
