@@ -1,4 +1,3 @@
-@extends(template() . 'layout.master2')
 <style>
     .nk-content.nk-content-fluid {
         padding-top: 0;
@@ -13,67 +12,13 @@
         background: linear-gradient(49deg, rgba(58, 140, 36, 1) 50%, rgba(148, 208, 26, 1) 100%);
     }
 </style>
-@section('content2')
+<?php $__env->startSection('content2'); ?>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
 
-                    {{-- <div class="nk-block-head nk-block-head-sm">
-                        <div class="nk-block-between">
-                            <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title">
-                                    Investment Dashboard
-                                </h3>
-                                <div class="nk-block-des text-soft">
-                                    <p>Welcome to DashLite Dashboard Template.</p>
-                                </div>
-                            </div>
-                            <div class="nk-block-head-content">
-                                <div class="toggle-wrap nk-block-tools-toggle">
-                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
-                                        data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="toggle-expand-content" data-content="pageMenu">
-                                        <ul class="nk-block-tools g-3">
-                                            <li>
-                                                <a href="#" class="btn btn-white btn-dim btn-outline-primary"><em
-                                                        class="icon ni ni-download-cloud"></em><span>Export</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn btn-white btn-dim btn-outline-primary"><em
-                                                        class="icon ni ni-reports"></em><span>Reports</span></a>
-                                            </li>
-                                            <li class="nk-block-tools-opt">
-                                                <div class="drodown">
-                                                    <a href="#" class="dropdown-toggle btn btn-icon btn-primary"
-                                                        data-bs-toggle="dropdown"><em class="icon ni ni-plus"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-user-add-fill"></em><span>Add
-                                                                        User</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-coin-alt-fill"></em><span>Add
-                                                                        Order</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-note-add-fill-c"></em><span>Add
-                                                                        Page</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    
                     <div class="col-md-4 mt-2 mb-2">
                         <div class="main-card"></div>
                     </div>
@@ -93,9 +38,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format(auth()->user()->balance, 2) }}
+                                                <?php echo e(number_format(auth()->user()->balance, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -106,7 +52,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Total Withdraw') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Total Withdraw')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -115,9 +61,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($withdraw, 2) }}
+                                                <?php echo e(number_format($withdraw, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -137,7 +84,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Total Deposit') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Total Deposit')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -146,9 +93,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($totalDeposit, 2) }}
+                                                <?php echo e(number_format($totalDeposit, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -159,7 +107,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Total Invest') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Total Invest')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -168,9 +116,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($totalInvest, 2) }}
+                                                <?php echo e(number_format($totalInvest, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -181,7 +130,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Current Invest') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Current Invest')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -190,9 +139,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0 }}
+                                                <?php echo e(isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -203,7 +153,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Current Plan') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Current Plan')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -212,7 +162,8 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ isset($currentPlan->plan->plan_name) ? $currentPlan->plan->plan_name : 'N/A' }}
+                                                <?php echo e(isset($currentPlan->plan->plan_name) ? $currentPlan->plan->plan_name : 'N/A'); ?>
+
                                                 <span class="currency currency-usd"></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
@@ -224,7 +175,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Pending Invest') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Pending Invest')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -233,9 +184,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($pendingInvest, 2) }}
+                                                <?php echo e(number_format($pendingInvest, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -246,7 +198,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Pending Withdraw') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Pending Withdraw')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -255,9 +207,10 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($pendingWithdraw, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($pendingWithdraw, 2) . ' ' . $general->site_currency); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
@@ -268,7 +221,7 @@
                                     <div class="card-inner">
                                         <div class="card-title-group align-start mb-0">
                                             <div class="card-title">
-                                                <h6 class="subtitle">{{ __('Refferal Earn') }}</h6>
+                                                <h6 class="subtitle"><?php echo e(__('Refferal Earn')); ?></h6>
                                             </div>
                                             <div class="card-tools">
                                                 <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
@@ -277,23 +230,24 @@
                                         </div>
                                         <div class="card-amount">
                                             <span class="amount">
-                                                {{ number_format($commison, 2) }}
+                                                <?php echo e(number_format($commison, 2)); ?>
+
                                                 <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
+                                                    <?php echo e($general->site_currency); ?></span></span><span
                                                 class="change up text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <label>{{ __('Your refferal link') }}</label>
+                                <label><?php echo e(__('Your refferal link')); ?></label>
                                 <div class="input-group mb-3">
                                     <input type="text" id="refer-link" class="form-control copy-text"
-                                        value="{{ route('user.register', @Auth::user()->username) }}"
+                                        value="<?php echo e(route('user.register', @Auth::user()->username)); ?>"
                                         placeholder="referallink.com/refer" aria-label="Recipient's username"
                                         aria-describedby="basic-addon2" readonly>
                                     <button type="button" class="input-group-text copy cmn-btn"
-                                        id="basic-addon2">{{ __('Copy') }}</button>
+                                        id="basic-addon2"><?php echo e(__('Copy')); ?></button>
                                 </div>
                             </div>
                             <div class="col-md-6 col-xxl-4">
@@ -1356,9 +1310,9 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        @endsection
+                                                                        <?php $__env->stopSection(); ?>
 
-                                                                        @push('style')
+                                                                        <?php $__env->startPush('style'); ?>
                                                                             <style>
                                                                                 .modal-backdrop.fade.show {
                                                                                     display: none;
@@ -1444,9 +1398,9 @@
                                                                                     border: 2px solid #c3c3c3;
                                                                                 }
                                                                             </style>
-                                                                        @endpush
+                                                                        <?php $__env->stopPush(); ?>
 
-                                                                        @push('script')
+                                                                        <?php $__env->startPush('script'); ?>
                                                                             <script>
                                                                                 'use strict';
 
@@ -1521,4 +1475,6 @@
                                                                                     }
                                                                                 });
                                                                             </script>
-                                                                        @endpush
+                                                                        <?php $__env->stopPush(); ?>
+
+<?php echo $__env->make(template() . 'layout.master2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\quantum-trade\core\resources\views/theme4/user/dashboard.blade.php ENDPATH**/ ?>
