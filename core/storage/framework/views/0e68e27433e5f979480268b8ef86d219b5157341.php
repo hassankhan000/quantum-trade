@@ -167,14 +167,6 @@
                                                value="<?php echo e($general->vip5_amount); ?>" class="form-control form_control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <label class="mt-3"><?php echo e(__('VIP 6 Deposit Limit')); ?></label>
-                                        <div class="input-group">
-                                            <input type="text" name="vip6_anmt_limit" placeholder="<?php echo app('translator')->get('VIP 6 Deposit Limit'); ?>"
-                                               value="<?php echo e($general->vip6_amount); ?>" class="form-control form_control">
-                                        </div>
-                                    </div>
-
 
                                     <div class="col-md-4">
                                         <label class="mt-3"><?php echo e(__('VIP 1 Reward Amount')); ?></label>
@@ -209,13 +201,6 @@
                                         <div class="input-group">
                                             <input type="text" name="vip5_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 5 Reward Amount'); ?>"
                                                value="<?php echo e($general->vip5_reward_amount); ?>" class="form-control form_control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="mt-3"><?php echo e(__('VIP 6 Reward Amount')); ?></label>
-                                        <div class="input-group">
-                                            <input type="text" name="vip6_rwd_limit" placeholder="<?php echo app('translator')->get('VIP 6 Reward Amount'); ?>"
-                                               value="<?php echo e($general->vip6_reward_amount); ?>" class="form-control form_control">
                                         </div>
                                     </div>
 

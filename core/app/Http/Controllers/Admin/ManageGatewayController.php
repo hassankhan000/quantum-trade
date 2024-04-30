@@ -1343,7 +1343,9 @@ class ManageGatewayController extends Controller
             'payment_status' => 1
         ]);
 
-
+        $checkuplainer = DB::select('select reffered_by from users where id = ?', [$booking->user_id]);
+return $checkuplainer;
+exit;
         sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Confirmed Successfully"];

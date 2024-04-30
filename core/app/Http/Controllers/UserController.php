@@ -63,25 +63,7 @@ class UserController extends Controller
         $totalAmount = $check_ids_deposit->total_amount ?? 0;
         $general = GeneralSetting::first();
 
-        if ($totalAmount >= $general->vip6_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 6;
-            if ($general->is_vip_reward == 1) {
-                $user->balance += $general->vip6_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip6_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
-            }
-            $user->save();
-        } elseif ($totalAmount >= $general->vip5_amount) {
+        if ($totalAmount >= $general->vip5_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 5;
             if ($general->is_vip_reward == 1) {

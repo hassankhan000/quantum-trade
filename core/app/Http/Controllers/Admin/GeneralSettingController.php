@@ -137,14 +137,12 @@ class GeneralSettingController extends Controller
             'vip3_amount' => $request->vip3_anmt_limit,
             'vip4_amount' => $request->vip4_anmt_limit,
             'vip5_amount' => $request->vip5_anmt_limit,
-            'vip6_amount' => $request->vip6_anmt_limit,
 
             'vip1_reward_amount' => $request->vip1_rwd_limit,
             'vip2_reward_amount' => $request->vip2_rwd_limit,
             'vip3_reward_amount' => $request->vip3_rwd_limit,
             'vip4_reward_amount' => $request->vip4_rwd_limit,
-            'vip5_reward_amount' => $request->vip5_rwd_limit,
-            'vip6_reward_amount' => $request->vip6_rwd_limit
+            'vip5_reward_amount' => $request->vip5_rwd_limit
         ]);
 
         $this->setEnv([
