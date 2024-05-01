@@ -8,10 +8,10 @@ use App\Models\Transaction;
 use App\Models\Withdraw;
 use App\Models\WithdrawGateway;
 use App\Models\Payment;
+use App\Models\Plan;
 use App\Models\UserInterest;
 use App\Models\GeneralSetting;
 use App\Models\Ranking;
-use App\Models\Plan;
 use App\Models\RefferedCommission;
 use App\Models\User;
 use App\Models\MoneyTransfer;
@@ -160,8 +160,8 @@ class UserController extends Controller
             $user->vip_status = 0;
             $user->save();
         }
-        $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'plans','currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit'));
+        $plans = Plan::where('status' , 1)->get();
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit' ,'plans'));
     }
 
     public function profile()
