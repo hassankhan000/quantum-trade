@@ -80,8 +80,9 @@
         background: #232323;
         border-radius: 16px;
         padding: 14px;
-        margin: 20px 0;
+        margin: 20px 0 30px 0;
         border: 1px solid #7cf94545;
+        position: relative;
     }
 
     .plan-card h3 {
@@ -94,6 +95,19 @@
     .plan-card p {
         color: hsl(0, 0%, 94%);
         font-size: 10px;
+        margin-bottom: 2px;
+    }
+
+    .plan-card .plan-status {
+        background: #f9f9f9;
+        color: hsl(128.89deg 55.09% 19.9%);
+        position: absolute;
+        top: -11px;
+        padding: 3px;
+        right: -7px;
+        border-radius: 7px;
+        font-size: 10px;
+        font-weight: 700;
     }
 
     .plan-card h3 span {
