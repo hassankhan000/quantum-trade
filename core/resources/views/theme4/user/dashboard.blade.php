@@ -4,13 +4,118 @@
         padding-top: 0;
     }
 
+    .nk-content.nk-content-fluid {
+        background: #282828 !important;
+    }
+
     .main-card {
         width: 100%;
         height: 100%;
-        padding: 20px;
+        padding: 20px 20px 1px 20px;
         border-radius: 20px;
         background: rgb(58, 140, 36);
-        background: linear-gradient(49deg, rgba(58, 140, 36, 1) 50%, rgba(148, 208, 26, 1) 100%);
+        /* background: linear-gradient(49deg, rgba(58, 140, 36, 1) 50%, rgba(148, 208, 26, 1) 100%); */
+        background:
+            linear-gradient(90deg, rgb(59 140 36 / 58%) 50%, rgb(147 208 26 / 0%) 100%), url(https://img.freepik.com/free-vector/gradient-wavy-background_23-2149123391.jpg?uid=R75560207&ga=GA1.1.168232131.1695012003&semt=ais);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .main-card h5 {
+        margin-top: 0;
+        color: white;
+        font-size: 23px;
+        font-family: system-ui;
+        font-weight: 500;
+    }
+
+    .main-card h6 {
+        margin: 0;
+        color: #fff6f6;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .main-card h4 {
+        margin: 0;
+        color: #aefd23;
+        font-size: 22px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .main-card .bell {
+        padding: 0px 0px 5px 5px;
+        background: #282828;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .main-card .bell .inner {
+        padding: 10px;
+        background: #83c31c;
+        border-radius: 10px;
+    }
+
+    .card {
+        background-color: #232323 !important;
+        border-radius: 12px !important;
+        border: 1px solid #83c31c75 !important;
+    }
+
+    .card-amount .amount {
+        color: #aefd23 !important;
+    }
+
+    .card-amount .amount span {
+        color: #ffffff !important;
+    }
+
+    .plan-card {
+        background: #232323;
+        border-radius: 16px;
+        padding: 14px;
+        margin: 20px 0;
+        border: 1px solid #7cf94545;
+    }
+
+    .plan-card h3 {
+        margin: 0px 0 6px 0;
+        color: #7cf945;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .plan-card p {
+        color: hsl(0, 0%, 94%);
+        font-size: 10px;
+    }
+
+    .plan-card h3 span {
+        color: #fffdfd;
+        text-transform: capitalize;
+    }
+
+    .plan-list {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .plan-list li {
+        list-style-type: none;
+        background: #23742f;
+        margin: 0 5px 5px 0;
+        color: white;
+        padding: 4px;
+        font-size: 11px;
+        border-radius: 7px;
     }
 </style>
 @section('content2')
@@ -18,67 +123,173 @@
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-
-                    {{-- <div class="nk-block-head nk-block-head-sm">
-                        <div class="nk-block-between">
-                            <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title">
-                                    Investment Dashboard
-                                </h3>
-                                <div class="nk-block-des text-soft">
-                                    <p>Welcome to DashLite Dashboard Template.</p>
-                                </div>
-                            </div>
-                            <div class="nk-block-head-content">
-                                <div class="toggle-wrap nk-block-tools-toggle">
-                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
-                                        data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="toggle-expand-content" data-content="pageMenu">
-                                        <ul class="nk-block-tools g-3">
-                                            <li>
-                                                <a href="#" class="btn btn-white btn-dim btn-outline-primary"><em
-                                                        class="icon ni ni-download-cloud"></em><span>Export</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn btn-white btn-dim btn-outline-primary"><em
-                                                        class="icon ni ni-reports"></em><span>Reports</span></a>
-                                            </li>
-                                            <li class="nk-block-tools-opt">
-                                                <div class="drodown">
-                                                    <a href="#" class="dropdown-toggle btn btn-icon btn-primary"
-                                                        data-bs-toggle="dropdown"><em class="icon ni ni-plus"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-user-add-fill"></em><span>Add
-                                                                        User</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-coin-alt-fill"></em><span>Add
-                                                                        Order</span></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><em
-                                                                        class="icon ni ni-note-add-fill-c"></em><span>Add
-                                                                        Page</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                    <div class="nk-block">
+                        <div class="row g-gs pt-5">
+                            <div class="col-md-4">
+                                <div class="main-card">
+                                    <div class="bell">
+                                        {{-- <div class="inner">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                                fill="#fff" class="bi bi-bell" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
+                                            </svg>
+                                        </div> --}}
+                                        <img src="https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif"
+                                            width="100px" class="img-fluid rounded rounded-4" alt="">
+                                    </div>
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-6">
+                                            <h6>Welcome back:)</h6>
+                                            <h5>Huzaifa Khan</h5>
+                                        </div>
+                                        <div class="col-6"></div>
+                                    </div>
+                                    <div class="row mt-5 align-items-end justify-content-center">
+                                        <div class="col-6">
+                                            <h6 class="fs-4">Balance</h6>
+                                            <h4>10,00,00,00,99</h4>
+                                            <h6 class="fs-6 mt-4">(0,000,00,99,99 BTC)</h6>
+                                        </div>
+                                        <div class="col-6 d-flex flex-column align-items-end justify-content-end">
+                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
+                                                @if (1 == 0)
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+                                                    </svg>
+                                                @else
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="me-2 bi bi-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
+                                                @endif
+                                                36.90%
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 align-items-center justify-content-center">
+                                        <div class="col">
+                                            <button class="btn btn-dark w-100">Start Bot</button>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-light w-100" disabled>End Bot</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> --}}
-                    <div class="col-md-4 mt-2 mb-2">
-                        <div class="main-card"></div>
-                    </div>
-                    <div class="nk-block">
-                        <div class="row g-gs">
+                            <div class="col-md-4">
+                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST BOTS
+                                    <img style="margin: -8px 0px 0 -2px !important;
+                                width: 30px;"
+                                        src="https://media0.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif"
+                                        class="img-fluid rounded rounded-circle ms-2" alt="">
+                                </span>
+                                @forelse ($plans as $plan)
+                                    @php
+                                        $plan_exist = App\Models\Payment::where('plan_id', $plan->id)
+                                            ->where('user_id', Auth::id())
+                                            ->where('next_payment_date', '!=', null)
+                                            ->where('payment_status', 1)
+                                            ->count();
+                                    @endphp
+                                    <div class="col-xl-4 col-md-6">
+                                        <div class="plan-card">
+                                            <h3>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
+                                            </h3>
+                                            <p class="">Trade With World's Best Quantum Trading Bots</p>
+                                            <span class="plan-status">{{ __('Every') }}
+                                                {{ $plan->time->name }}</span>
+                                            <ul class="plan-list">
+                                                @if ($plan->amount_type == 0)
+                                                    <li>
+                                                        <span class="caption">{{ __('Minimum') }} </span>
+                                                        <span class="details">
+                                                            {{ number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="caption">{{ __('Maximum') }} </span>
+                                                        <span class="details">
+                                                            {{ number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="caption">{{ __('Amount') }} </span>
+                                                        <span class="details">
+                                                            {{ number_format($plan->amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                    </li>
+                                                @endif
+
+                                                @if ($plan->return_for == 1)
+                                                    <li>
+                                                        <span class="caption">{{ __('For') }} </span>
+                                                        <span class="details"> {{ $plan->how_many_time }}
+                                                            {{ __('Times') }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="caption">{{ __('For') }} </span>
+                                                        <span class="details"> {{ __('Lifetime') }}</span>
+                                                    </li>
+                                                @endif
+
+                                                @if ($plan->capital_back == 1)
+                                                    <li>
+                                                        <span class="caption">{{ __('Capital Back') }} </span>
+                                                        <span class="details"> {{ __('YES') }}</span>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <span class="caption">{{ __('Capital Back') }} </span>
+                                                        <span class="details"> {{ __('NO') }}</span>
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                            <div class="plan-rio">
+                                                <h6>{{ __('ROI') }}</h6>
+                                                <p class="plan-amount">
+                                                    {{ number_format($plan->return_interest, 2) }} @if ($plan->interest_status == 'percentage')
+                                                        {{ '%' }}
+                                                    @else
+                                                        {{ @$general->site_currency }}
+                                                    @endif
+                                                </p>
+                                            </div>
+
+                                            <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
+                                            <ul class="plan-referral">
+                                                @if ($plan->referrals)
+                                                    @foreach ($plan->referrals->level as $key => $value)
+                                                        <div class="single-referral">
+                                                            <span>{{ $plan->referrals->commision[$key] }}
+                                                                %</span>
+                                                            <p>{{ $value }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                            @if ($plan_exist >= $plan->invest_limit)
+                                                <a class="main-btn plan-btn w-100 disabled" href="#">
+                                                    <span>{{ __('Max Limit exceeded') }}</span>
+                                                </a>
+                                            @else
+                                                {{-- <a class="main-btn plan-btn w-100"
+                                                    href="{{ route('user.gateways', $plan->id) }}">
+                                                    <span>{{ __('Invest Now') }}</span>
+                                                </a> --}}
+                                                @auth
+                                                    <button class="balance btn-light" data-plan="{{ $plan }}"
+                                                        data-url=""><span>{{ __('Invest') }}</span></button>
+                                                @endauth
+                                            @endif
+                                        </div>
+                                    </div>
+                                @empty
+                                @endforelse
+                            </div>
                             <div class="col-md-4">
                                 <div class="card card-bordered card-full">
                                     <div class="card-inner">
@@ -1446,7 +1657,71 @@
                                                                             </style>
                                                                         @endpush
 
+                                                                        <div class="modal fade" id="invest"
+                                                                            tabindex="-1" role="dialog"
+                                                                            aria-labelledby="modelTitleId"
+                                                                            aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <form style="width: 100%;"
+                                                                                    action="{{ route('user.investmentplan.submit') }}"
+                                                                                    method="post">
+                                                                                    @csrf
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title">
+                                                                                                {{ __('Invest Now') }}
+                                                                                            </h5>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-bs-dismiss="modal"
+                                                                                                aria-label="Close">
+                                                                                                <span
+                                                                                                    aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div
+                                                                                                class="container-fluid">
+                                                                                                <div
+                                                                                                    class="form-group">
+                                                                                                    <label
+                                                                                                        for="">{{ __('Invest Amount') }}</label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        name="amount"
+                                                                                                        class="form-control">
+                                                                                                    <input
+                                                                                                        type="hidden"
+                                                                                                        name="plan_id"
+                                                                                                        class="form-control">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-secondary"
+                                                                                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                                                                            <button type="submit"
+                                                                                                class="btn main-btn"><span>{{ __('Invest Now') }}</span></button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+
+
                                                                         @push('script')
+                                                                            <script>
+                                                                                $(function() {
+                                                                                    'use strict'
+
+                                                                                    $('.balance').on('click', function() {
+                                                                                        const modal = $('#invest');
+                                                                                        modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                                                                                        modal.modal('show')
+                                                                                    })
+                                                                                })
+                                                                            </script>
                                                                             <script>
                                                                                 'use strict';
 

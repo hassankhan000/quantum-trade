@@ -76,6 +76,45 @@
         .btn {
             margin-top: 1rem;
         }
+
+        .nk-header.is-theme:not([class*=bg-]) {
+            background: #232323;
+            border-color: #83c31c;
+        }
+
+        .nk-header-mobile {
+            padding: 0 10px;
+        }
+
+        .btn:hover{
+            background-color: #282828d3;
+        }
+
+        .btn,
+        .btn-large,
+        .btn-small {
+            text-decoration: none;
+            color: #fff;
+            border-radius: 17px;
+            background-color: #282828;
+            text-align: center;
+            letter-spacing: .5px;
+            -webkit-transition: background-color .2s ease-out;
+            transition: background-color .2s ease-out;
+            cursor: pointer;
+        }
+
+        .btn-ligh {
+            text-decoration: none;
+            color: #282828;
+            border-radius: 17px;
+            background-color: #a4f324;
+            text-align: center;
+            letter-spacing: .5px;
+            -webkit-transition: background-color .2s ease-out;
+            transition: background-color .2s ease-out;
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -100,7 +139,7 @@
                             <div class="nk-header-mobile">
                                 <div class="nk-header-brand">
                                     <a href="<?php echo e(url('/dashboard')); ?>" class="logo-link"><img
-                                            src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/logo.png')); ?>"
+                                            src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/logo-dark.png')); ?>"
                                             alt="logo" />
                                     </a>
                                 </div>
@@ -534,24 +573,7 @@
             </div>
         </div>
     </div>
-    <ul class="nk-sticky-toolbar">
-        <li class="demo-layout">
-            <a class="toggle tipinfo" data-target="demoML" href="#" title="Main Demo Preview"><em
-                    class="icon ni ni-dashlite"></em></a>
-        </li>
-        <li class="demo-thumb">
-            <a class="toggle tipinfo" data-target="demoUC" href="#" title="Use Case Concept"><em
-                    class="icon ni ni-menu-squared"></em></a>
-        </li>
-        <li class="demo-settings">
-            <a class="toggle tipinfo" data-target="settingPanel" href="#" title="Demo Settings"><em
-                    class="icon ni ni-setting-alt"></em></a>
-        </li>
-        <li class="demo-purchase">
-            <a class="tipinfo" target="_blank" href="https://1.envato.market/e0y3g" title="Purchase"><em
-                    class="icon ni ni-cart"></em></a>
-        </li>
-    </ul>
+    
     <div class="nk-demo-panel nk-demo-panel-2x toggle-slide toggle-slide-right" data-content="demoML"
         data-toggle-overlay="true" data-toggle-body="true" data-toggle-screen="any">
         <div class="nk-demo-head">

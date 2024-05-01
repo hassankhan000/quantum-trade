@@ -11,6 +11,7 @@ use App\Models\Payment;
 use App\Models\UserInterest;
 use App\Models\GeneralSetting;
 use App\Models\Ranking;
+use App\Models\Plan;
 use App\Models\RefferedCommission;
 use App\Models\User;
 use App\Models\MoneyTransfer;
@@ -159,8 +160,8 @@ class UserController extends Controller
             $user->vip_status = 0;
             $user->save();
         }
-
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit'));
+        $plans = Plan::where('status', 1)->get();
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'plans','currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit'));
     }
 
     public function profile()
@@ -409,7 +410,6 @@ class UserController extends Controller
 
         return view($this->template . 'user.commision_log', compact('pageTitle', 'commison'));
     }
-
     public function returnInterest()
     {
         $general = GeneralSetting::first();
@@ -425,32 +425,76 @@ class UserController extends Controller
 
                 if ($user) {
 
-                    $interestRate = $invest->plan->return_interest;
-                    $returnAmount = 0;
-
-                    if ($invest->plan->interest_status == 'percentage') {
-                        $returnAmount = ($invest->amount * $interestRate) / 100;
-                    }
-                    if ($invest->plan->interest_status == 'fixed') {
-                        $returnAmount = $invest->plan->return_interest;
-                    }
-
-                    if ($user->reffered_by && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
-                        $uplinerProfit = $returnAmount * 10 / 100;
-                        $upliner = User::find($user->reffered_by);
-                        if ($upliner && now()->greaterThanOrEqualTo($invest->next_payment_date)) {
-                            $upliner->balance += $uplinerProfit;
-                            $upliner->save();
-                        }
-                    }
-
                     if (now()->greaterThanOrEqualTo($invest->next_payment_date)) {
                         //find interest rate
 
-                        $user->balance += $returnAmount;
+                        $interestRate = $invest->plan->return_interest;
+                        $returnAmount = 0;
 
+                        if ($invest->plan->interest_status == 'percentage') {
+                            $returnAmount = ($invest->amount * $interestRate) / 100;
+                        }
+                        if ($invest->plan->interest_status == 'fixed') {
+                            $returnAmount = $invest->plan->return_interest;
+                        }
+
+                        $user->balance += $returnAmount;
                         $updatePaymentDate = $invest->next_payment_date->addHour($invest->plan->time->time);
                         $interestAmount = $returnAmount;
+
+                        if($user->reffered_by != 0){
+                            $checkuplainerlvl1 = (int) DB::table('users')
+                            ->where('id', auth()->id())
+                            ->value('reffered_by');
+                        $checkuplainerlvl2 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl1)
+                            ->value('reffered_by');
+                        $checkuplainerlvl3 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl2)
+                            ->value('reffered_by');
+                        $checkuplainerlvl4 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl3)
+                            ->value('reffered_by');
+                        $checkuplainerlvl5 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl4)
+                            ->value('reffered_by');
+                        if ($checkuplainerlvl1 != 0) {
+                            $general_percentage = $general->ic_lvl_one;
+                            $PercentAmount = $interestAmount * ($general_percentage / 100);
+                            $chkuser = User::find($checkuplainerlvl1);
+                            $chkuser->balance += $PercentAmount;
+                            $chkuser->save();
+                        }
+                        if ($checkuplainerlvl2 != 0) {
+                            $general_percentage = $general->ic_lvl_two;
+                            $PercentAmount = $interestAmount * ($general_percentage / 100);
+                            $chkuser = User::find($checkuplainerlvl2);
+                            $chkuser->balance += $PercentAmount;
+                            $chkuser->save();
+                        }
+                        if ($checkuplainerlvl3 != 0) {
+                            $general_percentage = $general->ic_lvl_three;
+                            $PercentAmount = $interestAmount * ($general_percentage / 100);
+                            $chkuser = User::find($checkuplainerlvl3);
+                            $chkuser->balance += $PercentAmount;
+                            $chkuser->save();
+                        }
+                        if ($checkuplainerlvl4 != 0) {
+                            $general_percentage = $general->ic_lvl_four;
+                            $PercentAmount = $interestAmount * ($general_percentage / 100);
+                            $chkuser = User::find($checkuplainerlvl4);
+                            $chkuser->balance += $PercentAmount;
+                            $chkuser->save();
+                        }
+                        if ($checkuplainerlvl5 != 0) {
+                            $general_percentage = $general->ic_lvl_five;
+                            $PercentAmount = $interestAmount * ($general_percentage / 100);
+                            $chkuser = User::find($checkuplainerlvl5);
+                            $chkuser->balance += $PercentAmount;
+                            $chkuser->save();
+                        }
+                
+                        }
 
                         //paymentupdate on next date
                         $updatePayment = Payment::where('plan_id', $invest->plan_id)->where('next_payment_date', $invest->next_payment_date)->first();
@@ -458,12 +502,11 @@ class UserController extends Controller
                         $count = Payment::where('plan_id', $invest->plan_id)->where('next_payment_date', $invest->next_payment_date)->sum('pay_count');
 
                         if ($invest->plan->return_for == 1) {
+
                             if ($count < $invest->plan->how_many_time) {
                                 $updatePayment->next_payment_date = $updatePaymentDate;
                                 $updatePayment->interest_amount += $interestAmount;
                                 $updatePayment->pay_count += 1;
-
-
 
                                 UserInterest::create([
                                     'user_id' => $user->id,
@@ -501,7 +544,7 @@ class UserController extends Controller
                                             'gateway_id' => 0,
                                             'amount' => $invest->amount,
                                             'currency' => @$general->site_currency,
-                                            'details' => 'Capital Back For Plan ' . $invest->plan->plan_name,
+                                            'details' => 'Capital Back For Plan '. $invest->plan->plan_name,
                                             'charge' => 0,
                                             'type' => '+',
                                             'gateway_transaction' => '',
@@ -513,6 +556,7 @@ class UserController extends Controller
                                     }
                                 }
                             }
+
                         } else {
 
                             $updatePayment->next_payment_date = $updatePaymentDate;
@@ -534,7 +578,8 @@ class UserController extends Controller
 
                             $updatePayment->save();
                             $user->save();
-                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount, $invest->plan->id);
+                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount,$invest->plan->id);
+
                         }
                     }
                 }

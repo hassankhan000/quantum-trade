@@ -139,10 +139,7 @@
                                             <?php endif; ?>
                                         </tbody>
                                     </table>
-                                    <?php if($transactions->hasPages()): ?>
-                                    <?php echo e($transactions->links()); ?>
-
-                                <?php endif; ?>
+                                    
                                 </div>
                             </div>
                         </div>
