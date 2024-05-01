@@ -304,8 +304,8 @@
                                             </div>
 
                                             @if ($plan->referrals)
-                                                <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
-                                                <ul class="plan-referral">
+                                            <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
+                                            <ul class="plan-referral">
                                                     @foreach ($plan->referrals->level as $key => $value)
                                                         <div class="single-referral">
                                                             <span>{{ $plan->referrals->commision[$key] }}
@@ -314,8 +314,8 @@
                                                         </div>
                                                     @endforeach
                                                 </ul>
-                                            @endif
-                                            @if ($plan_exist >= $plan->invest_limit)
+                                                @endif
+                                                @if ($plan_exist >= $plan->invest_limit)
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span>{{ __('Max Limit exceeded') }}</span>
                                                 </a>

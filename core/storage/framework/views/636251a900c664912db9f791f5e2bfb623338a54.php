@@ -3,10 +3,14 @@
         padding-top: 0;
     }
 
+    .nk-content.nk-content-fluid {
+        background: #282828 !important;
+    }
+
     .main-card {
         width: 100%;
         height: 100%;
-        padding: 20px;
+        padding: 20px 20px 1px 20px;
         border-radius: 20px;
         background: rgb(58, 140, 36);
         /* background: linear-gradient(49deg, rgba(58, 140, 36, 1) 50%, rgba(148, 208, 26, 1) 100%); */
@@ -80,32 +84,57 @@
         position: relative;
     }
 
-    .plan-card h3 {
+    .plan-card h4 {
         margin: 0px 0 6px 0;
         color: #7cf945;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .plan-card p {
         color: hsl(0, 0%, 94%);
-        font-size: 10px;
-        margin-bottom: 2px;
+        font-size: 9px;
+        margin-bottom: 6px;
     }
 
     .plan-card .plan-status {
         background: #f9f9f9;
         color: hsl(128.89deg 55.09% 19.9%);
         position: absolute;
-        top: -11px;
+        top: -16px;
         padding: 3px;
-        right: -7px;
+        right: 0;
         border-radius: 7px;
         font-size: 10px;
         font-weight: 700;
     }
 
-    .plan-card h3 span {
+    .plan-rio {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        padding: 3px;
+        background: #fffdda;
+        margin: 5px 0px;
+        border-radius: 7px;
+        width: max-content;
+        color: black;
+    }
+
+    .plan-rio .plan-amount,
+    .plan-rio h6 {
+        font-size: 12px;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+
+    .plan-rio .plan-amount {
+        color: #23742f;
+        margin-left: 8px;
+    }
+
+    .plan-card h4 span {
         color: #fffdfd;
         text-transform: capitalize;
     }
@@ -123,7 +152,7 @@
         margin: 0 5px 5px 0;
         color: white;
         padding: 4px;
-        font-size: 11px;
+        font-size: 9px;
         border-radius: 7px;
     }
 </style>
@@ -185,7 +214,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST BOTS
+                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
+                                    TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
                                 width: 30px;"
                                         src="https://media0.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif"
@@ -201,8 +231,8 @@
                                     ?>
                                     <div class="col-xl-4 col-md-6">
                                         <div class="plan-card">
-                                            <h3>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
-                                            </h3>
+                                            <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
+                                            </h4>
                                             <p class="">Trade With World's Best Quantum Trading Bots</p>
                                             <span class="plan-status"><?php echo e(__('Every')); ?>
 
@@ -240,6 +270,10 @@
                                                         <span class="details"> <?php echo e(__('Lifetime')); ?></span>
                                                     </li>
                                                 <?php endif; ?>
+                                                <li>
+                                                    <span class="caption"><?php echo e(__('Required VIP')); ?> </span>
+                                                    <span class="details"><?php echo e($plan->vip_status); ?></span>
+                                                </li>
 
                                                 <?php if($plan->capital_back == 1): ?>
                                                     <li>
@@ -255,7 +289,7 @@
                                             </ul>
                                             <div class="plan-rio">
                                                 <h6><?php echo e(__('ROI')); ?></h6>
-                                                <p class="plan-amount">
+                                                <h6 class="plan-amount">
                                                     <?php echo e(number_format($plan->return_interest, 2)); ?> <?php if($plan->interest_status == 'percentage'): ?>
                                                         <?php echo e('%'); ?>
 
@@ -263,12 +297,12 @@
                                                         <?php echo e(@$general->site_currency); ?>
 
                                                     <?php endif; ?>
-                                                </p>
+                                                </h6>
                                             </div>
 
+                                            <?php if($plan->referrals): ?>
                                             <h6 class="mt-4 mb-3"><?php echo e(__('Affiliate Bonus')); ?></h6>
                                             <ul class="plan-referral">
-                                                <?php if($plan->referrals): ?>
                                                     <?php $__currentLoopData = $plan->referrals->level; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="single-referral">
                                                             <span><?php echo e($plan->referrals->commision[$key]); ?>
@@ -277,9 +311,9 @@
                                                             <p><?php echo e($value); ?></p>
                                                         </div>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </ul>
                                                 <?php endif; ?>
-                                            </ul>
-                                            <?php if($plan_exist >= $plan->invest_limit): ?>
+                                                <?php if($plan_exist >= $plan->invest_limit): ?>
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span><?php echo e(__('Max Limit exceeded')); ?></span>
                                                 </a>
@@ -1671,7 +1705,72 @@
                                                                             </style>
                                                                         <?php $__env->stopPush(); ?>
 
+                                                                        <div class="modal fade" id="invest"
+                                                                            tabindex="-1" role="dialog"
+                                                                            aria-labelledby="modelTitleId"
+                                                                            aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <form style="width: 100%;"
+                                                                                    action="<?php echo e(route('user.investmentplan.submit')); ?>"
+                                                                                    method="post">
+                                                                                    <?php echo csrf_field(); ?>
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title">
+                                                                                                <?php echo e(__('Invest Now')); ?>
+
+                                                                                            </h5>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-bs-dismiss="modal"
+                                                                                                aria-label="Close">
+                                                                                                <span
+                                                                                                    aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div
+                                                                                                class="container-fluid">
+                                                                                                <div
+                                                                                                    class="form-group">
+                                                                                                    <label
+                                                                                                        for=""><?php echo e(__('Invest Amount')); ?></label>
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        name="amount"
+                                                                                                        class="form-control">
+                                                                                                    <input
+                                                                                                        type="hidden"
+                                                                                                        name="plan_id"
+                                                                                                        class="form-control">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button"
+                                                                                                class="btn btn-secondary"
+                                                                                                data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                                                                                            <button type="submit"
+                                                                                                class="btn main-btn"><span><?php echo e(__('Invest Now')); ?></span></button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+
+
                                                                         <?php $__env->startPush('script'); ?>
+                                                                            <script>
+                                                                                $(function() {
+                                                                                    'use strict'
+
+                                                                                    $('.balance').on('click', function() {
+                                                                                        const modal = $('#invest');
+                                                                                        modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                                                                                        modal.modal('show')
+                                                                                    })
+                                                                                })
+                                                                            </script>
                                                                             <script>
                                                                                 'use strict';
 
