@@ -330,6 +330,10 @@
                             <a class="nav-link"
                                 href="<?php echo e(route('admin.general.setting')); ?>"><?php echo e(__('General Settings')); ?></a>
                         </li>
+                        <li class="">
+                            <a class="nav-link"
+                                href="<?php echo e(route('admin.set.dep.com')); ?>"><?php echo e(__('Set Commisions')); ?></a>
+                        </li>
                         <li class="<?php echo e(@$subNavPreloaderActiveClass); ?>">
                             <a class="nav-link"
                                 href="<?php echo e(route('admin.general.preloader')); ?>"><?php echo e(__('Preloader Setting')); ?></a>

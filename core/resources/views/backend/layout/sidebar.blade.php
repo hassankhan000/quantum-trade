@@ -330,6 +330,10 @@
                             <a class="nav-link"
                                 href="{{ route('admin.general.setting') }}">{{ __('General Settings') }}</a>
                         </li>
+                        <li class="">
+                            <a class="nav-link"
+                                href="{{ route('admin.set.dep.com') }}">{{ __('Set Commisions') }}</a>
+                        </li>
                         <li class="{{ @$subNavPreloaderActiveClass }}">
                             <a class="nav-link"
                                 href="{{ route('admin.general.preloader') }}">{{ __('Preloader Setting') }}</a>

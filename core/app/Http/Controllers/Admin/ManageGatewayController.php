@@ -11,6 +11,8 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+
 
 class ManageGatewayController extends Controller
 {
@@ -950,7 +952,7 @@ class ManageGatewayController extends Controller
 
         $data['currency'] = config('laravel-crypto-payment-gateway.paymentbox');
 
-        $data['gateways'] = Gateway::where('gateway_name','LIKE', '%'.'gourl'.'%')->get();
+        $data['gateways'] = Gateway::where('gateway_name', 'LIKE', '%' . 'gourl' . '%')->get();
 
 
         return view('backend.gateways.gourl')->with($data);
@@ -958,7 +960,7 @@ class ManageGatewayController extends Controller
 
     public function gourlUpdate(Request $request)
     {
-       
+
         $request->validate([
             'gateway_parameter' => 'required|array',
             'gateway_parameter.*.gateway_currency' => 'required',
@@ -973,18 +975,18 @@ class ManageGatewayController extends Controller
         foreach ($request->gateway_parameter as $key =>  $params) {
 
 
-            $gatewayName = 'gourl_'.$key;
+            $gatewayName = 'gourl_' . $key;
 
 
             $gateway = Gateway::where('gateway_name', $gatewayName)->first();
 
 
-            if($gateway){
+            if ($gateway) {
 
-                if(isset($params['gourl_image'])){
+                if (isset($params['gourl_image'])) {
 
                     $image = uploadImage($params['gourl_image'], gatewayImagePath(), '200x200', $gateway->gateway_image);
-                }else{
+                } else {
                     $image = $gateway->gateway_image;
                 }
 
@@ -993,8 +995,7 @@ class ManageGatewayController extends Controller
                     'public_key' => $params['public_key'],
                     'private_key' => $params['private_key'],
                 ];
-
-            }else{
+            } else {
                 $gateway = new Gateway();
 
                 $gatewayParameters = [
@@ -1018,18 +1019,15 @@ class ManageGatewayController extends Controller
 
 
             $this->setEnv([
-                strtoupper($gatewayName).'_PUBLIC_KEY' => $gatewayParameters['public_key'],
-                strtoupper($gatewayName).'_PRIVATE_KEY' => $gatewayParameters['private_key'],
+                strtoupper($gatewayName) . '_PUBLIC_KEY' => $gatewayParameters['public_key'],
+                strtoupper($gatewayName) . '_PRIVATE_KEY' => $gatewayParameters['private_key'],
             ]);
         }
 
 
 
 
-        return redirect()->back()->with('success','Gateway Updated Successfully');
-
-
-
+        return redirect()->back()->with('success', 'Gateway Updated Successfully');
     }
 
 
@@ -1193,15 +1191,14 @@ class ManageGatewayController extends Controller
     private function setEnv($object)
     {
 
-       
-        foreach ($object as $key => $value){
+
+        foreach ($object as $key => $value) {
             file_put_contents(app()->environmentFilePath(), str_replace(
                 $key . '=' . env($key),
                 $key . '=' . $value,
                 file_get_contents(app()->environmentFilePath())
             ));
         }
-
     }
 
     public function manualPayment(Request $request)
@@ -1299,7 +1296,7 @@ class ManageGatewayController extends Controller
 
         $manuals = Deposit::query();
 
-        if($user){
+        if ($user) {
             $manuals->where('user_id', $user->id);
         }
 
@@ -1330,7 +1327,6 @@ class ManageGatewayController extends Controller
         $booking->user->balance = $booking->user->balance + $booking->amount;
         $booking->save();
         $booking->user->save();
-
         Transaction::create([
             'trx' => $booking->transaction_id,
             'gateway_id' => $booking->gateway_id,
@@ -1342,10 +1338,67 @@ class ManageGatewayController extends Controller
             'user_id' => $booking->user_id,
             'payment_status' => 1
         ]);
+        $general = GeneralSetting::first();
 
-        $checkuplainer = DB::select('select reffered_by from users where id = ?', [$booking->user_id]);
-return $checkuplainer;
-exit;
+        $checkuplainerlvl1 = (int) DB::table('users')
+            ->where('id', $booking->user_id)
+            ->value('reffered_by');
+        $checkuplainerlvl2 = (int) DB::table('users')
+            ->where('id', $checkuplainerlvl1)
+            ->value('reffered_by');
+        $checkuplainerlvl3 = (int) DB::table('users')
+            ->where('id', $checkuplainerlvl2)
+            ->value('reffered_by');
+        $checkuplainerlvl4 = (int) DB::table('users')
+            ->where('id', $checkuplainerlvl3)
+            ->value('reffered_by');
+        $checkuplainerlvl5 = (int) DB::table('users')
+            ->where('id', $checkuplainerlvl4)
+            ->value('reffered_by');
+        if ($checkuplainerlvl1 != 0) {
+            $deposit_amount = $booking->amount;
+            $general_percentage = $general->dc_lvl_one;
+            $PercentAmount = $deposit_amount * ($general_percentage / 100);
+            $user = User::find($checkuplainerlvl1);
+            $user->balance += $PercentAmount;
+            $user->save();
+        }
+        if ($checkuplainerlvl2 != 0) {
+            $deposit_amount = $booking->amount;
+            $general_percentage = $general->dc_lvl_two;
+            $PercentAmount = $deposit_amount * ($general_percentage / 100);
+            $user = User::find($checkuplainerlvl2);
+            $user->balance += $PercentAmount;
+            $user->save();
+        }
+        if ($checkuplainerlvl3 != 0) {
+            $deposit_amount = $booking->amount;
+            $general_percentage = $general->dc_lvl_three;
+            $PercentAmount = $deposit_amount * ($general_percentage / 100);
+            $user = User::find($checkuplainerlvl3);
+            $user->balance += $PercentAmount;
+            $user->save();
+        }
+        if ($checkuplainerlvl4 != 0) {
+            $deposit_amount = $booking->amount;
+            $general_percentage = $general->dc_lvl_four;
+            $PercentAmount = $deposit_amount * ($general_percentage / 100);
+            $user = User::find($checkuplainerlvl4);
+            $user->balance += $PercentAmount;
+            $user->save();
+        }
+        if ($checkuplainerlvl5 != 0) {
+            $deposit_amount = $booking->amount;
+            $general_percentage = $general->dc_lvl_five;
+            $PercentAmount = $deposit_amount * ($general_percentage / 100);
+            $user = User::find($checkuplainerlvl5);
+            $user->balance += $PercentAmount;
+            $user->save();
+        }
+
+
+
+
         sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Confirmed Successfully"];

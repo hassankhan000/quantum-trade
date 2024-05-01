@@ -127,6 +127,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('cacheclear', [GeneralSettingController::class, 'cacheClear'])->name('general.cacheclear');
             Route::get('general/seo/manage', [GeneralSettingController::class, 'seoManage'])->name('general.seo');
             Route::post('general/seo/manage', [GeneralSettingController::class, 'seoManageUpdate']);
+            Route::get('deposit/commision', [GeneralSettingController::class, 'setDepCom'])->name('set.dep.com');
+            Route::post('deposit/commision/post', [GeneralSettingController::class, 'setDepComPost'])->name('set.dep.com.post');
         });
 
         Route::middleware('permission:manage-gateway,admin')->group(function () {

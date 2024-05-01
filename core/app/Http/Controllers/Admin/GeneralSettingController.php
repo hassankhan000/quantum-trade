@@ -20,6 +20,16 @@ class GeneralSettingController extends Controller
 
         return view('backend.setting.general_setting')->with($data);
     }
+    public function setDepCom()
+    {
+        $data['pageTitle'] = 'General Setting';
+        $data['navGeneralSettingsActiveClass'] = 'active';
+        $data['subNavGeneralSettingsActiveClass'] = 'active';
+        $data['general'] = GeneralSetting::first();
+        $data['timezone'] = json_decode(file_get_contents(resource_path('views/backend/setting/timezone.json')));
+
+        return view('backend.setting.dep_commision')->with($data);
+    }
 
     public function generalSettingUpdate(Request $request)
     {
@@ -142,7 +152,13 @@ class GeneralSettingController extends Controller
             'vip2_reward_amount' => $request->vip2_rwd_limit,
             'vip3_reward_amount' => $request->vip3_rwd_limit,
             'vip4_reward_amount' => $request->vip4_rwd_limit,
-            'vip5_reward_amount' => $request->vip5_rwd_limit
+            'vip5_reward_amount' => $request->vip5_rwd_limit,
+
+            'dc_lvl_one' => $request->dc_lvl_one,
+            'dc_lvl_two' => $request->dc_lvl_two,
+            'dc_lvl_three' => $request->dc_lvl_three,
+            'dc_lvl_four' => $request->dc_lvl_four,
+            'dc_lvl_five' => $request->dc_lvl_five
         ]);
 
         $this->setEnv([
@@ -153,6 +169,49 @@ class GeneralSettingController extends Controller
 
 
         $notify[] = ['success', 'General setting has been updated.'];
+        return back()->withNotify($notify);
+    }
+    public function setDepComPost(Request $request)
+    {
+       
+
+        $general = GeneralSetting::first();
+
+        $request->validate([
+            'dc_lvl_one' => 'required',
+            'dc_lvl_two' => 'required',
+            'dc_lvl_three' => 'required',
+            'dc_lvl_four' => 'required',
+            'dc_lvl_five' => 'required',
+
+            'ic_lvl_one' => 'required',
+            'ic_lvl_two' => 'required',
+            'ic_lvl_three' => 'required',
+            'ic_lvl_four' => 'required',
+            'ic_lvl_five' => 'required'
+
+        
+        ]);
+
+        GeneralSetting::updateOrCreate([
+            'id' => 1
+        ], [
+            'dc_lvl_one' => $request->dc_lvl_one,
+            'dc_lvl_two' => $request->dc_lvl_two,
+            'dc_lvl_three' => $request->dc_lvl_three,
+            'dc_lvl_four' => $request->dc_lvl_four,
+            'dc_lvl_five' => $request->dc_lvl_five,
+
+            'ic_lvl_one' => $request->ic_lvl_one,
+            'ic_lvl_two' => $request->ic_lvl_two,
+            'ic_lvl_three' => $request->ic_lvl_three,
+            'ic_lvl_four' => $request->ic_lvl_four,
+            'ic_lvl_five' => $request->ic_lvl_five,
+        ]);
+
+
+
+        $notify[] = ['success', 'Deposit Commisiion has been updated.'];
         return back()->withNotify($notify);
     }
 

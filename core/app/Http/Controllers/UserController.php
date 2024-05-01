@@ -21,6 +21,7 @@ use Purifier;
 use Auth;
 use Hash;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -49,7 +50,7 @@ class UserController extends Controller
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
-        $referred_users = DB::table('users')
+        $referred_users = Db::table('users')
             ->select('id')
             ->where('reffered_by', Auth::id())
             ->pluck('id')

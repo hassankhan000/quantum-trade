@@ -1,3 +1,4 @@
+
 <style>
     .nk-content.nk-content-fluid {
         padding-top: 0;
@@ -8,7 +9,8 @@
         height: 100%;
         padding: 20px;
         border-radius: 20px;
-        background: black;
+        background: rgb(58, 140, 36);
+        background: linear-gradient(49deg, rgba(58, 140, 36, 1) 50%, rgba(148, 208, 26, 1) 100%);
     }
 </style>
 <?php $__env->startSection('content2'); ?>
@@ -1455,6 +1457,23 @@
                                                                                             }
                                                                                         }
                                                                                     ]
+                                                                                });
+                                                                            </script>
+                                                                            <script>
+                                                                                var symbol = 'LTCBTC'
+                                                                                $.ajax({
+                                                                                    method: 'GET',
+                                                                                    url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + symbol,
+                                                                                    headers: {
+                                                                                        'X-Api-Key': 'YOUR_API_KEY'
+                                                                                    },
+                                                                                    contentType: 'application/json',
+                                                                                    success: function(result) {
+                                                                                        console.log(result);
+                                                                                    },
+                                                                                    error: function ajaxError(jqXHR) {
+                                                                                        console.error('Error: ', jqXHR.responseText);
+                                                                                    }
                                                                                 });
                                                                             </script>
                                                                         <?php $__env->stopPush(); ?>
