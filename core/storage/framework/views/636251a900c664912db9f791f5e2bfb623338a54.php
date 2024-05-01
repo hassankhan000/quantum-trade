@@ -84,32 +84,57 @@
         position: relative;
     }
 
-    .plan-card h3 {
+    .plan-card h4 {
         margin: 0px 0 6px 0;
         color: #7cf945;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .plan-card p {
         color: hsl(0, 0%, 94%);
-        font-size: 10px;
-        margin-bottom: 2px;
+        font-size: 9px;
+        margin-bottom: 6px;
     }
 
     .plan-card .plan-status {
         background: #f9f9f9;
         color: hsl(128.89deg 55.09% 19.9%);
         position: absolute;
-        top: -11px;
+        top: -16px;
         padding: 3px;
-        right: -7px;
+        right: 0;
         border-radius: 7px;
         font-size: 10px;
         font-weight: 700;
     }
 
-    .plan-card h3 span {
+    .plan-rio {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        padding: 3px;
+        background: #fffdda;
+        margin: 5px 0px;
+        border-radius: 7px;
+        width: max-content;
+        color: black;
+    }
+
+    .plan-rio .plan-amount,
+    .plan-rio h6 {
+        font-size: 12px;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+
+    .plan-rio .plan-amount {
+        color: #23742f;
+        margin-left: 8px;
+    }
+
+    .plan-card h4 span {
         color: #fffdfd;
         text-transform: capitalize;
     }
@@ -127,7 +152,7 @@
         margin: 0 5px 5px 0;
         color: white;
         padding: 4px;
-        font-size: 11px;
+        font-size: 9px;
         border-radius: 7px;
     }
 </style>
@@ -189,7 +214,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST BOTS
+                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
+                                    TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
                                 width: 30px;"
                                         src="https://media0.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif"
@@ -205,8 +231,8 @@
                                     ?>
                                     <div class="col-xl-4 col-md-6">
                                         <div class="plan-card">
-                                            <h3>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
-                                            </h3>
+                                            <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
+                                            </h4>
                                             <p class="">Trade With World's Best Quantum Trading Bots</p>
                                             <span class="plan-status"><?php echo e(__('Every')); ?>
 
@@ -244,6 +270,10 @@
                                                         <span class="details"> <?php echo e(__('Lifetime')); ?></span>
                                                     </li>
                                                 <?php endif; ?>
+                                                <li>
+                                                    <span class="caption"><?php echo e(__('Required VIP')); ?> </span>
+                                                    <span class="details"><?php echo e($plan->vip_status); ?></span>
+                                                </li>
 
                                                 <?php if($plan->capital_back == 1): ?>
                                                     <li>
@@ -259,7 +289,7 @@
                                             </ul>
                                             <div class="plan-rio">
                                                 <h6><?php echo e(__('ROI')); ?></h6>
-                                                <p class="plan-amount">
+                                                <h6 class="plan-amount">
                                                     <?php echo e(number_format($plan->return_interest, 2)); ?> <?php if($plan->interest_status == 'percentage'): ?>
                                                         <?php echo e('%'); ?>
 
@@ -267,12 +297,12 @@
                                                         <?php echo e(@$general->site_currency); ?>
 
                                                     <?php endif; ?>
-                                                </p>
+                                                </h6>
                                             </div>
 
-                                            <h6 class="mt-4 mb-3"><?php echo e(__('Affiliate Bonus')); ?></h6>
-                                            <ul class="plan-referral">
-                                                <?php if($plan->referrals): ?>
+                                            <?php if($plan->referrals): ?>
+                                                <h6 class="mt-4 mb-3"><?php echo e(__('Affiliate Bonus')); ?></h6>
+                                                <ul class="plan-referral">
                                                     <?php $__currentLoopData = $plan->referrals->level; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="single-referral">
                                                             <span><?php echo e($plan->referrals->commision[$key]); ?>
@@ -281,8 +311,8 @@
                                                             <p><?php echo e($value); ?></p>
                                                         </div>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                <?php endif; ?>
-                                            </ul>
+                                                </ul>
+                                            <?php endif; ?>
                                             <?php if($plan_exist >= $plan->invest_limit): ?>
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span><?php echo e(__('Max Limit exceeded')); ?></span>

@@ -85,32 +85,57 @@
         position: relative;
     }
 
-    .plan-card h3 {
+    .plan-card h4 {
         margin: 0px 0 6px 0;
         color: #7cf945;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .plan-card p {
         color: hsl(0, 0%, 94%);
-        font-size: 10px;
-        margin-bottom: 2px;
+        font-size: 9px;
+        margin-bottom: 6px;
     }
 
     .plan-card .plan-status {
         background: #f9f9f9;
         color: hsl(128.89deg 55.09% 19.9%);
         position: absolute;
-        top: -11px;
+        top: -16px;
         padding: 3px;
-        right: -7px;
+        right: 0;
         border-radius: 7px;
         font-size: 10px;
         font-weight: 700;
     }
 
-    .plan-card h3 span {
+    .plan-rio {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        padding: 3px;
+        background: #fffdda;
+        margin: 5px 0px;
+        border-radius: 7px;
+        width: max-content;
+        color: black;
+    }
+
+    .plan-rio .plan-amount,
+    .plan-rio h6 {
+        font-size: 12px;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+
+    .plan-rio .plan-amount {
+        color: #23742f;
+        margin-left: 8px;
+    }
+
+    .plan-card h4 span {
         color: #fffdfd;
         text-transform: capitalize;
     }
@@ -128,7 +153,7 @@
         margin: 0 5px 5px 0;
         color: white;
         padding: 4px;
-        font-size: 11px;
+        font-size: 9px;
         border-radius: 7px;
     }
 </style>
@@ -196,7 +221,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST BOTS
+                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
+                                    TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
                                 width: 30px;"
                                         src="https://media0.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif"
@@ -212,8 +238,8 @@
                                     @endphp
                                     <div class="col-xl-4 col-md-6">
                                         <div class="plan-card">
-                                            <h3>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
-                                            </h3>
+                                            <h4>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
+                                            </h4>
                                             <p class="">Trade With World's Best Quantum Trading Bots</p>
                                             <span class="plan-status">{{ __('Every') }}
                                                 {{ $plan->time->name }}</span>
@@ -249,6 +275,10 @@
                                                         <span class="details"> {{ __('Lifetime') }}</span>
                                                     </li>
                                                 @endif
+                                                <li>
+                                                    <span class="caption">{{ __('Required VIP') }} </span>
+                                                    <span class="details">{{ $plan->vip_status }}</span>
+                                                </li>
 
                                                 @if ($plan->capital_back == 1)
                                                     <li>
@@ -264,18 +294,18 @@
                                             </ul>
                                             <div class="plan-rio">
                                                 <h6>{{ __('ROI') }}</h6>
-                                                <p class="plan-amount">
+                                                <h6 class="plan-amount">
                                                     {{ number_format($plan->return_interest, 2) }} @if ($plan->interest_status == 'percentage')
                                                         {{ '%' }}
                                                     @else
                                                         {{ @$general->site_currency }}
                                                     @endif
-                                                </p>
+                                                </h6>
                                             </div>
 
-                                            <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
-                                            <ul class="plan-referral">
-                                                @if ($plan->referrals)
+                                            @if ($plan->referrals)
+                                                <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
+                                                <ul class="plan-referral">
                                                     @foreach ($plan->referrals->level as $key => $value)
                                                         <div class="single-referral">
                                                             <span>{{ $plan->referrals->commision[$key] }}
@@ -283,8 +313,8 @@
                                                             <p>{{ $value }}</p>
                                                         </div>
                                                     @endforeach
-                                                @endif
-                                            </ul>
+                                                </ul>
+                                            @endif
                                             @if ($plan_exist >= $plan->invest_limit)
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span>{{ __('Max Limit exceeded') }}</span>
