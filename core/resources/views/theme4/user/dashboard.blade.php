@@ -29,6 +29,7 @@
         font-size: 23px;
         font-family: system-ui;
         font-weight: 500;
+        width: max-content;
     }
 
     .main-card h6 {
@@ -83,6 +84,10 @@
         margin: 20px 0 30px 0;
         border: 1px solid #7cf94545;
         position: relative;
+        background: linear-gradient(#23232300, #23232375), url('https://img.freepik.com/free-vector/abstract-black-shapes-background-design_1017-31904.jpg?t=st=1714650201~exp=1714653801~hmac=0ee725b2266ddda8e091f01c15333da69082853a6a60209cd197b857deb57035&w=740');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .plan-card h4 {
@@ -99,15 +104,27 @@
     }
 
     .plan-card .plan-status {
-        background: #f9f9f9;
+        background: #fab913;
         color: hsl(128.89deg 55.09% 19.9%);
         position: absolute;
-        top: -16px;
-        padding: 3px;
+        top: -11px;
+        padding: 3px 6px;
         right: 0;
         border-radius: 7px;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
+    }
+
+    button.balance {
+        padding: 7px 40px;
+        border-radius: 6px;
+        margin-top: 3px;
+        border: 0;
+        width: 100%;
+        font-size: 12px;
+        font-weight: 500;
+        background: #77ec43;
+        color: black;
     }
 
     .plan-rio {
@@ -156,6 +173,38 @@
         font-size: 9px;
         border-radius: 7px;
     }
+
+    .vip-badge {
+        font-size: 10px;
+        color: yellow;
+        font-weight: 600;
+        padding: 1px 6px;
+        background: #282828;
+        white-space: nowrap;
+        border-radius: 8px;
+        position: relative;
+        top: -2px;
+    }
+
+    .nolock {
+        display: none;
+    }
+
+    .locked {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: -webkit-fill-available;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(3px);
+    }
+
+    .locked img {
+        width: 50%;
+    }
 </style>
 @section('content2')
     <div class="nk-content nk-content-fluid">
@@ -180,7 +229,8 @@
                                     <div class="row justify-content-center align-items-center">
                                         <div class="col-6">
                                             <h6>Welcome back:)</h6>
-                                            <h5>Huzaifa Khan</h5>
+                                            <h5>Huzaifa Khan <span class="vip-badge">VIP
+                                                    {{ auth()->user()->vip_status }}</span> </h5>
                                         </div>
                                         <div class="col-6"></div>
                                     </div>
@@ -212,7 +262,7 @@
                                     </div>
                                     <div class="row mt-3 align-items-center justify-content-center">
                                         <div class="col">
-                                            <button class="btn btn-dark w-100">Start Bot</button>
+                                            <button class="btn btn-dark show-plans w-100">Start Bot</button>
                                         </div>
                                         <div class="col">
                                             <button class="btn btn-light w-100" disabled>End Bot</button>
@@ -220,7 +270,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 plan-wrapper">
                                 <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
                                     TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
@@ -238,11 +288,16 @@
                                     @endphp
                                     <div class="col-xl-4 col-md-6">
                                         <div class="plan-card">
+                                            <div class="@if ($plan->vip_status <= auth()->user()->vip_status) nolock @else locked @endif">
+                                                <img class="img-fluid"
+                                                    src="{{ asset('asset/theme4/dashboard_assets/assets/images/lock.png') }}"alt="">
+                                            </div>
                                             <h4>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
                                             </h4>
                                             <p class="">Trade With World's Best Quantum Trading Bots</p>
-                                            <span class="plan-status">{{ __('Every') }}
-                                                {{ $plan->time->name }}</span>
+                                            <span class="plan-status">{{ __('Required VIP') }}
+                                                {{ $plan->vip_status }}
+                                            </span>
                                             <ul class="plan-list">
                                                 @if ($plan->amount_type == 0)
                                                     <li>
@@ -276,8 +331,8 @@
                                                     </li>
                                                 @endif
                                                 <li>
-                                                    <span class="caption">{{ __('Required VIP') }} </span>
-                                                    <span class="details">{{ $plan->vip_status }}</span>
+                                                    <span class="caption">{{ __('EVERY') }} </span>
+                                                    <span class="details">{{ $plan->time->name }}</span>
                                                 </li>
 
                                                 @if ($plan->capital_back == 1)
@@ -292,6 +347,7 @@
                                                     </li>
                                                 @endif
                                             </ul>
+
                                             <div class="plan-rio">
                                                 <h6>{{ __('ROI') }}</h6>
                                                 <h6 class="plan-amount">
@@ -303,19 +359,7 @@
                                                 </h6>
                                             </div>
 
-                                            @if ($plan->referrals)
-                                            <h6 class="mt-4 mb-3">{{ __('Affiliate Bonus') }}</h6>
-                                            <ul class="plan-referral">
-                                                    @foreach ($plan->referrals->level as $key => $value)
-                                                        <div class="single-referral">
-                                                            <span>{{ $plan->referrals->commision[$key] }}
-                                                                %</span>
-                                                            <p>{{ $value }}</p>
-                                                        </div>
-                                                    @endforeach
-                                                </ul>
-                                                @endif
-                                                @if ($plan_exist >= $plan->invest_limit)
+                                            @if ($plan_exist >= $plan->invest_limit)
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span>{{ __('Max Limit exceeded') }}</span>
                                                 </a>
@@ -325,8 +369,11 @@
                                                     <span>{{ __('Invest Now') }}</span>
                                                 </a> --}}
                                                 @auth
-                                                    <button class="balance btn-light" data-plan="{{ $plan }}"
-                                                        data-url=""><span>{{ __('Invest') }}</span></button>
+                                                    @if ($plan->vip_status <= auth()->user()->vip_status)
+                                                        <button class="balance btn-light" data-plan="{{ $plan }}"
+                                                            data-plan_percentage="{{ number_format($plan->return_interest, 2) }}"
+                                                            data-url=""><span>{{ __('Invest') }}</span></button>
+                                                    @endif
                                                 @endauth
                                             @endif
                                         </div>
@@ -1701,8 +1748,9 @@
                                                                             </style>
                                                                         @endpush
 
-                                                                        <div class="modal fade" id="invest"
-                                                                            tabindex="-1" role="dialog"
+                                                                        <div class="modal fade bg-transparent"
+                                                                            id="invest" tabindex="-1"
+                                                                            role="dialog"
                                                                             aria-labelledby="modelTitleId"
                                                                             aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
@@ -1710,9 +1758,10 @@
                                                                                     action="{{ route('user.investmentplan.submit') }}"
                                                                                     method="post">
                                                                                     @csrf
-                                                                                    <div class="modal-content">
+                                                                                    <div class="modal-content p-3">
                                                                                         <div class="modal-header">
-                                                                                            <h5 class="modal-title">
+                                                                                            <h5
+                                                                                                class="modal-title mt-0">
                                                                                                 {{ __('Invest Now') }}
                                                                                             </h5>
                                                                                             <button type="button"
@@ -1723,7 +1772,7 @@
                                                                                                     aria-hidden="true">&times;</span>
                                                                                             </button>
                                                                                         </div>
-                                                                                        <div class="modal-body">
+                                                                                        <div class="modal-body p-2">
                                                                                             <div
                                                                                                 class="container-fluid">
                                                                                                 <div
@@ -1733,20 +1782,24 @@
                                                                                                     <input
                                                                                                         type="text"
                                                                                                         name="amount"
-                                                                                                        class="form-control">
+                                                                                                        class="form-control modal_amount">
                                                                                                     <input
                                                                                                         type="hidden"
                                                                                                         name="plan_id"
                                                                                                         class="form-control">
+                                                                                                    <input
+                                                                                                        type="hidden"
+                                                                                                        name="plan_percentage"
+                                                                                                        class="form-control plan_percentage">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="modal-footer">
-                                                                                            <button type="button"
+                                                                                            {{-- <button type="button"
                                                                                                 class="btn btn-secondary"
-                                                                                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                                                                                data-bs-dismiss="modal">{{ __('Close') }}</button> --}}
                                                                                             <button type="submit"
-                                                                                                class="btn main-btn"><span>{{ __('Invest Now') }}</span></button>
+                                                                                                class="btn btn-light"><span>{{ __('Invest Now') }}</span></button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
@@ -1758,10 +1811,11 @@
                                                                             <script>
                                                                                 $(function() {
                                                                                     'use strict'
-
                                                                                     $('.balance').on('click', function() {
                                                                                         const modal = $('#invest');
                                                                                         modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                                                                                        let plan_percentage = $(this).data('plan_percentage').id;
+                                                                                        console.log($(this).data('plan_percentage'))
                                                                                         modal.modal('show')
                                                                                     })
                                                                                 })
@@ -1824,20 +1878,14 @@
                                                                                 });
                                                                             </script>
                                                                             <script>
-                                                                                var symbol = 'LTCBTC'
-                                                                                $.ajax({
-                                                                                    method: 'GET',
-                                                                                    url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + symbol,
-                                                                                    headers: {
-                                                                                        'X-Api-Key': 'YOUR_API_KEY'
-                                                                                    },
-                                                                                    contentType: 'application/json',
-                                                                                    success: function(result) {
-                                                                                        console.log(result);
-                                                                                    },
-                                                                                    error: function ajaxError(jqXHR) {
-                                                                                        console.error('Error: ', jqXHR.responseText);
-                                                                                    }
+                                                                                $('.plan-wrapper').hide()
+                                                                                $('.show-plans').click(function() {
+                                                                                    $('.plan-wrapper').slideDown()
+                                                                                });
+                                                                            </script>
+                                                                            <script>
+                                                                                $('.modal_amount').keyup(function(e) {
+                                                                                    let expected = $(this).val() * plan_percentage / 100;
                                                                                 });
                                                                             </script>
                                                                         @endpush

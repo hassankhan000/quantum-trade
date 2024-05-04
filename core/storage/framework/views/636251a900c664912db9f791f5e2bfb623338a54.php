@@ -28,6 +28,7 @@
         font-size: 23px;
         font-family: system-ui;
         font-weight: 500;
+        width: max-content;
     }
 
     .main-card h6 {
@@ -82,6 +83,10 @@
         margin: 20px 0 30px 0;
         border: 1px solid #7cf94545;
         position: relative;
+        background: linear-gradient(#23232300, #23232375), url('https://img.freepik.com/free-vector/abstract-black-shapes-background-design_1017-31904.jpg?t=st=1714650201~exp=1714653801~hmac=0ee725b2266ddda8e091f01c15333da69082853a6a60209cd197b857deb57035&w=740');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .plan-card h4 {
@@ -98,15 +103,27 @@
     }
 
     .plan-card .plan-status {
-        background: #f9f9f9;
+        background: #fab913;
         color: hsl(128.89deg 55.09% 19.9%);
         position: absolute;
-        top: -16px;
-        padding: 3px;
+        top: -11px;
+        padding: 3px 6px;
         right: 0;
         border-radius: 7px;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
+    }
+
+    button.balance {
+        padding: 7px 40px;
+        border-radius: 6px;
+        margin-top: 3px;
+        border: 0;
+        width: 100%;
+        font-size: 12px;
+        font-weight: 500;
+        background: #77ec43;
+        color: black;
     }
 
     .plan-rio {
@@ -155,6 +172,38 @@
         font-size: 9px;
         border-radius: 7px;
     }
+
+    .vip-badge {
+        font-size: 10px;
+        color: yellow;
+        font-weight: 600;
+        padding: 1px 6px;
+        background: #282828;
+        white-space: nowrap;
+        border-radius: 8px;
+        position: relative;
+        top: -2px;
+    }
+
+    .nolock {
+        display: none;
+    }
+
+    .locked {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: -webkit-fill-available;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(3px);
+    }
+
+    .locked img {
+        width: 50%;
+    }
 </style>
 <?php $__env->startSection('content2'); ?>
     <div class="nk-content nk-content-fluid">
@@ -173,7 +222,8 @@
                                     <div class="row justify-content-center align-items-center">
                                         <div class="col-6">
                                             <h6>Welcome back:)</h6>
-                                            <h5>Huzaifa Khan</h5>
+                                            <h5>Huzaifa Khan <span class="vip-badge">VIP
+                                                    <?php echo e(auth()->user()->vip_status); ?></span> </h5>
                                         </div>
                                         <div class="col-6"></div>
                                     </div>
@@ -205,7 +255,7 @@
                                     </div>
                                     <div class="row mt-3 align-items-center justify-content-center">
                                         <div class="col">
-                                            <button class="btn btn-dark w-100">Start Bot</button>
+                                            <button class="btn btn-dark show-plans w-100">Start Bot</button>
                                         </div>
                                         <div class="col">
                                             <button class="btn btn-light w-100" disabled>End Bot</button>
@@ -213,7 +263,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 plan-wrapper">
                                 <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
                                     TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
@@ -231,12 +281,18 @@
                                     ?>
                                     <div class="col-xl-4 col-md-6">
                                         <div class="plan-card">
+                                            <div class="<?php if($plan->vip_status <= auth()->user()->vip_status): ?> nolock <?php else: ?> locked <?php endif; ?>">
+                                                <img class="img-fluid"
+                                                    src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/lock.png')); ?>"alt="">
+                                            </div>
                                             <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
                                             </h4>
                                             <p class="">Trade With World's Best Quantum Trading Bots</p>
-                                            <span class="plan-status"><?php echo e(__('Every')); ?>
+                                            <span class="plan-status"><?php echo e(__('Required VIP')); ?>
 
-                                                <?php echo e($plan->time->name); ?></span>
+                                                <?php echo e($plan->vip_status); ?>
+
+                                            </span>
                                             <ul class="plan-list">
                                                 <?php if($plan->amount_type == 0): ?>
                                                     <li>
@@ -271,8 +327,8 @@
                                                     </li>
                                                 <?php endif; ?>
                                                 <li>
-                                                    <span class="caption"><?php echo e(__('Required VIP')); ?> </span>
-                                                    <span class="details"><?php echo e($plan->vip_status); ?></span>
+                                                    <span class="caption"><?php echo e(__('EVERY')); ?> </span>
+                                                    <span class="details"><?php echo e($plan->time->name); ?></span>
                                                 </li>
 
                                                 <?php if($plan->capital_back == 1): ?>
@@ -287,6 +343,7 @@
                                                     </li>
                                                 <?php endif; ?>
                                             </ul>
+
                                             <div class="plan-rio">
                                                 <h6><?php echo e(__('ROI')); ?></h6>
                                                 <h6 class="plan-amount">
@@ -300,28 +357,18 @@
                                                 </h6>
                                             </div>
 
-                                            <?php if($plan->referrals): ?>
-                                            <h6 class="mt-4 mb-3"><?php echo e(__('Affiliate Bonus')); ?></h6>
-                                            <ul class="plan-referral">
-                                                    <?php $__currentLoopData = $plan->referrals->level; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <div class="single-referral">
-                                                            <span><?php echo e($plan->referrals->commision[$key]); ?>
-
-                                                                %</span>
-                                                            <p><?php echo e($value); ?></p>
-                                                        </div>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </ul>
-                                                <?php endif; ?>
-                                                <?php if($plan_exist >= $plan->invest_limit): ?>
+                                            <?php if($plan_exist >= $plan->invest_limit): ?>
                                                 <a class="main-btn plan-btn w-100 disabled" href="#">
                                                     <span><?php echo e(__('Max Limit exceeded')); ?></span>
                                                 </a>
                                             <?php else: ?>
                                                 
                                                 <?php if(auth()->guard()->check()): ?>
-                                                    <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
-                                                        data-url=""><span><?php echo e(__('Invest')); ?></span></button>
+                                                    <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
+                                                        <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
+                                                            data-plan_percentage="<?php echo e(number_format($plan->return_interest, 2)); ?>"
+                                                            data-url=""><span><?php echo e(__('Invest')); ?></span></button>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endif; ?>
                                         </div>
@@ -1705,8 +1752,9 @@
                                                                             </style>
                                                                         <?php $__env->stopPush(); ?>
 
-                                                                        <div class="modal fade" id="invest"
-                                                                            tabindex="-1" role="dialog"
+                                                                        <div class="modal fade bg-transparent"
+                                                                            id="invest" tabindex="-1"
+                                                                            role="dialog"
                                                                             aria-labelledby="modelTitleId"
                                                                             aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
@@ -1714,9 +1762,10 @@
                                                                                     action="<?php echo e(route('user.investmentplan.submit')); ?>"
                                                                                     method="post">
                                                                                     <?php echo csrf_field(); ?>
-                                                                                    <div class="modal-content">
+                                                                                    <div class="modal-content p-3">
                                                                                         <div class="modal-header">
-                                                                                            <h5 class="modal-title">
+                                                                                            <h5
+                                                                                                class="modal-title mt-0">
                                                                                                 <?php echo e(__('Invest Now')); ?>
 
                                                                                             </h5>
@@ -1728,7 +1777,7 @@
                                                                                                     aria-hidden="true">&times;</span>
                                                                                             </button>
                                                                                         </div>
-                                                                                        <div class="modal-body">
+                                                                                        <div class="modal-body p-2">
                                                                                             <div
                                                                                                 class="container-fluid">
                                                                                                 <div
@@ -1738,20 +1787,22 @@
                                                                                                     <input
                                                                                                         type="text"
                                                                                                         name="amount"
-                                                                                                        class="form-control">
+                                                                                                        class="form-control modal_amount">
                                                                                                     <input
                                                                                                         type="hidden"
                                                                                                         name="plan_id"
                                                                                                         class="form-control">
+                                                                                                    <input
+                                                                                                        type="hidden"
+                                                                                                        name="plan_percentage"
+                                                                                                        class="form-control plan_percentage">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="modal-footer">
-                                                                                            <button type="button"
-                                                                                                class="btn btn-secondary"
-                                                                                                data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                                                                                            
                                                                                             <button type="submit"
-                                                                                                class="btn main-btn"><span><?php echo e(__('Invest Now')); ?></span></button>
+                                                                                                class="btn btn-light"><span><?php echo e(__('Invest Now')); ?></span></button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
@@ -1763,10 +1814,11 @@
                                                                             <script>
                                                                                 $(function() {
                                                                                     'use strict'
-
                                                                                     $('.balance').on('click', function() {
                                                                                         const modal = $('#invest');
                                                                                         modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                                                                                        let plan_percentage = $(this).data('plan_percentage').id;
+                                                                                        console.log($(this).data('plan_percentage'))
                                                                                         modal.modal('show')
                                                                                     })
                                                                                 })
@@ -1829,20 +1881,14 @@
                                                                                 });
                                                                             </script>
                                                                             <script>
-                                                                                var symbol = 'LTCBTC'
-                                                                                $.ajax({
-                                                                                    method: 'GET',
-                                                                                    url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + symbol,
-                                                                                    headers: {
-                                                                                        'X-Api-Key': 'YOUR_API_KEY'
-                                                                                    },
-                                                                                    contentType: 'application/json',
-                                                                                    success: function(result) {
-                                                                                        console.log(result);
-                                                                                    },
-                                                                                    error: function ajaxError(jqXHR) {
-                                                                                        console.error('Error: ', jqXHR.responseText);
-                                                                                    }
+                                                                                $('.plan-wrapper').hide()
+                                                                                $('.show-plans').click(function() {
+                                                                                    $('.plan-wrapper').slideDown()
+                                                                                });
+                                                                            </script>
+                                                                            <script>
+                                                                                $('.modal_amount').keyup(function(e) {
+                                                                                    let expected = $(this).val() * plan_percentage / 100;
                                                                                 });
                                                                             </script>
                                                                         <?php $__env->stopPush(); ?>
