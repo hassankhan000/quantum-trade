@@ -265,6 +265,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        display: none;
     }
 </style>
 <?php $__env->startSection('content2'); ?>
@@ -1987,7 +1988,7 @@
                                                                             <script>
                                                                                 $('.modal-table').hide()
                                                                                 $('.modal_amount').keyup(function(e) {
-                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100;
+                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 + parseFloat($(this).val());
                                                                                     $('.exp-profit').text(`$${expected} to $${expected*2}`)
                                                                                     $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
                                                                                     $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
@@ -2002,6 +2003,10 @@
                                                                                 let invest_form = $('.invest-form')
                                                                                 $('.success-img-wrapper').hide()
                                                                                 $('.payment-loading').hide()
+
+                                                                                invest_form.find('input[name=pair_price]').val("USDT-TRC-20")
+                                                                                invest_form.find('input[name=pair_name]').val("USDT-TRC-20")
+                                                                                
                                                                                 $('.submit-payment').click(function(e) {
                                                                                     e.preventDefault();
                                                                                     $('.payment-loading').fadeIn()
@@ -2017,13 +2022,13 @@
                                                                                     }, 16000);
                                                                                     setTimeout(function() {
                                                                                         $('.success-img-wrapper').show()
+                                                                                        $('.success-img-wrapper').css('display','flex')
                                                                                     }, 20000);
                                                                                     setTimeout(function() {
                                                                                         $('.success-img-wrapper').hide()
                                                                                         $('.payment-loading').hide()
+                                                                                        invest_form.submit()
                                                                                     }, 24000);
-                                                                                    invest_form.find('input[name=pair_price]').val("USDT-TRC-20")
-                                                                                    invest_form.find('input[name=pair_name]').val("USDT-TRC-20")
                                                                                 })
                                                                             </script>
                                                                         <?php $__env->stopPush(); ?>

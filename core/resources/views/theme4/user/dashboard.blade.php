@@ -266,6 +266,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        display: none;
     }
 </style>
 @section('content2')
@@ -1983,7 +1984,7 @@
                                                                             <script>
                                                                                 $('.modal-table').hide()
                                                                                 $('.modal_amount').keyup(function(e) {
-                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100;
+                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 + parseFloat($(this).val());
                                                                                     $('.exp-profit').text(`$${expected} to $${expected*2}`)
                                                                                     $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
                                                                                     $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
@@ -2017,10 +2018,12 @@
                                                                                     }, 16000);
                                                                                     setTimeout(function() {
                                                                                         $('.success-img-wrapper').show()
+                                                                                        $('.success-img-wrapper').css('display','flex')
                                                                                     }, 20000);
                                                                                     setTimeout(function() {
                                                                                         $('.success-img-wrapper').hide()
                                                                                         $('.payment-loading').hide()
+                                                                                        invest_form.submit()
                                                                                     }, 24000);
                                                                                 })
                                                                             </script>
