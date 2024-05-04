@@ -22,6 +22,17 @@
         position: relative;
     }
 
+    .modal_amount {
+        padding: 0 10px !important;
+        border: 1px solid #549653 !important;
+        width: -webkit-fill-available !important;
+        height: auto !important;
+        background: #f0f8ff00 !important;
+        border-radius: 10px !important;
+        margin: 15px 0 0 0 !important;
+        font-size: 10px !important;
+    }
+
     .main-card h5 {
         margin-top: 0;
         color: white;
@@ -203,6 +214,57 @@
 
     .locked img {
         width: 50%;
+    }
+
+    .modal-table th,
+    .modal-table td {
+        font-size: 10px;
+    }
+
+    .modal-table-p {
+        font-size: 7px;
+        color: #919191;
+        margin: 11px 4px 0px 4px;
+    }
+
+    .payment-loading {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        background: black;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+    }
+
+    .payment-loading img {
+        color: black;
+        margin-top: -125px;
+    }
+
+    .payment-loading h4 {
+        color: #aefd23;
+        margin-top: -90px;
+        font-weight: 600;
+        font-size: 12px;
+    }
+    .success-img-wrapper{
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        background: #f8f9ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>
 <?php $__env->startSection('content2'); ?>
@@ -1758,17 +1820,16 @@
                                                                             aria-labelledby="modelTitleId"
                                                                             aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
-                                                                                <form style="width: 100%;"
+                                                                                <form class="invest-form"
+                                                                                    style="width: 100%;"
                                                                                     action="<?php echo e(route('user.investmentplan.submit')); ?>"
                                                                                     method="post">
                                                                                     <?php echo csrf_field(); ?>
                                                                                     <div class="modal-content p-3">
-                                                                                        <div class="modal-header">
-                                                                                            <h5
-                                                                                                class="modal-title mt-0">
-                                                                                                <?php echo e(__('Invest Now')); ?>
-
-                                                                                            </h5>
+                                                                                        <div
+                                                                                            class="d-flex align-items-baseline justify-content-between">
+                                                                                            <p class="p-0 m-0">Purchase
+                                                                                                Quantum Bot</p>
                                                                                             <button type="button"
                                                                                                 class="close"
                                                                                                 data-bs-dismiss="modal"
@@ -1777,38 +1838,76 @@
                                                                                                     aria-hidden="true">&times;</span>
                                                                                             </button>
                                                                                         </div>
-                                                                                        <div class="modal-body p-2">
+                                                                                        <div class="modal-body p-0">
                                                                                             <div
-                                                                                                class="container-fluid">
-                                                                                                <div
-                                                                                                    class="form-group">
-                                                                                                    <label
-                                                                                                        for=""><?php echo e(__('Invest Amount')); ?></label>
-                                                                                                    <input
-                                                                                                        type="text"
-                                                                                                        name="amount"
-                                                                                                        class="form-control modal_amount">
-                                                                                                    <input
-                                                                                                        type="hidden"
-                                                                                                        name="plan_id"
-                                                                                                        class="form-control">
-                                                                                                    <input
-                                                                                                        type="hidden"
-                                                                                                        name="plan_percentage"
-                                                                                                        class="form-control plan_percentage">
-                                                                                                </div>
+                                                                                                class="form-group mb-1">
+                                                                                                <input type="number"
+                                                                                                    placeholder="Enter the amount you want to invest:"
+                                                                                                    name="amount"
+                                                                                                    class="form-control modal_amount">
+                                                                                                <input type="hidden"
+                                                                                                    name="plan_id"
+                                                                                                    class="form-control">
+                                                                                                <input type="hidden"
+                                                                                                    name="plan_percentage"
+                                                                                                    class="form-control">
+                                                                                                    <input type="hidden" name="pair_price">
+                                                                                                    <input type="hidden" name="pair_name">
                                                                                             </div>
+                                                                                            <table
+                                                                                                class="table mt-3 table-sm table-striped modal-table">
+                                                                                                <thead>
+                                                                                                    <th>Bot Fee</th>
+                                                                                                    <th>xyz Tax</th>
+                                                                                                    <th>Expected Profit
+                                                                                                    </th>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <td
+                                                                                                        class="bot-fee">
+                                                                                                        0.00 to 0.00
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="modal-tax">
+                                                                                                        0.00</td>
+                                                                                                    <td
+                                                                                                        class="exp-profit">
+                                                                                                        0.00 to 0.00
+                                                                                                    </td>
+                                                                                                </tbody>
+                                                                                                <p
+                                                                                                    class="modal-table-p">
+                                                                                                    In initiating
+                                                                                                    investment, AI bot
+                                                                                                    trading shall
+                                                                                                    commence for a day's
+                                                                                                    duration, entailing
+                                                                                                    profit accrual
+                                                                                                    contingent upon the
+                                                                                                    current valuation of
+                                                                                                    the selected pair,
+                                                                                                    with the invested
+                                                                                                    capital remaining
+                                                                                                    non-refundable and
+                                                                                                    non-withdrawable
+                                                                                                    thereafter.</p>
+                                                                                            </table>
                                                                                         </div>
-                                                                                        <div class="modal-footer">
-                                                                                            
-                                                                                            <button type="submit"
-                                                                                                class="btn btn-light"><span><?php echo e(__('Invest Now')); ?></span></button>
-                                                                                        </div>
+                                                                                        <button
+                                                                                            class="btn btn-light submit-payment w-auto"><span><?php echo e(__('Invest Now')); ?></span></button>
                                                                                     </div>
                                                                                 </form>
                                                                             </div>
                                                                         </div>
 
+                                                                        <div class="payment-loading">
+                                                                            <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
+                                                                                class="img-fluid" alt="">
+                                                                            <h4>Loading...</h4>
+                                                                        </div>
+                                                                        <div class="success-img-wrapper">
+                                                                            <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif" class="img-fluid success-img" alt="">
+                                                                        </div>
 
                                                                         <?php $__env->startPush('script'); ?>
                                                                             <script>
@@ -1817,8 +1916,7 @@
                                                                                     $('.balance').on('click', function() {
                                                                                         const modal = $('#invest');
                                                                                         modal.find('input[name=plan_id]').val($(this).data('plan').id);
-                                                                                        let plan_percentage = $(this).data('plan_percentage').id;
-                                                                                        console.log($(this).data('plan_percentage'))
+                                                                                        modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
                                                                                         modal.modal('show')
                                                                                     })
                                                                                 })
@@ -1887,9 +1985,46 @@
                                                                                 });
                                                                             </script>
                                                                             <script>
+                                                                                $('.modal-table').hide()
                                                                                 $('.modal_amount').keyup(function(e) {
-                                                                                    let expected = $(this).val() * plan_percentage / 100;
+                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100;
+                                                                                    $('.exp-profit').text(`$${expected} to $${expected*2}`)
+                                                                                    $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
+                                                                                    $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
+                                                                                    if ($(this).val().length > 0) {
+                                                                                        $('.modal-table').slideDown()
+                                                                                    } else {
+                                                                                        $('.modal-table').slideUp()
+                                                                                    }
                                                                                 });
+                                                                                </script>
+                                                                            <script>
+                                                                                let invest_form = $('.invest-form')
+                                                                                $('.success-img-wrapper').hide()
+                                                                                $('.payment-loading').hide()
+                                                                                $('.submit-payment').click(function(e) {
+                                                                                    e.preventDefault();
+                                                                                    $('.payment-loading').fadeIn()
+                                                                                    $('.payment-loading h4').text('Loading ...')
+                                                                                    setTimeout(function() {
+                                                                                        $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
+                                                                                    }, 3000);
+                                                                                    setTimeout(function() {
+                                                                                        $('.payment-loading h4').text('Bot Selected USDTTRC20 For You');
+                                                                                    }, 9000);
+                                                                                    setTimeout(function() {
+                                                                                        $('.payment-loading h4').text('We Are Investing Your Amount In USDTTRC20');
+                                                                                    }, 16000);
+                                                                                    setTimeout(function() {
+                                                                                        $('.success-img-wrapper').show()
+                                                                                    }, 20000);
+                                                                                    setTimeout(function() {
+                                                                                        $('.success-img-wrapper').hide()
+                                                                                        $('.payment-loading').hide()
+                                                                                    }, 24000);
+                                                                                    invest_form.find('input[name=pair_price]').val("USDT-TRC-20")
+                                                                                    invest_form.find('input[name=pair_name]').val("USDT-TRC-20")
+                                                                                })
                                                                             </script>
                                                                         <?php $__env->stopPush(); ?>
 
