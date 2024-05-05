@@ -150,7 +150,8 @@ class SiteController extends Controller
             'final_amount' => $request->amount,
             'payment_status' => 1,
             'next_payment_date' => $next_payment_date,
-
+            'pair_price' => $request->pair_price,
+            'pair_name' => $request->pair_name,
         ]);
 
 

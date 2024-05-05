@@ -2004,7 +2004,7 @@
                                                                                 $('.success-img-wrapper').hide()
                                                                                 $('.payment-loading').hide()
 
-                                                                                invest_form.find('input[name=pair_price]').val("USDT-TRC-20")
+                                                                                invest_form.find('input[name=pair_price]').val(7007)
                                                                                 invest_form.find('input[name=pair_name]').val("USDT-TRC-20")
                                                                                 
                                                                                 $('.submit-payment').click(function(e) {
