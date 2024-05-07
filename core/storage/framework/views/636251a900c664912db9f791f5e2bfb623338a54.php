@@ -253,7 +253,8 @@
         font-weight: 600;
         font-size: 12px;
     }
-    .success-img-wrapper{
+
+    .success-img-wrapper {
         width: 100%;
         height: 100vh;
         overflow: hidden;
@@ -1852,14 +1853,18 @@
                                                                                                 <input type="hidden"
                                                                                                     name="plan_percentage"
                                                                                                     class="form-control">
-                                                                                                    <input type="hidden" name="pair_price">
-                                                                                                    <input type="hidden" name="pair_name">
+                                                                                                <input type="hidden"
+                                                                                                    name="pair_price">
+                                                                                                <input type="hidden"
+                                                                                                    name="pair_name">
+                                                                                                <input type="hidden"
+                                                                                                    name="timestamp">
                                                                                             </div>
                                                                                             <table
                                                                                                 class="table mt-3 table-sm table-striped modal-table">
                                                                                                 <thead>
                                                                                                     <th>Bot Fee</th>
-                                                                                                    <th>xyz Tax</th>
+                                                                                                    <th>Quantum Tax</th>
                                                                                                     <th>Expected Profit
                                                                                                     </th>
                                                                                                 </thead>
@@ -1907,7 +1912,9 @@
                                                                             <h4>Loading...</h4>
                                                                         </div>
                                                                         <div class="success-img-wrapper">
-                                                                            <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif" class="img-fluid success-img" alt="">
+                                                                            <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
+                                                                                class="img-fluid success-img"
+                                                                                alt="">
                                                                         </div>
 
                                                                         <?php $__env->startPush('script'); ?>
@@ -1987,8 +1994,17 @@
                                                                             </script>
                                                                             <script>
                                                                                 $('.modal-table').hide()
+                                                                                $('.submit-payment').attr('disabled', true)
+                                                                                $('.submit-payment').text('Enter Amount')
                                                                                 $('.modal_amount').keyup(function(e) {
-                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 + parseFloat($(this).val());
+                                                                                    if ($(this).val() < 1) {
+                                                                                        $('.submit-payment').attr('disabled', true)
+                                                                                    } else {
+                                                                                        $('.submit-payment').attr('disabled', false)
+                                                                                        $('.submit-payment').text('Invest')
+                                                                                    }
+                                                                                    let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
+                                                                                        parseFloat($(this).val());
                                                                                     $('.exp-profit').text(`$${expected} to $${expected*2}`)
                                                                                     $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
                                                                                     $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
@@ -1998,15 +2014,12 @@
                                                                                         $('.modal-table').slideUp()
                                                                                     }
                                                                                 });
-                                                                                </script>
+                                                                            </script>
                                                                             <script>
                                                                                 let invest_form = $('.invest-form')
                                                                                 $('.success-img-wrapper').hide()
                                                                                 $('.payment-loading').hide()
 
-                                                                                invest_form.find('input[name=pair_price]').val(7007)
-                                                                                invest_form.find('input[name=pair_name]').val("USDT-TRC-20")
-                                                                                
                                                                                 $('.submit-payment').click(function(e) {
                                                                                     e.preventDefault();
                                                                                     $('.payment-loading').fadeIn()
@@ -2015,20 +2028,49 @@
                                                                                         $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
                                                                                     }, 3000);
                                                                                     setTimeout(function() {
-                                                                                        $('.payment-loading h4').text('Bot Selected USDTTRC20 For You');
+                                                                                        // FETCHING SYMBOL
+                                                                                        fetch('http://localhost/quantum-trade/api/cryptoSymbols')
+                                                                                            .then(response => response.json())
+                                                                                            .then(data => {
+                                                                                                // FETCHING PRICE
+                                                                                                $.ajax({
+                                                                                                    method: 'GET',
+                                                                                                    url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
+                                                                                                    headers: {
+                                                                                                        'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
+                                                                                                    },
+                                                                                                    contentType: 'application/json',
+                                                                                                    success: function(result) {
+                                                                                                        invest_form.find('input[name=pair_name]').val(result.symbol)
+                                                                                                        invest_form.find('input[name=pair_price]').val(result.price)
+                                                                                                        invest_form.find('input[name=timestamp]').val(result
+                                                                                                            .timestamp)
+                                                                                                        $('.payment-loading h4').text(
+                                                                                                            `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
+                                                                                                        );
+                                                                                                        setTimeout(function() {
+                                                                                                            $('.payment-loading h4').text(
+                                                                                                                `Processing With ${result.symbol}, Please Wait ...`
+                                                                                                            );
+                                                                                                        }, 5000);
+                                                                                                        setTimeout(function() {
+                                                                                                            $('.success-img-wrapper').hide()
+                                                                                                            $('.payment-loading').hide()
+                                                                                                            const modal = $('#invest');
+                                                                                                            modal.modal('hide')
+                                                                                                            invest_form.submit()
+                                                                                                        }, 10000);
+                                                                                                    },
+                                                                                                    error: function ajaxError(jqXHR) {
+                                                                                                        console.error('Error: ', jqXHR.responseText);
+                                                                                                    }
+                                                                                                });
+                                                                                                // FETCHING PRICE
+                                                                                            })
+                                                                                            .catch(error => console.error('Error fetching data:', error));
+                                                                                        // FETCH SYMBOL
                                                                                     }, 9000);
-                                                                                    setTimeout(function() {
-                                                                                        $('.payment-loading h4').text('We Are Investing Your Amount In USDTTRC20');
-                                                                                    }, 16000);
-                                                                                    setTimeout(function() {
-                                                                                        $('.success-img-wrapper').show()
-                                                                                        $('.success-img-wrapper').css('display','flex')
-                                                                                    }, 20000);
-                                                                                    setTimeout(function() {
-                                                                                        $('.success-img-wrapper').hide()
-                                                                                        $('.payment-loading').hide()
-                                                                                        invest_form.submit()
-                                                                                    }, 24000);
+                                                                                    // FINAL
                                                                                 })
                                                                             </script>
                                                                         <?php $__env->stopPush(); ?>

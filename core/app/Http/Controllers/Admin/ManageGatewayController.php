@@ -12,6 +12,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 
 class ManageGatewayController extends Controller
@@ -1362,6 +1364,18 @@ class ManageGatewayController extends Controller
             $user = User::find($checkuplainerlvl1);
             $user->balance += $PercentAmount;
             $user->save();
+            Transaction::create([
+                'trx' => strtoupper(Str::random(16)),
+                'gateway_id' => 0,
+                'amount' =>  $PercentAmount,
+                'currency' => @$general->site_currency,
+                'charge' => 0,
+                'details' => 'Refferal Deposit Commission',
+                'type' => '+',
+                'gateway_transaction' => '',
+                'payment_status' => 1,
+                'user_id' => $user->id,
+            ]);
         }
         if ($checkuplainerlvl2 != 0) {
             $deposit_amount = $booking->amount;
@@ -1370,6 +1384,18 @@ class ManageGatewayController extends Controller
             $user = User::find($checkuplainerlvl2);
             $user->balance += $PercentAmount;
             $user->save();
+            Transaction::create([
+                'trx' => strtoupper(Str::random(16)),
+                'gateway_id' => 0,
+                'amount' =>  $PercentAmount,
+                'currency' => @$general->site_currency,
+                'charge' => 0,
+                'details' => 'Refferal Deposit Commission',
+                'type' => '+',
+                'gateway_transaction' => '',
+                'payment_status' => 1,
+                'user_id' => $user->id,
+            ]);
         }
         if ($checkuplainerlvl3 != 0) {
             $deposit_amount = $booking->amount;
@@ -1378,6 +1404,18 @@ class ManageGatewayController extends Controller
             $user = User::find($checkuplainerlvl3);
             $user->balance += $PercentAmount;
             $user->save();
+            Transaction::create([
+                'trx' => strtoupper(Str::random(16)),
+                'gateway_id' => 0,
+                'amount' =>  $PercentAmount,
+                'currency' => @$general->site_currency,
+                'charge' => 0,
+                'details' => 'Refferal Deposit Commission',
+                'type' => '+',
+                'gateway_transaction' => '',
+                'payment_status' => 1,
+                'user_id' => $user->id,
+            ]);
         }
         if ($checkuplainerlvl4 != 0) {
             $deposit_amount = $booking->amount;
@@ -1386,6 +1424,18 @@ class ManageGatewayController extends Controller
             $user = User::find($checkuplainerlvl4);
             $user->balance += $PercentAmount;
             $user->save();
+            Transaction::create([
+                'trx' => strtoupper(Str::random(16)),
+                'gateway_id' => 0,
+                'amount' =>  $PercentAmount,
+                'currency' => @$general->site_currency,
+                'charge' => 0,
+                'details' => 'Refferal Deposit Commission',
+                'type' => '+',
+                'gateway_transaction' => '',
+                'payment_status' => 1,
+                'user_id' => $user->id,
+            ]);
         }
         if ($checkuplainerlvl5 != 0) {
             $deposit_amount = $booking->amount;
@@ -1394,6 +1444,18 @@ class ManageGatewayController extends Controller
             $user = User::find($checkuplainerlvl5);
             $user->balance += $PercentAmount;
             $user->save();
+            Transaction::create([
+                'trx' => strtoupper(Str::random(16)),
+                'gateway_id' => 0,
+                'amount' =>  $PercentAmount,
+                'currency' => @$general->site_currency,
+                'charge' => 0,
+                'details' => 'Refferal Deposit Commission',
+                'type' => '+',
+                'gateway_transaction' => '',
+                'payment_status' => 1,
+                'user_id' => $user->id,
+            ]);
         }
 
 

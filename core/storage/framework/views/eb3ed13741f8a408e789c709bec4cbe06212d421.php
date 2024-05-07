@@ -1,6 +1,3 @@
-
-
-
 <?php $__env->startSection('content2'); ?>
 <script>
     'use strict'
@@ -13,10 +10,8 @@
             success: function(response) {
                 if (response) {
                     document.getElementById(elementId).innerHTML = "COMPLETE";
-
                     return
                 }
-
                 window.location.href = "<?php echo e(url()->current()); ?>"
             }
         })
@@ -76,6 +71,8 @@
                                                 <th><?php echo e(__('Currency')); ?></th>
                                                 <th><?php echo e(__('Charge')); ?></th>
                                                 <th><?php echo e(__('Payment Date')); ?></th>
+                                                <th><?php echo e(__('Pair Price')); ?></th>
+                                                <th><?php echo e(__('Pair Name')); ?></th>
                                                 <th><?php echo e(__('Upcoming Payment')); ?></th>
                                             </tr>
                                         </thead>
@@ -116,6 +113,14 @@
                                                         <?php echo e($transaction->created_at->format('Y-m-d')); ?>
 
                                                     </td>
+                                                    <td data-caption="<?php echo e(__('Pair Price')); ?>">
+                                                        <?php echo e($transaction->pair_price); ?>
+
+                                                    </td>
+                                                    <td data-caption="<?php echo e(__('Pair Name')); ?>">
+                                                        <?php echo e($transaction->pair_name); ?>
+
+                                                    </td>
                                                     <td data-caption="<?php echo e(__('Upcoming Payment')); ?>">
                                                         <p id="count_<?php echo e($loop->iteration); ?>" class="mb-2">
                                                             <?php if($transaction->next_payment_date == null): ?>
@@ -142,7 +147,7 @@
                                             <?php endif; ?>
                                         </tbody>
                                     </table>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -150,9 +155,9 @@
                 </div>
             </div>
         </div>
-        
+
         
     <?php $__env->stopSection(); ?>
-    
+
 
 <?php echo $__env->make(template() . 'layout.master2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\quantum-trade\core\resources\views/theme4/user/invest_log.blade.php ENDPATH**/ ?>

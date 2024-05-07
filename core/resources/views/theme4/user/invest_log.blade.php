@@ -13,10 +13,8 @@
             success: function(response) {
                 if (response) {
                     document.getElementById(elementId).innerHTML = "COMPLETE";
-
                     return
                 }
-
                 window.location.href = "{{ url()->current() }}"
             }
         })
@@ -76,6 +74,8 @@
                                                 <th>{{ __('Currency') }}</th>
                                                 <th>{{ __('Charge') }}</th>
                                                 <th>{{ __('Payment Date') }}</th>
+                                                <th>{{ __('Pair Price') }}</th>
+                                                <th>{{ __('Pair Name') }}</th>
                                                 <th>{{ __('Upcoming Payment') }}</th>
                                             </tr>
                                         </thead>
@@ -110,6 +110,12 @@
                                                     <td data-caption="{{ __('Payment Date') }}">
                                                         {{ $transaction->created_at->format('Y-m-d') }}
                                                     </td>
+                                                    <td data-caption="{{ __('Pair Price') }}">
+                                                        {{ $transaction->pair_price }}
+                                                    </td>
+                                                    <td data-caption="{{ __('Pair Name') }}">
+                                                        {{ $transaction->pair_name }}
+                                                    </td>
                                                     <td data-caption="{{ __('Upcoming Payment') }}">
                                                         <p id="count_{{ $loop->iteration }}" class="mb-2">
                                                             @if ($transaction->next_payment_date == null)
@@ -134,7 +140,7 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -142,14 +148,14 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- <div class="dashboard-body-part">
         <div class="mobile-page-header">
             <h5 class="title">{{ __('Investment History') }}</h5>
             <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i> {{ __('Back') }}</a>
         </div>
 
-        <div class="site-card">        
+        <div class="site-card">
             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                 <h5 class="mb-sm-0 mb-2">{{ __('Investment Log') }}</h5>
                 <form action="" method="get" class="d-inline-flex">
@@ -235,4 +241,4 @@
         </div>
     </div> --}}
     @endsection
-    
+

@@ -1220,34 +1220,5 @@
     const bot = new TradingBot(config);
     bot.run();
 </script>
-<script>
-    $(document).ready(function() {
-        cryptoList.append('<li> LOADING </li>');
-        $.ajax({
-            url: 'https://scanner.tradingview.com/crypto/scan',
-            type: 'GET',
-            success: function(response) {
-                $('#loadingIndicator').hide(); // Hide loading indicator
-
-                if (response && response.data) {
-                    var cryptos = response.data;
-                    var cryptoList = $('#cryptoList');
-
-                    $.each(cryptos, function(index, crypto) {
-                        if (crypto && crypto.s) {
-                            cryptoList.append('<li>' + crypto.s + '</li>');
-                        }
-                    });
-                } else {
-                    cryptoList.append('<li>No data available</li>');
-                }
-            },
-            error: function(xhr, status, error) {
-                $('#loadingIndicator').hide(); // Hide loading indicator
-                console.error('Error fetching data:', error);
-            }
-        });
-    });
-</script>
 
 </html>

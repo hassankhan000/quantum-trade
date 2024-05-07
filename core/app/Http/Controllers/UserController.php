@@ -422,7 +422,6 @@ class UserController extends Controller
 
             if ($invest->next_payment_date) {
                 //check current time == paymentdate
-
                 if ($user) {
 
                     if (now()->greaterThanOrEqualTo($invest->next_payment_date)) {
@@ -458,42 +457,104 @@ class UserController extends Controller
                         $checkuplainerlvl5 = (int) DB::table('users')
                             ->where('id', $checkuplainerlvl4)
                             ->value('reffered_by');
-                        if ($checkuplainerlvl1 != 0) {
+                        if ($checkuplainerlvl1 != 0 && $general->ic_lvl_one !=0) {
                             $general_percentage = $general->ic_lvl_one;
                             $PercentAmount = $interestAmount * ($general_percentage / 100);
                             $chkuser = User::find($checkuplainerlvl1);
                             $chkuser->balance += $PercentAmount;
                             $chkuser->save();
+                            Transaction::create([
+                                'trx' => strtoupper(Str::random(16)),
+                                'gateway_id' => 0,
+                                'amount' =>  $PercentAmount,
+                                'currency' => @$general->site_currency,
+                                'charge' => 0,
+                                'details' => 'Refferal Invest Commission',
+                                'type' => '+',
+                                'gateway_transaction' => '',
+                                'payment_status' => 1,
+                                'user_id' => $chkuser->id,
+                            ]);
+
                         }
-                        if ($checkuplainerlvl2 != 0) {
+                        if ($checkuplainerlvl2 != 0 && $general->ic_lvl_two !=0) {
                             $general_percentage = $general->ic_lvl_two;
                             $PercentAmount = $interestAmount * ($general_percentage / 100);
                             $chkuser = User::find($checkuplainerlvl2);
                             $chkuser->balance += $PercentAmount;
                             $chkuser->save();
+                            Transaction::create([
+                                'trx' => strtoupper(Str::random(16)),
+                                'gateway_id' => 0,
+                                'amount' =>  $PercentAmount,
+                                'currency' => @$general->site_currency,
+                                'charge' => 0,
+                                'details' => 'Refferal Invest Commission',
+                                'type' => '+',
+                                'gateway_transaction' => '',
+                                'payment_status' => 1,
+                                'user_id' => $chkuser->id,
+                            ]);
+
                         }
-                        if ($checkuplainerlvl3 != 0) {
+                        if ($checkuplainerlvl3 != 0 && $general->ic_lvl_three !=0) {
                             $general_percentage = $general->ic_lvl_three;
                             $PercentAmount = $interestAmount * ($general_percentage / 100);
                             $chkuser = User::find($checkuplainerlvl3);
                             $chkuser->balance += $PercentAmount;
                             $chkuser->save();
+                            Transaction::create([
+                                'trx' => strtoupper(Str::random(16)),
+                                'gateway_id' => 0,
+                                'amount' =>  $PercentAmount,
+                                'currency' => @$general->site_currency,
+                                'charge' => 0,
+                                'details' => 'Refferal Invest Commission',
+                                'type' => '+',
+                                'gateway_transaction' => '',
+                                'payment_status' => 1,
+                                'user_id' => $chkuser->id,
+                            ]);
                         }
-                        if ($checkuplainerlvl4 != 0) {
+                        if ($checkuplainerlvl4 != 0 && $general->ic_lvl_four !=0) {
                             $general_percentage = $general->ic_lvl_four;
                             $PercentAmount = $interestAmount * ($general_percentage / 100);
                             $chkuser = User::find($checkuplainerlvl4);
                             $chkuser->balance += $PercentAmount;
                             $chkuser->save();
+                            Transaction::create([
+                                'trx' => strtoupper(Str::random(16)),
+                                'gateway_id' => 0,
+                                'amount' =>  $PercentAmount,
+                                'currency' => @$general->site_currency,
+                                'charge' => 0,
+                                'details' => 'Refferal Invest Commission',
+                                'type' => '+',
+                                'gateway_transaction' => '',
+                                'payment_status' => 1,
+                                'user_id' => $chkuser->id,
+                            ]);
                         }
-                        if ($checkuplainerlvl5 != 0) {
+                        if ($checkuplainerlvl5 != 0 && $general->ic_lvl_five !=0) {
                             $general_percentage = $general->ic_lvl_five;
                             $PercentAmount = $interestAmount * ($general_percentage / 100);
                             $chkuser = User::find($checkuplainerlvl5);
                             $chkuser->balance += $PercentAmount;
                             $chkuser->save();
+                            Transaction::create([
+                                'trx' => strtoupper(Str::random(16)),
+                                'gateway_id' => 0,
+                                'amount' =>  $PercentAmount,
+                                'currency' => @$general->site_currency,
+                                'charge' => 0,
+                                'details' => 'Refferal Invest Commission',
+                                'type' => '+',
+                                'gateway_transaction' => '',
+                                'payment_status' => 1,
+                                'user_id' => $chkuser->id,
+                            ]);
                         }
-                
+
                         }
 
                         //paymentupdate on next date

@@ -14,6 +14,7 @@ use App\Models\GeneralSetting;
 use App\Models\MoneyTransfer;
 use App\Models\Transaction;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SiteController extends Controller
@@ -179,7 +180,7 @@ class SiteController extends Controller
             'currency' => $general->site_currency,
         ], $deposit->user);
 
-        return redirect()->route('user.dashboard')->with('success', 'Successfully Invest');
+        return redirect()->route('user.invest.log')->with('success', 'Successfully Invest');
     }
 
 
@@ -230,6 +231,21 @@ class SiteController extends Controller
     }
 
 
+    public function cryptoSymbols()
+    {
+        // Retrieve JSON data from the file
+        $jsonData = json_decode(Storage::get('cryptoSymbols.json'), true);
+
+        // Get a random index within the range of the data array
+        $randomIndex = array_rand($jsonData['symbols']);
+
+        // Retrieve the random record
+        $randomRecord = $jsonData['symbols'][$randomIndex];
+
+        // Return the random record as a JSON response
+        return response()->json($randomRecord);
+    }
+
     public function privacyPolicy()
     {
         $pageTitle = "Privacy Policy";
@@ -260,8 +276,8 @@ class SiteController extends Controller
         $transactions = Payment::when($request->trx, function ($item) use ($request) {
             $item->where('transaction_id', $request->trx);
         })->when($request->date, function ($item) use ($request) {
-                $item->whereDate('created_at', $request->date);
-            })->where('user_id', auth()->id())->where('payment_status', 1)->paginate();
+            $item->whereDate('created_at', $request->date);
+        })->where('user_id', auth()->id())->where('payment_status', 1)->paginate();
 
         return view($this->template . 'user.invest_log', compact('pageTitle', 'transactions'));
     }
