@@ -86,7 +86,7 @@
             padding: 0 10px;
         }
 
-        .btn:hover{
+        .btn:hover {
             background-color: #282828d3;
         }
 
@@ -115,6 +115,25 @@
             transition: background-color .2s ease-out;
             cursor: pointer;
         }
+
+        .text-success {
+            color: #a4f324 !important;
+        }
+
+        .bg-success {
+            background: #a4f324 !important;
+        }
+
+        .nk-header-menu.mobile-menu {
+            background: linear-gradient(#1b1f23, #9eff00) !important;
+        }
+
+        .nk-menu .nk-menu-link {
+            color: #c9c9c9 !important;
+        }
+        .nk-header-brand img {
+            width: 140px;
+        }
     </style>
 
 </head>
@@ -139,7 +158,7 @@
                             <div class="nk-header-mobile">
                                 <div class="nk-header-brand">
                                     <a href="<?php echo e(url('/dashboard')); ?>" class="logo-link"><img
-                                            src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/logo-dark.png')); ?>"
+                                            src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/logo.png')); ?>"
                                             alt="logo" />
                                     </a>
                                 </div>
@@ -424,50 +443,7 @@
                 </div>
             </div>
             <?php echo $__env->yieldContent('content2'); ?>
-            <div class="nk-footer nk-footer-fluid bg-lighter">
-                <div class="container-xl">
-                    <div class="nk-footer-wrap">
-                        <div class="nk-footer-copyright">
-                            &copy; 2023 DashLite. Template by
-                            <a href="https://softnio.com/" target="_blank">Softnio</a>
-                        </div>
-                        <div class="nk-footer-links">
-                            <ul class="nav nav-sm">
-                                <li class="nav-item dropup">
-                                    <a href="#"
-                                        class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base"
-                                        data-bs-toggle="dropdown" data-offset="0,10"><span>English</span></a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                        <ul class="language-list">
-                                            <li>
-                                                <a href="#" class="language-item"><span
-                                                        class="language-name">English</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="language-item"><span
-                                                        class="language-name">Español</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="language-item"><span
-                                                        class="language-name">Français</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="language-item"><span
-                                                        class="language-name">Türkçe</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a data-bs-toggle="modal" href="#region" class="nav-link"><em
-                                            class="icon ni ni-globe"></em><span class="ms-1">Select
-                                            Region</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="region">

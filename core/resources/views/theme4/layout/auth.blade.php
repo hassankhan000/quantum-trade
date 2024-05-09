@@ -13,8 +13,52 @@
     <link rel="shortcut icon" href="../../images/favicon.png">
     <title>Login | DashLite Admin Template</title>
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/dashlitee5ca.css') }}">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css') }}">
+    <link id="skin-default" rel="stylesheet"
+        href="{{ asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/iziToast.min.css') }}">
+    <style>
+        .btn-primary {
+            background-color: #395d00 !important;
+        }
+
+        .nk-block-middle {
+            margin-bottom: auto;
+            background: linear-gradient(#282828c7, #282828c7), url("https://img.freepik.com/premium-photo/abstract-background-design-generated-by-ai_349001-1687.jpg?w=360") !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            height: 100% !important;
+            border: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+        }
+
+        .nk-block-title {
+            color: white !important;
+            font-size: 33px !important;
+        }
+
+        .nk-block-des p {
+            color: rgb(202 255 2) !important;
+        }
+
+        input {
+            background: transparent !important;
+            color: white !important;
+        }
+
+        .form-note-s2 {
+            color: white !important;
+        }
+
+        .form-label {
+            color: #9d9d9d !important;
+        }
+    </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91615293-4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];

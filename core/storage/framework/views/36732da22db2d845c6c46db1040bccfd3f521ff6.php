@@ -13,7 +13,7 @@
                             class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                 class="icon ni ni-info"></em></a></div>
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        <div class="brand-logo pb-5"><a href="../../index-2.html" class="logo-link"><img
+                        <div class="brand-logo pb-2"><a href="../../index-2.html" class="logo-link"><img
                                     class="logo-light logo-img logo-img-lg" src="../../images/logo.png"
                                     srcset="/demo6/images/logo2x.png 2x" alt="logo"><img
                                     class="logo-dark logo-img logo-img-lg" src="../../images/logo-dark.png"

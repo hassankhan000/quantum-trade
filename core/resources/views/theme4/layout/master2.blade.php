@@ -86,7 +86,7 @@
             padding: 0 10px;
         }
 
-        .btn:hover{
+        .btn:hover {
             background-color: #282828d3;
         }
 
@@ -115,6 +115,25 @@
             transition: background-color .2s ease-out;
             cursor: pointer;
         }
+
+        .text-success {
+            color: #a4f324 !important;
+        }
+
+        .bg-success {
+            background: #a4f324 !important;
+        }
+
+        .nk-header-menu.mobile-menu {
+            background: linear-gradient(#1b1f23, #9eff00) !important;
+        }
+
+        .nk-menu .nk-menu-link {
+            color: #c9c9c9 !important;
+        }
+        .nk-header-brand img {
+            width: 140px;
+        }
     </style>
 
 </head>
@@ -139,7 +158,7 @@
                             <div class="nk-header-mobile">
                                 <div class="nk-header-brand">
                                     <a href="{{ url('/dashboard') }}" class="logo-link"><img
-                                            src="{{ asset('asset/theme4/dashboard_assets/assets/images/logo-dark.png') }}"
+                                            src="{{ asset('asset/theme4/dashboard_assets/assets/images/logo.png') }}"
                                             alt="logo" />
                                     </a>
                                 </div>
@@ -423,7 +442,7 @@
                 </div>
             </div>
             @yield('content2')
-            <div class="nk-footer nk-footer-fluid bg-lighter">
+            {{-- <div class="nk-footer nk-footer-fluid bg-lighter">
                 <div class="container-xl">
                     <div class="nk-footer-wrap">
                         <div class="nk-footer-copyright">
@@ -466,7 +485,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="region">

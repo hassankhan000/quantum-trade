@@ -61,7 +61,7 @@
                             class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                 class="icon ni ni-info"></em></a></div>
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        <div class="brand-logo pb-5"><a href="../../index-2.html" class="logo-link"><img
+                        <div class="brand-logo pb-2"><a href="../../index-2.html" class="logo-link"><img
                                     src="{{ asset('asset/theme4/dashboard_assets/assets/images/logo.png') }}"
                                     alt="logo" />
                             </a></div>

@@ -2,48 +2,48 @@
 
 
 @section('content2')
-<script>
-    'use strict'
+    <script>
+        'use strict'
 
 
-    function firePayment(elementId) {
-        $.ajax({
-            url: "{{ route('returninterest') }}",
-            method: "GET",
-            success: function(response) {
-                if (response) {
-                    document.getElementById(elementId).innerHTML = "COMPLETE";
+        function firePayment(elementId) {
+            $.ajax({
+                url: "{{ route('returninterest') }}",
+                method: "GET",
+                success: function(response) {
+                    if (response) {
+                        document.getElementById(elementId).innerHTML = "COMPLETE";
+                        return
+                    }
+                    window.location.href = "{{ url()->current() }}"
+                }
+            })
+        }
+
+
+
+
+        function getCountDown(elementId, seconds) {
+            var times = seconds;
+
+            var x = setInterval(function() {
+                var distance = times * 1000;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    firePayment(elementId);
                     return
                 }
-                window.location.href = "{{ url()->current() }}"
-            }
-        })
-    }
-
-
-
-
-    function getCountDown(elementId, seconds) {
-        var times = seconds;
-
-        var x = setInterval(function() {
-            var distance = times * 1000;
-
-            if (distance < 0) {
-                clearInterval(x);
-                firePayment(elementId);
-                return
-            }
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById(elementId).innerHTML = days + "d " + hours + "h " + minutes + "m " +
-                seconds + "s ";
-            times--;
-        }, 1000);
-    }
-</script>
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById(elementId).innerHTML = days + "d " + hours + "h " + minutes + "m " +
+                    seconds + "s ";
+                times--;
+            }, 1000);
+        }
+    </script>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
@@ -64,18 +64,18 @@
                         <div class="nk-block nk-block-lg">
                             <div style="overflow: auto;" class="card card-bordered card-preview">
                                 <div class="card-inner">
-                                    <table class="table site-table">
+                                    {{-- <table class="table site-table">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Trx') }}</th>
-                                                <th>{{ __('User') }}</th>
-                                                <th>{{ __('Gateway') }}</th>
+                                                <th>{{ __('Trade ID') }}</th>
                                                 <th>{{ __('Amount') }}</th>
                                                 <th>{{ __('Currency') }}</th>
-                                                <th>{{ __('Charge') }}</th>
-                                                <th>{{ __('Payment Date') }}</th>
-                                                <th>{{ __('Pair Price') }}</th>
-                                                <th>{{ __('Pair Name') }}</th>
+                                                <th>{{ __('Date') }}</th>
+                                                <th>{{ __('Initial Pair Price') }}</th>
+                                                <th>{{ __('Ending Pair Price') }}</th>
+                                                <th>{{ __('Trading Pair') }}</th>
+                                                <th>{{ __('Profit Amount') }}</th>
+                                                <th>{{ __('Boot Fee') }}</th>
                                                 <th>{{ __('Upcoming Payment') }}</th>
                                             </tr>
                                         </thead>
@@ -85,16 +85,7 @@
                                                 <tr>
                                                     <td data-caption="{{ __('Trx') }}">
                                                         {{ $transaction->transaction_id }}</td>
-                                                    <td data-caption="{{ __('User') }}">
-                                                        {{ @$transaction->user->fname . ' ' . @$transaction->user->lname }}
-                                                    </td>
-                                                    <td data-caption="{{ __('Gateway') }}">
-                                                        @if ($transaction->gateway_id == 0)
-                                                            {{ __('Invest Using Balance') }}
-                                                        @else
-                                                            {{ @$transaction->gateway->gateway_name ?? 'Account Transfer' }}
-                                                        @endif
-                                                    </td>
+                                                  
                                                     <td data-caption="{{ __('Amount') }}">{{ $transaction->amount }}</td>
                                                     <td data-caption="{{ __('Currency') }}">
                                                         @if ($transaction->gateway_id == 0)
@@ -104,17 +95,25 @@
                                                         @endif
 
                                                     </td>
-                                                    <td data-caption="{{ __('Charge') }}">
-                                                        {{ $transaction->charge . ' ' . $transaction->currency }}</td>
-
                                                     <td data-caption="{{ __('Payment Date') }}">
                                                         {{ $transaction->created_at->format('Y-m-d') }}
                                                     </td>
-                                                    <td data-caption="{{ __('Pair Price') }}">
+                                                    <td data-caption="{{ __('Initial Pair Price') }}">
                                                         {{ $transaction->pair_price }}
+                                                    </td>
+                                                    <td data-caption="{{ __('Ending Pair Price') }}">
+                                                        @if ($transaction->next_payment_date == null)
+                                                            {{ $transaction->pair_price * 1.002 }}
+                                                        @endif
                                                     </td>
                                                     <td data-caption="{{ __('Pair Name') }}">
                                                         {{ $transaction->pair_name }}
+                                                    </td>
+                                                    <td data-caption="{{ __('profit amount') }}">
+                                                        {{ $transaction->interest_amount - ($transaction->interest_amount * 0.005) }}%
+                                                    </td>
+                                                    <td data-caption="{{ __('Boot Fee') }}">
+                                                        {{ $transaction->interest_amount * 0.005 }}%
                                                     </td>
                                                     <td data-caption="{{ __('Upcoming Payment') }}">
                                                         <p id="count_{{ $loop->iteration }}" class="mb-2">
@@ -139,8 +138,7 @@
                                                 </tr>
                                             @endforelse
                                         </tbody>
-                                    </table>
-
+                                    </table> --}}
                                 </div>
                             </div>
                         </div>
@@ -241,4 +239,3 @@
         </div>
     </div> --}}
     @endsection
-

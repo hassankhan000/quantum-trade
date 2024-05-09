@@ -55,14 +55,14 @@
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
                 <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45">
-                    <div class="absolute-top-right d-lg-none p-3 p-sm-5"><a href="#"
+                    {{-- <div class="absolute-top-right d-lg-none p-3 p-sm-5"><a href="#"
                             class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
-                                class="icon ni ni-info"></em></a></div>
+                                class="icon ni ni-info"></em></a></div> --}}
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        <div class="brand-logo pb-5"><a href="../../index-2.html" class="logo-link"><img
+                        {{-- <div class="brand-logo pb-2"><a href="../../index-2.html" class="logo-link"><img
                                     src="{{ asset('asset/theme4/dashboard_assets/assets/images/logo.png') }}"
                                     alt="logo" />
-                            </a></div>
+                            </a></div> --}}
                         <div class="nk-block-head">
                             <h5 class="text-center mb-4">{{ __('Request For Reset Password') }}</h5>
                         </div>
