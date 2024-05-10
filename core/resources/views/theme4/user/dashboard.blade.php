@@ -1,8 +1,5 @@
 @extends(template() . 'layout.master2')
 <style>
-    .nk-content.nk-content-fluid {
-        padding-top: 0;
-    }
 
     .nk-content.nk-content-fluid {
         /* background: #282828 !important; */
@@ -11,6 +8,7 @@
         background-position: center center;
         background-repeat: no-repeat !important;
         background-attachment: fixed !important;
+        padding: 0 0 50px 0;
     }
 
     .main-card {
@@ -65,12 +63,21 @@
 
     .main-card .bell {
         padding: 0px 0px 5px 5px;
-        background: #282828;
+        background: #181a14;
         position: absolute;
         top: 0;
         right: 0;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .btn {
+        font-size: 10px !important;
+    }
+
+    .main-card .bell img {
+        width: 60px;
     }
 
     .main-card .bell .inner {
@@ -127,7 +134,7 @@
         padding: 3px 6px;
         right: 0;
         border-radius: 7px;
-        font-size: 12px;
+        font-size: 9px;
         font-weight: 700;
     }
 
@@ -282,6 +289,11 @@
     .invest-ov .amount span {
         color: #00ff90 !important;
     }
+
+    .label-dzbd7lyV,
+    .js-copyright-label {
+        display: none !important;
+    }
 </style>
 @section('content2')
     <div class="nk-content nk-content-fluid">
@@ -300,7 +312,7 @@
                                                     d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
                                             </svg>
                                         </div> --}}
-                                        <img src="https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif"
+                                        <img src="https://static.wixstatic.com/media/e5ffbc_6edfb592c3ae43ba92676ea1198d8901~mv2.gif"
                                             width="100px" class="img-fluid rounded rounded-4" alt="">
                                     </div>
                                     <div class="row justify-content-center align-items-center">
@@ -317,24 +329,25 @@
                                             <h6 class="fs-4">Balance</h6>
                                             <h4> {{ number_format(auth()->user()->balance, 2) }}
                                                 {{ $general->site_currency }}</h4>
-                                            <h6 class="fs-6 mt-4">{{ number_format(auth()->user()->balance, 2) + number_format($commison, 2) }}</h6>
+                                            <h6 class="fs-6 mt-4">
+                                                {{ number_format(auth()->user()->balance, 2) + number_format($commison, 2) }}
+                                            </h6>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
-                                                @if ( isset($currentInvest->amount) == 0)
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                </svg>
+                                                @if (isset($currentInvest->amount) == 0)
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+                                                    </svg>
                                                 @else
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="me-2 bi bi-arrow-up-right"
-                                                viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
-                                            </svg>
-                                                  
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="me-2 bi bi-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
                                                 @endif
                                                 {{ isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0 }}
                                             </h6>
@@ -366,123 +379,146 @@
                                             ->where('payment_status', 1)
                                             ->count();
                                     @endphp
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="plan-card">
-                                            <div class="@if ($plan->vip_status <= auth()->user()->vip_status) nolock @else locked @endif">
-                                                <img class="img-fluid"
-                                                    src="{{ asset('asset/theme4/dashboard_assets/assets/images/lock.png') }}"alt="">
-                                            </div>
-                                            <h4>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
-                                            </h4>
-                                            <p class="">Trade With World's Best Quantum Trading Bots</p>
-                                            <span class="plan-status">{{ __('Required VIP') }}
-                                                {{ $plan->vip_status }}
-                                            </span>
-                                            <ul class="plan-list">
-                                                @if ($plan->amount_type == 0)
-                                                    <li>
-                                                        <span class="caption">{{ __('Minimum') }} </span>
-                                                        <span class="details">
-                                                            {{ number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency }}</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="caption">{{ __('Maximum') }} </span>
-                                                        <span class="details">
-                                                            {{ number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency }}</span>
-                                                    </li>
-                                                @else
-                                                    <li>
-                                                        <span class="caption">{{ __('Amount') }} </span>
-                                                        <span class="details">
-                                                            {{ number_format($plan->amount, 2) . ' ' . @$general->site_currency }}</span>
-                                                    </li>
-                                                @endif
-
-                                                @if ($plan->return_for == 1)
-                                                    <li>
-                                                        <span class="caption">{{ __('For') }} </span>
-                                                        <span class="details"> {{ $plan->how_many_time }}
-                                                            {{ __('Times') }}</span>
-                                                    </li>
-                                                @else
-                                                    <li>
-                                                        <span class="caption">{{ __('For') }} </span>
-                                                        <span class="details"> {{ __('Lifetime') }}</span>
-                                                    </li>
-                                                @endif
-                                                <li>
-                                                    <span class="caption">{{ __('EVERY') }} </span>
-                                                    <span class="details">{{ $plan->time->name }}</span>
-                                                </li>
-
-                                                @if ($plan->capital_back == 1)
-                                                    <li>
-                                                        <span class="caption">{{ __('Capital Back') }} </span>
-                                                        <span class="details"> {{ __('YES') }}</span>
-                                                    </li>
-                                                @else
-                                                    <li>
-                                                        <span class="caption">{{ __('Capital Back') }} </span>
-                                                        <span class="details"> {{ __('NO') }}</span>
-                                                    </li>
-                                                @endif
-                                            </ul>
-
-                                            <div class="plan-rio">
-                                                <h6>{{ __('ROI') }}</h6>
-                                                <h6 class="plan-amount">
-                                                    {{ number_format($plan->return_interest, 2) }} @if ($plan->interest_status == 'percentage')
-                                                        {{ '%' }}
+                                    @if ($plan->vip_status <= auth()->user()->vip_status)
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="plan-card">
+                                                <h4>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
+                                                </h4>
+                                                <p class="">Trade With World's Best Quantum Trading Bots</p>
+                                                <span class="plan-status">{{ __('Required VIP') }}
+                                                    {{ $plan->vip_status }}
+                                                </span>
+                                                <ul class="plan-list">
+                                                    @if ($plan->amount_type == 0)
+                                                        <li>
+                                                            <span class="caption">{{ __('Minimum') }} </span>
+                                                            <span class="details">
+                                                                {{ number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="caption">{{ __('Maximum') }} </span>
+                                                            <span class="details">
+                                                                {{ number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                        </li>
                                                     @else
-                                                        {{ @$general->site_currency }}
+                                                        <li>
+                                                            <span class="caption">{{ __('Amount') }} </span>
+                                                            <span class="details">
+                                                                {{ number_format($plan->amount, 2) . ' ' . @$general->site_currency }}</span>
+                                                        </li>
                                                     @endif
-                                                </h6>
-                                            </div>
 
-                                            @if ($plan_exist >= $plan->invest_limit)
-                                                <a class="main-btn plan-btn w-100 disabled" href="#">
-                                                    <span>{{ __('Max Limit exceeded') }}</span>
-                                                </a>
-                                            @else
-                                                {{-- <a class="main-btn plan-btn w-100"
+                                                    @if ($plan->return_for == 1)
+                                                        <li>
+                                                            <span class="caption">{{ __('For') }} </span>
+                                                            <span class="details"> {{ $plan->how_many_time }}
+                                                                {{ __('Times') }}</span>
+                                                        </li>
+                                                    @else
+                                                        <li>
+                                                            <span class="caption">{{ __('For') }} </span>
+                                                            <span class="details"> {{ __('Lifetime') }}</span>
+                                                        </li>
+                                                    @endif
+                                                    <li>
+                                                        <span class="caption">{{ __('EVERY') }} </span>
+                                                        <span class="details">{{ $plan->time->name }}</span>
+                                                    </li>
+
+                                                    @if ($plan->capital_back == 1)
+                                                        <li>
+                                                            <span class="caption">{{ __('Capital Back') }} </span>
+                                                            <span class="details"> {{ __('YES') }}</span>
+                                                        </li>
+                                                    @else
+                                                        <li>
+                                                            <span class="caption">{{ __('Capital Back') }} </span>
+                                                            <span class="details"> {{ __('NO') }}</span>
+                                                        </li>
+                                                    @endif
+                                                </ul>
+
+                                                <div class="plan-rio">
+                                                    <h6>{{ __('ROI') }}</h6>
+                                                    <h6 class="plan-amount">
+                                                        {{ number_format($plan->return_interest, 2) }} @if ($plan->interest_status == 'percentage')
+                                                            {{ '%' }}
+                                                        @else
+                                                            {{ @$general->site_currency }}
+                                                        @endif
+                                                    </h6>
+                                                </div>
+
+                                                @if ($plan_exist >= $plan->invest_limit)
+                                                    <a class="main-btn plan-btn w-100 disabled" href="#">
+                                                        <span>{{ __('Max Limit exceeded') }}</span>
+                                                    </a>
+                                                @else
+                                                    {{-- <a class="main-btn plan-btn w-100"
                                                     href="{{ route('user.gateways', $plan->id) }}">
                                                     <span>{{ __('Invest Now') }}</span>
                                                 </a> --}}
-                                                @auth
-                                                    @if ($plan->vip_status <= auth()->user()->vip_status)
-                                                        <button class="balance btn-light" data-plan="{{ $plan }}"
-                                                            data-plan_percentage="{{ number_format($plan->return_interest, 2) }}"
-                                                            data-url=""><span>{{ __('Invest') }}</span></button>
-                                                    @endif
-                                                @endauth
-                                            @endif
+                                                    @auth
+                                                        @if ($plan->vip_status <= auth()->user()->vip_status)
+                                                            <button class="balance btn-light" data-plan="{{ $plan }}"
+                                                                data-plan_percentage="{{ number_format($plan->return_interest, 2) }}"
+                                                                data-url=""><span>{{ __('Invest') }}</span></button>
+                                                        @endif
+                                                    @endauth
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @empty
                                 @endforelse
                             </div>
-                            {{-- <div class="col-md-4">
-                                <div class="card card-bordered card-full">
-                                    <div class="card-inner">
-                                        <div class="card-title-group align-start mb-0">
-                                            <div class="card-title">
-                                                <h6 class="subtitle">Account balance</h6>
-                                            </div>
-                                            <div class="card-tools">
-                                                <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip"
-                                                    data-bs-placement="left" title="Total Deposited"></em>
-                                            </div>
-                                        </div>
-                                        <div class="card-amount">
-                                            <span class="amount">
-                                                {{ number_format(auth()->user()->balance, 2) }}
-                                                <span class="currency currency-usd">
-                                                    {{ $general->site_currency }}</span></span><span
-                                                class="change up text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
+                            {{-- TRAE VIEW --}}
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                                    {
+                                        "symbols": [{
+                                                "proName": "FOREXCOM:SPXUSD",
+                                                "title": "S&P 500 Index"
+                                            },
+                                            {
+                                                "proName": "FOREXCOM:NSXUSD",
+                                                "title": "US 100 Cash CFD"
+                                            },
+                                            {
+                                                "proName": "FX_IDC:EURUSD",
+                                                "title": "EUR to USD"
+                                            },
+                                            {
+                                                "proName": "BITSTAMP:BTCUSD",
+                                                "title": "Bitcoin"
+                                            },
+                                            {
+                                                "proName": "BITSTAMP:ETHUSD",
+                                                "title": "Ethereum"
+                                            },
+                                            {
+                                                "description": "Solana",
+                                                "proName": "BINANCE:SOLUSDT"
+                                            },
+                                            {
+                                                "description": "Shiba Inu",
+                                                "proName": "COINBASE:SHIBUSD"
+                                            },
+                                            {
+                                                "description": "XRP",
+                                                "proName": "BITSTAMP:XRPUSD"
+                                            }
+                                        ],
+                                        "showSymbolLogo": true,
+                                        "isTransparent": false,
+                                        "displayMode": "adaptive",
+                                        "colorTheme": "dark",
+                                        "locale": "en"
+                                    }
+                                </script>
+                            </div>
+                            {{-- TRAE VIEW --}}
                             <div class="col-md-4">
                                 <div class="card card-bordered card-full">
                                     <div class="card-inner">

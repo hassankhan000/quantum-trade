@@ -1,7 +1,4 @@
 <style>
-    .nk-content.nk-content-fluid {
-        padding-top: 0;
-    }
 
     .nk-content.nk-content-fluid {
         /* background: #282828 !important; */
@@ -10,6 +7,7 @@
         background-position: center center;
         background-repeat: no-repeat !important;
         background-attachment: fixed !important;
+        padding: 0 0 50px 0;
     }
 
     .main-card {
@@ -64,12 +62,21 @@
 
     .main-card .bell {
         padding: 0px 0px 5px 5px;
-        background: #282828;
+        background: #181a14;
         position: absolute;
         top: 0;
         right: 0;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .btn {
+        font-size: 10px !important;
+    }
+
+    .main-card .bell img {
+        width: 60px;
     }
 
     .main-card .bell .inner {
@@ -126,7 +133,7 @@
         padding: 3px 6px;
         right: 0;
         border-radius: 7px;
-        font-size: 12px;
+        font-size: 9px;
         font-weight: 700;
     }
 
@@ -281,6 +288,11 @@
     .invest-ov .amount span {
         color: #00ff90 !important;
     }
+
+    .label-dzbd7lyV,
+    .js-copyright-label {
+        display: none !important;
+    }
 </style>
 <?php $__env->startSection('content2'); ?>
     <div class="nk-content nk-content-fluid">
@@ -293,7 +305,7 @@
                                 <div class="main-card">
                                     <div class="bell">
                                         
-                                        <img src="https://cdn.dribbble.com/users/37530/screenshots/2937858/drib_blink_bot.gif"
+                                        <img src="https://static.wixstatic.com/media/e5ffbc_6edfb592c3ae43ba92676ea1198d8901~mv2.gif"
                                             width="100px" class="img-fluid rounded rounded-4" alt="">
                                     </div>
                                     <div class="row justify-content-center align-items-center">
@@ -311,24 +323,26 @@
                                             <h4> <?php echo e(number_format(auth()->user()->balance, 2)); ?>
 
                                                 <?php echo e($general->site_currency); ?></h4>
-                                            <h6 class="fs-6 mt-4"><?php echo e(number_format(auth()->user()->balance, 2) + number_format($commison, 2)); ?></h6>
+                                            <h6 class="fs-6 mt-4">
+                                                <?php echo e(number_format(auth()->user()->balance, 2) + number_format($commison, 2)); ?>
+
+                                            </h6>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
-                                                <?php if( isset($currentInvest->amount) == 0): ?>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                </svg>
+                                                <?php if(isset($currentInvest->amount) == 0): ?>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+                                                    </svg>
                                                 <?php else: ?>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="me-2 bi bi-arrow-up-right"
-                                                viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
-                                            </svg>
-                                                  
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="me-2 bi bi-arrow-up-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                                                    </svg>
                                                 <?php endif; ?>
                                                 <?php echo e(isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0); ?>
 
@@ -361,102 +375,146 @@
                                             ->where('payment_status', 1)
                                             ->count();
                                     ?>
-                                    <div class="col-xl-4 col-md-6">
-                                        <div class="plan-card">
-                                            <div class="<?php if($plan->vip_status <= auth()->user()->vip_status): ?> nolock <?php else: ?> locked <?php endif; ?>">
-                                                <img class="img-fluid"
-                                                    src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/lock.png')); ?>"alt="">
-                                            </div>
-                                            <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
-                                            </h4>
-                                            <p class="">Trade With World's Best Quantum Trading Bots</p>
-                                            <span class="plan-status"><?php echo e(__('Required VIP')); ?>
+                                    <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="plan-card">
+                                                <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
+                                                </h4>
+                                                <p class="">Trade With World's Best Quantum Trading Bots</p>
+                                                <span class="plan-status"><?php echo e(__('Required VIP')); ?>
 
-                                                <?php echo e($plan->vip_status); ?>
+                                                    <?php echo e($plan->vip_status); ?>
 
-                                            </span>
-                                            <ul class="plan-list">
-                                                <?php if($plan->amount_type == 0): ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('Minimum')); ?> </span>
-                                                        <span class="details">
-                                                            <?php echo e(number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency); ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('Maximum')); ?> </span>
-                                                        <span class="details">
-                                                            <?php echo e(number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency); ?></span>
-                                                    </li>
-                                                <?php else: ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('Amount')); ?> </span>
-                                                        <span class="details">
-                                                            <?php echo e(number_format($plan->amount, 2) . ' ' . @$general->site_currency); ?></span>
-                                                    </li>
-                                                <?php endif; ?>
-
-                                                <?php if($plan->return_for == 1): ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('For')); ?> </span>
-                                                        <span class="details"> <?php echo e($plan->how_many_time); ?>
-
-                                                            <?php echo e(__('Times')); ?></span>
-                                                    </li>
-                                                <?php else: ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('For')); ?> </span>
-                                                        <span class="details"> <?php echo e(__('Lifetime')); ?></span>
-                                                    </li>
-                                                <?php endif; ?>
-                                                <li>
-                                                    <span class="caption"><?php echo e(__('EVERY')); ?> </span>
-                                                    <span class="details"><?php echo e($plan->time->name); ?></span>
-                                                </li>
-
-                                                <?php if($plan->capital_back == 1): ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('Capital Back')); ?> </span>
-                                                        <span class="details"> <?php echo e(__('YES')); ?></span>
-                                                    </li>
-                                                <?php else: ?>
-                                                    <li>
-                                                        <span class="caption"><?php echo e(__('Capital Back')); ?> </span>
-                                                        <span class="details"> <?php echo e(__('NO')); ?></span>
-                                                    </li>
-                                                <?php endif; ?>
-                                            </ul>
-
-                                            <div class="plan-rio">
-                                                <h6><?php echo e(__('ROI')); ?></h6>
-                                                <h6 class="plan-amount">
-                                                    <?php echo e(number_format($plan->return_interest, 2)); ?> <?php if($plan->interest_status == 'percentage'): ?>
-                                                        <?php echo e('%'); ?>
-
+                                                </span>
+                                                <ul class="plan-list">
+                                                    <?php if($plan->amount_type == 0): ?>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('Minimum')); ?> </span>
+                                                            <span class="details">
+                                                                <?php echo e(number_format($plan->minimum_amount, 2) . ' ' . @$general->site_currency); ?></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('Maximum')); ?> </span>
+                                                            <span class="details">
+                                                                <?php echo e(number_format($plan->maximum_amount, 2) . ' ' . @$general->site_currency); ?></span>
+                                                        </li>
                                                     <?php else: ?>
-                                                        <?php echo e(@$general->site_currency); ?>
-
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('Amount')); ?> </span>
+                                                            <span class="details">
+                                                                <?php echo e(number_format($plan->amount, 2) . ' ' . @$general->site_currency); ?></span>
+                                                        </li>
                                                     <?php endif; ?>
-                                                </h6>
-                                            </div>
 
-                                            <?php if($plan_exist >= $plan->invest_limit): ?>
-                                                <a class="main-btn plan-btn w-100 disabled" href="#">
-                                                    <span><?php echo e(__('Max Limit exceeded')); ?></span>
-                                                </a>
-                                            <?php else: ?>
-                                                
-                                                <?php if(auth()->guard()->check()): ?>
-                                                    <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
-                                                        <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
-                                                            data-plan_percentage="<?php echo e(number_format($plan->return_interest, 2)); ?>"
-                                                            data-url=""><span><?php echo e(__('Invest')); ?></span></button>
+                                                    <?php if($plan->return_for == 1): ?>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('For')); ?> </span>
+                                                            <span class="details"> <?php echo e($plan->how_many_time); ?>
+
+                                                                <?php echo e(__('Times')); ?></span>
+                                                        </li>
+                                                    <?php else: ?>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('For')); ?> </span>
+                                                            <span class="details"> <?php echo e(__('Lifetime')); ?></span>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                    <li>
+                                                        <span class="caption"><?php echo e(__('EVERY')); ?> </span>
+                                                        <span class="details"><?php echo e($plan->time->name); ?></span>
+                                                    </li>
+
+                                                    <?php if($plan->capital_back == 1): ?>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('Capital Back')); ?> </span>
+                                                            <span class="details"> <?php echo e(__('YES')); ?></span>
+                                                        </li>
+                                                    <?php else: ?>
+                                                        <li>
+                                                            <span class="caption"><?php echo e(__('Capital Back')); ?> </span>
+                                                            <span class="details"> <?php echo e(__('NO')); ?></span>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </ul>
+
+                                                <div class="plan-rio">
+                                                    <h6><?php echo e(__('ROI')); ?></h6>
+                                                    <h6 class="plan-amount">
+                                                        <?php echo e(number_format($plan->return_interest, 2)); ?> <?php if($plan->interest_status == 'percentage'): ?>
+                                                            <?php echo e('%'); ?>
+
+                                                        <?php else: ?>
+                                                            <?php echo e(@$general->site_currency); ?>
+
+                                                        <?php endif; ?>
+                                                    </h6>
+                                                </div>
+
+                                                <?php if($plan_exist >= $plan->invest_limit): ?>
+                                                    <a class="main-btn plan-btn w-100 disabled" href="#">
+                                                        <span><?php echo e(__('Max Limit exceeded')); ?></span>
+                                                    </a>
+                                                <?php else: ?>
+                                                    
+                                                    <?php if(auth()->guard()->check()): ?>
+                                                        <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
+                                                            <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
+                                                                data-plan_percentage="<?php echo e(number_format($plan->return_interest, 2)); ?>"
+                                                                data-url=""><span><?php echo e(__('Invest')); ?></span></button>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
-                                            <?php endif; ?>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <?php endif; ?>
+                            </div>
+                            
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                                    {
+                                        "symbols": [{
+                                                "proName": "FOREXCOM:SPXUSD",
+                                                "title": "S&P 500 Index"
+                                            },
+                                            {
+                                                "proName": "FOREXCOM:NSXUSD",
+                                                "title": "US 100 Cash CFD"
+                                            },
+                                            {
+                                                "proName": "FX_IDC:EURUSD",
+                                                "title": "EUR to USD"
+                                            },
+                                            {
+                                                "proName": "BITSTAMP:BTCUSD",
+                                                "title": "Bitcoin"
+                                            },
+                                            {
+                                                "proName": "BITSTAMP:ETHUSD",
+                                                "title": "Ethereum"
+                                            },
+                                            {
+                                                "description": "Solana",
+                                                "proName": "BINANCE:SOLUSDT"
+                                            },
+                                            {
+                                                "description": "Shiba Inu",
+                                                "proName": "COINBASE:SHIBUSD"
+                                            },
+                                            {
+                                                "description": "XRP",
+                                                "proName": "BITSTAMP:XRPUSD"
+                                            }
+                                        ],
+                                        "showSymbolLogo": true,
+                                        "isTransparent": false,
+                                        "displayMode": "adaptive",
+                                        "colorTheme": "dark",
+                                        "locale": "en"
+                                    }
+                                </script>
                             </div>
                             
                             <div class="col-md-4">

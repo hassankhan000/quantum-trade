@@ -1,10 +1,228 @@
 @extends(template() . 'layout.master2')
 
+<style>
+    .nk-body {
+        outline: 0;
+        padding: 50px 0;
+        margin: 200px 0;
+    }
+
+    #invoice-POS {
+        box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+        padding: 2mm;
+        margin: 0 auto;
+        width: 100%;
+        background: #000000;
+        border-radius: 10px;
+    }
+
+    #invoice-POS ::selection {
+        background: #f31544;
+        color: #fff;
+    }
+
+    #invoice-POS ::moz-selection {
+        background: #f31544;
+        color: #fff;
+    }
+
+    #invoice-POS h1 {
+        font-size: 1.5em;
+        color: #222;
+    }
+
+    #invoice-POS h2 {
+        font-size: 0.9em;
+    }
+
+    #invoice-POS h3 {
+        font-size: 1.2em;
+        font-weight: 300;
+        line-height: 2em;
+    }
+
+    #invoice-POS p {
+        font-size: 0.7em;
+        color: #a6ff00;
+        line-height: 1.2em;
+    }
+
+    #invoice-POS #top,
+    #invoice-POS #mid,
+    #invoice-POS #bot {
+        /* Targets all id with 'col-' */
+        border-bottom: 1px solid #eeeeee33;
+    }
+
+    #invoice-POS #top {
+        padding-bottom: 10px;
+    }
+
+    #invoice-POS #mid {
+        min-height: 80px;
+    }
+
+    #invoice-POS #bot {
+        min-height: 50px;
+    }
+
+    #invoice-POS #top .logo {
+        height: 60px;
+        width: 60px;
+        background: url(https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif) no-repeat;
+        background-size: 100% 100%;
+        border-radius: 50%;
+    }
+
+    #invoice-POS .clientlogo {
+        float: left;
+        height: 60px;
+        width: 60px;
+        background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+        background-size: 60px 60px;
+        border-radius: 50px;
+    }
+
+    #invoice-POS .info {
+        display: block;
+        margin-left: 0;
+    }
+
+    #invoice-POS .title {
+        float: right;
+    }
+
+    #invoice-POS .title p {
+        text-align: right;
+    }
+
+    #invoice-POS table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #invoice-POS .tabletitle {
+        font-size: 0.5em;
+        background: #eee;
+    }
+
+    #invoice-POS .service {
+        border-bottom: 1px solid #aef32d54;
+    }
+
+    #invoice-POS .item {
+        width: 24mm;
+    }
+
+    #invoice-POS .itemtext {
+        font-size: 9px;
+    }
+
+    #invoice-POS #legalcopy {
+        margin-top: 5mm;
+    }
+
+    td,
+    th,
+    .tableitem {
+        padding: 10px 5px !important;
+    }
+
+    .loader7 {
+        width: 250px;
+        height: 16px;
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+        background: #c8c8c8;
+        margin: 5px;
+    }
+
+    .loader7::after,
+    .loader7::before {
+        content: " ";
+        position: absolute;
+        height: 100%;
+        left: 0;
+        width: 10px;
+        z-index: 1;
+        background: linear-gradient(to right, rgba(170, 170, 170, 1) 0%, rgba(170, 170, 170, 0) 100%);
+    }
+
+    .loader7::after {
+        left: auto;
+        right: 0;
+        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 1) 100%);
+    }
+
+    .loader7>span {
+        content: " ";
+        top: 0;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 1px #fff inset;
+        position: absolute;
+    }
+
+    .loader7>span:before {
+        content: " ";
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.4) 100%);
+    }
+
+    .greenlight {
+        width: 120px;
+        top: -50%;
+        height: 250%;
+        position: absolute;
+        animation: greenglow 3s linear infinite;
+        -webkit-animation: greenglow 3s linear infinite;
+        z-index: 2;
+        mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+        background: rgba(0, 219, 49, 1);
+    }
+
+    @keyframes greenglow {
+        from {
+            left: -120px;
+        }
+
+        to {
+            left: 100%;
+        }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    a {
+        color: #06c;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #39f;
+        text-decoration: underline;
+    }
+</style>
 
 @section('content2')
     <script>
         'use strict'
-
 
         function firePayment(elementId) {
             $.ajax({
@@ -19,9 +237,6 @@
                 }
             })
         }
-
-
-
 
         function getCountDown(elementId, seconds) {
             var times = seconds;
@@ -61,62 +276,150 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="nk-block nk-block-lg">
-                            <div style="overflow: auto;" class="card card-bordered card-preview">
-                                <div class="card-inner">
-                                    {{-- <table class="table site-table">
-                                        <thead>
-                                            <tr>
-                                                <th>{{ __('Trade ID') }}</th>
-                                                <th>{{ __('Amount') }}</th>
-                                                <th>{{ __('Currency') }}</th>
-                                                <th>{{ __('Date') }}</th>
-                                                <th>{{ __('Initial Pair Price') }}</th>
-                                                <th>{{ __('Ending Pair Price') }}</th>
-                                                <th>{{ __('Trading Pair') }}</th>
-                                                <th>{{ __('Profit Amount') }}</th>
-                                                <th>{{ __('Boot Fee') }}</th>
-                                                <th>{{ __('Upcoming Payment') }}</th>
-                                            </tr>
-                                        </thead>
+                        @forelse($transactions as $key => $transaction)
+                            <div class="card w-100">
+                                <div id="invoice-POS">
 
-                                        <tbody>
-                                            @forelse($transactions as $key => $transaction)
-                                                <tr>
-                                                    <td data-caption="{{ __('Trx') }}">
-                                                        {{ $transaction->transaction_id }}</td>
-                                                  
-                                                    <td data-caption="{{ __('Amount') }}">{{ $transaction->amount }}</td>
-                                                    <td data-caption="{{ __('Currency') }}">
-                                                        @if ($transaction->gateway_id == 0)
-                                                            {{ $general->site_currency }}
-                                                        @else
-                                                            {{ $transaction->gateway->gateway_parameters->gateway_currency }}
-                                                        @endif
+                                    <center id="top">
+                                        @if ($transaction->next_payment_date != null)
+                                            <div class="loader7">
+                                                <span></span>
+                                                <div class="greenlight"></div>
+                                            </div>
+                                        @else
+                                            <p class="m-0 text-white mt-1">Completed</p>
+                                        @endif
+                                    </center>
 
+                                    <div id="bot">
+
+                                        <div id="table">
+                                            <table>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Trade ID') }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Payment Date') }}">
-                                                        {{ $transaction->created_at->format('Y-m-d') }}
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->transaction_id }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Initial Pair Price') }}">
-                                                        {{ $transaction->pair_price }}
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Amount') }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Ending Pair Price') }}">
-                                                        @if ($transaction->next_payment_date == null)
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->amount }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Currency') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            @if ($transaction->gateway_id == 0)
+                                                                {{ $general->site_currency }}
+                                                            @else
+                                                                {{ $transaction->gateway->gateway_parameters->gateway_currency }}
+                                                            @endif
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Date') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->created_at->format('Y-m-d') }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Initial Pair Price') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->pair_price }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext text-warning">
+                                                            {{ __('Ending Pair Price') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext text-warning">
                                                             {{ $transaction->pair_price * 1.002 }}
-                                                        @endif
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Pair Name') }}">
-                                                        {{ $transaction->pair_name }}
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Trading Pair') }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('profit amount') }}">
-                                                        {{ $transaction->interest_amount - ($transaction->interest_amount * 0.005) }}%
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->pair_name }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Boot Fee') }}">
-                                                        {{ $transaction->interest_amount * 0.005 }}%
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext text-warning">
+                                                            {{ __('Profit Amount') }}
+                                                        </p>
                                                     </td>
-                                                    <td data-caption="{{ __('Upcoming Payment') }}">
-                                                        <p id="count_{{ $loop->iteration }}" class="mb-2">
+                                                    <td>
+                                                        <p class="itemtext text-warning">
+                                                            @if ($transaction->next_payment_date != null)
+                                                                {{ __('Quantum Bot Still Trading...') }}
+                                                            @else
+                                                                {{ $transaction->interest_amount - $transaction->interest_amount * 0.005 }}%
+                                                            @endif
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Boot Fee') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">
+                                                            {{ $transaction->interest_amount * 0.005 }}%
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="service">
+                                                    <td class="tableitem">
+                                                        <p class="itemtext">
+                                                            {{ __('Upcoming Payment') }}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p data-caption="{{ __('Upcoming Payment') }}"
+                                                            id="count_{{ $loop->iteration }}" class="p-0 m-0 itemtext">
                                                             @if ($transaction->next_payment_date == null)
                                                                 {{ __('Complete') }}
                                                             @endif
@@ -130,112 +433,21 @@
                                                         </script>
                                                     </td>
                                                 </tr>
-                                            @empty
-                                                <tr>
-                                                    <td class="text-center" colspan="100%">
-                                                        {{ __('No Invest Found') }}
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table> --}}
-                                </div>
+                                            </table>
+
+
+                                            @if ($transactions->hasPages())
+                                                {{ $transactions->links() }}
+                                            @endif
+                                        </div><!--End Table-->
+                                    </div><!--End InvoiceBot-->
+                                </div><!--End Invoice-->
                             </div>
-                        </div>
+                        @empty
+                            <h4>NO INVESTMENT FOUND</h4>
+                        @endforelse
                     </div>
                 </div>
             </div>
         </div>
-
-        {{-- <div class="dashboard-body-part">
-        <div class="mobile-page-header">
-            <h5 class="title">{{ __('Investment History') }}</h5>
-            <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i> {{ __('Back') }}</a>
-        </div>
-
-        <div class="site-card">
-            <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                <h5 class="mb-sm-0 mb-2">{{ __('Investment Log') }}</h5>
-                <form action="" method="get" class="d-inline-flex">
-                    <input type="text" name="trx" class="form-control form-control-sm me-2" placeholder="transaction id">
-                    <input type="date" class="form-control form-control-sm me-3" placeholder="Search User" name="date">
-                    <button type="submit" class="btn main-btn btn-sm">{{__('Search')}}</button>
-                </form>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table site-table">
-                        <thead>
-                            <tr>
-                                <th>{{ __('Trx') }}</th>
-                                <th>{{ __('User') }}</th>
-                                <th>{{ __('Gateway') }}</th>
-                                <th>{{ __('Amount') }}</th>
-                                <th>{{ __('Currency') }}</th>
-                                <th>{{ __('Charge') }}</th>
-                                <th>{{ __('Payment Date') }}</th>
-                                <th>{{ __('Upcoming Payment') }}</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @forelse($transactions as $key => $transaction)
-                                <tr>
-                                    <td data-caption="{{ __('Trx') }}">{{ $transaction->transaction_id }}</td>
-                                    <td data-caption="{{ __('User') }}">
-                                        {{ @$transaction->user->fname . ' ' . @$transaction->user->lname }}</td>
-                                    <td data-caption="{{ __('Gateway') }}">
-                                        @if ($transaction->gateway_id == 0)
-                                            {{ __('Invest Using Balance') }}
-                                        @else
-                                            {{ @$transaction->gateway->gateway_name ?? 'Account Transfer' }}
-                                        @endif
-                                    </td>
-                                    <td data-caption="{{ __('Amount') }}">{{ $transaction->amount }}</td>
-                                    <td data-caption="{{ __('Currency') }}">
-                                        @if ($transaction->gateway_id == 0)
-                                            {{ $general->site_currency }}
-                                        @else
-                                            {{ $transaction->gateway->gateway_parameters->gateway_currency }}
-                                        @endif
-
-                                    </td>
-                                    <td data-caption="{{ __('Charge') }}">
-                                        {{ $transaction->charge . ' ' . $transaction->currency }}</td>
-
-                                    <td data-caption="{{ __('Payment Date') }}">{{ $transaction->created_at->format('Y-m-d') }}
-                                    </td>
-                                    <td data-caption="{{ __('Upcoming Payment') }}">
-                                        <p id="count_{{ $loop->iteration }}" class="mb-2">
-                                            @if ($transaction->next_payment_date == null)
-                                             {{__('Complete')}}
-                                            @endif
-                                        </p>
-                                        <script>
-                                            @if ($transaction->next_payment_date != null)
-                                                getCountDown("count_{{ $loop->iteration }}",
-                                                    "{{ now()->gt($transaction->next_payment_date) ? 0 : now()->diffInSeconds($transaction->next_payment_date) }}"
-                                                    )
-                                            @endif
-                                        </script>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="100%">
-                                        {{ __('No Invest Found') }}
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-
-                    @if ($transactions->hasPages())
-                        {{ $transactions->links() }}
-                    @endif
-
-                </div>
-            </div>
-        </div>
-    </div> --}}
     @endsection

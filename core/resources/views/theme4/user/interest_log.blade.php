@@ -3,12 +3,12 @@
 
 @section('content2')
     {{-- <div class="dashboard-body-part">
-        
+
         <div class="mobile-page-header">
             <h5 class="title">{{ __('Interest History') }}</h5>
             <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i> {{ __('Back') }}</a>
         </div>
-        
+
         <div class="site-card">
             <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                 <h5 class="mb-sm-0 mb-2">{{ __('Interest Log') }}</h5>
@@ -108,6 +108,9 @@
                                         </tbody>
                                     </table>
 
+                                    @if ($interestLogs->hasPages())
+                                    {{ $interestLogs->links() }}
+                                @endif
                                 </div>
                             </div>
                         </div>

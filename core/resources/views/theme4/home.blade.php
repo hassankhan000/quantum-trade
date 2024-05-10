@@ -162,6 +162,54 @@
         </div>
     </div>
 
+      {{-- TRAE VIEW --}}
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [{
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500 Index"
+                    },
+                    {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "US 100 Cash CFD"
+                    },
+                    {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR to USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "Bitcoin"
+                    },
+                    {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "Ethereum"
+                    },
+                    {
+                        "description": "Solana",
+                        "proName": "BINANCE:SOLUSDT"
+                    },
+                    {
+                        "description": "Shiba Inu",
+                        "proName": "COINBASE:SHIBUSD"
+                    },
+                    {
+                        "description": "XRP",
+                        "proName": "BITSTAMP:XRPUSD"
+                    }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+        </script>
+    </div>
+    {{-- TRAE VIEW --}}
+
     <!--==============================
                                                     Why Choose Us Area
                                                     ==============================-->
@@ -602,7 +650,7 @@
     <!--==============================
                                                     Partner Area
                                                     ==============================-->
-    <div class="pt-130 bg-black2" id="testimonials">
+    {{-- <div class="pt-130 bg-black2" id="testimonials">
         <div class="container">
             <div class="section-title text-center mb-50">
                 @php
@@ -627,7 +675,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="pt-130 pb-140 bg-black2 overflow-hidden position-relative z-index-common">
         <div class="bg-gradient-4">

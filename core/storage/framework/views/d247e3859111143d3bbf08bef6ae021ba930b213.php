@@ -78,14 +78,14 @@
             <div class="menu-outer">
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
             </div>
-                <ul class="list-wrap">
-                    <?php if(Auth::user()): ?>
-                        <li class="text-center mt-2"><a class="btn" href="<?php echo e(route('user.dashboard')); ?>">Dashboard</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="text-center mt-2"><a class="btn" href="<?php echo e(route('user.login')); ?>">Login</a></li>
-                    <?php endif; ?>
-                </ul>
+            <ul class="list-wrap">
+                <?php if(Auth::user()): ?>
+                    <li class="text-center mt-2"><a class="btn" href="<?php echo e(route('user.dashboard')); ?>">Dashboard</a>
+                    </li>
+                <?php else: ?>
+                    <li class="text-center mt-2"><a class="btn" href="<?php echo e(route('user.login')); ?>">Login</a></li>
+                <?php endif; ?>
+            </ul>
         </nav>
     </div>
     <div class="menu-backdrop"></div>

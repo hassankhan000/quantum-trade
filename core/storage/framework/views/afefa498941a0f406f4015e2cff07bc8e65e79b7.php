@@ -155,7 +155,7 @@
         }
 
         .bottom-nav li a {
-            width: 75px;
+            width: 55px;
             height: 40px;
             color: #822b61;
             text-align: center;
@@ -1079,46 +1079,38 @@
             </div>
         </a>
     </div>
-    <a class="pmo-st pmo-dark" target="_blank" href="https://softnio.com/get-early-access/">
-        <div class="pmo-st-img">
-            <img src="../images/landing/promo-investorm.png" alt="Investorm" />
-        </div>
-        <div class="pmo-st-text">
-            Looking for Advanced <br />
-            Investment Platform?
-        </div>
-    </a>
+
 
     <ul class="bottom-nav">
         
         <li>
             <a href="<?php echo e(url('/dashboard')); ?>">
                 <i class="far fa-user"></i>
-                <span>profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?php echo e(url('/investmentplan')); ?>">
-                <i class="fas fa-home"></i>
-                <span>Bots</span>
-            </a>
-        </li>
-        <li>
-            <a href="<?php echo e(url('/dashboard')); ?>">
-                <i class="fab fa-codepen"></i>
                 <span>Home</span>
             </a>
         </li>
         <li>
-            <a href="<?php echo e(url('dashboard')); ?>">
-                <i class="far fa-heart"></i>
-                <span>favorite</span>
+            <a href="<?php echo e(url('/commision')); ?>">
+                <i class="fas fa-home"></i>
+                <span>Team</span>
             </a>
         </li>
         <li>
-            <a href="<?php echo e(url('dashboard')); ?>">
+            <a href="<?php echo e(url('/investmentplan')); ?>">
+                <i class="fab fa-codepen"></i>
+                <span>Trade</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://quantummtradeai.com/#about">
+                <i class="far fa-heart"></i>
+                <span>Info</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(url('profile/setting')); ?>">
                 <i class="fas fa-shopping-cart"></i>
-                <span>bag</span>
+                <span>Profile</span>
             </a>
         </li>
 

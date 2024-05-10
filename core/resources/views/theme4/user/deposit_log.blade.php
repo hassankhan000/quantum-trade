@@ -8,7 +8,7 @@
             <h5 class="title">{{ __('Deposit History') }}</h5>
             <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i> {{ __('Back') }}</a>
         </div>
-        
+
         <div class="site-card">
             <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                 <h5 class="mb-sm-0 mb-2">{{ __('Deposit Log') }}</h5>
@@ -26,7 +26,7 @@
                     </div>
                 </form>
             </div>
-            
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table site-table">
@@ -111,7 +111,7 @@
                                                 <th>{{ __('Payment Date') }}</th>
                                             </tr>
                                         </thead>
-                
+
                                         <tbody>
                                             @forelse($transactions as $key => $transaction)
                                                 <tr>
@@ -121,7 +121,7 @@
                                                     <td data-caption="{{ __('Amount') }}">{{ $transaction->amount }}</td>
                                                     <td data-caption="{{ __('Currency') }}">{{ $general->site_currency }}</td>
                                                     <td data-caption="{{ __('Charge') }}">{{ $transaction->charge . ' ' . $transaction->currency }}</td>
-                
+
                                                     <td data-caption="{{ __('Payment Date') }}">{{ $transaction->created_at->format('Y-m-d') }}</td>
                                                 </tr>
                                             @empty
@@ -133,7 +133,9 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    
+                                    @if ($transactions->hasPages())
+                                    {{ $transactions->links() }}
+                                @endif
                                 </div>
                             </div>
                         </div>

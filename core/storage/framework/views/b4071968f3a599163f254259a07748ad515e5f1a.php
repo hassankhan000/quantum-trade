@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from themeadapt.com/tf/iko/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Apr 2024 19:52:30 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -50,15 +51,17 @@
         </script>
     <?php endif; ?>
 
-    <?php echo $__env->make(template().'layout.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <?php echo $__env->yieldContent('content'); ?>
-    <?php echo $__env->make(template().'layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make(template() . 'layout.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->yieldContent('content'); ?>
+    <?php echo $__env->make(template() . 'layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
 
     <button type="button" class="cmn-btn btn-sm btn-floating" id="btn-back-to-top">
         <i class="fas fa-arrow-up text-light"></i>
     </button>
+
+
 
     <script src="<?php echo e(asset('asset/theme4/web_assets/assets/js/vendor/jquery-3.6.0.min.js')); ?>"></script>
     <script src="<?php echo e(asset('asset/theme4/web_assets/assets/js/bootstrap.min.js')); ?>"></script>
@@ -76,7 +79,7 @@
 
     <?php echo $__env->yieldPushContent('script'); ?>
     <?php if(@$general->twak_allow): ?>
-        <script type="text/javascript"> 
+        <script type="text/javascript">
             var Tawk_API = Tawk_API || {},
                 Tawk_LoadStart = new Date();
             (function() {
@@ -128,8 +131,8 @@
             "use strict";
             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 iziToast.error({
-                message: "<?php echo e(__($error)); ?>",
-                position: "topRight"
+                    message: "<?php echo e(__($error)); ?>",
+                    position: "topRight"
                 });
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </script>
@@ -208,5 +211,8 @@
             document.documentElement.scrollTop = 0;
         }
     </script>
+
 </body>
-</html><?php /**PATH C:\xampp\htdocs\quantum-trade\core\resources\views/theme4/layout/master.blade.php ENDPATH**/ ?>
+
+</html>
+<?php /**PATH C:\xampp\htdocs\quantum-trade\core\resources\views/theme4/layout/master.blade.php ENDPATH**/ ?>

@@ -107,10 +107,12 @@
                                 <form action="" method="get">
                                     <div class="row g-3">
                                         <div class="col-auto">
-                                            <input type="text" name="trx" class="form-control form-control-sm" placeholder="transaction id">
+                                            <input type="text" name="trx" class="form-control form-control-sm"
+                                                placeholder="transaction id">
                                         </div>
                                         <div class="col-auto">
-                                            <input type="date" class="form-control form-control-sm" placeholder="Search User" name="date">
+                                            <input type="date" class="form-control form-control-sm"
+                                                placeholder="Search User" name="date">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn main-btn btn-sm">{{ __('Search') }}</button>
@@ -135,12 +137,13 @@
                                                 <th>{{ __('Payment Date') }}</th>
                                             </tr>
                                         </thead>
-                
+
                                         <tbody>
                                             @forelse($transfers as $key => $transaction)
                                                 <tr>
-                                                    <td data-caption="{{ __('Trx') }}">{{ $transaction->transaction_id }}</td>
-                
+                                                    <td data-caption="{{ __('Trx') }}">
+                                                        {{ $transaction->transaction_id }}</td>
+
                                                     <td data-caption="{{ __('Sender') }}">
                                                         <p class="p-0 m-0">
                                                             Name : {{ $transaction->sender->full_name }}
@@ -149,7 +152,7 @@
                                                             Email : {{ $transaction->sender->email }}
                                                         </p>
                                                     </td>
-                
+
                                                     <td data-caption="{{ __('Receiver') }}">
                                                         <p class="p-0 m-0">
                                                             Name : {{ $transaction->receiver->full_name }}
@@ -158,13 +161,17 @@
                                                             Email : {{ $transaction->receiver->email }}
                                                         </p>
                                                     </td>
-                
-                                                    <td data-caption="{{ __('Amount') }}">{{ number_format($transaction->amount, 2) }}
+
+                                                    <td data-caption="{{ __('Amount') }}">
+                                                        {{ number_format($transaction->amount, 2) }}
                                                     </td>
-                                                    <td data-caption="{{ __('Currency') }}">{{ $general->site_currency }}</td>
+                                                    <td data-caption="{{ __('Currency') }}">{{ $general->site_currency }}
+                                                    </td>
                                                     <td data-caption="{{ __('Charge') }}">
-                                                        {{ number_format($transaction->charge, 2) . ' ' . $general->site_currency }}</td>
-                                                    <td data-caption="{{ __('Details') }}">{{ $transaction->details }}</td>
+                                                        {{ number_format($transaction->charge, 2) . ' ' . $general->site_currency }}
+                                                    </td>
+                                                    <td data-caption="{{ __('Details') }}">{{ $transaction->details }}
+                                                    </td>
                                                     <td data-caption="{{ __('Payment Date') }}">
                                                         {{ $transaction->created_at->format('Y-m-d') }}
                                                     </td>
@@ -178,13 +185,15 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    
-                                    </div>
+                                    @if ($transfers->hasPages())
+                                        {{ $transfers->links() }}
+                                    @endif
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 @endsection

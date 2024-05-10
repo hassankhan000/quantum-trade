@@ -160,6 +160,54 @@
         </div>
     </div>
 
+      
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [{
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500 Index"
+                    },
+                    {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "US 100 Cash CFD"
+                    },
+                    {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR to USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "Bitcoin"
+                    },
+                    {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "Ethereum"
+                    },
+                    {
+                        "description": "Solana",
+                        "proName": "BINANCE:SOLUSDT"
+                    },
+                    {
+                        "description": "Shiba Inu",
+                        "proName": "COINBASE:SHIBUSD"
+                    },
+                    {
+                        "description": "XRP",
+                        "proName": "BITSTAMP:XRPUSD"
+                    }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+        </script>
+    </div>
+    
+
     <!--==============================
                                                     Why Choose Us Area
                                                     ==============================-->
@@ -583,32 +631,7 @@
     <!--==============================
                                                     Partner Area
                                                     ==============================-->
-    <div class="pt-130 bg-black2" id="testimonials">
-        <div class="container">
-            <div class="section-title text-center mb-50">
-                <?php
-                    $content = content('testimonial.content');
-                    $elements = element('testimonial.element');
-
-                ?>
-                <h2 class="title style2"><?php echo e(__(@$content->data->title)); ?></h2>
-            </div>
-            <div class="slider-area">
-                <div class="row partner-slider1">
-                    <?php $__empty_1 = true; $__currentLoopData = $elements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $element): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <div class="col-lg-4">
-                            <div class="partner-card">
-                                <h5 class="name"><?php echo e(@$element->data->client_name); ?></h5>
-                                <p><?php echo e(@$element->data->designation); ?></p>
-                                <p class="mt-4"><?php echo e(@$element->data->answer); ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="pt-130 pb-140 bg-black2 overflow-hidden position-relative z-index-common">
         <div class="bg-gradient-4">

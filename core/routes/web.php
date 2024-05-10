@@ -437,7 +437,7 @@ Route::name('user.')->group(function () {
             Route::get('deposit/log', [DepositController::class, 'depositLog'])->name('deposit.log');
             Route::get('invest/log', [SiteController::class, 'investLog'])->name('invest.log');
 
-            Route::get('money/transfer/log', [SiteController::class, 'MoneyTransfer'])->name('money.log');
+            // Route::get('money/transfer/log', [SiteController::class, 'MoneyTransfer'])->name('money.log');
 
             Route::get('view/all/btn', [SiteController::class, 'viewall'])->name('viewall');
         });
