@@ -1,4 +1,40 @@
 <?php $__env->startSection('content'); ?>
+    <style>
+        @media (max-width: 767px) {
+            .hero-1 .hero-thumb img {
+                transform: scale(0.8);
+                height: 200px;
+            }
+        }
+
+        .hero-1 .hero-bg-gradient {
+            position: absolute;
+            left: 50%;
+            z-index: -1;
+            background: linear-gradient(0.41deg, #83c31c 19.48%, rgba(10, 10, 10, 0.27) -13.62%, #83c31c 267.11%);
+            filter: blur(225px);
+            top: -1292px;
+            width: 1873px;
+            height: 2191px;
+            transform: translate(-50%, 0);
+            border-radius: 0 0 50% 50%;
+        }
+
+        .home-purple-gradient {
+            --tg-primary-color: #83c31c !important;
+            --tg-theme-color2: #2c4700 !important;
+            --tg-black2: #0f0f0f !important;
+            --tg-secondary-color: #000000 !important;
+            --tg-secondary-color2: #020202 !important;
+        }
+
+        @media (max-width: 767px) {
+            .partner-card {
+                background: linear-gradient(180deg, var(--tg-primary-color) -20.97%, rgb(32 53 0) 65%, rgba(1, 3, 20, 0) 100%);
+                border-radius: 16px;
+            }
+        }
+    </style>
     <div class="hero-wrapper hero-1">
         <div class="hero-bg-gradient">
         </div>
@@ -15,8 +51,7 @@
                 <div class="row flex-row-reverse">
                     <div class="col-lg-3">
                         <div class="hero-thumb alltuchtopdown">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="img">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -63,8 +98,8 @@
     <!--======== / Hero Section ========-->
 
     <!--==============================
-                                        Brand Area 2
-                                        ==============================-->
+                                                    Brand Area 2
+                                                    ==============================-->
     <div class="brand-area2">
         <div class="container">
             <div class="row g-0">
@@ -78,26 +113,22 @@
                 <div class="row g-0 brand-active2">
                     <div class="col-12">
                         <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/vanguard.png')); ?>"
-                                alt="">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/vanguard.png')); ?>" alt="">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/berkshire.png')); ?>"
-                                alt="">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/berkshire.png')); ?>" alt="">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/JPMorganChase.png')); ?>"
-                                alt="">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/JPMorganChase.png')); ?>" alt="">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/Wealthfront.png')); ?>"
-                                alt="">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/Wealthfront.png')); ?>" alt="">
                         </div>
                     </div>
                     <div class="col-12">
@@ -130,8 +161,8 @@
     </div>
 
     <!--==============================
-                                        Why Choose Us Area
-                                        ==============================-->
+                                                    Why Choose Us Area
+                                                    ==============================-->
     <div class="wcu-area-1 pt-130 pb-140 position-relative" id="about">
         <div class="bg-gradient-1">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
@@ -168,8 +199,8 @@
     </div>
 
     <!--==============================
-                                        Intro Area
-                                        ==============================-->
+                                                    Intro Area
+                                                    ==============================-->
     <div class="pt-130 overflow-hidden bg-black2" id="howitwork">
         <div class="container">
             <div class="row">
@@ -214,8 +245,8 @@
     </div>
 
     <!--==============================
-                                            RoadMap Area 2
-                                        ==============================-->
+                                                        RoadMap Area 2
+                                                    ==============================-->
     <div class="pt-130 pb-140 overflow-hidden bg-black2 position-relative z-index-common" id="roadMap">
         <div class="bg-gradient-2">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
@@ -245,7 +276,9 @@
                                 <h4 class="title"><span class="dot"></span>Research</h4>
                                 <p>SubQuery Builders/Grants Program SQT Network contract internal MVP Coordinator and client
                                     SDK implementations</p>
-                                    <a class="btn mt-2" href="<?php echo e(asset('asset/theme4/web_assets/assets/img/QuantumAi.pdf')); ?>"> Check Document </a>
+                                <a class="btn mt-2"
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/QuantumAi.pdf')); ?>"> Check Document
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -259,7 +292,9 @@
                                     portfolio composed purely of local market fixed income. In theory, this diversification
                                     can help reduce a portfolio’s volatility without necessarily decreasing its total
                                     return.</p>
-                                    <a class="btn mt-2" href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-Quantum Trade.pdf')); ?>"> Check Document </a>
+                                <a class="btn mt-2"
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-Quantum Trade.pdf')); ?>">
+                                    Check Document </a>
                             </div>
                         </div>
                     </div>
@@ -270,7 +305,9 @@
                                 <h4 class="title"><span class="dot"></span>Token Test</h4>
                                 <p>SubQuery Builders/Grants Program SQT Network contract internal MVP Coordinator and client
                                     SDK implementations</p>
-                                    <a class="btn mt-2" href="<?php echo e(asset('asset/theme4/web_assets/assets/img/GoingGlobal.pdf')); ?>"> Check Document </a>
+                                <a class="btn mt-2"
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/GoingGlobal.pdf')); ?>"> Check
+                                    Document </a>
                             </div>
                         </div>
                     </div>
@@ -282,7 +319,9 @@
                                 <p>In this paper, we quantify how much investors value financial advice and where they
                                     believe advisers add value. Using a survey of more than 1,500 US investors who reported
                                     having a human adviser, a digital service, or both </p>
-                                    <a class="btn mt-2" href="<?php echo e(asset('asset/theme4/web_assets/assets/img/valueofhuman.pdf')); ?>"> Check Document </a>
+                                <a class="btn mt-2"
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/valueofhuman.pdf')); ?>"> Check
+                                    Document </a>
 
                             </div>
                         </div>
@@ -293,8 +332,8 @@
     </div>
 
     <!--==============================
-                                        Invest Area
-                                        ==============================-->
+                                                    Invest Area
+                                                    ==============================-->
     <div class="pt-130 overflow-hidden">
         <div class="container">
             <div class="row justify-content-center">
@@ -308,8 +347,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="invest-card">
                         <div class="invest-card-icon">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="icon">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
                         <a class="btn btn3" href="#">Invest In V1 Bot</a>
                     </div>
@@ -317,8 +355,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="invest-card">
                         <div class="invest-card-icon">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="icon">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
                         <a class="btn btn3" href="#">Invest In V2 Bot</a>
                     </div>
@@ -326,8 +363,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="invest-card">
                         <div class="invest-card-icon">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="icon">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
                         <a class="btn btn3" href="#">Invest In V3 Bot</a>
                     </div>
@@ -335,8 +371,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="invest-card">
                         <div class="invest-card-icon">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="icon">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
                         <a class="btn btn3" href="#">Invest In V4 Bot</a>
                     </div>
@@ -344,8 +379,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="invest-card">
                         <div class="invest-card-icon">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>"
-                                alt="icon">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
                         <a class="btn btn3" href="#">Invest In V5 Bot</a>
                     </div>
@@ -355,16 +389,16 @@
     </div>
 
     <!--==============================
-                                        Team Area
-                                        ==============================-->
+                                                    Team Area
+                                                    ==============================-->
     <div class="pt-130 pb-140 overflow-hidden position-relative z-index-common">
         <div class="bg-gradient-3">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
         </div>
 
         <!--==============================
-                                            Founder Area
-                                            ==============================-->
+                                                        Founder Area
+                                                        ==============================-->
         <div class="pb-110">
             <div class="container">
                 <div class="section-title text-center mb-50">
@@ -374,8 +408,7 @@
                     <div class="col-lg-6">
                         <div class="founder-card">
                             <div class="founder-card-img">
-                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/anna.JPG')); ?>"
-                                    alt="img">
+                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/anna.JPG')); ?>" alt="img">
                             </div>
                             <div class="founder-card-details">
                                 <h3 class="founder-card-title">Eleanor Pena</h3>
@@ -402,8 +435,7 @@
                     <div class="col-lg-6">
                         <div class="founder-card">
                             <div class="founder-card-img">
-                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/jimmy.png')); ?>"
-                                    alt="img">
+                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/jimmy.png')); ?>" alt="img">
                             </div>
                             <div class="founder-card-details">
                                 <h3 class="founder-card-title">William Xeno</h3>
@@ -549,8 +581,8 @@
     </div>
 
     <!--==============================
-                                        Partner Area
-                                        ==============================-->
+                                                    Partner Area
+                                                    ==============================-->
     <div class="pt-130 bg-black2" id="testimonials">
         <div class="container">
             <div class="section-title text-center mb-50">
@@ -583,8 +615,8 @@
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-2.jpg')); ?>" alt="img">
         </div>
         <!--==============================
-                                            Event Area
-                                            ==============================-->
+                                                        Event Area
+                                                        ==============================-->
         <div class="event-area">
             <div class="container">
                 <div class="section-title text-center mb-50">
@@ -860,14 +892,14 @@
         </div>
 
         <!--==============================
-                                            Press CTA Area
-                                            ==============================-->
+                                                        Press CTA Area
+                                                        ==============================-->
         
     </div>
 
     <!--==============================
-                                        Faq Area
-                                        ==============================-->
+                                                    Faq Area
+                                                    ==============================-->
     <div class="pt-140 pb-140 overflow-hidden" id="faq">
         <div class="container">
             <div class="row gy-40 justify-content-between">
@@ -883,8 +915,7 @@
                             We're here to help.</p>
                     </div>
                     <div class="faq-thumb mt-60">
-                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/FAQ.png')); ?>"
-                            alt="img">
+                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/FAQ.png')); ?>" alt="img">
                     </div>
                 </div>
                 

@@ -165,14 +165,14 @@
             <div class="menu-outer">
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
             </div>
-                <ul class="list-wrap">
-                    @if (Auth::user())
-                        <li class="text-center mt-2"><a class="btn" href="{{ route('user.dashboard') }}">Dashboard</a>
-                        </li>
-                    @else
-                        <li class="text-center mt-2"><a class="btn" href="{{ route('user.login') }}">Login</a></li>
-                    @endif
-                </ul>
+            <ul class="list-wrap">
+                @if (Auth::user())
+                    <li class="text-center mt-2"><a class="btn" href="{{ route('user.dashboard') }}">Dashboard</a>
+                    </li>
+                @else
+                    <li class="text-center mt-2"><a class="btn" href="{{ route('user.login') }}">Login</a></li>
+                @endif
+            </ul>
         </nav>
     </div>
     <div class="menu-backdrop"></div>

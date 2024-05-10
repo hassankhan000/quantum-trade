@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from themeadapt.com/tf/iko/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Apr 2024 19:52:30 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -57,15 +58,17 @@
         </script>
     @endif
 
-    @include(template().'layout.header')
-        @yield('content')
-    @include(template().'layout.footer')
+    @include(template() . 'layout.header')
+    @yield('content')
+    @include(template() . 'layout.footer')
 
     {{-- back to to btn --}}
 
     <button type="button" class="cmn-btn btn-sm btn-floating" id="btn-back-to-top">
         <i class="fas fa-arrow-up text-light"></i>
     </button>
+
+
 
     <script src="{{ asset('asset/theme4/web_assets/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('asset/theme4/web_assets/assets/js/bootstrap.min.js') }}"></script>
@@ -83,7 +86,7 @@
 
     @stack('script')
     @if (@$general->twak_allow)
-        <script type="text/javascript"> 
+        <script type="text/javascript">
             var Tawk_API = Tawk_API || {},
                 Tawk_LoadStart = new Date();
             (function() {
@@ -135,8 +138,8 @@
             "use strict";
             @foreach ($errors->all() as $error)
                 iziToast.error({
-                message: "{{ __($error) }}",
-                position: "topRight"
+                    message: "{{ __($error) }}",
+                    position: "topRight"
                 });
             @endforeach
         </script>
@@ -215,5 +218,7 @@
             document.documentElement.scrollTop = 0;
         }
     </script>
+
 </body>
+
 </html>

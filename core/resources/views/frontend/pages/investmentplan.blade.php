@@ -82,7 +82,7 @@
                                         @endforeach
                                     @endif
                                 </ul>
-                                
+
                             </div>
                             <div class="invest-plan-action mt-3">
                                 @if ($plan_exist >= $plan->invest_limit)

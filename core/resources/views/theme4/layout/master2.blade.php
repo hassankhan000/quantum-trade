@@ -131,8 +131,99 @@
         .nk-menu .nk-menu-link {
             color: #c9c9c9 !important;
         }
+
         .nk-header-brand img {
             width: 140px;
+        }
+    </style>
+    <style>
+        .bottom-nav {
+            width: 50%;
+            position: fixed;
+            bottom: 0px;
+            left: 25%;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #aef32d;
+            margin: 0px;
+            border-radius: 20px 20px 0px 0px;
+            padding: 0;
+            box-shadow: 0px 8px 10px rgba(130, 43, 97, .19);
+            list-style: none;
+        }
+
+        .bottom-nav li a {
+            width: 75px;
+            height: 40px;
+            color: #822b61;
+            text-align: center;
+            font-size: 20px;
+            display: block;
+            transition: 1s;
+            position: relative;
+            text-transform: capitalize
+        }
+
+        .bottom-nav li a i {
+            width: 100%;
+            position: absolute;
+            top: 23%;
+            left: 0;
+            transition-delay: 0.3s;
+            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
+            z-index: 9;
+        }
+
+        .bottom-nav li a span {
+            display: block;
+            font-size: 10px;
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+            transition-delay: 0.3s;
+            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
+            z-index: 9;
+            opacity: 1;
+            color: black;
+        }
+
+        .bottom-nav li a.active-icon i {
+            top: -102%;
+            transition-delay: 0.3s;
+            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
+        }
+
+        .bottom-nav li a.active-icon span {
+            bottom: 11px;
+            background: #399b2e;
+            transition-delay: 0.5s;
+            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
+            opacity: 1;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .bottom-nav .slider {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -35px;
+            background-color: #fff;
+            border: 2px solid #822b61;
+            box-shadow: 0px 0px 0px 5px #822b61;
+            transition: 1s;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 900px) {
+            .bottom-nav {
+                width: 100%;
+                left: 0;
+            }
         }
     </style>
 
@@ -1056,6 +1147,42 @@
             Investment Platform?
         </div>
     </a>
+
+    <ul class="bottom-nav">
+        {{-- <div class="slider"></div> --}}
+        <li>
+            <a href="{{ url('/dashboard') }}">
+                <i class="far fa-user"></i>
+                <span>profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/investmentplan') }}">
+                <i class="fas fa-home"></i>
+                <span>Bots</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('/dashboard') }}">
+                <i class="fab fa-codepen"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('dashboard') }}">
+                <i class="far fa-heart"></i>
+                <span>favorite</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('dashboard') }}">
+                <i class="fas fa-shopping-cart"></i>
+                <span>bag</span>
+            </a>
+        </li>
+
+    </ul>
+
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/bundlee5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/scriptse5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/demo-settingse5ca.js?ver=3.2.3') }}"></script>
@@ -1238,6 +1365,43 @@
 
     const bot = new TradingBot(config);
     bot.run();
+</script>
+
+<script>
+    $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Loop through each anchor tag in the bottom navigation bar
+    $('.bottom-nav li a').each(function() {
+        // Check if the href attribute matches the current URL
+        $(this).removeClass('active-icon');
+        if ($(this).attr('href') === currentUrl) {
+            // Add the 'active-icon' class to the anchor tag
+            $(this).addClass('active-icon');
+        }
+    });
+
+    // Click event handler for anchor tags
+    $('.bottom-nav li a').click(function() {
+        // Get the position of the clicked anchor tag
+        var position = $(this).position();
+        var margin = 37;
+
+        // Move the slider to the clicked position
+        $('.slider').css({
+            "left": +position.left + margin,
+            "transform": "translateX(-50%)"
+        });
+
+        // Remove 'active-icon' class from all anchor tags
+        $('.bottom-nav li a').removeClass('active-icon');
+
+        // Add 'active-icon' class to the clicked anchor tag
+        $(this).addClass('active-icon');
+    });
+});
+
 </script>
 
 </html>
