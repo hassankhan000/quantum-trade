@@ -27,10 +27,9 @@
                                             href="#header">Home</a>
                                     </li>
                                     <li><a href="#about" class="section-link">About</a></li>
-                                    <li><a href="#howitwork" class="section-link">How it work</a></li>
-                                    <li class="menu-item-has-children"><a href="#">blog</a>
-                                    </li>
-                                    <li><a href="#testimonials" class="section-link">Testimonials</a></li>
+                                    <li><a href="#roadMap" class="section-link">White Papers</a></li>
+                                    <li><a href="#News" class="section-link">News</a></li>
+                                    <li><a href="#Team" class="section-link">Our Team</a></li>
                                     <li><a href="#faq" class="section-link">Faq</a></li>
                                 </ul>
                             </div>

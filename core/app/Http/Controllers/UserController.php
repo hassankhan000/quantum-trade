@@ -68,7 +68,7 @@ class UserController extends Controller
         if ($totalAmount >= $general->vip5_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 5;
-            if ($general->is_vip_reward == 1) {
+            if ($general->is_vip_reward == 1 && $general->vip5_reward_amount !=0) {
                 $user->balance += $general->vip5_reward_amount;
                 Transaction::create([
                     'trx' => strtoupper(Str::random(16)),
@@ -86,7 +86,7 @@ class UserController extends Controller
         } elseif ($totalAmount >= $general->vip4_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 4;
-            if ($general->is_vip_reward == 1) {
+            if ($general->is_vip_reward == 1 && $general->vip4_reward_amount !=0) {
                 $user->balance += $general->vip4_reward_amount;
                 Transaction::create([
                     'trx' => strtoupper(Str::random(16)),
@@ -104,7 +104,7 @@ class UserController extends Controller
         } elseif ($totalAmount >= $general->vip3_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 3;
-            if ($general->is_vip_reward == 1) {
+            if ($general->is_vip_reward == 1 && $general->vip3_reward_amount !=0) {
                 $user->balance += $general->vip3_reward_amount;
                 Transaction::create([
                     'trx' => strtoupper(Str::random(16)),
@@ -122,7 +122,7 @@ class UserController extends Controller
         } elseif ($totalAmount >= $general->vip2_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 2;
-            if ($general->is_vip_reward == 1) {
+            if ($general->is_vip_reward == 1 && $general->vip2_reward_amount !=0) {
                 $user->balance += $general->vip2_reward_amount;
                 Transaction::create([
                     'trx' => strtoupper(Str::random(16)),
@@ -140,7 +140,7 @@ class UserController extends Controller
         } elseif ($totalAmount >= $general->vip1_amount) {
             $user = User::find(Auth::id());
             $user->vip_status = 1;
-            if ($general->is_vip_reward == 1) {
+            if ($general->is_vip_reward == 1 && $general->vip1_reward_amount !=0) {
                 $user->balance += $general->vip1_reward_amount;
                 Transaction::create([
                     'trx' => strtoupper(Str::random(16)),

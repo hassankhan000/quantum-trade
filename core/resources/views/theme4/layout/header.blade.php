@@ -5,7 +5,7 @@
 
 <!-- header-section start  -->
 {{-- <header class="header">
-    <div class="header-bottom"> 
+    <div class="header-bottom">
       <div class="container">
         <nav class="navbar navbar-expand-xl p-0 align-items-center">
 
@@ -29,11 +29,11 @@
                     @forelse ($pages as $page)
                     <li class="nav-item"><a class="nav-link" href="{{ route('pages', $page->slug) }}">{{ __($page->name) }}</a>
                     </li>
-                    @empty 
-                    @endforelse 
+                    @empty
+                    @endforelse
 
                     <li class="nav-item"><a class="nav-link" href="{{ route('allblog') }}">{{ __('Blog') }}</a></li>
-                    
+
                 </ul>
                 <div class="navbar-action">
                   <select class="changeLang me-3" aria-label="Default select example">
@@ -54,7 +54,7 @@
             </div>
         </nav>
       </div>
-    </div><!-- header-bottom end --> 
+    </div><!-- header-bottom end -->
   </header> --}}
 <!-- header-section end  -->
 
@@ -114,10 +114,9 @@
                                             href="#header">Home</a>
                                     </li>
                                     <li><a href="#about" class="section-link">About</a></li>
-                                    <li><a href="#howitwork" class="section-link">How it work</a></li>
-                                    <li class="menu-item-has-children"><a href="#">blog</a>
-                                    </li>
-                                    <li><a href="#testimonials" class="section-link">Testimonials</a></li>
+                                    <li><a href="#roadMap" class="section-link">White Papers</a></li>
+                                    <li><a href="#News" class="section-link">News</a></li>
+                                    <li><a href="#Team" class="section-link">Our Team</a></li>
                                     <li><a href="#faq" class="section-link">Faq</a></li>
                                 </ul>
                             </div>

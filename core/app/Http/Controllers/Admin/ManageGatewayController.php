@@ -1357,7 +1357,7 @@ class ManageGatewayController extends Controller
         $checkuplainerlvl5 = (int) DB::table('users')
             ->where('id', $checkuplainerlvl4)
             ->value('reffered_by');
-        if ($checkuplainerlvl1 != 0) {
+        if ($checkuplainerlvl1 != 0 && $general->dc_lvl_one != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_one;
             $PercentAmount = $deposit_amount * ($general_percentage / 100);
@@ -1377,7 +1377,7 @@ class ManageGatewayController extends Controller
                 'user_id' => $user->id,
             ]);
         }
-        if ($checkuplainerlvl2 != 0) {
+        if ($checkuplainerlvl2 != 0 && $general->dc_lvl_two != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_two;
             $PercentAmount = $deposit_amount * ($general_percentage / 100);
@@ -1397,7 +1397,7 @@ class ManageGatewayController extends Controller
                 'user_id' => $user->id,
             ]);
         }
-        if ($checkuplainerlvl3 != 0) {
+        if ($checkuplainerlvl3 != 0 && $general->dc_lvl_three != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_three;
             $PercentAmount = $deposit_amount * ($general_percentage / 100);
@@ -1417,7 +1417,7 @@ class ManageGatewayController extends Controller
                 'user_id' => $user->id,
             ]);
         }
-        if ($checkuplainerlvl4 != 0) {
+        if ($checkuplainerlvl4 != 0 && $general->dc_lvl_four != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_four;
             $PercentAmount = $deposit_amount * ($general_percentage / 100);
@@ -1437,7 +1437,7 @@ class ManageGatewayController extends Controller
                 'user_id' => $user->id,
             ]);
         }
-        if ($checkuplainerlvl5 != 0) {
+        if ($checkuplainerlvl5 != 0 && $general->dc_lvl_five != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_five;
             $PercentAmount = $deposit_amount * ($general_percentage / 100);
