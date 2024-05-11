@@ -391,7 +391,8 @@ Route::name('user.')->group(function () {
 
             Route::get('coinpayments', [CoinpaymentsProcessController::class, 'ipn'])->name('coin.pay');
 
-            Route::get('paypal', [PaypalPaymentController::class, 'ipn'])->name('paypal');
+            // Route::get('paypal', [PaypalPaymentController::class, 'ipn'])->name('paypal');
+            Route::get('paypal', [ControllersPaymentController::class, 'ipn'])->name('paypal');
 
             Route::get('payment-success', [ProcessController::class, 'paymentSuccess'])->name('payment.success');
 
