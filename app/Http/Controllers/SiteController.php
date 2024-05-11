@@ -29,8 +29,6 @@ class SiteController extends Controller
 
     public function index()
     {
-        return "HI QUANTUM";
-
         $pageTitle = 'Home';
 
         $sections = Page::where('name', 'home')->first();
