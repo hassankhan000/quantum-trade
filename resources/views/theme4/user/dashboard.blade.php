@@ -1,6 +1,5 @@
 @extends(template() . 'layout.master2')
 <style>
-
     .nk-content.nk-content-fluid {
         /* background: #282828 !important; */
         background: linear-gradient(#1a1a1a00, #aef72b1c), url("https://img.freepik.com/premium-photo/modern-brick-wall_118019-548.jpg?w=360") !important;
@@ -330,7 +329,7 @@
                                             <h4> {{ number_format(auth()->user()->balance, 2) }}
                                                 {{ $general->site_currency }}</h4>
                                             <h6 class="fs-6 mt-4">
-                                                {{ number_format(auth()->user()->balance, 2) + number_format($commison, 2) }}
+                                                {{ number_format(auth()->user()->balance, 2) + number_format(intval($commison), 2) }}
                                             </h6>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
