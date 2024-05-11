@@ -1,9 +1,21 @@
 <?php
-
+// DEMO
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
+
+
+function installedPath()
+{
+    return 'core/storage/LICENCE.txt';
+}
+
+if (!file_exists(installedPath())) {
+    header('Location: install/index.php');
+    die();
+};
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +28,22 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
-    require __DIR__.'/../storage/framework/maintenance.php';
+if (file_exists(__DIR__ . './core/storage/framework/maintenance.php')) {
+    require __DIR__ . './core/storage/framework/maintenance.php';
 }
 
 /*
 |--------------------------------------------------------------------------
-| Autoload The Composer Generated Files
+| Register The Auto Loader
 |--------------------------------------------------------------------------
 |
-| Composer provides a convenient, automatically generated class loader
-| for our application. We just need to utilize it! We'll simply require
-| it into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels great to relax.
+| Composer provides a convenient, automatically generated class loader for
+| this application. We just need to utilize it! We'll simply require it
+| into the script here so we don't need to manually load our classes.
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . './core/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -41,18 +52,16 @@ require __DIR__.'/../vendor/autoload.php';
 |
 | Once we have the application, we can handle the incoming request using
 | the application's HTTP kernel. Then, we will send the response back
-| to this client's browser, allowing them to enjoy the application.
+| to this client's browser, allowing them to enjoy our application.
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . './core/bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
-$response = $kernel->handle(
+$response = tap($kernel->handle(
     $request = Request::capture()
-);
-
-$response->send();
+))->send();
 
 $kernel->terminate($request, $response);
