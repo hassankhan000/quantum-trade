@@ -45,12 +45,7 @@ require_once 'lib/functions.php';
 
 
             <div class="installer-footer">
-                <?php if (!$isPermissionIsMissing) { ?>
-                    <a href="database.php" class="btn">Next Step</a>
-                <?php } else { ?>
-                    <a href="#0" class="btn disbale-btn">Next Step</a>
-                <?php } ?>
-
+                <a href="database.php" class="btn">Next Step</a>
             </div>
         </div>
     </div>
