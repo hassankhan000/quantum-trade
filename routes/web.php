@@ -17,7 +17,6 @@ use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Gateway\coinpayments\ProcessController as CoinpaymentsProcessController;
 use App\Http\Controllers\TicketController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Gateway\voguepay\ProcessController as VoguepayProcessController;
 use App\Http\Controllers\PaymentController as ControllersPaymentController;
 use App\Http\Controllers\SiteController;
@@ -45,6 +44,7 @@ use App\Http\Controllers\Gateway\perfectmoney\ProcessController as PerfectmoneyP
 use App\Http\Controllers\Gateway\razorpay\ProcessController as RazorpayProcessController;
 use App\Http\Controllers\Gateway\vouguepay\ProcessController as VouguepayProcessController;
 use App\Http\Controllers\LoginSecurityController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
