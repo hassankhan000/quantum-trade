@@ -330,7 +330,7 @@
                                             <h4> {{ number_format(auth()->user()->balance, 2) }}
                                                 {{ $general->site_currency }}</h4>
                                             <h6 class="fs-6 mt-4">
-                                                {{ number_format((float) auth()->user()->balance, 2) + number_format((float) $commison, 2) }}
+                                                {{ number_format(auth()->user()->balance, 2) + number_format($commison, 2) }}
                                             </h6>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
