@@ -1,10 +1,10 @@
 @extends(template() . 'layout.master2')
 
 <style>
-    .nk-body {
-        outline: 0;
-        padding: 50px 0;
-        margin: 200px 0;
+    .nk-content-fluid {
+        padding: 80px 0 50px 0 !important;
+        height: 100vh;
+        overflow: auto;
     }
 
     #invoice-POS {
@@ -233,7 +233,7 @@
                         document.getElementById(elementId).innerHTML = "COMPLETE";
                         return
                     }
-                    window.location.href = "{{ url()->current() }}"
+                    // window.location.href = "{{ url()->current() }}"
                 }
             })
         }

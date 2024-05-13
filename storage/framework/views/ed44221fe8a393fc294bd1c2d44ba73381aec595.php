@@ -1106,9 +1106,6 @@
                                                                                                                                                 <th>Bot
                                                                                                                                                     Fee
                                                                                                                                                 </th>
-                                                                                                                                                <th>Quantum
-                                                                                                                                                    Tax
-                                                                                                                                                </th>
                                                                                                                                                 <th>Expected
                                                                                                                                                     Profit
                                                                                                                                                 </th>
@@ -1118,10 +1115,6 @@
                                                                                                                                                     class="bot-fee">
                                                                                                                                                     0.00
                                                                                                                                                     to
-                                                                                                                                                    0.00
-                                                                                                                                                </td>
-                                                                                                                                                <td
-                                                                                                                                                    class="modal-tax">
                                                                                                                                                     0.00
                                                                                                                                                 </td>
                                                                                                                                                 <td
@@ -1280,8 +1273,7 @@
                                                                                                                         let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
                                                                                                                             parseFloat($(this).val());
                                                                                                                         $('.exp-profit').text(`$${expected} to $${expected*2}`)
-                                                                                                                        $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
-                                                                                                                        $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
+                                                                                                                        $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2)}`)
                                                                                                                         if ($(this).val().length > 0) {
                                                                                                                             $('.modal-table').slideDown()
                                                                                                                         } else {

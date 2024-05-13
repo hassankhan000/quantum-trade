@@ -71,57 +71,57 @@
         </div>
         
         <div class="tradingview-widget-container">
-         <div class="tradingview-widget-container__widget"></div>
-         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-             {
-                 "symbols": [{
-                         "proName": "FOREXCOM:SPXUSD",
-                         "title": "S&P 500 Index"
-                     },
-                     {
-                         "proName": "FOREXCOM:NSXUSD",
-                         "title": "US 100 Cash CFD"
-                     },
-                     {
-                         "proName": "FX_IDC:EURUSD",
-                         "title": "EUR to USD"
-                     },
-                     {
-                         "proName": "BITSTAMP:BTCUSD",
-                         "title": "Bitcoin"
-                     },
-                     {
-                         "proName": "BITSTAMP:ETHUSD",
-                         "title": "Ethereum"
-                     },
-                     {
-                         "description": "Solana",
-                         "proName": "BINANCE:SOLUSDT"
-                     },
-                     {
-                         "description": "Shiba Inu",
-                         "proName": "COINBASE:SHIBUSD"
-                     },
-                     {
-                         "description": "XRP",
-                         "proName": "BITSTAMP:XRPUSD"
-                     }
-                 ],
-                 "showSymbolLogo": true,
-                 "isTransparent": false,
-                 "displayMode": "adaptive",
-                 "colorTheme": "dark",
-                 "locale": "en"
-             }
-         </script>
-     </div>
-     
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        },
+                        {
+                            "description": "Solana",
+                            "proName": "BINANCE:SOLUSDT"
+                        },
+                        {
+                            "description": "Shiba Inu",
+                            "proName": "COINBASE:SHIBUSD"
+                        },
+                        {
+                            "description": "XRP",
+                            "proName": "BITSTAMP:XRPUSD"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "en"
+                }
+            </script>
+        </div>
+        
     </div>
     <!--======== / Hero Section ========-->
 
     <!--==============================
-                                                    Brand Area 2
-                                                    ==============================-->
+                                                        Brand Area 2
+                                                        ==============================-->
     <div class="brand-area2">
         <div class="container">
 
@@ -161,8 +161,8 @@
     </div>
 
     <!--==============================
-                                                    Why Choose Us Area
-                                                    ==============================-->
+                                                        Why Choose Us Area
+                                                        ==============================-->
     <div class="wcu-area-1 pt-130 pb-140 position-relative" id="about">
         <div class="bg-gradient-1">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
@@ -189,8 +189,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="wcu-thumb text-center alltuchtopdown">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/about us.png')); ?>"
-                                alt="img">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/about us.png')); ?>" alt="img">
                         </div>
                     </div>
                 </div>
@@ -199,8 +198,8 @@
     </div>
 
     <!--==============================
-                                                    Intro Area
-                                                    ==============================-->
+                                                        Intro Area
+                                                        ==============================-->
     <div class="pt-130 overflow-hidden bg-black2" id="howitwork">
         <div class="container">
             <div class="row">
@@ -235,8 +234,7 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="intro-thumb1 alltuchtopdown">
-                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/whitelogo.png')); ?>"
-                            alt="img">
+                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/whitelogo.png')); ?>" alt="img">
                     </div>
                     
                 </div>
@@ -245,8 +243,8 @@
     </div>
 
     <!--==============================
-                                                        RoadMap Area 2
-                                                    ==============================-->
+                                                            RoadMap Area 2
+                                                        ==============================-->
     <div class="pt-130 pb-140 overflow-hidden bg-black2 position-relative z-index-common" id="roadMap">
         <div class="bg-gradient-2">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
@@ -337,8 +335,8 @@
     </div>
 
     <!--==============================
-                                                    Invest Area
-                                                    ==============================-->
+                                                        Invest Area
+                                                        ==============================-->
     <div class="pt-130 overflow-hidden">
         <div class="container">
             <div class="row justify-content-center">
@@ -392,18 +390,34 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="tradingview-widget-container" id="News">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="col-lg-12">
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                {
+                    "feedMode": "all_symbols",
+                    "isTransparent": false,
+                    "displayMode": "regular",
+                    "height": 600,
+                    "colorTheme": "dark",
+                    "locale": "en"
+                }
+            </script>
+        </div>
+    </div>
 
     <!--==============================
-                                                    Team Area
-                                                    ==============================-->
+                                                        Team Area
+                                                        ==============================-->
     <div class="pt-130 pb-140 overflow-hidden position-relative z-index-common">
         <div class="bg-gradient-3">
             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-1.jpg')); ?>" alt="img">
         </div>
 
         <!--==============================
-                                                        Founder Area
-                                                        ==============================-->
+                                                            Founder Area
+                                                            ==============================-->
         <div id="Team" class="pb-110">
             <div class="container">
                 <div class="section-title text-center mb-50">
@@ -554,13 +568,13 @@
     </div>
 
     <!--==============================
-                                                    Partner Area
-                                                    ==============================-->
+                                                        Partner Area
+                                                        ==============================-->
     
 
     <!--==============================
-                                                    Faq Area
-                                                    ==============================-->
+                                                        Faq Area
+                                                        ==============================-->
     <div class="pt-140 pb-140 overflow-hidden" id="faq">
         <div class="container">
             <div class="row gy-40 justify-content-between">

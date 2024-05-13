@@ -28,7 +28,7 @@
     </script>
     <style>
         .nk-content-fluid {
-            padding: 50px 0 100px 0;
+            padding: 0px 0 50px 0;
         }
 
         @media screen and (min-width: 991px) {
@@ -187,7 +187,11 @@
         }
 
         .bottom-nav img {
-            width: 30px;
+            background: transparent;
+            border-radius: 9px;
+            width: 45px;
+            transition: all .5s ease !important;
+            padding: 5px;
         }
 
         .bottom-nav .slider {
@@ -289,14 +293,14 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nk-menu-item has-sub">
+                                {{-- <li class="nk-menu-item has-sub">
                                     <a href="{{ url('transfer-money') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">Transfer monney</span></a>
-                                </li>
-                                <li class="nk-menu-item has-sub">
+                                </li> --}}
+                                {{-- <li class="nk-menu-item has-sub">
                                     <a href="{{ url('money/transfer/log') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">Money Transfer log</span></a>
-                                </li>
+                                </li> --}}
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ url('interest/log') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">Interest log</span></a>
@@ -1127,7 +1131,7 @@
     <ul class="bottom-nav">
         {{-- <div class="slider"></div> --}}
         <li>
-            <a href="{{ url('/dashboard') }}">
+            <a class="home" href="{{ url('/dashboard') }}">
                 <img src="{{ asset('asset/home-icon.png') }}" class="img-fluid" alt="">
             </a>
         </li>
@@ -1349,7 +1353,6 @@
             // Check if the href attribute matches the current URL
             $(this).removeClass('active-icon');
             if ($(this).attr('href') === currentUrl) {
-                // Add the 'active-icon' class to the anchor tag
                 $(this).addClass('active-icon');
             }
         });
