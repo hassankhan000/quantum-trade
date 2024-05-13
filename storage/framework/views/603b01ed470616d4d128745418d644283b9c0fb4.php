@@ -212,6 +212,93 @@
         }
     </script>
 
+    <style>
+        .bottom-nav {
+            width: 50%;
+            position: fixed;
+            bottom: 0px;
+            left: 25%;
+            display: flex;
+            z-index: 9999;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #aef32d;
+            margin: 0px;
+            border-radius: 20px 20px 0px 0px;
+            padding: 0px 0;
+            box-shadow: 0px 8px 10px rgba(130, 43, 97, .19);
+            list-style: none;
+        }
+
+        .bottom-nav li a {
+            transition: 1s;
+            position: relative;
+        }
+
+        .bottom-nav li a.active-icon img {
+            background: #ffff04;
+            border-radius: 9px;
+            width: 45px;
+            transition: all .5s ease !important;
+            padding: 5px;
+        }
+
+        .bottom-nav img {
+            width: 30px;
+        }
+
+        .bottom-nav .slider {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -35px;
+            background-color: #fff;
+            border: 2px solid #822b61;
+            box-shadow: 0px 0px 0px 5px #822b61;
+            transition: 1s;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 900px) {
+            .bottom-nav {
+                width: 100%;
+                left: 0;
+            }
+        }
+    </style>
+    <ul class="bottom-nav">
+        
+        <li>
+            <a class="active-icon" href="<?php echo e(url('/dashboard')); ?>">
+                <img src="<?php echo e(asset('asset/home-icon.png')); ?>" class="img-fluid" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(url('/commision')); ?>">
+                <img src="<?php echo e(asset('asset/team-icon.png')); ?>" class="img-fluid" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(url('/investmentplan')); ?>">
+                <img src="<?php echo e(asset('asset/trade-icon.png')); ?>" class="img-fluid" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="https://quantummtradeai.com/#about">
+                <img src="<?php echo e(asset('asset/info-icon.png')); ?>" class="img-fluid" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo e(url('profile/setting')); ?>">
+                <i class="fas fa-shopping-cart"></i>
+                <img src="<?php echo e(asset('asset/user-icon.png')); ?>" class="img-fluid" alt="">
+            </a>
+        </li>
+
+    </ul>
+
 </body>
 
 </html>

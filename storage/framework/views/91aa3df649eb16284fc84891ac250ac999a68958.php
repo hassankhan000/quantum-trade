@@ -28,7 +28,7 @@
     </script>
     <style>
         .nk-content-fluid {
-            padding-top: 100px;
+            padding: 50px 0 100px 0;
         }
 
         @media  screen and (min-width: 991px) {
@@ -86,6 +86,10 @@
             padding: 0 10px;
         }
 
+        nav {
+            background-color: #aef32d !important;
+        }
+
         .btn:hover {
             background-color: #282828d3;
         }
@@ -137,72 +141,53 @@
         }
     </style>
     <style>
+        .active>.page-link,
+        .page-link.active {
+            background-color: #232721 !important;
+        }
+
+        .pagination li.active {
+            background-color: #aef32d !important;
+        }
+
+        .pagination li a {
+            font-size: 9px !important;
+            padding: 0 5px !important;
+            line-height: 21px !important;
+        }
+
         .bottom-nav {
             width: 50%;
             position: fixed;
             bottom: 0px;
             left: 25%;
-            height: 30px;
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
             background-color: #aef32d;
             margin: 0px;
             border-radius: 20px 20px 0px 0px;
-            padding: 0;
+            padding: 0px 0;
+            z-index: 9999;
             box-shadow: 0px 8px 10px rgba(130, 43, 97, .19);
             list-style: none;
         }
 
         .bottom-nav li a {
-            width: 55px;
-            height: 40px;
-            color: #822b61;
-            text-align: center;
-            font-size: 20px;
-            display: block;
             transition: 1s;
             position: relative;
-            text-transform: capitalize
         }
 
-        .bottom-nav li a i {
-            width: 100%;
-            position: absolute;
-            top: 23%;
-            left: 0;
-            transition-delay: 0.3s;
-            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
-            z-index: 9;
+        .bottom-nav li a.active-icon img {
+            background: #ffff04;
+            border-radius: 9px;
+            width: 45px;
+            transition: all .5s ease !important;
+            padding: 5px;
         }
 
-        .bottom-nav li a span {
-            display: block;
-            font-size: 10px;
-            width: 100%;
-            position: absolute;
-            bottom: 10px;
-            transition-delay: 0.3s;
-            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
-            z-index: 9;
-            opacity: 1;
-            color: black;
-        }
-
-        .bottom-nav li a.active-icon i {
-            top: -102%;
-            transition-delay: 0.3s;
-            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
-        }
-
-        .bottom-nav li a.active-icon span {
-            bottom: 11px;
-            background: #399b2e;
-            transition-delay: 0.5s;
-            transition: 1s cubic-bezier(0.49, -0.35, 0.77, 1.44);
-            opacity: 1;
-            color: white;
-            border-radius: 10px;
+        .bottom-nav img {
+            width: 30px;
         }
 
         .bottom-nav .slider {
@@ -226,7 +211,6 @@
             }
         }
     </style>
-
 </head>
 
 <body class="nk-body npc-invest bg-lighter">
@@ -1085,32 +1069,28 @@
         
         <li>
             <a href="<?php echo e(url('/dashboard')); ?>">
-                <i class="far fa-user"></i>
-                <span>Home</span>
+                <img src="<?php echo e(asset('asset/home-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>
         <li>
             <a href="<?php echo e(url('/commision')); ?>">
-                <i class="fas fa-home"></i>
-                <span>Team</span>
+                <img src="<?php echo e(asset('asset/team-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>
         <li>
             <a href="<?php echo e(url('/investmentplan')); ?>">
-                <i class="fab fa-codepen"></i>
-                <span>Trade</span>
+                <img src="<?php echo e(asset('asset/trade-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>
         <li>
             <a href="https://quantummtradeai.com/#about">
-                <i class="far fa-heart"></i>
-                <span>Info</span>
+                <img src="<?php echo e(asset('asset/info-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>
         <li>
             <a href="<?php echo e(url('profile/setting')); ?>">
                 <i class="fas fa-shopping-cart"></i>
-                <span>Profile</span>
+                <img src="<?php echo e(asset('asset/user-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>
 
@@ -1296,39 +1276,38 @@
 
 <script>
     $(document).ready(function() {
-    // Get the current URL
-    var currentUrl = window.location.href;
+        // Get the current URL
+        var currentUrl = window.location.href;
 
-    // Loop through each anchor tag in the bottom navigation bar
-    $('.bottom-nav li a').each(function() {
-        // Check if the href attribute matches the current URL
-        $(this).removeClass('active-icon');
-        if ($(this).attr('href') === currentUrl) {
-            // Add the 'active-icon' class to the anchor tag
-            $(this).addClass('active-icon');
-        }
-    });
-
-    // Click event handler for anchor tags
-    $('.bottom-nav li a').click(function() {
-        // Get the position of the clicked anchor tag
-        var position = $(this).position();
-        var margin = 37;
-
-        // Move the slider to the clicked position
-        $('.slider').css({
-            "left": +position.left + margin,
-            "transform": "translateX(-50%)"
+        // Loop through each anchor tag in the bottom navigation bar
+        $('.bottom-nav li a').each(function() {
+            // Check if the href attribute matches the current URL
+            $(this).removeClass('active-icon');
+            if ($(this).attr('href') === currentUrl) {
+                // Add the 'active-icon' class to the anchor tag
+                $(this).addClass('active-icon');
+            }
         });
 
-        // Remove 'active-icon' class from all anchor tags
-        $('.bottom-nav li a').removeClass('active-icon');
+        // Click event handler for anchor tags
+        $('.bottom-nav li a').click(function() {
+            // Get the position of the clicked anchor tag
+            var position = $(this).position();
+            var margin = 37;
 
-        // Add 'active-icon' class to the clicked anchor tag
-        $(this).addClass('active-icon');
+            // Move the slider to the clicked position
+            $('.slider').css({
+                "left": +position.left + margin,
+                "transform": "translateX(-50%)"
+            });
+
+            // Remove 'active-icon' class from all anchor tags
+            $('.bottom-nav li a').removeClass('active-icon');
+
+            // Add 'active-icon' class to the clicked anchor tag
+            $(this).addClass('active-icon');
+        });
     });
-});
-
 </script>
 
 </html>

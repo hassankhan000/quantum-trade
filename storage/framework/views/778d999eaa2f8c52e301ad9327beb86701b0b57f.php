@@ -484,7 +484,7 @@
                                     <div class="team-card">
                                         <div class="team-card_img">
                                             <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/jimmy.png')); ?>">
+                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-3.png')); ?>">
                                             <div class="social-btn">
                                                 <a href="https://www.linkedin.com/">
                                                     <i class="fab fa-linkedin"></i>
