@@ -51,49 +51,71 @@
                 <div class="row flex-row-reverse">
                     <div class="col-lg-3">
                         <div class="hero-thumb alltuchtopdown">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="img">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bigbot.png')); ?>" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <h1 class="hero-title">Putting Your Money in Product Backed Projects</h1>
                         <div class="btn-wrap">
-                            <a href="contact.html" class="btn btn2">
+                            <a href="<?php echo e(url('/dashboard')); ?>" class="btn btn2">
                                 Start Bot Trade
                             </a>
-                            <a href="blog.html" class="btn btn-two">
+                            <a href="<?php echo e(route('user.register')); ?>" class="btn btn-two">
                                 Register With US
                             </a>
                         </div>
                     </div>
+                </div>
 
-                </div>
-            </div>
-            <div class="hero-countdown-wrap">
-                <h2 class="hero-countdown-wrap-title">ICO will start in..</h2>
-                <ul class="skill-feature_list">
-                    <li><span>Value</span> of technology invested</li>
-                    <li><span>Private</span> sale</li>
-                    <li>
-                        <h4>ICO</h4>
-                    </li>
-                </ul>
-                <div class="skill-feature">
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 80%">
-                        </div>
-                    </div>
-                    <div class="progress-value-max">100 Min $</div>
-                </div>
-                <ul class="skill-feature_list style2">
-                    <li>7.75 Min</li>
-                    <li>1.5 Min</li>
-                    <li>140,000 $ chosen</li>
-                </ul>
-                <div class="banner-countdown-wrap">
-                    <div class="coming-time" data-countdown="2024/8/29"></div>
-                </div>
             </div>
         </div>
+        
+        <div class="tradingview-widget-container">
+         <div class="tradingview-widget-container__widget"></div>
+         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+             {
+                 "symbols": [{
+                         "proName": "FOREXCOM:SPXUSD",
+                         "title": "S&P 500 Index"
+                     },
+                     {
+                         "proName": "FOREXCOM:NSXUSD",
+                         "title": "US 100 Cash CFD"
+                     },
+                     {
+                         "proName": "FX_IDC:EURUSD",
+                         "title": "EUR to USD"
+                     },
+                     {
+                         "proName": "BITSTAMP:BTCUSD",
+                         "title": "Bitcoin"
+                     },
+                     {
+                         "proName": "BITSTAMP:ETHUSD",
+                         "title": "Ethereum"
+                     },
+                     {
+                         "description": "Solana",
+                         "proName": "BINANCE:SOLUSDT"
+                     },
+                     {
+                         "description": "Shiba Inu",
+                         "proName": "COINBASE:SHIBUSD"
+                     },
+                     {
+                         "description": "XRP",
+                         "proName": "BITSTAMP:XRPUSD"
+                     }
+                 ],
+                 "showSymbolLogo": true,
+                 "isTransparent": false,
+                 "displayMode": "adaptive",
+                 "colorTheme": "dark",
+                 "locale": "en"
+             }
+         </script>
+     </div>
+     
     </div>
     <!--======== / Hero Section ========-->
 
@@ -102,10 +124,11 @@
                                                     ==============================-->
     <div class="brand-area2">
         <div class="container">
+
             <div class="row g-0">
                 <div class="col-lg-12">
                     <div class="brand-title text-center">
-                        <h6 class="title">Our top Partner</h6>
+                        <h6 class="title mt-4">Our top Partner</h6>
                     </div>
                 </div>
             </div>
@@ -131,82 +154,11 @@
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/Wealthfront.png')); ?>" alt="">
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/brand/brand_img05.png')); ?>"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/brand/brand_img06.png')); ?>"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/brand/brand_img07.png')); ?>"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="brand-item">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/brand/brand_img04.png')); ?>"
-                                alt="">
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
-      
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-            {
-                "symbols": [{
-                        "proName": "FOREXCOM:SPXUSD",
-                        "title": "S&P 500 Index"
-                    },
-                    {
-                        "proName": "FOREXCOM:NSXUSD",
-                        "title": "US 100 Cash CFD"
-                    },
-                    {
-                        "proName": "FX_IDC:EURUSD",
-                        "title": "EUR to USD"
-                    },
-                    {
-                        "proName": "BITSTAMP:BTCUSD",
-                        "title": "Bitcoin"
-                    },
-                    {
-                        "proName": "BITSTAMP:ETHUSD",
-                        "title": "Ethereum"
-                    },
-                    {
-                        "description": "Solana",
-                        "proName": "BINANCE:SOLUSDT"
-                    },
-                    {
-                        "description": "Shiba Inu",
-                        "proName": "COINBASE:SHIBUSD"
-                    },
-                    {
-                        "description": "XRP",
-                        "proName": "BITSTAMP:XRPUSD"
-                    }
-                ],
-                "showSymbolLogo": true,
-                "isTransparent": false,
-                "displayMode": "adaptive",
-                "colorTheme": "dark",
-                "locale": "en"
-            }
-        </script>
-    </div>
-    
 
     <!--==============================
                                                     Why Choose Us Area
@@ -237,7 +189,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="wcu-thumb text-center alltuchtopdown">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/normal/why_1-1.png')); ?>"
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/about us.png')); ?>"
                                 alt="img">
                         </div>
                     </div>
@@ -283,7 +235,7 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="intro-thumb1 alltuchtopdown">
-                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/normal/intro_1-1.png')); ?>"
+                        <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/whitelogo.png')); ?>"
                             alt="img">
                     </div>
                     
@@ -303,7 +255,7 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6 col-sm-8">
                     <div class="section-title mb-50">
-                        <h2 class="title style2">Our Roadmap</h2>
+                        <h2 class="title style2">White Papers</h2>
                     </div>
                 </div>
                 <div class="col-sm-auto">
@@ -335,11 +287,12 @@
                             <span class="roadmap-title">Beyond The Expenses - June 2021</span>
                             <div class="roadmap-content">
                                 <h4 class="title"><span class="dot"></span>White Paper</h4>
-                                <p>An allocation to global bond markets gives investors exposure to a greater number of
-                                    securities, markets and economic and inflation environments than they would have with a
-                                    portfolio composed purely of local market fixed income. In theory, this diversification
-                                    can help reduce a portfolio’s volatility without necessarily decreasing its total
-                                    return.</p>
+                                <p>This paper provides a framework for evaluating index funds and
+                                    asset managers by assessing fund expenses as only one component
+                                    of a broader set of qualitative and quantitative factors
+                                    including organisational incentives, portfolio management
+                                    capabilities, securities lending practices, pricing policies and
+                                    scale.</p>
                                 <a class="btn mt-2"
                                     href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-Quantum Trade.pdf')); ?>">
                                     Check Document </a>
@@ -350,9 +303,13 @@
                         <div class="roadmap-item">
                             <span class="roadmap-title">Going Global With Bonds-ISGGLBD_052024</span>
                             <div class="roadmap-content">
-                                <h4 class="title"><span class="dot"></span>Token Test</h4>
-                                <p>SubQuery Builders/Grants Program SQT Network contract internal MVP Coordinator and client
-                                    SDK implementations</p>
+                                <h4 class="title"><span class="dot"></span>White Paper</h4>
+                                <p>An allocation to global bond markets gives investors exposure to
+                                    a greater number of securities, markets and economic and
+                                    inflation environments than they would have with a portfolio
+                                    composed purely of local market fixed income. In theory, this
+                                    diversification can help reduce a portfolio’s volatility without
+                                    necessarily decreasing its total return.</p>
                                 <a class="btn mt-2"
                                     href="<?php echo e(asset('asset/theme4/web_assets/assets/img/GoingGlobal.pdf')); ?>"> Check
                                     Document </a>
@@ -397,7 +354,7 @@
                         <div class="invest-card-icon">
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
-                        <a class="btn btn3" href="#">Invest In V1 Bot</a>
+                        <a href="<?php echo e(url('investmentplan')); ?>" class="btn btn3" href="#">Invest In V1 Bot</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -405,7 +362,7 @@
                         <div class="invest-card-icon">
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
-                        <a class="btn btn3" href="#">Invest In V2 Bot</a>
+                        <a href="<?php echo e(url('investmentplan')); ?>" class="btn btn3" href="#">Invest In V2 Bot</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -413,7 +370,7 @@
                         <div class="invest-card-icon">
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
-                        <a class="btn btn3" href="#">Invest In V3 Bot</a>
+                        <a href="<?php echo e(url('investmentplan')); ?>" class="btn btn3" href="#">Invest In V3 Bot</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -421,7 +378,7 @@
                         <div class="invest-card-icon">
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
-                        <a class="btn btn3" href="#">Invest In V4 Bot</a>
+                        <a href="<?php echo e(url('investmentplan')); ?>" class="btn btn3" href="#">Invest In V4 Bot</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -429,7 +386,7 @@
                         <div class="invest-card-icon">
                             <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/bot.png')); ?>" alt="icon">
                         </div>
-                        <a class="btn btn3" href="#">Invest In V5 Bot</a>
+                        <a href="<?php echo e(url('investmentplan')); ?>" class="btn btn3" href="#">Invest In V5 Bot</a>
                     </div>
                 </div>
             </div>
@@ -447,7 +404,7 @@
         <!--==============================
                                                         Founder Area
                                                         ==============================-->
-        <div class="pb-110">
+        <div id="Team" class="pb-110">
             <div class="container">
                 <div class="section-title text-center mb-50">
                     <h2 class="title style2">Active founders</h2>
@@ -459,24 +416,8 @@
                                 <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/anna.JPG')); ?>" alt="img">
                             </div>
                             <div class="founder-card-details">
-                                <h3 class="founder-card-title">Eleanor Pena</h3>
+                                <h3 class="founder-card-title">Anna coulling</h3>
                                 <p class="founder-card-desig">Founder & CEO</p>
-                                <div class="social-btn">
-                                    <a href="https://www.linkedin.com/">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 16 16" fill="none">
-                                            <path
-                                                d="M10.0596 7.34522L15.8879 0.570312H14.5068L9.44607 6.45287L5.40411 0.570312H0.742188L6.85442 9.46578L0.742188 16.5703H2.12338L7.4676 10.3581L11.7362 16.5703H16.3981L10.0593 7.34522H10.0596ZM8.16787 9.54415L7.54857 8.65836L2.62104 1.61005H4.74248L8.71905 7.29827L9.33834 8.18405L14.5074 15.5779H12.386L8.16787 9.54449V9.54415Z"
-                                                fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                    <a href="https://youtube.com/">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -486,24 +427,8 @@
                                 <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/jimmy.png')); ?>" alt="img">
                             </div>
                             <div class="founder-card-details">
-                                <h3 class="founder-card-title">William Xeno</h3>
+                                <h3 class="founder-card-title">David Coulling</h3>
                                 <p class="founder-card-desig">Founder & CEO</p>
-                                <div class="social-btn">
-                                    <a href="https://www.linkedin.com/">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 16 16" fill="none">
-                                            <path
-                                                d="M10.0596 7.34522L15.8879 0.570312H14.5068L9.44607 6.45287L5.40411 0.570312H0.742188L6.85442 9.46578L0.742188 16.5703H2.12338L7.4676 10.3581L11.7362 16.5703H16.3981L10.0593 7.34522H10.0596ZM8.16787 9.54415L7.54857 8.65836L2.62104 1.61005H4.74248L8.71905 7.29827L9.33834 8.18405L14.5074 15.5779H12.386L8.16787 9.54449V9.54415Z"
-                                                fill="currentColor"></path>
-                                        </svg>
-                                    </a>
-                                    <a href="https://youtube.com/">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -559,7 +484,7 @@
                                     <div class="team-card">
                                         <div class="team-card_img">
                                             <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-3.png')); ?>">
+                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/jimmy.png')); ?>">
                                             <div class="social-btn">
                                                 <a href="https://www.linkedin.com/">
                                                     <i class="fab fa-linkedin"></i>
@@ -632,293 +557,6 @@
                                                     Partner Area
                                                     ==============================-->
     
-
-    <div class="pt-130 pb-140 bg-black2 overflow-hidden position-relative z-index-common">
-        <div class="bg-gradient-4">
-            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/bg/bg-gradient1-2.jpg')); ?>" alt="img">
-        </div>
-        <!--==============================
-                                                        Event Area
-                                                        ==============================-->
-        <div class="event-area">
-            <div class="container">
-                <div class="section-title text-center mb-50">
-                    <h2 class="title style2">Join Events for meet us</h2>
-                </div>
-                <div class="row gy-60 gx-30 justify-content-center">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-1.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">BlockVienna</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Venna
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        August 17, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-2.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Summit Summits</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        USA
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        June 12, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-3.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Blockchain Summit</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        America
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        July 05, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-4.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Economy ICO 2024</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Costa Rica
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        September 09, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-5.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Blockchain summit</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Brazil
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        September 14, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-6.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Blockchain & bitcoin</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Argentina
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        August 14, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-7.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Money conference</a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Franch
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        May 24, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="event-card">
-                            <div class="event-card-img">
-                                <a href="#">
-                                    <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/event/1-8.png')); ?>">
-                                </a>
-                            </div>
-                            <div class="event-card-content">
-                                <h4 class="event-card-title"><a href="contact.html">Crypto Economy </a></h4>
-                                <div class="event-meta">
-                                    <a href="#">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M7.99895 8.95321C9.1477 8.95321 10.0789 8.02197 10.0789 6.87321C10.0789 5.72446 9.1477 4.79321 7.99895 4.79321C6.85019 4.79321 5.91895 5.72446 5.91895 6.87321C5.91895 8.02197 6.85019 8.95321 7.99895 8.95321Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                            <path
-                                                d="M2.41281 5.65992C3.72615 -0.113413 12.2795 -0.106746 13.5861 5.66659C14.3528 9.05325 12.2461 11.9199 10.3995 13.6933C9.05948 14.9866 6.93948 14.9866 5.59281 13.6933C3.75281 11.9199 1.64615 9.04659 2.41281 5.65992Z"
-                                                stroke="var(--tg-primary-color)" stroke-width="1.5" />
-                                        </svg>
-                                        Saudi Arabia
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-clock"></i>
-                                        May 24, 2024
-                                    </a>
-                                </div>
-                                <a href="#" class="btn btn3">
-                                    JOIN US
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--==============================
-                                                        Press CTA Area
-                                                        ==============================-->
-        
-    </div>
 
     <!--==============================
                                                     Faq Area

@@ -324,7 +324,7 @@
 
                                                 <?php echo e($general->site_currency); ?></h4>
                                             <h6 class="fs-6 mt-4">
-                                                <?php echo e(number_format(auth()->user()->balance, 2) + number_format($commison, 2)); ?>
+                                                <?php echo e(number_format(auth()->user()->balance, 2)); ?>
 
                                             </h6>
                                         </div>

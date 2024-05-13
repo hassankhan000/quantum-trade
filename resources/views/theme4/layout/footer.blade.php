@@ -37,7 +37,7 @@ $serviceElements = element('service.element');
                         @empty
                         @endforelse
                     </ul>
-                    
+
                 </div>
             </div>
         </div>
@@ -86,28 +86,33 @@ $serviceElements = element('service.element');
                     <div class="col-xl-7 col-lg-8 text-lg-end text-center">
                         <ul class="footer-menu-list">
                             <li>
-                                <a href="index.html">
+                                <a href="#">
                                     HOME
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    OUR PROJECTS
+                                <a href="#about">
+                                    About
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    OUR TEAM
+                                <a href="#roadMap">
+                                    White papers
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    NEWS FAQ
+                                <a href="#News">
+                                    NEWS
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    DOCUMENTS
+                                <a href="#Team">
+                                    Our team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq">
+                                    Faq
                                 </a>
                             </li>
                         </ul>
