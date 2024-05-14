@@ -189,7 +189,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="wcu-thumb text-center alltuchtopdown">
-                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/about us.png')); ?>" alt="img">
+                            <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/About us.png')); ?>" alt="img">
                         </div>
                     </div>
                 </div>
@@ -427,7 +427,7 @@
                     <div class="col-lg-6">
                         <div class="founder-card">
                             <div class="founder-card-img">
-                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/anna.JPG')); ?>" alt="img">
+                                <img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/Anna.jpg')); ?>" alt="img">
                             </div>
                             <div class="founder-card-details">
                                 <h3 class="founder-card-title">Anna coulling</h3>

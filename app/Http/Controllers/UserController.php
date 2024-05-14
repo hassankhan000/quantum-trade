@@ -51,6 +51,8 @@ class UserController extends Controller
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
+
+        // vip work
         $referred_users = Db::table('users')
             ->select('id')
             ->where('reffered_by', Auth::id())
@@ -60,108 +62,204 @@ class UserController extends Controller
         $check_ids_deposit = DB::table('deposits')
             ->selectRaw('SUM(amount) AS total_amount')
             ->whereIn('user_id', $referred_users)
+            ->where('payment_status', 1) // Adding the condition here
             ->first();
 
         $totalAmount = $check_ids_deposit->total_amount ?? 0;
+        // $general = GeneralSetting::first();
+
+        // $user = User::find(Auth::id());
+        // if ($totalAmount >= $general->vip5_amount) {
+        //     $user->vip_status = 5;
+        //     if ($general->is_vip_reward == 1 && $general->vip5_reward_amount != 0 && $user->vip_5_reward_status == 0) {
+        //         $user->balance += $general->vip5_reward_amount;
+        //         $user->vip_5_reward_status = 1;
+        //         Transaction::create([
+        //             'trx' => strtoupper(Str::random(16)),
+        //             'gateway_id' => 0,
+        //             'amount' => $general->vip5_reward_amount,
+        //             'currency' => @$general->site_currency,
+        //             'charge' => 0,
+        //             'details' => 'Vip Upgradation Bonus',
+        //             'type' => '+',
+        //             'gateway_transaction' => '',
+        //             'user_id' => $user->id,
+        //         ]);
+        //     }
+        //     $user->save();
+        // } elseif ($totalAmount >= $general->vip4_amount) {
+        //     $user = User::find(Auth::id());
+        //     $user->vip_status = 4;
+        //     if ($general->is_vip_reward == 1 && $general->vip4_reward_amount != 0 && $user->vip_4_reward_status == 0) {
+        //         $user->balance += $general->vip4_reward_amount;
+        //         $user->vip_4_reward_status = 1;
+        //         Transaction::create([
+        //             'trx' => strtoupper(Str::random(16)),
+        //             'gateway_id' => 0,
+        //             'amount' => $general->vip4_reward_amount,
+        //             'currency' => @$general->site_currency,
+        //             'charge' => 0,
+        //             'details' => 'Vip Upgradation Bonus',
+        //             'type' => '+',
+        //             'gateway_transaction' => '',
+        //             'user_id' => $user->id,
+        //         ]);
+        //     }
+        //     $user->save();
+        // } elseif ($totalAmount >= $general->vip3_amount) {
+        //     $user = User::find(Auth::id());
+        //     $user->vip_status = 3;
+        //     if ($general->is_vip_reward == 1 && $general->vip3_reward_amount != 0 && $user->vip_3_reward_status == 0) {
+        //         $user->balance += $general->vip3_reward_amount;
+        //         $user->vip_3_reward_status = 1;
+        //         Transaction::create([
+        //             'trx' => strtoupper(Str::random(16)),
+        //             'gateway_id' => 0,
+        //             'amount' => $general->vip3_reward_amount,
+        //             'currency' => @$general->site_currency,
+        //             'charge' => 0,
+        //             'details' => 'Vip Upgradation Bonus',
+        //             'type' => '+',
+        //             'gateway_transaction' => '',
+        //             'user_id' => $user->id,
+        //         ]);
+        //     }
+        //     $user->save();
+        // } elseif ($totalAmount >= $general->vip2_amount) {
+        //     $user = User::find(Auth::id());
+        //     $user->vip_status = 2;
+        //     if ($general->is_vip_reward == 1 && $general->vip2_reward_amount != 0 && $user->vip_2_reward_status == 0) {
+        //         $user->balance += $general->vip2_reward_amount;
+        //         $user->vip_1_reward_status = 2;
+        //         Transaction::create([
+        //             'trx' => strtoupper(Str::random(16)),
+        //             'gateway_id' => 0,
+        //             'amount' => $general->vip2_reward_amount,
+        //             'currency' => @$general->site_currency,
+        //             'charge' => 0,
+        //             'details' => 'Vip Upgradation Bonus',
+        //             'type' => '+',
+        //             'gateway_transaction' => '',
+        //             'user_id' => $user->id,
+        //         ]);
+        //     }
+        //     $user->save();
+        // } elseif ($totalAmount >= $general->vip1_amount) {
+        //     $user = User::find(Auth::id());
+        //     $user->vip_status = 1;
+        //     if ($general->is_vip_reward == 1 && $general->vip1_reward_amount != 0 && $user->vip_1_reward_status == 0) {
+        //         $user->balance += $general->vip1_reward_amount;
+        //         $user->vip_1_reward_status = 1;
+        //         Transaction::create([
+        //             'trx' => strtoupper(Str::random(16)),
+        //             'gateway_id' => 0,
+        //             'amount' => $general->vip1_reward_amount,
+        //             'currency' => @$general->site_currency,
+        //             'charge' => 0,
+        //             'details' => 'Vip Upgradation Bonus',
+        //             'type' => '+',
+        //             'gateway_transaction' => '',
+        //             'user_id' => $user->id,
+        //         ]);
+        //     }
+        //     $user->save();
+        // }
+        $user = User::find(Auth::id());
         $general = GeneralSetting::first();
 
-        if ($totalAmount >= $general->vip5_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 5;
-            if ($general->is_vip_reward == 1 && $general->vip5_reward_amount !=0) {
-                $user->balance += $general->vip5_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip5_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
+        // Define an array to store the VIP level reward statuses
+        $vipRewardStatus = [
+            1 => 'vip_1_reward_status',
+            2 => 'vip_2_reward_status',
+            3 => 'vip_3_reward_status',
+            4 => 'vip_4_reward_status',
+            5 => 'vip_5_reward_status',
+        ];
+
+        // Loop through the VIP levels
+        for ($i = 1; $i <= 5; $i++) {
+            // Check if the user's total amount meets the VIP level requirement and if the user's VIP status is being upgraded
+            if ($totalAmount >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
+                echo "Reached level $i upgrade condition.\n"; // Debugging statement
+                // Update user's VIP status
+                $user->vip_status = $i;
+                echo "Updated user's VIP status to level $i.\n"; // Debugging statement
+                // Check if the user is being upgraded to this VIP level for the first time and if reward is enabled
+                if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
+                    echo "User is eligible for reward for level $i upgrade.\n"; // Debugging statement
+                    // Add the reward amount to the user's balance
+                    $user->balance += $general["vip{$i}_reward_amount"];
+                    echo "Added reward amount to user's balance.\n"; // Debugging statement
+                    // Set the VIP reward status to indicate that the user has received the reward
+                    $user->{$vipRewardStatus[$i]} = 1;
+                    echo "Updated user's VIP reward status for level $i.\n"; // Debugging statement
+                    // Create a transaction record for the reward
+                    Transaction::create([
+                        'trx' => strtoupper(Str::random(16)),
+                        'gateway_id' => 0,
+                        'amount' => $general["vip{$i}_reward_amount"],
+                        'currency' => @$general->site_currency,
+                        'charge' => 0,
+                        'details' => 'Vip Upgradation Bonus',
+                        'type' => '+',
+                        'gateway_transaction' => '',
+                        'user_id' => $user->id,
+                    ]);
+                    echo "Created transaction record for reward.\n"; // Debugging statement
+                }
+                // Save the user's changes
+                $user->save();
+                echo "Saved user's changes.\n"; // Debugging statement
+                // Break the loop after the first upgrade
+                break;
             }
-            $user->save();
-        } elseif ($totalAmount >= $general->vip4_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 4;
-            if ($general->is_vip_reward == 1 && $general->vip4_reward_amount !=0) {
-                $user->balance += $general->vip4_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip4_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
-            }
-            $user->save();
-        } elseif ($totalAmount >= $general->vip3_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 3;
-            if ($general->is_vip_reward == 1 && $general->vip3_reward_amount !=0) {
-                $user->balance += $general->vip3_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip3_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
-            }
-            $user->save();
-        } elseif ($totalAmount >= $general->vip2_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 2;
-            if ($general->is_vip_reward == 1 && $general->vip2_reward_amount !=0) {
-                $user->balance += $general->vip2_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip2_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
-            }
-            $user->save();
-        } elseif ($totalAmount >= $general->vip1_amount) {
-            $user = User::find(Auth::id());
-            $user->vip_status = 1;
-            if ($general->is_vip_reward == 1 && $general->vip1_reward_amount !=0) {
-                $user->balance += $general->vip1_reward_amount;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general->vip1_reward_amount,
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
-            }
-            $user->save();
-        } else {
-            $user = User::find(Auth::id());
-            $user->vip_status = 0;
-            $user->save();
         }
-        $plans = Plan::where('status' , 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit' ,'plans'));
+
+
+        // vip work
+
+
+        // perfomane chart work
+        $LvlOneUsers = Db::table('users')
+            ->select('id')
+            ->where('reffered_by', Auth::id())
+            ->pluck('id')
+            ->toArray();
+
+        $SumLvlOneDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlOneUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+            $LvlTwoUsers = DB::table('users')
+            ->select('id')
+            ->whereIn('reffered_by', $LvlOneUsers)
+            ->pluck('id')
+            ->toArray();
+
+            $SumLvlTwoDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlTwoUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+            $LvlThreeUsers = DB::table('users')
+            ->select('id')
+            ->whereIn('reffered_by', $LvlTwoUsers)
+            ->pluck('id')
+            ->toArray();
+
+            $SumLvlThreeDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlThreeUsers)
+            ->where('payment_status', 1)
+            ->first();
+        // perfomane chart work
+
+
+        $plans = Plan::where('status', 1)->get();
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans'));
     }
 
     public function profile()
@@ -441,120 +539,117 @@ class UserController extends Controller
                         $updatePaymentDate = $invest->next_payment_date->addHour($invest->plan->time->time);
                         $interestAmount = $returnAmount;
 
-                        if($user->reffered_by != 0){
+                        if ($user->reffered_by != 0) {
                             $checkuplainerlvl1 = (int) DB::table('users')
-                            ->where('id', auth()->id())
-                            ->value('reffered_by');
-                        $checkuplainerlvl2 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl1)
-                            ->value('reffered_by');
-                        $checkuplainerlvl3 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl2)
-                            ->value('reffered_by');
-                        $checkuplainerlvl4 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl3)
-                            ->value('reffered_by');
-                        $checkuplainerlvl5 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl4)
-                            ->value('reffered_by');
-                        if ($checkuplainerlvl1 != 0 && $general->ic_lvl_one !=0) {
-                            $general_percentage = $general->ic_lvl_one;
-                            $PercentAmount = $interestAmount * ($general_percentage / 100);
-                            $chkuser = User::find($checkuplainerlvl1);
-                            $chkuser->balance += $PercentAmount;
-                            $chkuser->save();
-                            Transaction::create([
-                                'trx' => strtoupper(Str::random(16)),
-                                'gateway_id' => 0,
-                                'amount' =>  $PercentAmount,
-                                'currency' => @$general->site_currency,
-                                'charge' => 0,
-                                'details' => 'Refferal Invest Commission',
-                                'type' => '+',
-                                'gateway_transaction' => '',
-                                'payment_status' => 1,
-                                'user_id' => $chkuser->id,
-                            ]);
-
-                        }
-                        if ($checkuplainerlvl2 != 0 && $general->ic_lvl_two !=0) {
-                            $general_percentage = $general->ic_lvl_two;
-                            $PercentAmount = $interestAmount * ($general_percentage / 100);
-                            $chkuser = User::find($checkuplainerlvl2);
-                            $chkuser->balance += $PercentAmount;
-                            $chkuser->save();
-                            Transaction::create([
-                                'trx' => strtoupper(Str::random(16)),
-                                'gateway_id' => 0,
-                                'amount' =>  $PercentAmount,
-                                'currency' => @$general->site_currency,
-                                'charge' => 0,
-                                'details' => 'Refferal Invest Commission',
-                                'type' => '+',
-                                'gateway_transaction' => '',
-                                'payment_status' => 1,
-                                'user_id' => $chkuser->id,
-                            ]);
-
-                        }
-                        if ($checkuplainerlvl3 != 0 && $general->ic_lvl_three !=0) {
-                            $general_percentage = $general->ic_lvl_three;
-                            $PercentAmount = $interestAmount * ($general_percentage / 100);
-                            $chkuser = User::find($checkuplainerlvl3);
-                            $chkuser->balance += $PercentAmount;
-                            $chkuser->save();
-                            Transaction::create([
-                                'trx' => strtoupper(Str::random(16)),
-                                'gateway_id' => 0,
-                                'amount' =>  $PercentAmount,
-                                'currency' => @$general->site_currency,
-                                'charge' => 0,
-                                'details' => 'Refferal Invest Commission',
-                                'type' => '+',
-                                'gateway_transaction' => '',
-                                'payment_status' => 1,
-                                'user_id' => $chkuser->id,
-                            ]);
-                        }
-                        if ($checkuplainerlvl4 != 0 && $general->ic_lvl_four !=0) {
-                            $general_percentage = $general->ic_lvl_four;
-                            $PercentAmount = $interestAmount * ($general_percentage / 100);
-                            $chkuser = User::find($checkuplainerlvl4);
-                            $chkuser->balance += $PercentAmount;
-                            $chkuser->save();
-                            Transaction::create([
-                                'trx' => strtoupper(Str::random(16)),
-                                'gateway_id' => 0,
-                                'amount' =>  $PercentAmount,
-                                'currency' => @$general->site_currency,
-                                'charge' => 0,
-                                'details' => 'Refferal Invest Commission',
-                                'type' => '+',
-                                'gateway_transaction' => '',
-                                'payment_status' => 1,
-                                'user_id' => $chkuser->id,
-                            ]);
-                        }
-                        if ($checkuplainerlvl5 != 0 && $general->ic_lvl_five !=0) {
-                            $general_percentage = $general->ic_lvl_five;
-                            $PercentAmount = $interestAmount * ($general_percentage / 100);
-                            $chkuser = User::find($checkuplainerlvl5);
-                            $chkuser->balance += $PercentAmount;
-                            $chkuser->save();
-                            Transaction::create([
-                                'trx' => strtoupper(Str::random(16)),
-                                'gateway_id' => 0,
-                                'amount' =>  $PercentAmount,
-                                'currency' => @$general->site_currency,
-                                'charge' => 0,
-                                'details' => 'Refferal Invest Commission',
-                                'type' => '+',
-                                'gateway_transaction' => '',
-                                'payment_status' => 1,
-                                'user_id' => $chkuser->id,
-                            ]);
-                        }
-
+                                ->where('id', auth()->id())
+                                ->value('reffered_by');
+                            $checkuplainerlvl2 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl1)
+                                ->value('reffered_by');
+                            $checkuplainerlvl3 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl2)
+                                ->value('reffered_by');
+                            $checkuplainerlvl4 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl3)
+                                ->value('reffered_by');
+                            $checkuplainerlvl5 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl4)
+                                ->value('reffered_by');
+                            if ($checkuplainerlvl1 != 0 && $general->ic_lvl_one != 0) {
+                                $general_percentage = $general->ic_lvl_one;
+                                $PercentAmount = $interestAmount * ($general_percentage / 100);
+                                $chkuser = User::find($checkuplainerlvl1);
+                                $chkuser->balance += $PercentAmount;
+                                $chkuser->save();
+                                Transaction::create([
+                                    'trx' => strtoupper(Str::random(16)),
+                                    'gateway_id' => 0,
+                                    'amount' =>  $PercentAmount,
+                                    'currency' => @$general->site_currency,
+                                    'charge' => 0,
+                                    'details' => 'Refferal Invest Commission',
+                                    'type' => '+',
+                                    'gateway_transaction' => '',
+                                    'payment_status' => 1,
+                                    'user_id' => $chkuser->id,
+                                ]);
+                            }
+                            if ($checkuplainerlvl2 != 0 && $general->ic_lvl_two != 0) {
+                                $general_percentage = $general->ic_lvl_two;
+                                $PercentAmount = $interestAmount * ($general_percentage / 100);
+                                $chkuser = User::find($checkuplainerlvl2);
+                                $chkuser->balance += $PercentAmount;
+                                $chkuser->save();
+                                Transaction::create([
+                                    'trx' => strtoupper(Str::random(16)),
+                                    'gateway_id' => 0,
+                                    'amount' =>  $PercentAmount,
+                                    'currency' => @$general->site_currency,
+                                    'charge' => 0,
+                                    'details' => 'Refferal Invest Commission',
+                                    'type' => '+',
+                                    'gateway_transaction' => '',
+                                    'payment_status' => 1,
+                                    'user_id' => $chkuser->id,
+                                ]);
+                            }
+                            if ($checkuplainerlvl3 != 0 && $general->ic_lvl_three != 0) {
+                                $general_percentage = $general->ic_lvl_three;
+                                $PercentAmount = $interestAmount * ($general_percentage / 100);
+                                $chkuser = User::find($checkuplainerlvl3);
+                                $chkuser->balance += $PercentAmount;
+                                $chkuser->save();
+                                Transaction::create([
+                                    'trx' => strtoupper(Str::random(16)),
+                                    'gateway_id' => 0,
+                                    'amount' =>  $PercentAmount,
+                                    'currency' => @$general->site_currency,
+                                    'charge' => 0,
+                                    'details' => 'Refferal Invest Commission',
+                                    'type' => '+',
+                                    'gateway_transaction' => '',
+                                    'payment_status' => 1,
+                                    'user_id' => $chkuser->id,
+                                ]);
+                            }
+                            if ($checkuplainerlvl4 != 0 && $general->ic_lvl_four != 0) {
+                                $general_percentage = $general->ic_lvl_four;
+                                $PercentAmount = $interestAmount * ($general_percentage / 100);
+                                $chkuser = User::find($checkuplainerlvl4);
+                                $chkuser->balance += $PercentAmount;
+                                $chkuser->save();
+                                Transaction::create([
+                                    'trx' => strtoupper(Str::random(16)),
+                                    'gateway_id' => 0,
+                                    'amount' =>  $PercentAmount,
+                                    'currency' => @$general->site_currency,
+                                    'charge' => 0,
+                                    'details' => 'Refferal Invest Commission',
+                                    'type' => '+',
+                                    'gateway_transaction' => '',
+                                    'payment_status' => 1,
+                                    'user_id' => $chkuser->id,
+                                ]);
+                            }
+                            if ($checkuplainerlvl5 != 0 && $general->ic_lvl_five != 0) {
+                                $general_percentage = $general->ic_lvl_five;
+                                $PercentAmount = $interestAmount * ($general_percentage / 100);
+                                $chkuser = User::find($checkuplainerlvl5);
+                                $chkuser->balance += $PercentAmount;
+                                $chkuser->save();
+                                Transaction::create([
+                                    'trx' => strtoupper(Str::random(16)),
+                                    'gateway_id' => 0,
+                                    'amount' =>  $PercentAmount,
+                                    'currency' => @$general->site_currency,
+                                    'charge' => 0,
+                                    'details' => 'Refferal Invest Commission',
+                                    'type' => '+',
+                                    'gateway_transaction' => '',
+                                    'payment_status' => 1,
+                                    'user_id' => $chkuser->id,
+                                ]);
+                            }
                         }
 
                         //paymentupdate on next date
@@ -605,7 +700,7 @@ class UserController extends Controller
                                             'gateway_id' => 0,
                                             'amount' => $invest->amount,
                                             'currency' => @$general->site_currency,
-                                            'details' => 'Capital Back For Plan '. $invest->plan->plan_name,
+                                            'details' => 'Capital Back For Plan ' . $invest->plan->plan_name,
                                             'charge' => 0,
                                             'type' => '+',
                                             'gateway_transaction' => '',
@@ -617,7 +712,6 @@ class UserController extends Controller
                                     }
                                 }
                             }
-
                         } else {
 
                             $updatePayment->next_payment_date = $updatePaymentDate;
@@ -639,8 +733,7 @@ class UserController extends Controller
 
                             $updatePayment->save();
                             $user->save();
-                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount,$invest->plan->id);
-
+                            refferMoney($user->id, $user->refferedBy, 'interest', $returnAmount, $invest->plan->id);
                         }
                     }
                 }
