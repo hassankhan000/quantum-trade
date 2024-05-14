@@ -155,7 +155,6 @@
                                             <option value="3">{{ __('Vip 3') }}</option>
                                             <option value="4">{{ __('Vip 4') }}</option>
                                             <option value="5">{{ __('Vip 5') }}</option>
-                                            <option value="6">{{ __('Vip 6') }}</option>
                                         </select>
                                     </div>
 
