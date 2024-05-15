@@ -288,11 +288,18 @@
                 <div class="row roadMap-active2 roadmap-slider1">
                     <div class="col-lg-4">
                         <div class="roadmap-item">
-                            <span class="roadmap-title">End of Q4 2021</span>
+                            <span class="roadmap-title">Quantum AI</span>
                             <div class="roadmap-content">
                                 <h4 class="title"><span class="dot"></span>Research</h4>
-                                <p>SubQuery Builders/Grants Program SQT Network contract internal MVP Coordinator and client
-                                    SDK implementations</p>
+                                <p>To investigate the trade-offs between human
+                                    and digital advice delivery, we designed a two part research study using both qualitative and
+                                    quantitative methods. In April 2021, we conducted
+                                    qualitative interviews with 25 investors and 15
+                                    advisers to understand how and why investors
+                                    choose human versus digital advice services and
+                                    the tasks that define each service model. We
+                                    analysed the transcripts to arrive at 42 micro interactions that define advice as a service
+                                    through the lens of investors and advisers.</p>
                                 <a class="btn mt-2"
                                     href="{{ asset('asset/theme4/web_assets/assets/img/QuantumAi.pdf') }}"> Check Document
                                 </a>

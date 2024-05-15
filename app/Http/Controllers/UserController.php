@@ -176,24 +176,12 @@ class UserController extends Controller
             5 => 'vip_5_reward_status',
         ];
 
-        // Loop through the VIP levels
         for ($i = 1; $i <= 5; $i++) {
-            // Check if the user's total amount meets the VIP level requirement and if the user's VIP status is being upgraded
             if ($totalAmount >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
-                echo "Reached level $i upgrade condition.\n"; // Debugging statement
-                // Update user's VIP status
                 $user->vip_status = $i;
-                echo "Updated user's VIP status to level $i.\n"; // Debugging statement
-                // Check if the user is being upgraded to this VIP level for the first time and if reward is enabled
                 if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
-                    echo "User is eligible for reward for level $i upgrade.\n"; // Debugging statement
-                    // Add the reward amount to the user's balance
                     $user->balance += $general["vip{$i}_reward_amount"];
-                    echo "Added reward amount to user's balance.\n"; // Debugging statement
-                    // Set the VIP reward status to indicate that the user has received the reward
                     $user->{$vipRewardStatus[$i]} = 1;
-                    echo "Updated user's VIP reward status for level $i.\n"; // Debugging statement
-                    // Create a transaction record for the reward
                     Transaction::create([
                         'trx' => strtoupper(Str::random(16)),
                         'gateway_id' => 0,
@@ -205,12 +193,8 @@ class UserController extends Controller
                         'gateway_transaction' => '',
                         'user_id' => $user->id,
                     ]);
-                    echo "Created transaction record for reward.\n"; // Debugging statement
                 }
-                // Save the user's changes
                 $user->save();
-                echo "Saved user's changes.\n"; // Debugging statement
-                // Break the loop after the first upgrade
                 break;
             }
         }
@@ -255,11 +239,12 @@ class UserController extends Controller
             ->whereIn('user_id', $LvlThreeUsers)
             ->where('payment_status', 1)
             ->first();
-        // perfomane chart work
 
-
+           $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
+           $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
+           // perfomane chart work
         $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans'));
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans','LvlOneUsers','SumLvlOneDepositAmnt','LvlTwoUsers','SumLvlTwoDepositAmnt','LvlThreeUsers','SumLvlThreeDepositAmnt','TotalTeamDeposit','TotalTeamMembers'));
     }
 
     public function profile()

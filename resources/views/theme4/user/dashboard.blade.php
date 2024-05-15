@@ -1,9 +1,8 @@
 @extends(template() . 'layout.master2')
 <style>
-
     .nk-content.nk-content-fluid {
         /* background: #282828 !important; */
-        background: linear-gradient(#1a1a1a00, #aef72b1c), url("https://img.freepik.com/premium-photo/modern-brick-wall_118019-548.jpg?w=360") !important;
+        background: linear-gradient(#1a1a1a7a, #191917ad), url("https://img.freepik.com/premium-photo/modern-brick-wall_118019-548.jpg?w=360") !important;
         background-size: cover !important;
         background-position: center center;
         background-repeat: no-repeat !important;
@@ -295,6 +294,282 @@
         display: none !important;
     }
 </style>
+<style>
+    .timeline {
+        position: relative;
+        width: 660px;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 1em 0;
+        list-style-type: none;
+    }
+
+    .timeline:before {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        content: ' ';
+        display: block;
+        width: 6px;
+        height: 100%;
+        margin-left: -3px;
+        background: rgb(80, 80, 80);
+        background: -moz-linear-gradient(top, rgba(80, 80, 80, 0) 0%, rgb(80, 80, 80) 8%, rgb(80, 80, 80) 92%, rgba(80, 80, 80, 0) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(30, 87, 153, 1)), color-stop(100%, rgba(125, 185, 232, 1)));
+        background: -webkit-linear-gradient(top, rgba(80, 80, 80, 0) 0%, rgb(80, 80, 80) 8%, rgb(80, 80, 80) 92%, rgba(80, 80, 80, 0) 100%);
+        background: -o-linear-gradient(top, rgba(80, 80, 80, 0) 0%, rgb(80, 80, 80) 8%, rgb(80, 80, 80) 92%, rgba(80, 80, 80, 0) 100%);
+        background: -ms-linear-gradient(top, rgba(80, 80, 80, 0) 0%, rgb(80, 80, 80) 8%, rgb(80, 80, 80) 92%, rgba(80, 80, 80, 0) 100%);
+        background: linear-gradient(to bottom, rgba(80, 80, 80, 0) 0%, rgb(80, 80, 80) 8%, rgb(80, 80, 80) 92%, rgba(80, 80, 80, 0) 100%);
+
+        z-index: 5;
+    }
+
+    .timeline li {
+        padding: 1em 0;
+    }
+
+    .timeline li:after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+    .direction-l {
+        position: relative;
+        width: 300px;
+        float: left;
+        text-align: right;
+    }
+
+    .direction-r {
+        position: relative;
+        width: 300px;
+        float: right;
+    }
+
+    .flag-wrapper {
+        position: relative;
+        display: inline-block;
+
+        text-align: center;
+    }
+
+    .flag {
+        position: relative;
+        display: inline;
+        background: rgb(248, 248, 248);
+        padding: 6px 10px;
+        border-radius: 5px;
+
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .direction-l .flag {
+        -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+        box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+
+    .direction-r .flag {
+        -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+
+    .direction-l .flag:before,
+    .direction-r .flag:before {
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        content: ' ';
+        display: block;
+        width: 12px;
+        height: 12px;
+        margin-top: -10px;
+        background: #fff;
+        border-radius: 10px;
+        border: 4px solid rgb(255, 80, 80);
+        z-index: 10;
+    }
+
+    .direction-r .flag:before {
+        left: -40px;
+    }
+
+    .direction-l .flag:after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        height: 0;
+        width: 0;
+        margin-top: -8px;
+        border: solid transparent;
+        border-left-color: rgb(248, 248, 248);
+        border-width: 8px;
+        pointer-events: none;
+    }
+
+    .direction-r .flag:after {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        height: 0;
+        width: 0;
+        margin-top: -8px;
+        border: solid transparent;
+        border-right-color: rgb(248, 248, 248);
+        border-width: 8px;
+        pointer-events: none;
+    }
+
+    .time-wrapper {
+        display: inline;
+
+        line-height: 1em;
+        font-size: 0.66666em;
+        color: rgb(250, 80, 80);
+        vertical-align: middle;
+    }
+
+    .direction-l .time-wrapper {
+        float: left;
+    }
+
+    .direction-r .time-wrapper {
+        float: right;
+    }
+
+    .time {
+        display: inline-block;
+        padding: 4px 6px;
+        background: rgb(248, 248, 248);
+    }
+
+    .desc {
+        margin: 1em 0.75em 0 0;
+
+        font-size: 0.77777em;
+        font-style: italic;
+        line-height: 1.5em;
+    }
+
+    .direction-r .desc {
+        margin: 1em 0 0 0.75em;
+    }
+
+    /* ================ Timeline Media Queries ================ */
+
+    @media screen and (max-width: 660px) {
+
+        .timeline {
+            width: 100%;
+            padding: 4em 0 1em 0;
+        }
+
+        .timeline li {
+            padding: 2em 0;
+        }
+
+        .direction-l,
+        .direction-r {
+            float: none;
+            width: 100%;
+
+            text-align: center;
+        }
+
+        .flag-wrapper {
+            text-align: center;
+        }
+
+        .flag {
+            background: rgb(255, 255, 255);
+            z-index: 15;
+        }
+
+        .direction-l .flag:before,
+        .direction-r .flag:before {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            content: ' ';
+            display: block;
+            width: 12px;
+            height: 12px;
+            margin-left: -9px;
+            background: #fff;
+            border-radius: 10px;
+            border: 4px solid rgb(255, 80, 80);
+            z-index: 10;
+        }
+
+        .direction-l .flag:after,
+        .direction-r .flag:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -8px;
+            height: 0;
+            width: 0;
+            margin-left: -8px;
+            border: solid transparent;
+            border-bottom-color: rgb(255, 255, 255);
+            border-width: 8px;
+            pointer-events: none;
+        }
+
+        .time-wrapper {
+            display: block;
+            position: relative;
+            margin: 4px 0 0 0;
+            z-index: 14;
+        }
+
+        .direction-l .time-wrapper {
+            float: none;
+        }
+
+        .direction-r .time-wrapper {
+            float: none;
+        }
+
+        .desc {
+            position: relative;
+            margin: 1em 0 0 0;
+            padding: 1em;
+            background: rgb(245, 245, 245);
+            -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.20);
+            -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.20);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.20);
+
+            z-index: 15;
+        }
+
+        .direction-l .desc,
+        .direction-r .desc {
+            position: relative;
+            margin: 1em 1em 0 1em;
+            padding: 1em;
+
+            z-index: 15;
+        }
+
+    }
+
+    @media screen and (min-width: 400px ?? max-width: 660px) {
+
+        .direction-l .desc,
+        .direction-r .desc {
+            margin: 1em 4em 0 4em;
+        }
+
+    }
+</style>
 @section('content2')
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
@@ -576,630 +851,434 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-xxl-4">
-                                <div class="card card-bordered card-full">
-                                    <div class="card-inner">
-                                        <div class="card-title-group mb-1">
-                                            <div class="card-title">
-                                                <h6 class="title text-success">Investment Overview</h6>
-                                                <p>
-                                                    The investment overview of your platform.
-                                                    <a href="#">All Investment</a>
-                                                </p>
+                                <ul class="timeline">
+
+                                    <!-- Item 1 -->
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-warning">Level 1 Deposit</span>
+                                                <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlOneDepositAmnt->total_amount , 2) }}</span></span>
                                             </div>
                                         </div>
-                                        <ul class="ps-3 nav nav-tabs nav-tabs-card nav-tabs-xs">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" data-bs-toggle="tab"
-                                                    href="#overview">Overview</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#thisyear">This Year</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#alltime">All Time</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content mt-0">
-                                            <div class="tab-pane active" id="overview">
-                                                <div class="invest-ov gy-2">
-                                                    <div class="subtitle">
-                                                        Currently Actived Investment
-                                                    </div>
-                                                    <div class="invest-ov-details">
-                                                        <div class="invest-ov-info">
-                                                            <div class="amount">
-                                                                49,395.395
-                                                                <span class="currency currency-usd">USD</span>
-                                                            </div>
-                                                            <div class="title">Amount</div>
-                                                        </div>
-                                                        <div class="invest-ov-stats">
-                                                            <=>
-                                                                <span class="amount">56</span><span
-                                                                    class="change up text-danger"><em
-                                                                        class="icon ni ni-arrow-long-up"></em
-                                                                        ></span
-=">
+                                    </li>
+
+                                    <!-- Item 2 -->
+                                    <li>
+                                        <div class="direction-l">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-warning">Level 1 Members</span>
+                                        <span class="time-wrapper"><span class="text-dark time">{{ count($LvlOneUsers) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Item 3 -->
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-success">Level 2 Deposit</span>
+                                                <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlTwoDepositAmnt->total_amount , 2) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-success">Level 2 Members</span>
+                                                <span class="time-wrapper"><span class="text-dark time">{{ count($LvlTwoUsers) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-danger">Level 3 Deposit</span>
+                                                <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlThreeDepositAmnt->total_amount , 2) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-dark flag text-danger">Level 3 Members</span>
+                                                <span class="time-wrapper"><span class="text-dark time">{{ count($LvlThreeUsers) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-light flag text-dark">Total Team Deposit</span>
+                                                <span class="time-wrapper"><span class="time bg-dark text-light">{{ round($TotalTeamDeposit , 2) }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="direction-r">
+                                            <div class="flag-wrapper">
+                                                <span class="bg-light flag text-dark">Total Team Members</span>
+                                                <span class="time-wrapper"><span class="time bg-dark text-light">{{ $TotalTeamMembers }}</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
                             </div>
-                          </div>
-                          <div class="invest-ov-details">
-                                                                    <div class="invest-ov-info">
-                                                                        <div class="amount">
-                                                                            49,395.395
-                                                                            <span class="currency currency-usd">USD</span>
-                                                                        </div>
-                                                                        <div class="title">Paid Profit</div>
-                                                                    </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="invest-ov gy-2">
-                                                        <div class="subtitle">
-                                                            Investment in this Month
-                                                        </div>
-                                                        <div class="invest-ov-details">
-                                                            <div class="invest-ov-info">
-                                                                <div class="amount">
-                                                                    49,395.395
-                                                                    <span class="currency currency-usd">USD</span>
-                                                                </div>
-                                                                <div class="title">Amount</div>
-                                                            </div>
-                                                            <div class="invest-ov-stats">
-                                                                <=>
-                                                                    <span class="amount">23</span><span
-                                                                        class="change down text-danger"><em
-                                                                            class="icon ni ni-arrow-long-down"></em
-                                                                            ></span
-=">
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="tab-pane"
-                                                                            id="thisyear">
-                                                                        <div class="invest-ov gy-2">
-                                                                            <div class="subtitle">
-                                                                                Currently Actived Investment
-                                                                            </div>
-                                                                            <div class="invest-ov-details">
-                                                                                <div class="invest-ov-info">
-                                                                                    <div class="amount">
-                                                                                        89,395.395
-                                                                                        <span
-                                                                                            class="currency currency-usd">USD</span>
-                                                                                    </div>
-                                                                                    <div class="title">Amount</div>
-                                                                                </div>
-                                                                                <div class="invest-ov-stats">
-                                                                                    <=>
-                                                                                        <span class="amount">96</span><span
-                                                                                            class="change up text-danger"><em
-                                                                                                class="icon ni ni-arrow-long-up"></em
-                                                                                                ></span
-=">
-                            </div>
-                          </div>
-                          <div class="invest-ov-details">
-                                                                                            <div class="invest-ov-info">
-                                                                                                <div class="amount">
-                                                                                                    99,395.395
-                                                                                                    <span
-                                                                                                        class="currency currency-usd">USD</span>
-                                                                                                </div>
-                                                                                                <div class="title">Paid
-                                                                                                    Profit</div>
-                                                                                            </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="invest-ov gy-2">
-                                                                                <div class="subtitle">
-                                                                                    Investment in this Month
-                                                                                </div>
-                                                                                <div class="invest-ov-details">
-                                                                                    <div class="invest-ov-info">
-                                                                                        <div class="amount">
-                                                                                            149,395.395
-                                                                                            <span
-                                                                                                class="currency currency-usd">USD</span>
-                                                                                        </div>
-                                                                                        <div class="title">Amount</div>
-                                                                                    </div>
-                                                                                    <div class="invest-ov-stats">
-                                                                                        <=>
-                                                                                            <span
-                                                                                                class="amount">83</span><span
-                                                                                                class="change down text-danger"><em
-                                                                                                    class="icon ni ni-arrow-long-down"></em
-                                                                                                    ></span
-=">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane"
-                                                                                                    id="alltime">
-                                                                                                <div
-                                                                                                    class="invest-ov gy-2">
-                                                                                                    <div class="subtitle">
-                                                                                                        Currently Actived
-                                                                                                        Investment
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="invest-ov-details">
-                                                                                                        <div
-                                                                                                            class="invest-ov-info">
-                                                                                                            <div
-                                                                                                                class="amount">
-                                                                                                                249,395.395
-                                                                                                                <span
-                                                                                                                    class="currency currency-usd">USD</span>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="title">
-                                                                                                                Amount</div>
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="invest-ov-stats">
-                                                                                                            <=>
-                                                                                                                <span
-                                                                                                                    class="amount">556</span><span
-                                                                                                                    class="change up text-danger"><em
-                                                                                                                        class="icon ni ni-arrow-long-up"></em
-                                                                                                                        ></span
-=">
-                            </div>
-                          </div>
-                          <div class="invest-ov-details">
-                                                                                                                    <div
-                                                                                                                        class="invest-ov-info">
-                                                                                                                        <div
-                                                                                                                            class="amount">
-                                                                                                                            149,395.395
-                                                                                                                            <span
-                                                                                                                                class="currency currency-usd">USD</span>
-                                                                                                                        </div>
-                                                                                                                        <div
-                                                                                                                            class="title">
-                                                                                                                            Paid
-                                                                                                                            Profit
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="invest-ov gy-2">
-                                                                                                        <div
-                                                                                                            class="subtitle">
-                                                                                                            Investment in
-                                                                                                            this Month
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="invest-ov-details">
-                                                                                                            <div
-                                                                                                                class="invest-ov-info">
-                                                                                                                <div
-                                                                                                                    class="amount">
-                                                                                                                    249,395.395
-                                                                                                                    <span
-                                                                                                                        class="currency currency-usd">USD</span>
-                                                                                                                </div>
-                                                                                                                <div
-                                                                                                                    class="title">
-                                                                                                                    Amount
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="invest-ov-stats">
-                                                                                                                <=>
-                                                                                                                    <span
-                                                                                                                        class="amount">223</span><span
-                                                                                                                        class="change down text-danger"><em
-                                                                                                                            class="icon ni ni-arrow-long-down"></em
-                                                                                                                            ></span
-=">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        @endsection
+            </div>
+        </div>
+    </div>
+@endsection
 
-                                                                        @push('style')
-<style>
-                                                                                .modal-backdrop.fade.show {
-                                                                                    display: none;
-                                                                                }
+@push('style')
+    <style>
+        .modal-backdrop.fade.show {
+            display: none;
+        }
 
-                                                                                @media (max-width: 991px) {
-                                                                                    #header.header-inner-pages {
-                                                                                        display: block;
-                                                                                        background: transparent !important;
-                                                                                        position: absolute;
-                                                                                    }
+        @media (max-width: 991px) {
+            #header.header-inner-pages {
+                display: block;
+                background: transparent !important;
+                position: absolute;
+            }
 
-                                                                                    .dashboard-body-part {
-                                                                                        padding-top: 80px;
-                                                                                    }
-                                                                                }
+            .dashboard-body-part {
+                padding-top: 80px;
+            }
+        }
 
-                                                                                .sp-referral .single-child {
-                                                                                    padding: 6px 10px;
-                                                                                    border-radius: 5px;
-                                                                                }
+        .sp-referral .single-child {
+            padding: 6px 10px;
+            border-radius: 5px;
+        }
 
-                                                                                .sp-referral .single-child+.single-child {
-                                                                                    margin-top: 15px;
-                                                                                }
+        .sp-referral .single-child+.single-child {
+            margin-top: 15px;
+        }
 
-                                                                                .sp-referral .single-child p {
-                                                                                    display: flex;
-                                                                                    align-items: center;
-                                                                                    margin-bottom: 0;
-                                                                                }
+        .sp-referral .single-child p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
 
-                                                                                .sp-referral .single-child p img {
-                                                                                    width: 35px;
-                                                                                    height: 35px;
-                                                                                    border-radius: 50%;
-                                                                                    object-fit: cover;
-                                                                                    -o-object-fit: cover;
-                                                                                }
+        .sp-referral .single-child p img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            -o-object-fit: cover;
+        }
 
-                                                                                .sp-referral .single-child p span {
-                                                                                    width: calc(100% - 35px);
-                                                                                    font-size: 14px;
-                                                                                    padding-left: 10px;
-                                                                                }
+        .sp-referral .single-child p span {
+            width: calc(100% - 35px);
+            font-size: 14px;
+            padding-left: 10px;
+        }
 
-                                                                                .sp-referral>.single-child.root-child>p img {
-                                                                                    border: 2px solid #c3c3c3;
-                                                                                }
+        .sp-referral>.single-child.root-child>p img {
+            border: 2px solid #c3c3c3;
+        }
 
-                                                                                .sub-child-list {
-                                                                                    position: relative;
-                                                                                    padding-left: 35px;
-                                                                                }
+        .sub-child-list {
+            position: relative;
+            padding-left: 35px;
+        }
 
-                                                                                .sub-child-list::before {
-                                                                                    position: absolute;
-                                                                                    content: '';
-                                                                                    top: 0;
-                                                                                    left: 17px;
-                                                                                    width: 1px;
-                                                                                    height: 100%;
-                                                                                    background-color: #a1a1a1;
-                                                                                }
+        .sub-child-list::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 17px;
+            width: 1px;
+            height: 100%;
+            background-color: #a1a1a1;
+        }
 
-                                                                                .sub-child-list>.single-child {
-                                                                                    position: relative;
-                                                                                }
+        .sub-child-list>.single-child {
+            position: relative;
+        }
 
-                                                                                .sub-child-list>.single-child::before {
-                                                                                    position: absolute;
-                                                                                    content: '';
-                                                                                    left: -18px;
-                                                                                    top: 21px;
-                                                                                    width: 30px;
-                                                                                    height: 5px;
-                                                                                    border-left: 1px solid #a1a1a1;
-                                                                                    border-bottom: 1px solid #a1a1a1;
-                                                                                    border-radius: 0 0 0 5px;
-                                                                                }
+        .sub-child-list>.single-child::before {
+            position: absolute;
+            content: '';
+            left: -18px;
+            top: 21px;
+            width: 30px;
+            height: 5px;
+            border-left: 1px solid #a1a1a1;
+            border-bottom: 1px solid #a1a1a1;
+            border-radius: 0 0 0 5px;
+        }
 
-                                                                                .sub-child-list>.single-child>p img {
-                                                                                    border: 2px solid #c3c3c3;
-                                                                                }
-                                                                            </style>
+        .sub-child-list>.single-child>p img {
+            border: 2px solid #c3c3c3;
+        }
+    </style>
 @endpush
 
-                                                                        <div class="modal
+<div class="modal
                                                                                                                             fade
                                                                                                                             bg-transparent"
-                                                                                                                            id="invest"
-                                                                                                                            tabindex="-1"
-                                                                                                                            role="dialog"
-                                                                                                                            aria-labelledby="modelTitleId"
-                                                                                                                            aria-hidden="true">
-                                                                                                                        <div class="modal-dialog"
-                                                                                                                            role="document">
-                                                                                                                            <form
-                                                                                                                                class="invest-form"
-                                                                                                                                style="width: 100%;"
-                                                                                                                                action="{{ route('user.investmentplan.submit') }}"
-                                                                                                                                method="post">
-                                                                                                                                @csrf
-                                                                                                                                <div
-                                                                                                                                    class="modal-content p-3">
-                                                                                                                                    <div
-                                                                                                                                        class="d-flex align-items-baseline justify-content-between">
-                                                                                                                                        <p
-                                                                                                                                            class="p-0 m-0">
-                                                                                                                                            Purchase
-                                                                                                                                            Quantum
-                                                                                                                                            Bot
-                                                                                                                                        </p>
-                                                                                                                                        <button
-                                                                                                                                            type="button"
-                                                                                                                                            class="close"
-                                                                                                                                            data-bs-dismiss="modal"
-                                                                                                                                            aria-label="Close">
-                                                                                                                                            <span
-                                                                                                                                                aria-hidden="true">&times;</span>
-                                                                                                                                        </button>
-                                                                                                                                    </div>
-                                                                                                                                    <div
-                                                                                                                                        class="modal-body p-0">
-                                                                                                                                        <div
-                                                                                                                                            class="form-group mb-1">
-                                                                                                                                            <input
-                                                                                                                                                type="number"
-                                                                                                                                                placeholder="Enter the amount you want to invest:"
-                                                                                                                                                name="amount"
-                                                                                                                                                class="form-control modal_amount">
-                                                                                                                                            <input
-                                                                                                                                                type="hidden"
-                                                                                                                                                name="plan_id"
-                                                                                                                                                class="form-control">
-                                                                                                                                            <input
-                                                                                                                                                type="hidden"
-                                                                                                                                                name="plan_percentage"
-                                                                                                                                                class="form-control">
-                                                                                                                                            <input
-                                                                                                                                                type="hidden"
-                                                                                                                                                name="pair_price">
-                                                                                                                                            <input
-                                                                                                                                                type="hidden"
-                                                                                                                                                name="pair_name">
-                                                                                                                                            <input
-                                                                                                                                                type="hidden"
-                                                                                                                                                name="timestamp">
-                                                                                                                                        </div>
-                                                                                                                                        <table
-                                                                                                                                            class="table mt-3 table-sm table-striped modal-table">
-                                                                                                                                            <thead>
-                                                                                                                                                <th>Bot
-                                                                                                                                                    Fee
-                                                                                                                                                </th>
-                                                                                                                                                <th>Expected
-                                                                                                                                                    Profit
-                                                                                                                                                </th>
-                                                                                                                                            </thead>
-                                                                                                                                            <tbody>
-                                                                                                                                                <td
-                                                                                                                                                    class="bot-fee">
-                                                                                                                                                    0.00
-                                                                                                                                                    to
-                                                                                                                                                    0.00
-                                                                                                                                                </td>
-                                                                                                                                                <td
-                                                                                                                                                    class="exp-profit">
-                                                                                                                                                    0.00
-                                                                                                                                                    to
-                                                                                                                                                    0.00
-                                                                                                                                                </td>
-                                                                                                                                            </tbody>
-                                                                                                                                            <p
-                                                                                                                                                class="modal-table-p">
-                                                                                                                                                In
-                                                                                                                                                initiating
-                                                                                                                                                investment,
-                                                                                                                                                AI
-                                                                                                                                                bot
-                                                                                                                                                trading
-                                                                                                                                                shall
-                                                                                                                                                commence
-                                                                                                                                                for
-                                                                                                                                                a
-                                                                                                                                                day's
-                                                                                                                                                duration,
-                                                                                                                                                entailing
-                                                                                                                                                profit
-                                                                                                                                                accrual
-                                                                                                                                                contingent
-                                                                                                                                                upon
-                                                                                                                                                the
-                                                                                                                                                current
-                                                                                                                                                valuation
-                                                                                                                                                of
-                                                                                                                                                the
-                                                                                                                                                selected
-                                                                                                                                                pair,
-                                                                                                                                                with
-                                                                                                                                                the
-                                                                                                                                                invested
-                                                                                                                                                capital
-                                                                                                                                                remaining
-                                                                                                                                                non-refundable
-                                                                                                                                                and
-                                                                                                                                                non-withdrawable
-                                                                                                                                                thereafter.
-                                                                                                                                            </p>
-                                                                                                                                        </table>
-                                                                                                                                    </div>
-                                                                                                                                    <button
-                                                                                                                                        class="btn btn-light submit-payment w-auto"><span>{{ __('Invest Now') }}</span></button>
-                                                                                                                                </div>
-                                                                                                                            </form>
-                                                                                                                        </div>
-                                                                                                            </div>
+    id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="invest-form" style="width: 100%;" action="{{ route('user.investmentplan.submit') }}"
+            method="post">
+            @csrf
+            <div class="modal-content p-3">
+                <div class="d-flex align-items-baseline justify-content-between">
+                    <p class="p-0 m-0">
+                        Purchase
+                        Quantum
+                        Bot
+                    </p>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="form-group mb-1">
+                        <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
+                            class="form-control modal_amount">
+                        <input type="hidden" name="plan_id" class="form-control">
+                        <input type="hidden" name="plan_percentage" class="form-control">
+                        <input type="hidden" name="pair_price">
+                        <input type="hidden" name="pair_name">
+                        <input type="hidden" name="timestamp">
+                    </div>
+                    <table class="table mt-3 table-sm table-striped modal-table">
+                        <thead>
+                            <th>Bot
+                                Fee
+                            </th>
+                            <th>Expected
+                                Profit
+                            </th>
+                        </thead>
+                        <tbody>
+                            <td class="bot-fee">
+                                0.00
+                                to
+                                0.00
+                            </td>
+                            <td class="exp-profit">
+                                0.00
+                                to
+                                0.00
+                            </td>
+                        </tbody>
+                        <p class="modal-table-p">
+                            In
+                            initiating
+                            investment,
+                            AI
+                            bot
+                            trading
+                            shall
+                            commence
+                            for
+                            a
+                            day's
+                            duration,
+                            entailing
+                            profit
+                            accrual
+                            contingent
+                            upon
+                            the
+                            current
+                            valuation
+                            of
+                            the
+                            selected
+                            pair,
+                            with
+                            the
+                            invested
+                            capital
+                            remaining
+                            non-refundable
+                            and
+                            non-withdrawable
+                            thereafter.
+                        </p>
+                    </table>
+                </div>
+                <button class="btn btn-light submit-payment w-auto"><span>{{ __('Invest Now') }}</span></button>
+            </div>
+        </form>
+    </div>
+</div>
 
-                                                                                                            <div
-                                                                                                                class="payment-loading">
-                                                                                                                <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
-                                                                                                                    class="img-fluid"
-                                                                                                                    alt="">
-                                                                                                                <h4>Loading...
-                                                                                                                </h4>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="success-img-wrapper">
-                                                                                                                <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
-                                                                                                                    class="img-fluid success-img"
-                                                                                                                    alt="">
-                                                                                                            </div>
+<div class="payment-loading">
+    <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
+        class="img-fluid" alt="">
+    <h4>Loading...
+    </h4>
+</div>
+<div class="success-img-wrapper">
+    <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
+        class="img-fluid success-img" alt="">
+</div>
 
-                                                                                                            @push('script')
-                                                                                                                <script>
-                                                                                                                    $(function() {
-                                                                                                                        'use strict'
-                                                                                                                        $('.balance').on('click', function() {
-                                                                                                                            const modal = $('#invest');
-                                                                                                                            modal.find('input[name=plan_id]').val($(this).data('plan').id);
-                                                                                                                            modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
-                                                                                                                            modal.modal('show')
-                                                                                                                        })
-                                                                                                                    })
-                                                                                                                </script>
-                                                                                                                <script>
-                                                                                                                    'use strict';
+@push('script')
+    <script>
+        $(function() {
+            'use strict'
+            $('.balance').on('click', function() {
+                const modal = $('#invest');
+                modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
+                modal.modal('show')
+            })
+        })
+    </script>
+    <script>
+        'use strict';
 
-                                                                                                                    $('.planDelete').on('click', function() {
-                                                                                                                        const modal = $('#planDelete');
+        $('.planDelete').on('click', function() {
+            const modal = $('#planDelete');
 
-                                                                                                                        modal.find('form').attr('action', $(this).data('href'))
+            modal.find('form').attr('action', $(this).data('href'))
 
-                                                                                                                        modal.modal('show')
+            modal.modal('show')
 
 
-                                                                                                                    })
+        })
 
-                                                                                                                    var copyButton = document.querySelector('.copy');
-                                                                                                                    var copyInput = document.querySelector('.copy-text');
-                                                                                                                    copyButton.addEventListener('click', function(e) {
-                                                                                                                        e.preventDefault();
-                                                                                                                        var text = copyInput.select();
-                                                                                                                        document.execCommand('copy');
-                                                                                                                    });
-                                                                                                                    copyInput.addEventListener('click', function() {
-                                                                                                                        this.select();
-                                                                                                                    });
+        var copyButton = document.querySelector('.copy');
+        var copyInput = document.querySelector('.copy-text');
+        copyButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            var text = copyInput.select();
+            document.execCommand('copy');
+        });
+        copyInput.addEventListener('click', function() {
+            this.select();
+        });
 
 
-                                                                                                                    $('.mobile-card-slider').slick({
-                                                                                                                        slidesToShow: 1,
-                                                                                                                        slidesToScroll: 1,
-                                                                                                                        centerMode: true,
-                                                                                                                        centerPadding: '60px',
-                                                                                                                        arrows: false,
-                                                                                                                        dots: false,
-                                                                                                                        autoplay: false,
-                                                                                                                        cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
-                                                                                                                        speed: 1500,
-                                                                                                                        autoplaySpeed: 1000,
-                                                                                                                        responsive: [{
-                                                                                                                                breakpoint: 1200,
-                                                                                                                                settings: {
-                                                                                                                                    slidesToShow: 3
-                                                                                                                                }
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                                breakpoint: 768,
-                                                                                                                                settings: {
-                                                                                                                                    slidesToShow: 2
-                                                                                                                                }
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                                breakpoint: 480,
-                                                                                                                                settings: {
-                                                                                                                                    slidesToShow: 1
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        ]
-                                                                                                                    });
-                                                                                                                </script>
-                                                                                                                <script>
-                                                                                                                    $('.plan-wrapper').hide()
-                                                                                                                    $('.show-plans').click(function() {
-                                                                                                                        $('.plan-wrapper').slideDown()
-                                                                                                                    });
-                                                                                                                </script>
-                                                                                                                <script>
-                                                                                                                    $('.modal-table').hide()
-                                                                                                                    $('.submit-payment').attr('disabled', true)
-                                                                                                                    $('.submit-payment').text('Enter Amount')
-                                                                                                                    $('.modal_amount').keyup(function(e) {
-                                                                                                                        if ($(this).val() < 1) {
-                                                                                                                            $('.submit-payment').attr('disabled', true)
-                                                                                                                        } else {
-                                                                                                                            $('.submit-payment').attr('disabled', false)
-                                                                                                                            $('.submit-payment').text('Invest')
-                                                                                                                        }
-                                                                                                                        let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
-                                                                                                                            parseFloat($(this).val());
-                                                                                                                        $('.exp-profit').text(`$${expected} to $${expected*2}`)
-                                                                                                                        $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2)}`)
-                                                                                                                        if ($(this).val().length > 0) {
-                                                                                                                            $('.modal-table').slideDown()
-                                                                                                                        } else {
-                                                                                                                            $('.modal-table').slideUp()
-                                                                                                                        }
-                                                                                                                    });
-                                                                                                                </script>
-                                                                                                                <script>
-                                                                                                                    let invest_form = $('.invest-form')
-                                                                                                                    $('.success-img-wrapper').hide()
-                                                                                                                    $('.payment-loading').hide()
+        $('.mobile-card-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: '60px',
+            arrows: false,
+            dots: false,
+            autoplay: false,
+            cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+            speed: 1500,
+            autoplaySpeed: 1000,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    </script>
+    <script>
+        $('.plan-wrapper').hide()
+        $('.show-plans').click(function() {
+            $('.plan-wrapper').slideDown()
+        });
+    </script>
+    <script>
+        $('.modal-table').hide()
+        $('.submit-payment').attr('disabled', true)
+        $('.submit-payment').text('Enter Amount')
+        $('.modal_amount').keyup(function(e) {
+            if ($(this).val() < 1) {
+                $('.submit-payment').attr('disabled', true)
+            } else {
+                $('.submit-payment').attr('disabled', false)
+                $('.submit-payment').text('Invest')
+            }
+            let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
+                parseFloat($(this).val());
+            $('.exp-profit').text(`$${expected} to $${expected*2}`)
+            $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2)}`)
+            if ($(this).val().length > 0) {
+                $('.modal-table').slideDown()
+            } else {
+                $('.modal-table').slideUp()
+            }
+        });
+    </script>
+    <script>
+        let invest_form = $('.invest-form')
+        $('.success-img-wrapper').hide()
+        $('.payment-loading').hide()
 
-                                                                                                                    $('.submit-payment').click(function(e) {
-                                                                                                                        e.preventDefault();
-                                                                                                                        $('.payment-loading').fadeIn()
-                                                                                                                        $('.payment-loading h4').text('Loading ...')
-                                                                                                                        setTimeout(function() {
-                                                                                                                            $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
-                                                                                                                        }, 3000);
-                                                                                                                        setTimeout(function() {
-                                                                                                                            // FETCHING SYMBOL
-                                                                                                                            fetch('https://quantummtradeai.com/api/cryptoSymbols')
-                                                                                                                                .then(response => response.json())
-                                                                                                                                .then(data => {
-                                                                                                                                    // FETCHING PRICE
-                                                                                                                                    $.ajax({
-                                                                                                                                        method: 'GET',
-                                                                                                                                        url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
-                                                                                                                                        headers: {
-                                                                                                                                            'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
-                                                                                                                                        },
-                                                                                                                                        contentType: 'application/json',
-                                                                                                                                        success: function(result) {
-                                                                                                                                            invest_form.find('input[name=pair_name]').val(result.symbol)
-                                                                                                                                            invest_form.find('input[name=pair_price]').val(result.price)
-                                                                                                                                            invest_form.find('input[name=timestamp]').val(result
-                                                                                                                                                .timestamp)
-                                                                                                                                            $('.payment-loading h4').text(
-                                                                                                                                                `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
-                                                                                                                                            );
-                                                                                                                                            setTimeout(function() {
-                                                                                                                                                $('.payment-loading h4').text(
-                                                                                                                                                    `Processing With ${result.symbol}, Please Wait ...`
-                                                                                                                                                );
-                                                                                                                                            }, 5000);
-                                                                                                                                            setTimeout(function() {
-                                                                                                                                                $('.success-img-wrapper').hide()
-                                                                                                                                                $('.payment-loading').hide()
-                                                                                                                                                const modal = $('#invest');
-                                                                                                                                                modal.modal('hide')
-                                                                                                                                                invest_form.submit()
-                                                                                                                                            }, 10000);
-                                                                                                                                        },
-                                                                                                                                        error: function ajaxError(jqXHR) {
-                                                                                                                                            console.error('Error: ', jqXHR.responseText);
-                                                                                                                                        }
-                                                                                                                                    });
-                                                                                                                                    // FETCHING PRICE
-                                                                                                                                })
-                                                                                                                                .catch(error => console.error('Error fetching data:', error));
-                                                                                                                            // FETCH SYMBOL
-                                                                                                                        }, 9000);
-                                                                                                                        // FINAL
-                                                                                                                    })
-                                                                                                                </script>
-                                                                                                            @endpush
+        $('.submit-payment').click(function(e) {
+            e.preventDefault();
+            $('.payment-loading').fadeIn()
+            $('.payment-loading h4').text('Loading ...')
+            setTimeout(function() {
+                $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
+            }, 3000);
+            setTimeout(function() {
+                // FETCHING SYMBOL
+                fetch('https://quantummtradeai.com/api/cryptoSymbols')
+                    .then(response => response.json())
+                    .then(data => {
+                        // FETCHING PRICE
+                        $.ajax({
+                            method: 'GET',
+                            url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
+                            headers: {
+                                'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
+                            },
+                            contentType: 'application/json',
+                            success: function(result) {
+                                invest_form.find('input[name=pair_name]').val(result.symbol)
+                                invest_form.find('input[name=pair_price]').val(result.price)
+                                invest_form.find('input[name=timestamp]').val(result
+                                    .timestamp)
+                                $('.payment-loading h4').text(
+                                    `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
+                                );
+                                setTimeout(function() {
+                                    $('.payment-loading h4').text(
+                                        `Processing With ${result.symbol}, Please Wait ...`
+                                    );
+                                }, 5000);
+                                setTimeout(function() {
+                                    $('.success-img-wrapper').hide()
+                                    $('.payment-loading').hide()
+                                    const modal = $('#invest');
+                                    modal.modal('hide')
+                                    invest_form.submit()
+                                }, 10000);
+                            },
+                            error: function ajaxError(jqXHR) {
+                                console.error('Error: ', jqXHR.responseText);
+                            }
+                        });
+                        // FETCHING PRICE
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+                // FETCH SYMBOL
+            }, 9000);
+            // FINAL
+        })
+    </script>
+@endpush
