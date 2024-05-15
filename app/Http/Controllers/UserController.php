@@ -240,11 +240,26 @@ class UserController extends Controller
             ->where('payment_status', 1)
             ->first();
 
+            
+            $SumLvlOneComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+           ->whereIn('reffered_to', $LvlOneUsers)
+           ->first();
+           $SumLvlTwoComAmnt = DB::table('reffered_commissions')
+           ->selectRaw('SUM(amount) AS total_com')
+           ->whereIn('reffered_to', $LvlTwoUsers)
+           ->first();
+           $SumLvlThreeComAmnt = DB::table('reffered_commissions')
+           ->selectRaw('SUM(amount) AS total_com')
+           ->whereIn('reffered_to', $LvlThreeUsers)
+           ->first();
+           
            $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
            $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
+           $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
            // perfomane chart work
         $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans','LvlOneUsers','SumLvlOneDepositAmnt','LvlTwoUsers','SumLvlTwoDepositAmnt','LvlThreeUsers','SumLvlThreeDepositAmnt','TotalTeamDeposit','TotalTeamMembers'));
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans','LvlOneUsers','SumLvlOneDepositAmnt','LvlTwoUsers','SumLvlTwoDepositAmnt','LvlThreeUsers','SumLvlThreeDepositAmnt','TotalTeamDeposit','TotalTeamMembers','totalTeamCom','SumLvlThreeComAmnt','SumLvlTwoComAmnt','SumLvlOneComAmnt'));
     }
 
     public function profile()
