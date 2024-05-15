@@ -857,7 +857,7 @@
                                     <li>
                                         <div class="direction-r">
                                             <div class="flag-wrapper">
-                                                <span class="bg-dark flag text-warning">Level 1 Deposit</span>
+                                                <span class="bg-dark flag text-warning">Team Deposit On Level 1</span>
                                                 <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlOneDepositAmnt->total_amount , 2) }}</span></span>
                                             </div>
                                         </div>
@@ -867,7 +867,7 @@
                                     <li>
                                         <div class="direction-l">
                                             <div class="flag-wrapper">
-                                                <span class="bg-dark flag text-warning">Level 1 Members</span>
+                                                <span class="bg-dark flag text-warning">Team Members On Level 1</span>
                                         <span class="time-wrapper"><span class="text-dark time">{{ count($LvlOneUsers) }}</span></span>
                                             </div>
                                         </div>
@@ -877,7 +877,7 @@
                                     <li>
                                         <div class="direction-r">
                                             <div class="flag-wrapper">
-                                                <span class="bg-dark flag text-success">Level 2 Deposit</span>
+                                                <span class="bg-dark flag text-success">Team Deposit On Level 2</span>
                                                 <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlTwoDepositAmnt->total_amount , 2) }}</span></span>
                                             </div>
                                         </div>
@@ -885,7 +885,7 @@
                                     <li>
                                         <div class="direction-r">
                                             <div class="flag-wrapper">
-                                                <span class="bg-dark flag text-success">Level 2 Members</span>
+                                                <span class="bg-dark flag text-success">Team Members On Level 2</span>
                                                 <span class="time-wrapper"><span class="text-dark time">{{ count($LvlTwoUsers) }}</span></span>
                                             </div>
                                         </div>
@@ -893,7 +893,7 @@
                                     <li>
                                         <div class="direction-r">
                                             <div class="flag-wrapper">
-                                                <span class="bg-dark flag text-danger">Level 3 Deposit</span>
+                                                <span class="bg-dark flag text-danger">Team Deposit On Level 3</span>
                                                 <span class="time-wrapper"><span class="text-dark time">{{ round($SumLvlThreeDepositAmnt->total_amount , 2) }}</span></span>
                                             </div>
                                         </div>
