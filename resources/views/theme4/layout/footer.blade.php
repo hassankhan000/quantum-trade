@@ -124,23 +124,13 @@ $serviceElements = element('service.element');
             <div class="container">
                 <div class="row gy-3 justify-content-between align-items-center">
                     <div class="col-lg-6 align-self-center">
-                        <p class="copyright-text">Copyright © 2024 <a href="#">IKO.</a> All rights reserved.</p>
+                        <p class="copyright-text">Copyright © 2024 <a href="#">QTAI.</a> All rights reserved.</p>
                     </div>
                     <div class="col-lg-6 text-lg-end">
                         <ul class="footer-links">
                             <li>
-                                <a href="blog.html">
-                                    Job & Career
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contact.html">
-                                    Terms and Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contact.html">
-                                    Help Center
+                                <a href="{{url('privacy/policy')}}">
+                                    Privay Policy
                                 </a>
                             </li>
                         </ul>

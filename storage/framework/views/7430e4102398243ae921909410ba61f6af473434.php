@@ -84,7 +84,7 @@ $serviceElements = element('service.element');
                                 </a>
                             </li>
                             <li>
-                                <a href="contact.html">
+                                <a href="<?php echo e(url('privacy/policy')); ?>">
                                     Terms and Condition
                                 </a>
                             </li>
