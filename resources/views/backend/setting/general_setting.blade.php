@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     {{-- vip work --}}
                                     <div class="col-md-4">
                                         <label class="mt-3">{{ __('VIP 1 Deposit Limit') }}</label>
@@ -167,6 +167,41 @@
                                         <div class="input-group">
                                             <input type="text" name="vip5_anmt_limit" placeholder="@lang('VIP 5 Deposit Limit')"
                                                value="{{$general->vip5_amount}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3">{{ __('Active Users Required VIP 1') }}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="act_user_req_1" placeholder="@lang('Active Users Required VIP 1')"
+                                               value="{{$general->req_active_users_vip1}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3">{{ __('Active Users Required VIP 2') }}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="act_user_req_2" placeholder="@lang('Active Users Required VIP 2')"
+                                               value="{{$general->req_active_users_vip2}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3">{{ __('Active Users Required VIP 3') }}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="act_user_req_3" placeholder="@lang('Active Users Required VIP 3')"
+                                               value="{{$general->req_active_users_vip3}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3">{{ __('Active Users Required VIP 4') }}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="act_user_req_4" placeholder="@lang('Active Users Required VIP 4')"
+                                               value="{{$general->req_active_users_vip4}}" class="form-control form_control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="mt-3">{{ __('Active Users Required VIP 5') }}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="act_user_req_5" placeholder="@lang('Active Users Required VIP 5')"
+                                               value="{{$general->req_active_users_vip5}}" class="form-control form_control">
                                         </div>
                                     </div>
 

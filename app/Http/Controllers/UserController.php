@@ -118,22 +118,8 @@ class UserController extends Controller
 
 
         // vip work
-        //     $referred_users = Db::table('users')
-        //     ->select('id')
-        //     ->where('reffered_by', Auth::id())
-        //     ->pluck('id')
-        //     ->toArray(); // Get the IDs as an array
-
-        // $check_ids_deposit = DB::table('deposits')
-        //     ->selectRaw('SUM(amount) AS total_amount')
-        //     ->whereIn('user_id', $referred_users)
-        //     ->where('payment_status', 1) // Adding the condition here
-        //     ->first();
-
-        // $totalAmount = $check_ids_deposit->total_amount ?? 0;
         $user = User::find(Auth::id());
         $general = GeneralSetting::first();
-
         // Define an array to store the VIP level reward statuses
         $vipRewardStatus = [
             1 => 'vip_1_reward_status',
@@ -144,25 +130,38 @@ class UserController extends Controller
         ];
 
         for ($i = 1; $i <= 5; $i++) {
+            // Check if total team deposit is greater than or equal to the VIP level amount
+            // and the user's VIP status is less than the current VIP level
             if ($TotalTeamDeposit >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
-                $user->vip_status = $i;
-                if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
-                    $user->balance += $general["vip{$i}_reward_amount"];
-                    $user->{$vipRewardStatus[$i]} = 1;
-                    Transaction::create([
-                        'trx' => strtoupper(Str::random(16)),
-                        'gateway_id' => 0,
-                        'amount' => $general["vip{$i}_reward_amount"],
-                        'currency' => @$general->site_currency,
-                        'charge' => 0,
-                        'details' => 'Vip Upgradation Bonus',
-                        'type' => '+',
-                        'gateway_transaction' => '',
-                        'user_id' => $user->id,
-                    ]);
+                // Retrieve the required active users count for VIP upgrade
+                $requiredUsers = $general["req_active_users_vip$i"];
+
+                // Count the actual active users referred by the current user
+                $getActiveUsers = User::where('reffered_by', $user->id)
+                                       ->where('status', 1) // Filter for active users
+                                       ->count();
+
+                // Check if the actual active users count meets the requirement for VIP upgrade
+                if ($getActiveUsers >= $requiredUsers) {
+                    $user->vip_status = $i;
+                    if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
+                        $user->balance += $general["vip{$i}_reward_amount"];
+                        $user->{$vipRewardStatus[$i]} = 1;
+                        Transaction::create([
+                            'trx' => strtoupper(Str::random(16)),
+                            'gateway_id' => 0,
+                            'amount' => $general["vip{$i}_reward_amount"],
+                            'currency' => @$general->site_currency,
+                            'charge' => 0,
+                            'details' => 'Vip Upgradation Bonus',
+                            'type' => '+',
+                            'gateway_transaction' => '',
+                            'user_id' => $user->id,
+                        ]);
+                    }
+                    $user->save();
+                    break; // Break the loop after updating VIP status
                 }
-                $user->save();
-                break;
             }
         }
 

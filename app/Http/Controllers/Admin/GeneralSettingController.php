@@ -33,7 +33,7 @@ class GeneralSettingController extends Controller
 
     public function generalSettingUpdate(Request $request)
     {
-       
+
 
         $general = GeneralSetting::first();
 
@@ -139,9 +139,9 @@ class GeneralSettingController extends Controller
             'min_amount' => $request->min_amount,
             'max_amount' => $request->max_amount,
             'is_vip_reward' => $request->vip_reward_status,
-            
+
             'user_kyc' => $request->user_kyc == 'on' ? 1 : 0,
-            
+
             'vip1_amount' => $request->vip1_anmt_limit,
             'vip2_amount' => $request->vip2_anmt_limit,
             'vip3_amount' => $request->vip3_anmt_limit,
@@ -158,7 +158,14 @@ class GeneralSettingController extends Controller
             'dc_lvl_two' => $request->dc_lvl_two,
             'dc_lvl_three' => $request->dc_lvl_three,
             'dc_lvl_four' => $request->dc_lvl_four,
-            'dc_lvl_five' => $request->dc_lvl_five
+            'dc_lvl_five' => $request->dc_lvl_five,
+
+
+            'req_active_users_vip1' => $request->act_user_req_1,
+            'req_active_users_vip2' => $request->act_user_req_2,
+            'req_active_users_vip3' => $request->act_user_req_3,
+            'req_active_users_vip4' => $request->act_user_req_4,
+            'req_active_users_vip5' => $request->act_user_req_5
         ]);
 
         $this->setEnv([
@@ -173,7 +180,7 @@ class GeneralSettingController extends Controller
     }
     public function setDepComPost(Request $request)
     {
-       
+
 
         $general = GeneralSetting::first();
 
@@ -190,7 +197,7 @@ class GeneralSettingController extends Controller
             'ic_lvl_four' => 'required',
             'ic_lvl_five' => 'required'
 
-        
+
         ]);
 
         GeneralSetting::updateOrCreate([
