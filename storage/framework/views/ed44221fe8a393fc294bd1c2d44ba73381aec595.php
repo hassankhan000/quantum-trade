@@ -380,12 +380,15 @@
                                             <h4> <?php echo e(number_format(auth()->user()->balance, 2)); ?>
 
                                                 <?php echo e($general->site_currency); ?></h4>
-                                            <h6 class="fs-6 mt-4">
-                                                <?php echo e(number_format(auth()->user()->balance, 2)); ?>
 
-                                            </h6>
+                                                <h6 class="fs-4 mt-3">Commission</h6>
+                                            <h4 class="fs-6">
+                                                <?php echo e(number_format($currentDayCommision->amount, 2)); ?>
+
+                                            </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
+                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze Amount</h6>
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
                                                 <?php if(isset($currentInvest->amount) == 0): ?>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

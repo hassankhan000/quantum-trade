@@ -46,7 +46,7 @@ class UserController extends Controller
         $interestLogs = UserInterest::with('payment')->where('user_id', Auth::id())->latest()->paginate(10, ['*'], 'log');
 
         $commison = RefferedCommission::where('reffered_by', Auth::id())->sum('amount');
-
+        $currentDayCommision = RefferedCommission::where('reffered_by', Auth::id())->latest()->first('amount');
         $pendingInvest = Payment::where('user_id', Auth::id())->where('payment_status', 2)->sum('amount');
         $pendingWithdraw = Withdraw::where('user_id', Auth::id())->where('status', 0)->sum('withdraw_amount');
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
@@ -55,11 +55,11 @@ class UserController extends Controller
 
         // perfomane chart work
         $LvlOneUsers = Db::table('users')
-        ->select('id')
-        ->where('reffered_by', Auth::id())
-        ->where('status', 1) // Add this line
-        ->pluck('id')
-        ->toArray();
+            ->select('id')
+            ->where('reffered_by', Auth::id())
+            ->where('status', 1) // Add this line
+            ->pluck('id')
+            ->toArray();
 
 
         $SumLvlOneDepositAmnt = DB::table('deposits')
@@ -68,108 +68,108 @@ class UserController extends Controller
             ->where('payment_status', 1)
             ->first();
 
-            $LvlTwoUsers = DB::table('users')
+        $LvlTwoUsers = DB::table('users')
             ->select('id')
             ->whereIn('reffered_by', $LvlOneUsers)
             ->where('status', 1)
             ->pluck('id')
             ->toArray();
 
-            $SumLvlTwoDepositAmnt = DB::table('deposits')
+        $SumLvlTwoDepositAmnt = DB::table('deposits')
             ->selectRaw('SUM(amount) AS total_amount')
             ->whereIn('user_id', $LvlTwoUsers)
             ->where('payment_status', 1)
             ->first();
 
-            $LvlThreeUsers = DB::table('users')
+        $LvlThreeUsers = DB::table('users')
             ->select('id')
             ->whereIn('reffered_by', $LvlTwoUsers)
             ->where('status', 1)
             ->pluck('id')
             ->toArray();
 
-            $SumLvlThreeDepositAmnt = DB::table('deposits')
+        $SumLvlThreeDepositAmnt = DB::table('deposits')
             ->selectRaw('SUM(amount) AS total_amount')
             ->whereIn('user_id', $LvlThreeUsers)
             ->where('payment_status', 1)
             ->first();
 
 
-            $SumLvlOneComAmnt = DB::table('reffered_commissions')
+        $SumLvlOneComAmnt = DB::table('reffered_commissions')
             ->selectRaw('SUM(amount) AS total_com')
-           ->whereIn('reffered_to', $LvlOneUsers)
-           ->first();
-           $SumLvlTwoComAmnt = DB::table('reffered_commissions')
-           ->selectRaw('SUM(amount) AS total_com')
-           ->whereIn('reffered_to', $LvlTwoUsers)
-           ->first();
-           $SumLvlThreeComAmnt = DB::table('reffered_commissions')
-           ->selectRaw('SUM(amount) AS total_com')
-           ->whereIn('reffered_to', $LvlThreeUsers)
-           ->first();
+            ->whereIn('reffered_to', $LvlOneUsers)
+            ->first();
+        $SumLvlTwoComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlTwoUsers)
+            ->first();
+        $SumLvlThreeComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlThreeUsers)
+            ->first();
 
-           $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
-           $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
-           $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
-           // perfomane chart work
-
-
+        $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
+        $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
+        $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
+        // perfomane chart work
 
 
 
-             // vip work
-    //     $referred_users = Db::table('users')
-    //     ->select('id')
-    //     ->where('reffered_by', Auth::id())
-    //     ->pluck('id')
-    //     ->toArray(); // Get the IDs as an array
 
-    // $check_ids_deposit = DB::table('deposits')
-    //     ->selectRaw('SUM(amount) AS total_amount')
-    //     ->whereIn('user_id', $referred_users)
-    //     ->where('payment_status', 1) // Adding the condition here
-    //     ->first();
 
-    // $totalAmount = $check_ids_deposit->total_amount ?? 0;
-    $user = User::find(Auth::id());
-    $general = GeneralSetting::first();
+        // vip work
+        //     $referred_users = Db::table('users')
+        //     ->select('id')
+        //     ->where('reffered_by', Auth::id())
+        //     ->pluck('id')
+        //     ->toArray(); // Get the IDs as an array
 
-    // Define an array to store the VIP level reward statuses
-    $vipRewardStatus = [
-        1 => 'vip_1_reward_status',
-        2 => 'vip_2_reward_status',
-        3 => 'vip_3_reward_status',
-        4 => 'vip_4_reward_status',
-        5 => 'vip_5_reward_status',
-    ];
+        // $check_ids_deposit = DB::table('deposits')
+        //     ->selectRaw('SUM(amount) AS total_amount')
+        //     ->whereIn('user_id', $referred_users)
+        //     ->where('payment_status', 1) // Adding the condition here
+        //     ->first();
 
-    for ($i = 1; $i <= 5; $i++) {
-        if ($TotalTeamDeposit >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
-            $user->vip_status = $i;
-            if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
-                $user->balance += $general["vip{$i}_reward_amount"];
-                $user->{$vipRewardStatus[$i]} = 1;
-                Transaction::create([
-                    'trx' => strtoupper(Str::random(16)),
-                    'gateway_id' => 0,
-                    'amount' => $general["vip{$i}_reward_amount"],
-                    'currency' => @$general->site_currency,
-                    'charge' => 0,
-                    'details' => 'Vip Upgradation Bonus',
-                    'type' => '+',
-                    'gateway_transaction' => '',
-                    'user_id' => $user->id,
-                ]);
+        // $totalAmount = $check_ids_deposit->total_amount ?? 0;
+        $user = User::find(Auth::id());
+        $general = GeneralSetting::first();
+
+        // Define an array to store the VIP level reward statuses
+        $vipRewardStatus = [
+            1 => 'vip_1_reward_status',
+            2 => 'vip_2_reward_status',
+            3 => 'vip_3_reward_status',
+            4 => 'vip_4_reward_status',
+            5 => 'vip_5_reward_status',
+        ];
+
+        for ($i = 1; $i <= 5; $i++) {
+            if ($TotalTeamDeposit >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
+                $user->vip_status = $i;
+                if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
+                    $user->balance += $general["vip{$i}_reward_amount"];
+                    $user->{$vipRewardStatus[$i]} = 1;
+                    Transaction::create([
+                        'trx' => strtoupper(Str::random(16)),
+                        'gateway_id' => 0,
+                        'amount' => $general["vip{$i}_reward_amount"],
+                        'currency' => @$general->site_currency,
+                        'charge' => 0,
+                        'details' => 'Vip Upgradation Bonus',
+                        'type' => '+',
+                        'gateway_transaction' => '',
+                        'user_id' => $user->id,
+                    ]);
+                }
+                $user->save();
+                break;
             }
-            $user->save();
-            break;
         }
-    }
 
 
-    // vip work
+        // vip work
         $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans','LvlOneUsers','SumLvlOneDepositAmnt','LvlTwoUsers','SumLvlTwoDepositAmnt','LvlThreeUsers','SumLvlThreeDepositAmnt','TotalTeamDeposit','TotalTeamMembers','totalTeamCom','SumLvlThreeComAmnt','SumLvlTwoComAmnt','SumLvlOneComAmnt'));
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt','currentDayCommision'));
     }
 
     public function profile()
@@ -451,29 +451,29 @@ class UserController extends Controller
 
                         if ($user->reffered_by != 0) {
                             $checkuplainerlvl1 = (int) DB::table('users')
-                            ->where('id', auth()->id())
-                            ->where('status', 1) // Add this line
-                            ->value('reffered_by');
+                                ->where('id', auth()->id())
+                                ->where('status', 1) // Add this line
+                                ->value('reffered_by');
 
-                        $checkuplainerlvl2 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl1)
-                            ->where('status', 1) // Add this line
-                            ->value('reffered_by');
+                            $checkuplainerlvl2 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl1)
+                                ->where('status', 1) // Add this line
+                                ->value('reffered_by');
 
-                        $checkuplainerlvl3 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl2)
-                            ->where('status', 1) // Add this line
-                            ->value('reffered_by');
+                            $checkuplainerlvl3 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl2)
+                                ->where('status', 1) // Add this line
+                                ->value('reffered_by');
 
-                        $checkuplainerlvl4 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl3)
-                            ->where('status', 1) // Add this line
-                            ->value('reffered_by');
+                            $checkuplainerlvl4 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl3)
+                                ->where('status', 1) // Add this line
+                                ->value('reffered_by');
 
-                        $checkuplainerlvl5 = (int) DB::table('users')
-                            ->where('id', $checkuplainerlvl4)
-                            ->where('status', 1) // Add this line
-                            ->value('reffered_by');
+                            $checkuplainerlvl5 = (int) DB::table('users')
+                                ->where('id', $checkuplainerlvl4)
+                                ->where('status', 1) // Add this line
+                                ->value('reffered_by');
 
                             if ($checkuplainerlvl1 != 0 && $general->ic_lvl_one != 0) {
                                 $general_percentage = $general->ic_lvl_one;
