@@ -1343,20 +1343,30 @@ class ManageGatewayController extends Controller
         $general = GeneralSetting::first();
 
         $checkuplainerlvl1 = (int) DB::table('users')
-            ->where('id', $booking->user_id)
-            ->value('reffered_by');
-        $checkuplainerlvl2 = (int) DB::table('users')
-            ->where('id', $checkuplainerlvl1)
-            ->value('reffered_by');
-        $checkuplainerlvl3 = (int) DB::table('users')
-            ->where('id', $checkuplainerlvl2)
-            ->value('reffered_by');
-        $checkuplainerlvl4 = (int) DB::table('users')
-            ->where('id', $checkuplainerlvl3)
-            ->value('reffered_by');
-        $checkuplainerlvl5 = (int) DB::table('users')
-            ->where('id', $checkuplainerlvl4)
-            ->value('reffered_by');
+        ->where('id', $booking->user_id)
+        ->where('status', 1)
+        ->value('reffered_by');
+
+    $checkuplainerlvl2 = (int) DB::table('users')
+        ->where('id', $checkuplainerlvl1)
+        ->where('status', 1)
+        ->value('reffered_by');
+
+    $checkuplainerlvl3 = (int) DB::table('users')
+        ->where('id', $checkuplainerlvl2)
+        ->where('status', 1)
+        ->value('reffered_by');
+
+    $checkuplainerlvl4 = (int) DB::table('users')
+        ->where('id', $checkuplainerlvl3)
+        ->where('status', 1)
+        ->value('reffered_by');
+
+    $checkuplainerlvl5 = (int) DB::table('users')
+        ->where('id', $checkuplainerlvl4)
+        ->where('status', 1)
+        ->value('reffered_by');
+
         if ($checkuplainerlvl1 != 0 && $general->dc_lvl_one != 0) {
             $deposit_amount = $booking->amount;
             $general_percentage = $general->dc_lvl_one;

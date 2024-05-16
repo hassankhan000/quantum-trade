@@ -52,163 +52,15 @@ class UserController extends Controller
         $totalDeposit = Deposit::where('user_id', Auth::id())->where('payment_status', 1)->sum('final_amount');
 
 
-        // vip work
-        $referred_users = Db::table('users')
-            ->select('id')
-            ->where('reffered_by', Auth::id())
-            ->pluck('id')
-            ->toArray(); // Get the IDs as an array
-
-        $check_ids_deposit = DB::table('deposits')
-            ->selectRaw('SUM(amount) AS total_amount')
-            ->whereIn('user_id', $referred_users)
-            ->where('payment_status', 1) // Adding the condition here
-            ->first();
-
-        $totalAmount = $check_ids_deposit->total_amount ?? 0;
-        // $general = GeneralSetting::first();
-
-        // $user = User::find(Auth::id());
-        // if ($totalAmount >= $general->vip5_amount) {
-        //     $user->vip_status = 5;
-        //     if ($general->is_vip_reward == 1 && $general->vip5_reward_amount != 0 && $user->vip_5_reward_status == 0) {
-        //         $user->balance += $general->vip5_reward_amount;
-        //         $user->vip_5_reward_status = 1;
-        //         Transaction::create([
-        //             'trx' => strtoupper(Str::random(16)),
-        //             'gateway_id' => 0,
-        //             'amount' => $general->vip5_reward_amount,
-        //             'currency' => @$general->site_currency,
-        //             'charge' => 0,
-        //             'details' => 'Vip Upgradation Bonus',
-        //             'type' => '+',
-        //             'gateway_transaction' => '',
-        //             'user_id' => $user->id,
-        //         ]);
-        //     }
-        //     $user->save();
-        // } elseif ($totalAmount >= $general->vip4_amount) {
-        //     $user = User::find(Auth::id());
-        //     $user->vip_status = 4;
-        //     if ($general->is_vip_reward == 1 && $general->vip4_reward_amount != 0 && $user->vip_4_reward_status == 0) {
-        //         $user->balance += $general->vip4_reward_amount;
-        //         $user->vip_4_reward_status = 1;
-        //         Transaction::create([
-        //             'trx' => strtoupper(Str::random(16)),
-        //             'gateway_id' => 0,
-        //             'amount' => $general->vip4_reward_amount,
-        //             'currency' => @$general->site_currency,
-        //             'charge' => 0,
-        //             'details' => 'Vip Upgradation Bonus',
-        //             'type' => '+',
-        //             'gateway_transaction' => '',
-        //             'user_id' => $user->id,
-        //         ]);
-        //     }
-        //     $user->save();
-        // } elseif ($totalAmount >= $general->vip3_amount) {
-        //     $user = User::find(Auth::id());
-        //     $user->vip_status = 3;
-        //     if ($general->is_vip_reward == 1 && $general->vip3_reward_amount != 0 && $user->vip_3_reward_status == 0) {
-        //         $user->balance += $general->vip3_reward_amount;
-        //         $user->vip_3_reward_status = 1;
-        //         Transaction::create([
-        //             'trx' => strtoupper(Str::random(16)),
-        //             'gateway_id' => 0,
-        //             'amount' => $general->vip3_reward_amount,
-        //             'currency' => @$general->site_currency,
-        //             'charge' => 0,
-        //             'details' => 'Vip Upgradation Bonus',
-        //             'type' => '+',
-        //             'gateway_transaction' => '',
-        //             'user_id' => $user->id,
-        //         ]);
-        //     }
-        //     $user->save();
-        // } elseif ($totalAmount >= $general->vip2_amount) {
-        //     $user = User::find(Auth::id());
-        //     $user->vip_status = 2;
-        //     if ($general->is_vip_reward == 1 && $general->vip2_reward_amount != 0 && $user->vip_2_reward_status == 0) {
-        //         $user->balance += $general->vip2_reward_amount;
-        //         $user->vip_1_reward_status = 2;
-        //         Transaction::create([
-        //             'trx' => strtoupper(Str::random(16)),
-        //             'gateway_id' => 0,
-        //             'amount' => $general->vip2_reward_amount,
-        //             'currency' => @$general->site_currency,
-        //             'charge' => 0,
-        //             'details' => 'Vip Upgradation Bonus',
-        //             'type' => '+',
-        //             'gateway_transaction' => '',
-        //             'user_id' => $user->id,
-        //         ]);
-        //     }
-        //     $user->save();
-        // } elseif ($totalAmount >= $general->vip1_amount) {
-        //     $user = User::find(Auth::id());
-        //     $user->vip_status = 1;
-        //     if ($general->is_vip_reward == 1 && $general->vip1_reward_amount != 0 && $user->vip_1_reward_status == 0) {
-        //         $user->balance += $general->vip1_reward_amount;
-        //         $user->vip_1_reward_status = 1;
-        //         Transaction::create([
-        //             'trx' => strtoupper(Str::random(16)),
-        //             'gateway_id' => 0,
-        //             'amount' => $general->vip1_reward_amount,
-        //             'currency' => @$general->site_currency,
-        //             'charge' => 0,
-        //             'details' => 'Vip Upgradation Bonus',
-        //             'type' => '+',
-        //             'gateway_transaction' => '',
-        //             'user_id' => $user->id,
-        //         ]);
-        //     }
-        //     $user->save();
-        // }
-        $user = User::find(Auth::id());
-        $general = GeneralSetting::first();
-
-        // Define an array to store the VIP level reward statuses
-        $vipRewardStatus = [
-            1 => 'vip_1_reward_status',
-            2 => 'vip_2_reward_status',
-            3 => 'vip_3_reward_status',
-            4 => 'vip_4_reward_status',
-            5 => 'vip_5_reward_status',
-        ];
-
-        for ($i = 1; $i <= 5; $i++) {
-            if ($totalAmount >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
-                $user->vip_status = $i;
-                if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
-                    $user->balance += $general["vip{$i}_reward_amount"];
-                    $user->{$vipRewardStatus[$i]} = 1;
-                    Transaction::create([
-                        'trx' => strtoupper(Str::random(16)),
-                        'gateway_id' => 0,
-                        'amount' => $general["vip{$i}_reward_amount"],
-                        'currency' => @$general->site_currency,
-                        'charge' => 0,
-                        'details' => 'Vip Upgradation Bonus',
-                        'type' => '+',
-                        'gateway_transaction' => '',
-                        'user_id' => $user->id,
-                    ]);
-                }
-                $user->save();
-                break;
-            }
-        }
-
-
-        // vip work
-
 
         // perfomane chart work
         $LvlOneUsers = Db::table('users')
-            ->select('id')
-            ->where('reffered_by', Auth::id())
-            ->pluck('id')
-            ->toArray();
+        ->select('id')
+        ->where('reffered_by', Auth::id())
+        ->where('status', 1) // Add this line
+        ->pluck('id')
+        ->toArray();
+
 
         $SumLvlOneDepositAmnt = DB::table('deposits')
             ->selectRaw('SUM(amount) AS total_amount')
@@ -219,6 +71,7 @@ class UserController extends Controller
             $LvlTwoUsers = DB::table('users')
             ->select('id')
             ->whereIn('reffered_by', $LvlOneUsers)
+            ->where('status', 1)
             ->pluck('id')
             ->toArray();
 
@@ -231,6 +84,7 @@ class UserController extends Controller
             $LvlThreeUsers = DB::table('users')
             ->select('id')
             ->whereIn('reffered_by', $LvlTwoUsers)
+            ->where('status', 1)
             ->pluck('id')
             ->toArray();
 
@@ -240,7 +94,7 @@ class UserController extends Controller
             ->where('payment_status', 1)
             ->first();
 
-            
+
             $SumLvlOneComAmnt = DB::table('reffered_commissions')
             ->selectRaw('SUM(amount) AS total_com')
            ->whereIn('reffered_to', $LvlOneUsers)
@@ -253,11 +107,67 @@ class UserController extends Controller
            ->selectRaw('SUM(amount) AS total_com')
            ->whereIn('reffered_to', $LvlThreeUsers)
            ->first();
-           
+
            $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
            $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
            $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
            // perfomane chart work
+
+
+
+
+
+             // vip work
+    //     $referred_users = Db::table('users')
+    //     ->select('id')
+    //     ->where('reffered_by', Auth::id())
+    //     ->pluck('id')
+    //     ->toArray(); // Get the IDs as an array
+
+    // $check_ids_deposit = DB::table('deposits')
+    //     ->selectRaw('SUM(amount) AS total_amount')
+    //     ->whereIn('user_id', $referred_users)
+    //     ->where('payment_status', 1) // Adding the condition here
+    //     ->first();
+
+    // $totalAmount = $check_ids_deposit->total_amount ?? 0;
+    $user = User::find(Auth::id());
+    $general = GeneralSetting::first();
+
+    // Define an array to store the VIP level reward statuses
+    $vipRewardStatus = [
+        1 => 'vip_1_reward_status',
+        2 => 'vip_2_reward_status',
+        3 => 'vip_3_reward_status',
+        4 => 'vip_4_reward_status',
+        5 => 'vip_5_reward_status',
+    ];
+
+    for ($i = 1; $i <= 5; $i++) {
+        if ($TotalTeamDeposit >= $general["vip{$i}_amount"] && $user->vip_status < $i) {
+            $user->vip_status = $i;
+            if ($general->is_vip_reward == 1 && $general["vip{$i}_reward_amount"] != 0 && $user->{$vipRewardStatus[$i]} == 0) {
+                $user->balance += $general["vip{$i}_reward_amount"];
+                $user->{$vipRewardStatus[$i]} = 1;
+                Transaction::create([
+                    'trx' => strtoupper(Str::random(16)),
+                    'gateway_id' => 0,
+                    'amount' => $general["vip{$i}_reward_amount"],
+                    'currency' => @$general->site_currency,
+                    'charge' => 0,
+                    'details' => 'Vip Upgradation Bonus',
+                    'type' => '+',
+                    'gateway_transaction' => '',
+                    'user_id' => $user->id,
+                ]);
+            }
+            $user->save();
+            break;
+        }
+    }
+
+
+    // vip work
         $plans = Plan::where('status', 1)->get();
         return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans','LvlOneUsers','SumLvlOneDepositAmnt','LvlTwoUsers','SumLvlTwoDepositAmnt','LvlThreeUsers','SumLvlThreeDepositAmnt','TotalTeamDeposit','TotalTeamMembers','totalTeamCom','SumLvlThreeComAmnt','SumLvlTwoComAmnt','SumLvlOneComAmnt'));
     }
@@ -541,20 +451,30 @@ class UserController extends Controller
 
                         if ($user->reffered_by != 0) {
                             $checkuplainerlvl1 = (int) DB::table('users')
-                                ->where('id', auth()->id())
-                                ->value('reffered_by');
-                            $checkuplainerlvl2 = (int) DB::table('users')
-                                ->where('id', $checkuplainerlvl1)
-                                ->value('reffered_by');
-                            $checkuplainerlvl3 = (int) DB::table('users')
-                                ->where('id', $checkuplainerlvl2)
-                                ->value('reffered_by');
-                            $checkuplainerlvl4 = (int) DB::table('users')
-                                ->where('id', $checkuplainerlvl3)
-                                ->value('reffered_by');
-                            $checkuplainerlvl5 = (int) DB::table('users')
-                                ->where('id', $checkuplainerlvl4)
-                                ->value('reffered_by');
+                            ->where('id', auth()->id())
+                            ->where('status', 1) // Add this line
+                            ->value('reffered_by');
+
+                        $checkuplainerlvl2 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl1)
+                            ->where('status', 1) // Add this line
+                            ->value('reffered_by');
+
+                        $checkuplainerlvl3 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl2)
+                            ->where('status', 1) // Add this line
+                            ->value('reffered_by');
+
+                        $checkuplainerlvl4 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl3)
+                            ->where('status', 1) // Add this line
+                            ->value('reffered_by');
+
+                        $checkuplainerlvl5 = (int) DB::table('users')
+                            ->where('id', $checkuplainerlvl4)
+                            ->where('status', 1) // Add this line
+                            ->value('reffered_by');
+
                             if ($checkuplainerlvl1 != 0 && $general->ic_lvl_one != 0) {
                                 $general_percentage = $general->ic_lvl_one;
                                 $PercentAmount = $interestAmount * ($general_percentage / 100);
