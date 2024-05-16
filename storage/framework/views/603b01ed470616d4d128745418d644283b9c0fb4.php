@@ -5,6 +5,7 @@
 <!-- Mirrored from themeadapt.com/tf/iko/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Apr 2024 19:52:30 GMT -->
 
 <head>
+    <meta name="cryptomus" content="e8265895" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>IKO - ICO & Crypto Landing Page Template</title>
