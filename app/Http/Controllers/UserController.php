@@ -113,10 +113,6 @@ class UserController extends Controller
         $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
         // perfomane chart work
 
-
-
-
-
         // vip work
         $user = User::find(Auth::id());
         $general = GeneralSetting::first();
@@ -138,8 +134,8 @@ class UserController extends Controller
 
                 // Count the actual active users referred by the current user
                 $getActiveUsers = User::where('reffered_by', $user->id)
-                                       ->where('status', 1) // Filter for active users
-                                       ->count();
+                    ->where('status', 1) // Filter for active users
+                    ->count();
 
                 // Check if the actual active users count meets the requirement for VIP upgrade
                 if ($getActiveUsers >= $requiredUsers) {
@@ -168,7 +164,7 @@ class UserController extends Controller
 
         // vip work
         $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt','currentDayCommision'));
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt', 'currentDayCommision'));
     }
 
     public function profile()
@@ -404,6 +400,83 @@ class UserController extends Controller
         $withdrawlogs = Withdraw::where('user_id', auth()->id())->where('status', 1)->latest()->with('withdrawMethod')->paginate(10);
 
         return view($this->template . 'user.withdraw.withdraw_log', compact('pageTitle', 'withdrawlogs'));
+    }
+
+    public function team()
+    {
+        $LvlOneUsers = Db::table('users')
+            ->select('id')
+            ->where('reffered_by', Auth::id())
+            ->where('status', 1) // Add this line
+            ->pluck('id')
+            ->toArray();
+
+
+        $SumLvlOneDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlOneUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+        $LvlTwoUsers = DB::table('users')
+            ->select('id')
+            ->whereIn('reffered_by', $LvlOneUsers)
+            ->where('status', 1)
+            ->pluck('id')
+            ->toArray();
+
+        $SumLvlTwoDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlTwoUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+        $LvlThreeUsers = DB::table('users')
+            ->select('id')
+            ->whereIn('reffered_by', $LvlTwoUsers)
+            ->where('status', 1)
+            ->pluck('id')
+            ->toArray();
+
+        $SumLvlThreeDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlThreeUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+
+        $SumLvlOneComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlOneUsers)
+            ->first();
+        $SumLvlTwoComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlTwoUsers)
+            ->first();
+        $SumLvlThreeComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlThreeUsers)
+            ->first();
+        $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
+        $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
+        $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
+        // perfomane chart work
+        $pageTitle = 'My Team';
+        return view($this->template . 'user.team', compact(
+            'pageTitle',
+            'LvlOneUsers',
+            'SumLvlOneDepositAmnt',
+            'LvlTwoUsers',
+            'SumLvlTwoDepositAmnt',
+            'LvlThreeUsers',
+            'SumLvlThreeDepositAmnt',
+            'SumLvlOneComAmnt',
+            'SumLvlTwoComAmnt',
+            'SumLvlThreeComAmnt',
+            'TotalTeamDeposit',
+            'TotalTeamMembers',
+            'totalTeamCom'
+        ));
     }
 
     public function commision(Request $request)

@@ -284,7 +284,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/commision') }}">
+            <a href="{{ url('/team') }}">
                 <img src="{{ asset('asset/team-icon.png') }}" class="img-fluid" alt="">
             </a>
         </li>
