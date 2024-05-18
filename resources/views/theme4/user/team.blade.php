@@ -1,10 +1,15 @@
 @extends(template() . 'layout.master2')
 @section('content2')
     <style>
-        .table th,
-        .table td {
+        .small-text {
             font-size: 9px !important;
-            color: black !important;
+        }
+
+        .nk-content-fluid {
+            background: #232721;
+        }
+        .border-success{
+            border-color: #aef32d !important;
         }
     </style>
     <div class="nk-content nk-content-fluid">
@@ -13,71 +18,73 @@
                 <div class="nk-content-body">
                     <div class="components-preview">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
-                            <div class="col-md-6 col-xxl-4 p-3">
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Total Members</th>
-                                            <th>Total Deposit</th>
-                                            <th>Total Commision</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $TotalTeamMembers }}</td>
-                                            <td>{{ round($TotalTeamDeposit, 2) }}</td>
-                                            <td>{{ round($totalTeamCom, 2) }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Level 1 Members</th>
-                                            <th>Level 1 Deposit</th>
-                                            <th>Level 1 Commision</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ count($LvlOneUsers) }}</td>
-                                            <td>{{ round($SumLvlOneDepositAmnt->total_amount, 2) }}</td>
-                                            <td>{{ round($SumLvlOneComAmnt->total_com, 2) }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Level 2 Members</th>
-                                            <th>Level 2 Deposit</th>
-                                            <th>Level 2 Commision</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ count($LvlTwoUsers) }}</td>
-                                            <td>{{ round($SumLvlTwoDepositAmnt->total_amount, 2) }}</td>
-                                            <td>{{ round($SumLvlTwoComAmnt->total_com, 2) }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Level 3 Members</th>
-                                            <th>Level 3 Deposit</th>
-                                            <th>Level 3 Commision</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ count($LvlThreeUsers) }}</td>
-                                            <td>{{ round($SumLvlThreeDepositAmnt->total_amount, 2) }}</td>
-                                            <td>{{ round($SumLvlThreeComAmnt->total_com, 2) }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-md-6 col-xxl-4 py-3">
+                                <div class="row">
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="text-white fw-bold m-0">Total Deposit:
+                                            {{ round($TotalTeamDeposit, 2) }}</h6>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">Today Deposit: N/A</p>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">This Month Deposit: N/A</p>
+                                    </div>
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="text-white fw-bold m-0">Total Members:
+                                            {{ $TotalTeamMembers }}</h6>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">Total Active: N/A</p>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">Today Active: N/A</p>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">This Month: N/A</p>
+                                    </div>
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="text-white fw-bold m-0">Total Commision:
+                                            {{ round($totalTeamCom, 2) }}</h6>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">Today Commission: N/A</p>
+                                        <hr class="border-success">
+                                        <p class="text-light m-0 small-text">This Month Commission: N/A</p>
+                                    </div>
+                                </div>
+                                {{-- <hr class="border-success"> --}}
+                                <div class="row">
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="fw-bold text-light">Level 1 Details</h6>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Deposit:
+                                            {{ round($SumLvlOneDepositAmnt->total_amount, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Members: {{ count($LvlOneUsers) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Commission:
+                                            {{ round($SumLvlOneComAmnt->total_com, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                    </div>
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="fw-bold text-light">Level 2 Details</h6>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Deposit: {{ round($SumLvlTwoDepositAmnt->total_amount, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Members: {{ count($LvlTwoUsers) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Commission: {{ round($SumLvlTwoComAmnt->total_com, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                    </div>
+                                    <div class="col-4 border border-success p-3">
+                                        <h6 class="fw-bold text-light">Level 3 Details</h6>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Deposit: {{ round($SumLvlThreeDepositAmnt->total_amount, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Members: {{ count($LvlThreeUsers) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Total Commission: {{ round($SumLvlThreeComAmnt->total_com, 2) }}</p>
+                                        <hr class="border-success">
+                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                    </div>
+                                </div>
                                 <div class="mt-3">
                                     <label>{{ __('Your refferal link') }}</label>
                                     <div class="input-group mb-3 d-flex align-items-center">
@@ -97,7 +104,7 @@
                                             id="basic-addon2">{{ __('Copy') }}</button>
                                     </div>
                                     <div class="w-100">
-                                        <h6 style="font-size: 11px;">Username: <span
+                                        <h6 class="text-white" style="font-size: 11px;">Username: <span
                                                 class="text-success">{{ @Auth::user()->username }}</span>
                                         </h6>
                                     </div>
