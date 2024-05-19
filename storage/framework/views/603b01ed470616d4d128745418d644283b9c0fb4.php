@@ -277,7 +277,7 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo e(url('/commision')); ?>">
+            <a href="<?php echo e(url('/team')); ?>">
                 <img src="<?php echo e(asset('asset/team-icon.png')); ?>" class="img-fluid" alt="">
             </a>
         </li>

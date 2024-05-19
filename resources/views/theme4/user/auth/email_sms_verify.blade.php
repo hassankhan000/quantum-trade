@@ -131,6 +131,7 @@
                                 <div class="form-group"><button class="btn btn-lg btn-primary btn-block"
                                         type="submit">{{ __('Verify Now') }}</button></div>
                             </form>
+                            @endif
                     </div>
                 </div>
                 <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"

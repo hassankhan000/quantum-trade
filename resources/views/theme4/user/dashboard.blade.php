@@ -389,8 +389,12 @@
 
                                                 <h6 class="fs-4 mt-3">Commission</h6>
                                             <h4 class="fs-6">
+                                                @if ($currentDayCommision)
                                                 {{ number_format($currentDayCommision->amount, 2) }}
-                                            </h4>
+                                            @else
+                                                0
+                                            @endif
+                                        </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze Amount</h6>

@@ -383,9 +383,13 @@
 
                                                 <h6 class="fs-4 mt-3">Commission</h6>
                                             <h4 class="fs-6">
+                                                <?php if($currentDayCommision): ?>
                                                 <?php echo e(number_format($currentDayCommision->amount, 2)); ?>
 
-                                            </h4>
+                                            <?php else: ?>
+                                                0
+                                            <?php endif; ?>
+                                        </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze Amount</h6>
