@@ -381,18 +381,19 @@
 
                                                 <?php echo e($general->site_currency); ?></h4>
 
-                                                <h6 class="fs-4 mt-3">Commission</h6>
+                                            <h6 class="fs-4 mt-3">Commission</h6>
                                             <h4 class="fs-6">
                                                 <?php if($currentDayCommision): ?>
-                                                <?php echo e(number_format($currentDayCommision->amount, 2)); ?>
+                                                    <?php echo e(number_format($currentDayCommision->amount, 2)); ?>
 
-                                            <?php else: ?>
-                                                0
-                                            <?php endif; ?>
-                                        </h4>
+                                                <?php else: ?>
+                                                    0
+                                                <?php endif; ?>
+                                            </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
-                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze Amount</h6>
+                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
+                                                Amount</h6>
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
                                                 <?php if(isset($currentInvest->amount) == 0): ?>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -524,6 +525,9 @@
                                                         <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
                                                             <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
                                                                 data-plan_percentage="<?php echo e(number_format($plan->return_interest, 2)); ?>"
+                                                                data-min_amount="<?php echo e(number_format($plan->minimum_amount, 2)); ?>"
+                                                                data-max_amount="<?php echo e(number_format($plan->maximum_amount, 2)); ?>"
+                                                                data-fix_amount="<?php echo e(number_format($plan->amount, 2)); ?>"
                                                                 data-url=""><span><?php echo e(__('Invest')); ?></span></button>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
@@ -758,11 +762,15 @@
                     <div class="form-group mb-1">
                         <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
                             class="form-control modal_amount">
+                        <p class="modal-table-p text-danger modal-error-message"></p>
                         <input type="hidden" name="plan_id" class="form-control">
                         <input type="hidden" name="plan_percentage" class="form-control">
                         <input type="hidden" name="pair_price">
                         <input type="hidden" name="pair_name">
                         <input type="hidden" name="timestamp">
+                        <input type="hidden" name="min_pay">
+                        <input type="hidden" name="max_pay">
+                        <input type="hidden" name="fix_amount">
                     </div>
                     <table class="table mt-3 table-sm table-striped modal-table">
                         <thead>
@@ -847,6 +855,9 @@
                 const modal = $('#invest');
                 modal.find('input[name=plan_id]').val($(this).data('plan').id);
                 modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
+                modal.find('input[name=min_pay]').val($(this).data('min_amount'));
+                modal.find('input[name=max_pay]').val($(this).data('max_amount'));
+                modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
                 modal.modal('show')
             })
         })
@@ -918,26 +929,60 @@
         $('.modal-table').hide()
         $('.submit-payment').attr('disabled', true)
         $('.submit-payment').text('Enter Amount')
+        var invest_form = $('.invest-form')
         $('.modal_amount').keyup(function(e) {
-            if ($(this).val() < 1) {
-                $('.submit-payment').attr('disabled', true)
-            } else {
-                $('.submit-payment').attr('disabled', false)
-                $('.submit-payment').text('Invest')
+
+            // $(this).val()
+            // invest_form.find('input[name=min_pay]').val()
+            // invest_form.find('input[name=max_pay]').val()
+            // $('.submit-payment').attr('disabled', true);
+            // $('.submit-payment').text('Please Follow Limit');
+
+            // Function to parse value while ignoring commas
+            function parseValue(value) {
+                return parseFloat(value.replace(/,/g, ''));
             }
+
+            var currentValue = parseValue($(this).val());
+            var minPay = parseValue(invest_form.find('input[name=min_pay]').val());
+            var maxPay = parseValue(invest_form.find('input[name=max_pay]').val());
+            var fixAmount = parseValue(invest_form.find('input[name=fix_amount]').val());
+            var modalMessage = $('.modal-error-message');
+
+            if (fixAmount > 0) {
+                if (currentValue != fixAmount) {
+                    $('.submit-payment').prop('disabled', true);
+                    $('.submit-payment').text('Please Follow Limit');
+                    modalMessage.text(`Amount should have been equal to ${fixAmount}.`)
+                    $('.modal-table').slideUp()
+                } else {
+                    $('.submit-payment').prop('disabled', false);
+                    $('.submit-payment').text('Submit');
+                    modalMessage.text(``)
+                    $('.modal-table').slideDown()
+                }
+            } else {
+                if (currentValue > maxPay || currentValue < minPay || currentValue < 1) {
+                    $('.submit-payment').prop('disabled', true);
+                    $('.submit-payment').text('Please Follow Limit');
+                    modalMessage.text(`Amount must be between ${minPay} and ${maxPay}.`)
+                    $('.modal-table').slideUp()
+                } else {
+                    $('.submit-payment').prop('disabled', false);
+                    $('.submit-payment').text('Submit');
+                    modalMessage.text(``)
+                    $('.modal-table').slideDown()
+                }
+            }
+
             let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
                 parseFloat($(this).val());
             $('.exp-profit').text(`$${expected} to $${expected*2}`)
             $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2)}`)
-            if ($(this).val().length > 0) {
-                $('.modal-table').slideDown()
-            } else {
-                $('.modal-table').slideUp()
-            }
         });
     </script>
     <script>
-        let invest_form = $('.invest-form')
+        var invest_form = $('.invest-form')
         $('.success-img-wrapper').hide()
         $('.payment-loading').hide()
 
