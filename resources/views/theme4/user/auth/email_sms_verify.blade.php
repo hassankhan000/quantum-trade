@@ -82,7 +82,7 @@
                             class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                 class="icon ni ni-info"></em></a></div>
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        <div class="brand-logo pb-2"><a href="../../index-2.html" class="logo-link"><img
+                        <div class="brand-logo pb-2"><a href="/" class="logo-link"><img
                                     src="{{ asset('asset/theme4/dashboard_assets/assets/images/logo.png') }}"
                                     alt="logo" />
                             </a></div>
@@ -141,7 +141,7 @@
                             <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
                                     srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
                             <div class="nk-feature-content py-4 p-sm-5">
-                                <h4>Dashlite</h4>
+                                <h4>Quantum</h4>
                                 <p>You can start to create your products easily with its user-friendly design &
                                     most completed responsive layout.</p>
                             </div>

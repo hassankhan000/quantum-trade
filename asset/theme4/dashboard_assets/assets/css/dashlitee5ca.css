@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
-* Template Name: DashLite
+* Template Name: Quantum
 * Author: Softnio
 * Author URI: http://themeforest.net/user/softnio
 * Version: 3.2.3
@@ -5560,7 +5560,7 @@ fieldset:disabled .dual-listbox .dual-listbox__button {
     float: left;
     padding-right: var(--bs-breadcrumb-item-padding-x);
     color: var(--bs-breadcrumb-divider-color);
-    content: var(--bs-breadcrumb-divider, "https://dashlite.net/")
+    content: var(--bs-breadcrumb-divider, "https://Quantum.net/")
 }
 
 .breadcrumb-item.active {
@@ -21686,15 +21686,15 @@ div.dataTables_wrapper div.dataTables_length select {
     content: "\ece5"
 }
 
-.ni-dashlite:before {
+.ni-Quantum:before {
     content: "\eb91"
 }
 
-.ni-dashlite-circle:before {
+.ni-Quantum-circle:before {
     content: "\ec56"
 }
 
-.ni-dashlite-alt:before {
+.ni-Quantum-alt:before {
     content: "\ec57"
 }
 

@@ -17,7 +17,7 @@
                     <div class="menu-wrap">
                         <nav class="menu-nav">
                             <div class="logo">
-                                <a href="index.html"><img
+                                <a href="/"><img
                                         src="<?php echo e(asset('asset/theme4/web_assets/assets/img/logo/logo.png')); ?>"
                                         style="height: 35px;" alt="Logo"></a>
                             </div>
@@ -72,7 +72,7 @@
         <nav class="menu-box">
             <div class="close-btn"><i class="fas fa-times"></i></div>
             <div class="nav-logo">
-                <a href="index.html"><img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/logo/logo.png')); ?>"
+                <a href="/"><img src="<?php echo e(asset('asset/theme4/web_assets/assets/img/logo/logo.png')); ?>"
                         style="height: 35px;" alt="Logo"></a>
             </div>
             <div class="menu-outer">

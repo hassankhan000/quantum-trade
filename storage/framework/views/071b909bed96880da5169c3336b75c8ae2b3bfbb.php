@@ -20,7 +20,7 @@
                             <div class="nk-block-head-content">
                                 <h5 class="nk-block-title">Register</h5>
                                 <div class="nk-block-des">
-                                    <p>Create New Dashlite Account</p>
+                                    <p>Create New Quantum Account</p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-control-xs custom-checkbox"><input type="checkbox"
                                         class="custom-control-input" name="check" id="exampleCheck1"><label
-                                        class="custom-control-label" for="checkbox">I agree to Dashlite <a tabindex="-1"
+                                        class="custom-control-label" for="checkbox">I agree to Quantum <a tabindex="-1"
                                             href="#">Privacy
                                             Policy</a> &amp; <a tabindex="-1" href="#"> Terms.</a></label></div>
                             </div>
@@ -124,7 +124,7 @@
                             </ul>
                         </div>
                         <div class="mt-3">
-                            <p>&copy; 2023 DashLite. All Rights Reserved.</p>
+                            <p>&copy; 2023 Quantum. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
                                             srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -148,7 +148,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-b.png"
                                             srcset="/demo6/images/slides/promo-b2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -159,7 +159,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-c.png"
                                             srcset="/demo6/images/slides/promo-c2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>

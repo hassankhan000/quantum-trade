@@ -10,7 +10,7 @@
                   Investment Dashboard
                 </h3>
                 <div class="nk-block-des text-soft">
-                  <p>Welcome to DashLite Dashboard Template.</p>
+                  <p>Welcome to Quantum Dashboard Template.</p>
                 </div>
               </div>
               <div class="nk-block-head-content">

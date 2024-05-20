@@ -19,7 +19,7 @@
                             <div class="nk-block-head-content">
                                 <h5 class="nk-block-title">Sign-In</h5>
                                 <div class="nk-block-des">
-                                    <p>Access the DashLite panel using your email and passcode.</p>
+                                    <p>Access the Quantum panel using your email and passcode.</p>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                         <div class="mt-3">
-                            <p>&copy; 2023 DashLite. All Rights Reserved.</p>
+                            <p>&copy; 2023 Quantum. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
                                             srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-b.png"
                                             srcset="/demo6/images/slides/promo-b2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -123,7 +123,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-c.png"
                                             srcset="/demo6/images/slides/promo-c2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Dashlite</h4>
+                                        <h4>Quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>

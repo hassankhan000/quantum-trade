@@ -8,7 +8,7 @@
             <div class="col-lg-6 text-center">
                 <h2 class="title text-white">{{ __($pageTitle) }}</h2>
                 <ul class="page-breadcrumb justify-content-center mt-2">
-                    <li><a href="index.html">{{ __('Home') }}</a></li>
+                    <li><a href="/">{{ __('Home') }}</a></li>
                     <li>{{ __($pageTitle) }}</li>
                 </ul>
             </div>
