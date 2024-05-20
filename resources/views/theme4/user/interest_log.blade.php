@@ -108,9 +108,9 @@
                                         </tbody>
                                     </table>
 
-                                    @if ($interestLogs->hasPages())
+                                    {{-- @if ($interestLogs->hasPages())
                                     {{ $interestLogs->links() }}
-                                @endif
+                                @endif --}}
                                 </div>
                             </div>
                         </div>
