@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('content2'); ?>
-    
+
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
@@ -25,18 +25,18 @@
                                                         <input type="text" name="email" id="refer-link" class="form-control"
                                                             placeholder="Transfer account email" required>
                                                     </div>
-                        
+
                                                     <div class="form-group mb-3">
                                                         <label for=""><?php echo e(__('Amount')); ?></label>
                                                         <input type="text" name="amount" id="amount" class="form-control"
                                                             placeholder="Transfer Amount" data-type="<?php echo e($general->trans_type); ?>"
                                                             data-charge="<?php echo e($general->trans_charge); ?>" required>
-                        
+
                                                         <p id="totalAmount" class="sp_text_secondary mt-3"></p>
                                                     </div>
-                        
+
                                                     <p class="text-center mb-3"><?php echo e(__('Transfer Charge')); ?> <?php echo e($general->trans_charge . ' ' . ($general->trans_type === 'fixed' ? $general->site_currency : '%')); ?></p>
-                        
+
                                                     <ul class="list-group mb-4">
                                                         <li class="list-group-item d-flex flex-wrap align-items-center justify-content-between">
                                                             <span><?php echo e(__('Min Transfer Amount')); ?></span>
@@ -48,7 +48,7 @@
                                                             <span><?php echo e($general->max_amount . ' ' . $general->site_currency); ?></span>
                                                         </li>
                                                     </ul>
-                        
+
                                                     <button type="submit" class="btn main-btn  btn-primary" id="basic-addon2"><span class=""><?php echo e(__('Transfer Money')); ?></span></button>
                                                 </form>
                                             </div>

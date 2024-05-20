@@ -10,7 +10,7 @@
                   Investment Dashboard
                 </h3>
                 <div class="nk-block-des text-soft">
-                  <p>Welcome to Quantum Dashboard Template.</p>
+                  <p>Welcome to quantum Dashboard Template.</p>
                 </div>
               </div>
               <div class="nk-block-head-content">
@@ -226,7 +226,7 @@
                     </div>
                     <div class="card-amount">
                       <span class="amount">
-                        <?php echo e(isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0); ?> 
+                        <?php echo e(isset($currentInvest->amount) ? number_format($currentInvest->amount, 2) : 0); ?>
                         <span class="currency currency-usd"
                           > <?php echo e($general->site_currency); ?></span
                         ></span
@@ -255,7 +255,7 @@
                     </div>
                     <div class="card-amount">
                       <span class="amount">
-                        <?php echo e(isset($currentPlan->plan->plan_name) ? $currentPlan->plan->plan_name : 'N/A'); ?> 
+                        <?php echo e(isset($currentPlan->plan->plan_name) ? $currentPlan->plan->plan_name : 'N/A'); ?>
                         <span class="currency currency-usd"
                           ></span
                         ></span
@@ -1246,7 +1246,7 @@
                 this.select();
             });
 
-            
+
         $('.mobile-card-slider').slick({
             slidesToShow: 1,
             slidesToScroll: 1,

@@ -258,7 +258,7 @@
                             $content = content('howitwork.content');
                             $elements = element('howitwork.element')->take(8);
                         ?>
-                        <h2 class="title style2">Started Investing With Quantum Trade Ai</h2>
+                        <h2 class="title style2">Started Investing With quantum Trade Ai</h2>
                     </div>
                 </div>
             </div>
@@ -273,7 +273,7 @@
                     <div class="intro-wrap mt-xl-4">
                         <h6 class="intro-wrap-title">Choose Strategy</h6>
                         <p class="intro-wrap-text"> Select Suitable Plan, Worlds Best Strategies Algorithm Trading Bot, New
-                            Tech Quantum Ai Trading Bot and Wide Range Of investment</p>
+                            Tech quantum Ai Trading Bot and Wide Range Of investment</p>
                     </div>
                     <div class="intro-wrap mt-x1-6">
                         <h6 class="intro-wrap-title">Get Profit</h6>
@@ -325,7 +325,7 @@
                                 <p>SubQuery Builders/Grants Program SQT Network contract internal MVP Coordinator and client
                                     SDK implementations</p>
                                 <a class="btn mt-2"
-                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/QuantumAi.pdf')); ?>"> Check Document
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/quantumAi.pdf')); ?>"> Check Document
                                 </a>
                             </div>
                         </div>
@@ -341,7 +341,7 @@
                                     can help reduce a portfolio’s volatility without necessarily decreasing its total
                                     return.</p>
                                 <a class="btn mt-2"
-                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-Quantum Trade.pdf')); ?>">
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-quantum Trade.pdf')); ?>">
                                     Check Document </a>
                             </div>
                         </div>

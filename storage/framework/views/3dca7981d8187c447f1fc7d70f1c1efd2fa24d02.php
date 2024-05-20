@@ -13,21 +13,21 @@
 
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-               
+
                 <div class="card-body text-center">
                     <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between">
 
                         <span><?php echo e(__('Transaction Id')); ?></span>
                         <span><?php echo e($manual->transaction_id); ?></span>
-                    
-                    </li> 
-                    
+
+                    </li>
+
                     <li class="list-group-item d-flex justify-content-between">
 
                         <span><?php echo e(__('Payment Date')); ?></span>
                         <span><?php echo e($manual->created_at->format('d F Y')); ?></span>
-                    
+
                     </li>
                     <?php $__currentLoopData = $manual->payment_proof; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $proof): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
@@ -37,21 +37,21 @@
 
                             <span><?php echo e(__(str_replace('_',' ', ucwords($key)))); ?></span>
                             <span class="text-right"><img src="<?php echo e(getFile('manual_payment', $proof['file'])); ?>" alt="" class="w-50 "></span>
-                        
+
                         </li>
 
                         <?php continue; ?>
 
                     <?php endif; ?>
-                  
+
                         <li class="list-group-item d-flex justify-content-between">
 
                             <span><?php echo e(__(str_replace('_',' ', ucwords($key)))); ?></span>
                             <span><?php echo e(__($proof)); ?></span>
-                        
+
                         </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    
+
                     </ul>
 
 

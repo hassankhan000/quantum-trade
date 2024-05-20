@@ -425,7 +425,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 plan-wrapper">
-                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
+                                <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST quantum
                                     TRADING BOTS
                                     <img style="margin: -8px 0px 0 -2px !important;
                                 width: 30px;"
@@ -443,9 +443,9 @@
                                     <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="plan-card">
-                                                <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
+                                                <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> quantum Trading Bot
                                                 </h4>
-                                                <p class="">Trade With World's Best Quantum Trading Bots</p>
+                                                <p class="">Trade With World's Best quantum Trading Bots</p>
                                                 <span class="plan-status"><?php echo e(__('Required VIP')); ?>
 
                                                     <?php echo e($plan->vip_status); ?>
@@ -751,7 +751,7 @@
                 <div class="d-flex align-items-baseline justify-content-between">
                     <p class="p-0 m-0">
                         Purchase
-                        Quantum
+                        quantum
                         Bot
                     </p>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">

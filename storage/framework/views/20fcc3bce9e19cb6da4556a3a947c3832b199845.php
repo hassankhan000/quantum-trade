@@ -1,5 +1,5 @@
 <?php $__env->startSection('content2'); ?>
-    
+
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">

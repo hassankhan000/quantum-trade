@@ -45,9 +45,9 @@
 <body>
     <img src="https://quantummtradeai.com/asset/theme4/web_assets/assets/img/logo/logo-dark.png" style="width: 100%;" alt="">
     <h2>Privacy Policy</h2>
-    <p>Quantum Trade Ai We is committed to protecting your privacy and ensuring the security of your
+    <p>quantum Trade Ai We is committed to protecting your privacy and ensuring the security of your
         personal information. This privacy policy explains how we collect, use, and disclose information when you use
-        our AI tech based Quantum Trade.Ai Bot.</p>
+        our AI tech based quantum Trade.Ai Bot.</p>
 
     <h2>Information We Collect</h2>
     <ul>

@@ -28,7 +28,7 @@
 
 <body class="home-purple-gradient">
 
-    
+
 
 
     <?php if(@$general->allow_modal): ?>
@@ -54,7 +54,7 @@
         <?php echo $__env->yieldContent('content'); ?>
     <?php echo $__env->make(template().'layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    
+
 
     <button type="button" class="cmn-btn btn-sm btn-floating" id="btn-back-to-top">
         <i class="fas fa-arrow-up text-light"></i>
@@ -76,7 +76,7 @@
 
     <?php echo $__env->yieldPushContent('script'); ?>
     <?php if(@$general->twak_allow): ?>
-        <script type="text/javascript"> 
+        <script type="text/javascript">
             var Tawk_API = Tawk_API || {},
                 Tawk_LoadStart = new Date();
             (function() {

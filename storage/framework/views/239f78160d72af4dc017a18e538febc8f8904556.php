@@ -50,7 +50,7 @@
         .error-pgae-wrapper {
         min-height: 100vh;
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
         align-content: center;
         justify-content: center;
       }

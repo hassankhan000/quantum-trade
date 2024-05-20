@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx" class="js">
-<!-- Mirrored from Quantum.net/demo6/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Apr 2024 12:20:24 GMT -->
+<!-- Mirrored from quantum.net/demo6/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Apr 2024 12:20:24 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
@@ -11,8 +11,8 @@
     <meta name="description"
         content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers." />
     <link rel="shortcut icon" href="images/favicon.png" />
-    <title>Invest Dashboard | Quantum Admin Template</title>
-    <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/Quantume5ca.css')); ?>" />
+    <title>Invest Dashboard | quantum Admin Template</title>
+    <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/quantume5ca.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/iziToast.min.css')); ?>">
     <link id="skin-default" rel="stylesheet"
         href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css')); ?>" />
@@ -389,7 +389,7 @@
                 <div class="container-xl">
                     <div class="nk-footer-wrap">
                         <div class="nk-footer-copyright">
-                            &copy; 2023 Quantum. Template by
+                            &copy; 2023 quantum. Template by
                             <a href="https://softnio.com/" target="_blank">Softnio</a>
                         </div>
                         <div class="nk-footer-links">
@@ -537,7 +537,7 @@
     <ul class="nk-sticky-toolbar">
         <li class="demo-layout">
             <a class="toggle tipinfo" data-target="demoML" href="#" title="Main Demo Preview"><em
-                    class="icon ni ni-Quantum"></em></a>
+                    class="icon ni ni-quantum"></em></a>
         </li>
         <li class="demo-thumb">
             <a class="toggle tipinfo" data-target="demoUC" href="#" title="Use Case Concept"><em
@@ -561,46 +561,46 @@
         </div>
         <div class="nk-demo-list" data-simplebar>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo1/index.html">
+                <a href="https://quantum.net/demo1/index.html">
                     <div class="nk-demo-image bg-blue">
                         <img class="bg-purple" src="../images/landing/layout-1d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-1d2x.jpg 2x" alt="Demo Layout 1" />
+                            srcset="https://quantum.net/images/landing/layout-1d2x.jpg 2x" alt="Demo Layout 1" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 1</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo2/index.html">
+                <a href="https://quantum.net/demo2/index.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/layout-2d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-2d2x.jpg 2x" alt="Demo Layout 2" />
+                            srcset="https://quantum.net/images/landing/layout-2d2x.jpg 2x" alt="Demo Layout 2" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 2</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/index.html">
+                <a href="https://quantum.net/demo3/index.html">
                     <div class="nk-demo-image bg-success">
                         <img src="../images/landing/layout-3d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-3d2x.jpg 2x" alt="Demo Layout 3" />
+                            srcset="https://quantum.net/images/landing/layout-3d2x.jpg 2x" alt="Demo Layout 3" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 3</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo4/index.html">
+                <a href="https://quantum.net/demo4/index.html">
                     <div class="nk-demo-image bg-indigo">
                         <img src="../images/landing/layout-4d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-4d2x.jpg 2x" alt="Demo Layout 4" />
+                            srcset="https://quantum.net/images/landing/layout-4d2x.jpg 2x" alt="Demo Layout 4" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 4</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo5/index.html">
+                <a href="https://quantum.net/demo5/index.html">
                     <div class="nk-demo-image bg-orange">
                         <img src="../images/landing/layout-5d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-5d2x.jpg 2x" alt="Demo Layout 5" />
+                            srcset="https://quantum.net/images/landing/layout-5d2x.jpg 2x" alt="Demo Layout 5" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 5</strong></span>
                 </a>
@@ -609,44 +609,44 @@
                 <a href="index-2.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/layout-6d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-6d2x.jpg 2x" alt="Demo Layout 6" />
+                            srcset="https://quantum.net/images/landing/layout-6d2x.jpg 2x" alt="Demo Layout 6" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 6</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo7/index.html">
+                <a href="https://quantum.net/demo7/index.html">
                     <div class="nk-demo-image bg-teal">
                         <img src="../images/landing/layout-7d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-7d2x.jpg 2x" alt="Demo Layout 7" />
+                            srcset="https://quantum.net/images/landing/layout-7d2x.jpg 2x" alt="Demo Layout 7" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 7</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo8/index.html">
+                <a href="https://quantum.net/demo8/index.html">
                     <div class="nk-demo-image bg-azure">
                         <img src="../images/landing/layout-8d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-8d2x.jpg 2x" alt="Demo Layout 8" />
+                            srcset="https://quantum.net/images/landing/layout-8d2x.jpg 2x" alt="Demo Layout 8" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 8</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo9/index.html">
+                <a href="https://quantum.net/demo9/index.html">
                     <div class="nk-demo-image bg-pink">
                         <img src="../images/landing/layout-9d.jpg"
-                            srcset="https://Quantum.net/images/landing/layout-9d2x.jpg 2x" alt="Demo Layout 9" />
+                            srcset="https://quantum.net/images/landing/layout-9d2x.jpg 2x" alt="Demo Layout 9" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 9</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/landing/index.html">
+                <a href="https://quantum.net/landing/index.html">
                     <div class="nk-demo-image bg-red">
                         <img src="../images/landing/main-landing.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/main-landing2x.jpg 2x
+                        https://quantum.net/images/landing/main-landing2x.jpg 2x
                       "
                             alt="Landing Page" />
                     </div>
@@ -665,11 +665,11 @@
         </div>
         <div class="nk-demo-list" data-simplebar>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo9/copywriter/index.html">
+                <a href="https://quantum.net/demo9/copywriter/index.html">
                     <div class="nk-demo-image bg-indigo">
                         <img src="../images/landing/demo-ai-copywriter.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-ai-copywriter2x.jpg 2x
+                        https://quantum.net/images/landing/demo-ai-copywriter2x.jpg 2x
                       "
                             alt="ai-copywriter" />
                     </div>
@@ -678,11 +678,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo7/pharmacy/index.html">
+                <a href="https://quantum.net/demo7/pharmacy/index.html">
                     <div class="nk-demo-image bg-warning">
                         <img src="../images/landing/demo-pharmacy.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-pharmacy2x.jpg 2x
+                        https://quantum.net/images/landing/demo-pharmacy2x.jpg 2x
                       "
                             alt="pharmacy" />
                     </div>
@@ -691,21 +691,21 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo5/loan/index.html">
+                <a href="https://quantum.net/demo5/loan/index.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/demo-loan.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-loan2x.jpg 2x" alt="loan" />
+                            srcset="https://quantum.net/images/landing/demo-loan2x.jpg 2x" alt="loan" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo5</em><br /><strong>Loan Management
                             Panel</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo2/ecommerce/index.html">
+                <a href="https://quantum.net/demo2/ecommerce/index.html">
                     <div class="nk-demo-image bg-dark">
                         <img src="../images/landing/demo-ecommerce.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-ecommerce2x.jpg 2x
+                        https://quantum.net/images/landing/demo-ecommerce2x.jpg 2x
                       "
                             alt="Ecommerce" />
                     </div>
@@ -714,20 +714,20 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo2/lms/index.html">
+                <a href="https://quantum.net/demo2/lms/index.html">
                     <div class="nk-demo-image bg-danger">
                         <img src="../images/landing/demo-lms.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-lms2x.jpg 2x" alt="LMS" />
+                            srcset="https://quantum.net/images/landing/demo-lms2x.jpg 2x" alt="LMS" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo2</em><br /><strong>LMS / Learning
                             Management System</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo1/crm/index.html">
+                <a href="https://quantum.net/demo1/crm/index.html">
                     <div class="nk-demo-image bg-info">
                         <img src="../images/landing/demo-crm.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-crm2x.jpg 2x"
+                            srcset="https://quantum.net/images/landing/demo-crm2x.jpg 2x"
                             alt="CRM / Customer Relationship" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo1</em><br /><strong>CRM / Customer
@@ -735,11 +735,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo7/hospital/index.html">
+                <a href="https://quantum.net/demo7/hospital/index.html">
                     <div class="nk-demo-image bg-indigo">
                         <img src="../images/landing/demo-hospital.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-hospital2x.jpg 2x
+                        https://quantum.net/images/landing/demo-hospital2x.jpg 2x
                       "
                             alt="Hospital Managemen" />
                     </div>
@@ -748,31 +748,31 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo1/hotel/index.html">
+                <a href="https://quantum.net/demo1/hotel/index.html">
                     <div class="nk-demo-image bg-pink">
                         <img src="../images/landing/demo-hotel.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-hotel2x.jpg 2x" alt="Hotel Managemen" />
+                            srcset="https://quantum.net/images/landing/demo-hotel2x.jpg 2x" alt="Hotel Managemen" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo1</em><br /><strong>Hotel
                             Management</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/cms/index.html">
+                <a href="https://quantum.net/demo3/cms/index.html">
                     <div class="nk-demo-image bg-dark">
                         <img src="../images/landing/demo-cms.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-cms2x.jpg 2x" alt="cms" />
+                            srcset="https://quantum.net/images/landing/demo-cms2x.jpg 2x" alt="cms" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo3</em><br /><strong>CMS
                             Panel</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo5/crypto/index.html">
+                <a href="https://quantum.net/demo5/crypto/index.html">
                     <div class="nk-demo-image bg-warning">
                         <img src="../images/landing/demo-buysell.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-buysell2x.jpg 2x
+                        https://quantum.net/images/landing/demo-buysell2x.jpg 2x
                       "
                             alt="Crypto BuySell / Wallet" />
                     </div>
@@ -785,7 +785,7 @@
                     <div class="nk-demo-image bg-indigo">
                         <img src="../images/landing/demo-invest.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-invest2x.jpg 2x
+                        https://quantum.net/images/landing/demo-invest2x.jpg 2x
                       "
                             alt="HYIP / Investment" />
                     </div>
@@ -794,11 +794,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/apps/file-manager.html">
+                <a href="https://quantum.net/demo3/apps/file-manager.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/demo-file-manager.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-file-manager2x.jpg 2x
+                        https://quantum.net/images/landing/demo-file-manager2x.jpg 2x
                       "
                             alt="File Manager" />
                     </div>
@@ -807,11 +807,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo4/subscription/index.html">
+                <a href="https://quantum.net/demo4/subscription/index.html">
                     <div class="nk-demo-image bg-primary">
                         <img src="../images/landing/demo-subscription.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-subscription2x.jpg 2x
+                        https://quantum.net/images/landing/demo-subscription2x.jpg 2x
                       "
                             alt="SAAS / Subscription" />
                     </div>
@@ -820,11 +820,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/covid/index.html">
+                <a href="https://quantum.net/covid/index.html">
                     <div class="nk-demo-image bg-danger">
                         <img src="../images/landing/demo-covid19.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-covid192x.jpg 2x
+                        https://quantum.net/images/landing/demo-covid192x.jpg 2x
                       "
                             alt="Covid Situation" />
                     </div>
@@ -833,11 +833,11 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/apps/messages.html">
+                <a href="https://quantum.net/demo3/apps/messages.html">
                     <div class="nk-demo-image bg-success">
                         <img src="../images/landing/demo-messages.jpg"
                             srcset="
-                        https://Quantum.net/images/landing/demo-messages2x.jpg 2x
+                        https://quantum.net/images/landing/demo-messages2x.jpg 2x
                       "
                             alt="Messages" />
                     </div>
@@ -846,20 +846,20 @@
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/apps/mailbox.html">
+                <a href="https://quantum.net/demo3/apps/mailbox.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/demo-inbox.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-inbox2x.jpg 2x" alt="Inbox" />
+                            srcset="https://quantum.net/images/landing/demo-inbox2x.jpg 2x" alt="Inbox" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo3</em><br /><strong>Apps -
                             Mailbox</strong></span>
                 </a>
             </div>
             <div class="nk-demo-item">
-                <a href="https://Quantum.net/demo3/apps/chats.html">
+                <a href="https://quantum.net/demo3/apps/chats.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/demo-chats.jpg"
-                            srcset="https://Quantum.net/images/landing/demo-chats2x.jpg 2x"
+                            srcset="https://quantum.net/images/landing/demo-chats2x.jpg 2x"
                             alt="Chats / Messenger" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo3</em><br /><strong>Apps -

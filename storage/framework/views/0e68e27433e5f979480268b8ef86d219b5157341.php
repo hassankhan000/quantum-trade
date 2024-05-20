@@ -130,8 +130,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-md-4">
                                         <label class="mt-3"><?php echo e(__('VIP 1 Deposit Limit')); ?></label>
                                         <div class="input-group">
@@ -204,7 +204,7 @@
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="col-md-4">
                                         <label class="mt-3"><?php echo e(__('Vip Reward Status')); ?></label>

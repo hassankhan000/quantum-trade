@@ -3,19 +3,19 @@
         <meta name='description' content="<?php echo e(@$general->seo_description); ?>">
     <?php $__env->stopPush(); ?>
 
-    
+
     <div class="nk-wrap nk-wrap-nosidebar">
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
                 <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45">
-                    
+
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        
+
                         <div class="nk-block-head">
                             <div class="nk-block-head-content">
                                 <h5 class="nk-block-title">Register</h5>
                                 <div class="nk-block-des">
-                                    <p>Create New Quantum Account</p>
+                                    <p>Create New quantum Account</p>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-control-xs custom-checkbox"><input type="checkbox"
                                         class="custom-control-input" name="check" id="exampleCheck1"><label
-                                        class="custom-control-label" for="checkbox">I agree to Quantum <a tabindex="-1"
+                                        class="custom-control-label" for="checkbox">I agree to quantum <a tabindex="-1"
                                             href="#">Privacy
                                             Policy</a> &amp; <a tabindex="-1" href="#"> Terms.</a></label></div>
                             </div>
@@ -92,7 +92,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
                                             srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum</h4>
+                                        <h4>quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -103,7 +103,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-b.png"
                                             srcset="/demo6/images/slides/promo-b2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum</h4>
+                                        <h4>quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>
@@ -114,7 +114,7 @@
                                     <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-c.png"
                                             srcset="/demo6/images/slides/promo-c2x.png 2x" alt=""></div>
                                     <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum</h4>
+                                        <h4>quantum</h4>
                                         <p>You can start to create your products easily with its user-friendly
                                             design & most completed responsive layout.</p>
                                     </div>

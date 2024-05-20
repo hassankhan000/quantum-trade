@@ -406,7 +406,7 @@
                                                     <td>
                                                         <p class="itemtext text-warning">
                                                             <?php if($transaction->next_payment_date != null): ?>
-                                                                <?php echo e(__('Quantum Bot Still Trading...')); ?>
+                                                                <?php echo e(__('quantum Bot Still Trading...')); ?>
 
                                                             <?php else: ?>
                                                                 <?php echo e($transaction->interest_amount - $transaction->interest_amount * 0.005); ?>%

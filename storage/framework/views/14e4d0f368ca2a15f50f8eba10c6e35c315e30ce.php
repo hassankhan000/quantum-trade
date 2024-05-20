@@ -230,12 +230,12 @@
 
                 for (let i = 0; i < data.level.length; i++) {
                     html += `
-          
+
                         <div class="input-group mb-3 mt-3 ">
                             <div class="input-group-prepend">
                                 <input class="btn btn-primary" type="text"  name=level[] value="${data.level[i]}" readonly>
                             </div>
-                                <input type="number" required class="form-control" name=commision[] 
+                                <input type="number" required class="form-control" name=commision[]
                                     placeholder="Commision" value="${data.commision[i]}">
 
                                 <div class="input-group-append">
@@ -279,12 +279,12 @@
 
                 for (let i = 0; i < value; i++) {
                     viewHtml += `
-          
+
                         <div class="input-group mb-3 mt-3 ">
                             <div class="input-group-prepend">
                                 <input class="btn btn-primary" type="text"  name=level[] value="level ${i+1}" readonly>
                             </div>
-                                <input type="number" required class="form-control" name=commision[] 
+                                <input type="number" required class="form-control" name=commision[]
                                     placeholder="Commision">
 
                                 <div class="input-group-append">
@@ -307,7 +307,7 @@
 
             $(document).on('click', '#generatorUpdate', function() {
 
-                
+
 
                 var value = $('.counterUpdate').val();
 
@@ -330,7 +330,7 @@
             <div class="input-group-prepend">
                 <input class="btn btn-primary" type="text"  name=level[] value="level ${i+1}" readonly>
             </div>
-                <input type="number" required class="form-control" name=commision[] 
+                <input type="number" required class="form-control" name=commision[]
                     placeholder="Commision">
 
                 <div class="input-group-append">
@@ -380,7 +380,7 @@
 
                 for (let i = 0; i < value; i++) {
                     viewHtml += `
-          
+
             <div class="input-group mb-3 mt-3 ">
                 <div class="input-group-prepend">
                                                 <input class="btn btn-success" type="text"  name="level[]"  value="level ${i+1}" readonly>
@@ -397,7 +397,7 @@
 
 
                                         </div>
-             
+
              `
                     $('.append_interest').html(viewHtml).hide().slideDown('slow');
                     $('.interest_commision').val('');

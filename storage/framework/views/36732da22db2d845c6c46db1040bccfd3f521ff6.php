@@ -3,7 +3,7 @@
         <meta name='description' content="<?php echo e(@$general->seo_description); ?>">
     <?php $__env->stopPush(); ?>
 
-    
+
     <div class="nk-wrap nk-wrap-nosidebar">
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
@@ -53,7 +53,7 @@
                             <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
                                     srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
                             <div class="nk-feature-content py-4 p-sm-5">
-                                <h4>Quantum</h4>
+                                <h4>quantum</h4>
                                 <p>You can start to create your products easily with its user-friendly design &
                                     most completed responsive layout.</p>
                             </div>

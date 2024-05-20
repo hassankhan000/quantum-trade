@@ -159,7 +159,7 @@
         <nav class="menu-box">
             <div class="close-btn"><i class="fas fa-times"></i></div>
             <div class="nav-logo">
-                <a href="/"><img src="{{ asset('asset/theme4/web_assets/assets/img/logo/logo.png') }}"
+                <a href="index.html"><img src="{{ asset('asset/theme4/web_assets/assets/img/logo/logo.png') }}"
                         style="height: 35px;" alt="Logo"></a>
             </div>
             <div class="menu-outer">

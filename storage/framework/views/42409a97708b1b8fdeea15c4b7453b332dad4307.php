@@ -1,5 +1,5 @@
 <?php $__env->startSection('content2'); ?>
-    
+
     <div class="dashboard-body-part">
 
         <div class="mobile-page-header">
