@@ -19,6 +19,9 @@
         padding: 0 !important;
     }
 
+    .nk-content.nk-content-fluid{
+    background: #293f00 !important; 
+}
     .loader7 {
         width: auto;
         height: 16px;
@@ -149,7 +152,7 @@
                 <div class="nk-content-body">
                     <div class="components-preview">
                         <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
-                            <h5 class="mb-sm-0 mb-2">{{ __('Trade Profit Log') }}</h5>
+                            <h5 class="mb-sm-0 mb-2 text-light">{{ __('Trade Profit Log') }}</h5>
                         </div>
                         <div class="nk-block nk-block-lg">
                             <div class="row">
