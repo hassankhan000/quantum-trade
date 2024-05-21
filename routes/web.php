@@ -423,12 +423,6 @@ Route::name('user.')->group(function () {
             Route::get('transfer-money', [UserController::class, 'transfer'])->name('transfer_money');
             Route::post('transfer-money', [UserController::class, 'transferMoney']);
 
-
-
-
-
-
-
             Route::get('invest/pending', [UserController::class, 'pendingInvest'])->name('invest.pending');
             Route::get('invest/all', [UserController::class, 'allInvest'])->name('invest.all');
 

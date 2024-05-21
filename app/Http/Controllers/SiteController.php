@@ -179,7 +179,7 @@ class SiteController extends Controller
             'currency' => $general->site_currency,
         ], $deposit->user);
 
-        return redirect()->route('user.invest.log')->with('success', 'Successfully Invest');
+        return redirect()->route('user.interest.log')->with('success', 'Successfully Invest');
     }
 
 

@@ -129,14 +129,14 @@
     }
 
     .loader7 {
-        width: 250px;
+        width: auto;
         height: 16px;
-        border: 1px solid #aaa;
-        border-radius: 2px;
+        border: 1px solid #a6ff0052;
+        border-radius: 5px;
         position: relative;
         overflow: hidden;
-        background: #c8c8c8;
-        margin: 5px;
+        background: #c8c8c800;
+        margin: 0;
     }
 
     .loader7::after,
@@ -147,13 +147,13 @@
         left: 0;
         width: 10px;
         z-index: 1;
-        background: linear-gradient(to right, rgba(170, 170, 170, 1) 0%, rgba(170, 170, 170, 0) 100%);
+        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 0) 100%);
     }
 
     .loader7::after {
         left: auto;
         right: 0;
-        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 1) 100%);
+        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 0) 100%);
     }
 
     .loader7>span {
@@ -162,7 +162,7 @@
         z-index: 3;
         width: 100%;
         height: 100%;
-        box-shadow: 0 0 1px #fff inset;
+        box-shadow: 0 0 1px #ffffff00 inset;
         position: absolute;
     }
 
@@ -173,7 +173,7 @@
         height: 100%;
         position: absolute;
         top: 0;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.4) 100%);
+        background: transparent;
     }
 
     .greenlight {
@@ -266,7 +266,7 @@
                     <div class="components-preview">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                                <h5 class="mb-sm-0 mb-2">{{ __('Investment Log') }}</h5>
+                                <h5 class="mb-sm-0 mb-2">{{ __('Trade Log') }}</h5>
                                 <form action="" method="get" class="d-inline-flex">
                                     <input type="text" name="trx" class="form-control form-control-sm me-2"
                                         placeholder="transaction id">
@@ -279,20 +279,7 @@
                         @forelse($transactions as $key => $transaction)
                             <div class="card w-100">
                                 <div id="invoice-POS">
-
-                                    <center id="top">
-                                        @if ($transaction->next_payment_date != null)
-                                            <div class="loader7">
-                                                <span></span>
-                                                <div class="greenlight"></div>
-                                            </div>
-                                        @else
-                                            <p class="m-0 text-white mt-1">Completed</p>
-                                        @endif
-                                    </center>
-
                                     <div id="bot">
-
                                         <div id="table">
                                             <table>
                                                 <tr class="service">
@@ -365,10 +352,17 @@
                                                             {{ __('Ending Pair Price') }}
                                                         </p>
                                                     </td>
-                                                    <td>
-                                                        <p class="itemtext text-warning">
-                                                            {{ $transaction->pair_price * 1.002 }}
-                                                        </p>
+                                                    <td class="itemtext text-warning">
+                                                        @if ($transaction->next_payment_date != null)
+                                                            <div class="loader7">
+                                                                <span></span>
+                                                                <div class="greenlight"></div>
+                                                            </div>
+                                                        @else
+                                                            <p class="itemtext text-warning">
+                                                                {{ $transaction->pair_price * 1.002 }}
+                                                            </p>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr class="service">
@@ -390,13 +384,16 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <p class="itemtext text-warning">
-                                                            @if ($transaction->next_payment_date != null)
-                                                                {{ __('Quantum Bot Still Trading...') }}
-                                                            @else
+                                                        @if ($transaction->next_payment_date != null)
+                                                            <div class="loader7">
+                                                                <span></span>
+                                                                <div class="greenlight"></div>
+                                                            </div>
+                                                        @else
+                                                            <p class="itemtext text-warning">
                                                                 {{ $transaction->interest_amount - $transaction->interest_amount * 0.005 }}%
-                                                            @endif
-                                                        </p>
+                                                            </p>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr class="service">

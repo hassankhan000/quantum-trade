@@ -127,14 +127,14 @@
     }
 
     .loader7 {
-        width: 250px;
+        width: auto;
         height: 16px;
-        border: 1px solid #aaa;
-        border-radius: 2px;
+        border: 1px solid #a6ff0052;
+        border-radius: 5px;
         position: relative;
         overflow: hidden;
-        background: #c8c8c8;
-        margin: 5px;
+        background: #c8c8c800;
+        margin: 0;
     }
 
     .loader7::after,
@@ -145,13 +145,13 @@
         left: 0;
         width: 10px;
         z-index: 1;
-        background: linear-gradient(to right, rgba(170, 170, 170, 1) 0%, rgba(170, 170, 170, 0) 100%);
+        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 0) 100%);
     }
 
     .loader7::after {
         left: auto;
         right: 0;
-        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 1) 100%);
+        background: linear-gradient(to right, rgba(170, 170, 170, 0) 0%, rgba(170, 170, 170, 0) 100%);
     }
 
     .loader7>span {
@@ -160,7 +160,7 @@
         z-index: 3;
         width: 100%;
         height: 100%;
-        box-shadow: 0 0 1px #fff inset;
+        box-shadow: 0 0 1px #ffffff00 inset;
         position: absolute;
     }
 
@@ -171,7 +171,7 @@
         height: 100%;
         position: absolute;
         top: 0;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0.5) 49%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.4) 100%);
+        background: transparent;
     }
 
     .greenlight {
@@ -264,7 +264,7 @@
                     <div class="components-preview">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                                <h5 class="mb-sm-0 mb-2"><?php echo e(__('Investment Log')); ?></h5>
+                                <h5 class="mb-sm-0 mb-2"><?php echo e(__('Trade Log')); ?></h5>
                                 <form action="" method="get" class="d-inline-flex">
                                     <input type="text" name="trx" class="form-control form-control-sm me-2"
                                         placeholder="transaction id">
@@ -277,20 +277,7 @@
                         <?php $__empty_1 = true; $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <div class="card w-100">
                                 <div id="invoice-POS">
-
-                                    <center id="top">
-                                        <?php if($transaction->next_payment_date != null): ?>
-                                            <div class="loader7">
-                                                <span></span>
-                                                <div class="greenlight"></div>
-                                            </div>
-                                        <?php else: ?>
-                                            <p class="m-0 text-white mt-1">Completed</p>
-                                        <?php endif; ?>
-                                    </center>
-
                                     <div id="bot">
-
                                         <div id="table">
                                             <table>
                                                 <tr class="service">
@@ -375,11 +362,18 @@
 
                                                         </p>
                                                     </td>
-                                                    <td>
-                                                        <p class="itemtext text-warning">
-                                                            <?php echo e($transaction->pair_price * 1.002); ?>
+                                                    <td class="itemtext text-warning">
+                                                        <?php if($transaction->next_payment_date != null): ?>
+                                                            <div class="loader7">
+                                                                <span></span>
+                                                                <div class="greenlight"></div>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <p class="itemtext text-warning">
+                                                                <?php echo e($transaction->pair_price * 1.002); ?>
 
-                                                        </p>
+                                                            </p>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                                 <tr class="service">
@@ -404,14 +398,16 @@
                                                         </p>
                                                     </td>
                                                     <td>
-                                                        <p class="itemtext text-warning">
-                                                            <?php if($transaction->next_payment_date != null): ?>
-                                                                <?php echo e(__('quantum Bot Still Trading...')); ?>
-
-                                                            <?php else: ?>
+                                                        <?php if($transaction->next_payment_date != null): ?>
+                                                            <div class="loader7">
+                                                                <span></span>
+                                                                <div class="greenlight"></div>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <p class="itemtext text-warning">
                                                                 <?php echo e($transaction->interest_amount - $transaction->interest_amount * 0.005); ?>%
-                                                            <?php endif; ?>
-                                                        </p>
+                                                            </p>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                                 <tr class="service">

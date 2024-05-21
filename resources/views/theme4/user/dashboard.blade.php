@@ -983,8 +983,8 @@
 
             let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
                 parseFloat($(this).val());
-            $('.exp-profit').text(`$${expected} to $${expected*2}`)
-            $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2)}`)
+            $('.exp-profit').text(`$${expected} to $${(expected * 1 / 100) + expected}`)
+            $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2) / 2}`)
         });
     </script>
     <script>
