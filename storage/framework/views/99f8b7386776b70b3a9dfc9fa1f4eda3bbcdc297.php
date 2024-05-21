@@ -25,7 +25,6 @@
         display: none;
     }
 </style>
-
 <?php $__env->startSection('content2'); ?>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">

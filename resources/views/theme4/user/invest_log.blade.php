@@ -433,9 +433,10 @@
                                             </table>
 
 
+                                          
                                             @if ($transactions->hasPages())
-                                                {{ $transactions->links() }}
-                                            @endif
+                        {{ $transactions->links() }}
+                    @endif
                                         </div><!--End Table-->
                                     </div><!--End InvoiceBot-->
                                 </div><!--End Invoice-->

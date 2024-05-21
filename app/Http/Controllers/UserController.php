@@ -754,7 +754,7 @@ class UserController extends Controller
 
         $data['interestLogs'] = UserInterest::when($request->date, function ($item) use ($request) {
             $item->whereDate('created_at', $request->date);
-        })->with('payment')->where('user_id', Auth::id())->latest()->get();
+        })->with('payment')->where('user_id', Auth::id())->latest()->paginate(10);
 
 
         $data['pageTitle'] = 'Return interest Log';

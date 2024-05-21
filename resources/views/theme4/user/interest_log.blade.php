@@ -5,7 +5,8 @@
         border-radius: 13px !important;
     }
 
-    td, th{
+    td,
+    th {
         padding: 0 !important;
     }
 
@@ -19,9 +20,12 @@
         padding: 0 !important;
     }
 
-    .nk-content.nk-content-fluid{
-    background: #293f00 !important; 
-}
+    .nk-content.nk-content-fluid {
+        background: #293f00 !important;
+        height: 100vh;
+        overflow: auto;
+    }
+
     .loader7 {
         width: auto;
         height: 16px;
@@ -91,6 +95,13 @@
             left: 100%;
         }
     }
+    nav {
+    background-color: #3c3e3800 !important;
+    padding: 0 !important;
+    height: auto !important;
+    padding-top: 30px !important;
+    box-shadow: none !important;
+}
 </style>
 
 @section('content2')
@@ -237,12 +248,14 @@
                                         </tr>
                                     </table>
                                 @endforelse
+                                <table class="mt-3">
+                                    @if ($interestLogs->hasPages())
+                                        {{ $interestLogs->links() }}
+                                    @endif
+                                </table>
                             </div>
                         </div>
                     </div>
-                    {{-- @if ($interestLogs->hasPages())
-                        {{ $interestLogs->links() }}
-                    @endif --}}
                 </div>
             </div>
         </div>

@@ -4,7 +4,8 @@
         border-radius: 13px !important;
     }
 
-    td, th{
+    td,
+    th {
         padding: 0 !important;
     }
 
@@ -18,9 +19,12 @@
         padding: 0 !important;
     }
 
-    .nk-content.nk-content-fluid{
-    background: #293f00 !important; 
-}
+    .nk-content.nk-content-fluid {
+        background: #293f00 !important;
+        height: 100vh;
+        overflow: auto;
+    }
+
     .loader7 {
         width: auto;
         height: 16px;
@@ -197,10 +201,15 @@
                                         </tr>
                                     </table>
                                 <?php endif; ?>
+                                <table class="mt-3">
+                                    <?php if($interestLogs->hasPages()): ?>
+                                        <?php echo e($interestLogs->links()); ?>
+
+                                    <?php endif; ?>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
