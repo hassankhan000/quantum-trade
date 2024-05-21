@@ -262,7 +262,7 @@
                                         </li>
                                         <li class="nk-menu-item">
                                             <a href="{{ url('invest/log') }}" class="nk-menu-link"><span
-                                                    class="nk-menu-text">Investment log</span></a>
+                                                    class="nk-menu-text">Trade log</span></a>
                                         </li>
                                     </ul>
                                 </li>
