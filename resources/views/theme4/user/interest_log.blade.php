@@ -1,124 +1,18 @@
 @extends(template() . 'layout.master2')
 <style>
-    #invoice-POS {
-        box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
-        padding: 2mm;
-        margin: 0 auto;
-        width: 100%;
-        background: #000000;
-        border-radius: 10px;
+    table {
+        background: #232721 !important;
+        border-radius: 13px !important;
     }
 
-    #invoice-POS ::selection {
-        background: #f31544;
-        color: #fff;
+    .itemtext {
+        color: #aef32d !important;
+        font-size: 10px !important;
+        padding: 10px !important;
     }
 
-    #invoice-POS ::moz-selection {
-        background: #f31544;
-        color: #fff;
-    }
-
-    #invoice-POS h1 {
-        font-size: 1.5em;
-        color: #222;
-    }
-
-    #invoice-POS h2 {
-        font-size: 0.9em;
-    }
-
-    #invoice-POS h3 {
-        font-size: 1.2em;
-        font-weight: 300;
-        line-height: 2em;
-    }
-
-    #invoice-POS p {
-        font-size: 0.7em;
-        color: #a6ff00;
-        line-height: 1.2em;
-    }
-
-    #invoice-POS #top,
-    #invoice-POS #mid,
-    #invoice-POS #bot {
-        /* Targets all id with 'col-' */
-        border-bottom: 1px solid #eeeeee33;
-    }
-
-    #invoice-POS #top {
-        padding-bottom: 10px;
-    }
-
-    #invoice-POS #mid {
-        min-height: 80px;
-    }
-
-    #invoice-POS #bot {
-        min-height: 50px;
-    }
-
-    #invoice-POS #top .logo {
-        height: 60px;
-        width: 60px;
-        background: url(https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif) no-repeat;
-        background-size: 100% 100%;
-        border-radius: 50%;
-    }
-
-    #invoice-POS .clientlogo {
-        float: left;
-        height: 60px;
-        width: 60px;
-        background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-        background-size: 60px 60px;
-        border-radius: 50px;
-    }
-
-    #invoice-POS .info {
-        display: block;
-        margin-left: 0;
-    }
-
-    #invoice-POS .title {
-        float: right;
-    }
-
-    #invoice-POS .title p {
-        text-align: right;
-    }
-
-    #invoice-POS table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #invoice-POS .tabletitle {
-        font-size: 0.5em;
-        background: #eee;
-    }
-
-    #invoice-POS .service {
-        border-bottom: 1px solid #aef32d54;
-    }
-
-    #invoice-POS .item {
-        width: 24mm;
-    }
-
-    #invoice-POS .itemtext {
-        font-size: 9px;
-    }
-
-    #invoice-POS #legalcopy {
-        margin-top: 5mm;
-    }
-
-    td,
-    th,
     .tableitem {
-        padding: 10px 5px !important;
+        padding: 0 !important;
     }
 
     .loader7 {
