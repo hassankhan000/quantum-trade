@@ -25,7 +25,6 @@
         display: none;
     }
 </style>
-
 @section('content2')
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
