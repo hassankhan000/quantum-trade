@@ -428,6 +428,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-6 mt-2">
+                                <a class="btn bg-warning text-dark w-100" href="{{ url('deposit') }}">Deposit</a>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <a class="btn w-100" href="{{ url('withdraw') }}">Withdraw</a>
+                            </div>
                             <div class="col-md-4 plan-wrapper">
                                 <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST quantum
                                     TRADING BOTS

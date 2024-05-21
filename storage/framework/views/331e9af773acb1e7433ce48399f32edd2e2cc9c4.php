@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx" class="js">
-<!-- Mirrored from dashlite.net/demo6/pages/auths/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Apr 2024 12:20:51 GMT -->
+<!-- Mirrored from .net/demo6/pages/auths/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Apr 2024 12:20:51 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
@@ -11,7 +11,7 @@
     <meta name="description"
         content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <link rel="shortcut icon" href="../../images/favicon.png">
-    <title>Login | DashLite Admin Template</title>
+    <title>Login | Quantum Trade AI</title>
     <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/dashlitee5ca.css')); ?>">
     <link id="skin-default" rel="stylesheet"
         href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css')); ?>">
