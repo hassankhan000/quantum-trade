@@ -209,7 +209,7 @@
                             $content = content('howitwork.content');
                             $elements = element('howitwork.element')->take(8);
                         ?>
-                        <h2 class="title style2">Started Investing With quantum Trade Ai</h2>
+                        <h2 class="title style2">Started Investing With Quantum Trade Ai</h2>
                     </div>
                 </div>
             </div>
@@ -224,7 +224,7 @@
                     <div class="intro-wrap mt-xl-4">
                         <h6 class="intro-wrap-title">Choose Strategy</h6>
                         <p class="intro-wrap-text"> Select Suitable Plan, Worlds Best Strategies Algorithm Trading Bot, New
-                            Tech quantum Ai Trading Bot and Wide Range Of investment</p>
+                            Tech Quantum Ai Trading Bot and Wide Range Of investment</p>
                     </div>
                     <div class="intro-wrap mt-x1-6">
                         <h6 class="intro-wrap-title">Get Profit</h6>
@@ -269,7 +269,7 @@
                 <div class="row roadMap-active2 roadmap-slider1">
                     <div class="col-lg-4">
                         <div class="roadmap-item">
-                            <span class="roadmap-title">quantum AI</span>
+                            <span class="roadmap-title">Quantum AI</span>
                             <div class="roadmap-content">
                                 <h4 class="title"><span class="dot"></span>Research</h4>
                                 <p>To investigate the trade-offs between human
@@ -282,7 +282,7 @@
                                     analysed the transcripts to arrive at 42 micro interactions that define advice as a service
                                     through the lens of investors and advisers.</p>
                                 <a class="btn mt-2"
-                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/quantumAi.pdf')); ?>"> Check Document
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/QuantumAi.pdf')); ?>"> Check Document
                                 </a>
                             </div>
                         </div>
@@ -299,7 +299,7 @@
                                     capabilities, securities lending practices, pricing policies and
                                     scale.</p>
                                 <a class="btn mt-2"
-                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-quantum Trade.pdf')); ?>">
+                                    href="<?php echo e(asset('asset/theme4/web_assets/assets/img/beyond-expense-ratios-eu-en-Quantum Trade.pdf')); ?>">
                                     Check Document </a>
                             </div>
                         </div>
@@ -457,121 +457,7 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="text-center">
-                        <div class="team-tab-btn filter-menu-active">
-                            <button data-filter=".cat2" type="button">Management Team</button>
-                            <button data-filter=".cat3" type="button">Marketing Team</button>
-                        </div>
-                    </div>
-                    <div class="filter-active-cat1">
-                        <div class="team-tab-content filter-item cat1">
-                            <ul class="team-tab-list">
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-1.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Jacob Jones</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-2.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Jimmy</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-3.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Martin</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-4.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Julie</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-5.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Daniel</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="team-card">
-                                        <div class="team-card_img">
-                                            <img
-                                                src="<?php echo e(asset('asset/theme4/web_assets/assets/img/update/team/team-1-6.png')); ?>">
-                                            <div class="social-btn">
-                                                <a href="https://www.linkedin.com/">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="team-card_content">
-                                            <h3 class="team-card_title"><a href="#">Sofie</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </div>
 
     <!--==============================
