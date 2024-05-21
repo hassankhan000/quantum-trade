@@ -5,6 +5,10 @@
         border-radius: 13px !important;
     }
 
+    td, th{
+        padding: 0 !important;
+    }
+
     .itemtext {
         color: #aef32d !important;
         font-size: 10px !important;
@@ -150,7 +154,7 @@
                         <div class="nk-block nk-block-lg">
                             <div class="row">
                                 @forelse ($interestLogs as $log)
-                                    <table class="my-3">
+                                    <table class="my-1">
                                         <tr class="service">
                                             <td class="tableitem">
                                                 <p class="itemtext">
