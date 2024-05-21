@@ -9,6 +9,21 @@
     .nk-content {
         background: #232721 !important;
     }
+
+    .modal_amount {
+        padding: 0 10px !important;
+        border: 1px solid #549653 !important;
+        width: -webkit-fill-available !important;
+        height: auto !important;
+        background: #f0f8ff00 !important;
+        border-radius: 10px !important;
+        margin: 15px 0 0 0 !important;
+        font-size: 10px !important;
+    }
+
+    .modal-backdrop.fade.show {
+        display: none;
+    }
 </style>
 
 @section('content2')
@@ -45,24 +60,28 @@
                             </div>
 
                             @if (isset($type) && $type == 'deposit')
-                                <div class="modal fade" tabindex="-1" role="dialog" id="paynow">
+                                <div class="modal
+                            fade
+                            bg-transparent"
+                                    tabindex="-1" role="dialog" id="paynow">
                                     <div class="modal-dialog" role="document">
                                         <form style="width: 100%;" action="" method="post">
                                             @csrf
-                                            <div class="modal-content bg-body">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">{{ __('Deposit Amount') }}</h5>
+                                            <div class="modal-content p-3">
+                                                <div class="d-flex align-items-center justify-content-between p-0">
+                                                    <h5 class="modal-title mt-0 mb-3">{{ __('Deposit Amount') }}</h5>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true" class="text-light">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body p-0">
                                                     <div class="row">
                                                         <input type="hidden" name="id" value="">
-                                                        <div class="form-group">
+                                                        <div class="form-group p-0">
                                                             <label for="">{{ __('Amount') }}</label>
-                                                            <input type="text" name="amount" class="form-control"
+                                                            <input type="text" name="amount"
+                                                                class="modal_amount mt-0 form-control"
                                                                 placeholder="{{ __('Enter Amount') }}">
 
                                                             <input type="hidden" name="user_id" class="form-control"
@@ -71,23 +90,22 @@
                                                                 value="deposit">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn sp_btn_danger btn-danger"
-                                                        data-bs-dismiss="modal">{{ __('Close') }}</button>
                                                     <button type="submit"
-                                                        class="btn main-btn btn-primary"><span>{{ __('Deposit Now') }}</span></button>
+                                                        class="btn btn-light"><span>{{ __('Deposit Now') }}</span></button>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             @else
-                                <div class="modal fade" tabindex="-1" role="dialog" id="paynow">
+                                <div class="modal
+                            fade
+                            bg-transparent"
+                                    tabindex="-1" role="dialog" id="paynow">
                                     <div class="modal-dialog" role="document">
                                         <form style="width: 100%;" action="" method="post">
                                             @csrf
-                                            <div class="modal-content bg-body">
+                                            <div class="modal-content p-3">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">{{ __('Invest Amount') }}</h5>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
@@ -95,10 +113,10 @@
                                                         <span aria-hidden="true" class="text-light">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body p-0">
                                                     <div class="row">
                                                         <input type="hidden" name="id" value="">
-                                                        <div class="form-group">
+                                                        <div class="form-group p-0">
                                                             <label for="">{{ __('Amount') }}</label>
                                                             <input type="text" name="amount" class="form-control"
                                                                 placeholder="{{ __('Enter Amount') }}">
@@ -112,7 +130,7 @@
                                                     <button type="button" class="btn sp_btn_danger btn-danger"
                                                         data-bs-dismiss="modal">{{ __('Close') }}</button>
                                                     <button type="submit"
-                                                        class="btn main-btn btn-primary"><span>{{ __('Invest Now') }}</span></button>
+                                                        class="w-auto"><span>{{ __('Invest Now') }}</span></button>
                                                 </div>
                                             </div>
                                         </form>

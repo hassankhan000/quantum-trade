@@ -1,12 +1,32 @@
-@extends(template().'layout.master2')
+@extends(template() . 'layout.master2')
+<style>
+    .dashboard-body-part {
+        background: #232721 !important;
+        padding: 50px 0;
+    }
+
+    h5 {
+        color: #fff !important;
+    }
+    .list-group{
+        margin-top: 10px;
+    }
+    .list-group-item {
+        border-top-left-radius: inherit;
+        !important border-top-right-radius: inherit !important;
+        background: #0d0e0d !important;
+        border: 0 !important;
+        padding: 6px !important;
+        border-bottom: 1px solid gray;
+    }
+
+    .list-group-item span {
+        color: #aef32d !important;
+    }
+</style>
 
 @section('content2')
     <div class="dashboard-body-part">
-
-        <div class="mobile-page-header">
-            <h5 class="title">{{ __('Payment Informations') }}</h5>
-            <a href="{{ route('user.deposit') }}" class="back-btn"><i class="bi bi-arrow-left"></i> {{ __('Back') }}</a>
-        </div>
 
         <div class="row gy-4">
             <div class="col-xl-6">
@@ -91,9 +111,8 @@
                             <div class="row">
                                 @foreach ($gateway->user_proof_param as $proof)
                                     @if ($proof['type'] == 'text')
-                                        <div class="form-group col-md-12">
-                                            <label for=""
-                                                class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
+                                        <div class="form-group p-0 col-md-12">
+                                            <label for="" class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
                                             <input type="text"
                                                 name="{{ strtolower(str_replace(' ', '_', $proof['field_name'])) }}"
                                                 class="form-control"
@@ -101,18 +120,16 @@
                                         </div>
                                     @endif
                                     @if ($proof['type'] == 'textarea')
-                                        <div class="form-group col-md-12">
-                                            <label for=""
-                                                class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
+                                        <div class="form-group p-0 col-md-12">
+                                            <label for="" class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
                                             <textarea name="{{ strtolower(str_replace(' ', '_', $proof['field_name'])) }}" class="form-control"
                                                 {{ $proof['validation'] == 'required' ? 'required' : '' }}></textarea>
                                         </div>
                                     @endif
 
                                     @if ($proof['type'] == 'file')
-                                        <div class="form-group col-md-12">
-                                            <label for=""
-                                                class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
+                                        <div class="form-group p-0 col-md-12">
+                                            <label for="" class="mb-2 mt-2">{{ __($proof['field_name']) }}</label>
                                             <input type="file"
                                                 name="{{ strtolower(str_replace(' ', '_', $proof['field_name'])) }}"
                                                 class="form-control"
@@ -120,8 +137,9 @@
                                         </div>
                                     @endif
                                 @endforeach
-                                <div class="form-group">
-                                    <button class="btn main-btn mt-4" type="submit"><span>{{ __('Send Proof For Payment ') }}</span></button>
+                                <div class="form-group p-0">
+                                    <button class="btn bg-warning text-dark"
+                                        type="submit"><span>{{ __('Send Proof For Payment ') }}</span></button>
                                 </div>
                             </div>
                         </form>

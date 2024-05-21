@@ -1,9 +1,31 @@
 
 <style>
-    .nk-content.nk-content-fluid{
-    background: #293f00 !important; 
-}
+    .payment-box {
+        background: #aef32d;
+        padding-bottom: 20px;
+        border-radius: 16px;
+    }
+
+    .nk-content {
+        background: #232721 !important;
+    }
+
+    .modal_amount {
+        padding: 0 10px !important;
+        border: 1px solid #549653 !important;
+        width: -webkit-fill-available !important;
+        height: auto !important;
+        background: #f0f8ff00 !important;
+        border-radius: 10px !important;
+        margin: 15px 0 0 0 !important;
+        font-size: 10px !important;
+    }
+
+    .modal-backdrop.fade.show {
+        display: none;
+    }
 </style>
+
 <?php $__env->startSection('content2'); ?>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
@@ -15,7 +37,7 @@
 
                                 <div class="row g-sm-4 g-3 justify-content-center">
                                     <?php $__empty_1 = true; $__currentLoopData = $gateways; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gateway): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                        <div class="col-xxl-2 col-lg-3 col-sm-4 col-6 mt-5">
+                                        <div class="col-6 my-4">
                                             <div class="payment-box text-center">
                                                 <div class="payment-box-thumb">
                                                     <img src="<?php echo e(getFile('gateways', $gateway->gateway_image)); ?>"
@@ -26,7 +48,7 @@
                                                         <?php echo e(ucwords(str_replace('_', ' ', $gateway->gateway_name))); ?></h5>
                                                     <button data-href="<?php echo e(route('user.paynow', $gateway->id)); ?>"
                                                         data-id="<?php echo e($gateway->id); ?>"
-                                                        class="btn main-btn paynow mt-3 btn-primary"><span><?php echo e(__('Pay Now')); ?></span></button>
+                                                        class="btn main-btn paynow mt-0 btn-primary"><span><?php echo e(__('Pay Now')); ?></span></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -39,24 +61,28 @@
                             </div>
 
                             <?php if(isset($type) && $type == 'deposit'): ?>
-                                <div class="modal fade" tabindex="-1" role="dialog" id="paynow">
+                                <div class="modal
+                            fade
+                            bg-transparent"
+                                    tabindex="-1" role="dialog" id="paynow">
                                     <div class="modal-dialog" role="document">
                                         <form style="width: 100%;" action="" method="post">
                                             <?php echo csrf_field(); ?>
-                                            <div class="modal-content bg-body">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title"><?php echo e(__('Deposit Amount')); ?></h5>
+                                            <div class="modal-content p-3">
+                                                <div class="d-flex align-items-center justify-content-between p-0">
+                                                    <h5 class="modal-title mt-0 mb-3"><?php echo e(__('Deposit Amount')); ?></h5>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true" class="text-light">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body p-0">
                                                     <div class="row">
                                                         <input type="hidden" name="id" value="">
                                                         <div class="form-group">
                                                             <label for=""><?php echo e(__('Amount')); ?></label>
-                                                            <input type="text" name="amount" class="form-control"
+                                                            <input type="text" name="amount"
+                                                                class="modal_amount mt-0 form-control"
                                                                 placeholder="<?php echo e(__('Enter Amount')); ?>">
 
                                                             <input type="hidden" name="user_id" class="form-control"
@@ -65,23 +91,22 @@
                                                                 value="deposit">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn sp_btn_danger btn-danger"
-                                                        data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
                                                     <button type="submit"
-                                                        class="btn main-btn btn-primary"><span><?php echo e(__('Deposit Now')); ?></span></button>
+                                                        class="btn btn-light"><span><?php echo e(__('Deposit Now')); ?></span></button>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             <?php else: ?>
-                                <div class="modal fade" tabindex="-1" role="dialog" id="paynow">
+                                <div class="modal
+                            fade
+                            bg-transparent"
+                                    tabindex="-1" role="dialog" id="paynow">
                                     <div class="modal-dialog" role="document">
                                         <form style="width: 100%;" action="" method="post">
                                             <?php echo csrf_field(); ?>
-                                            <div class="modal-content bg-body">
+                                            <div class="modal-content p-3">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"><?php echo e(__('Invest Amount')); ?></h5>
                                                     <button type="button" class="close" data-bs-dismiss="modal"
@@ -89,10 +114,10 @@
                                                         <span aria-hidden="true" class="text-light">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
+                                                <div class="modal-body p-0">
                                                     <div class="row">
                                                         <input type="hidden" name="id" value="">
-                                                        <div class="form-group">
+                                                        <div class="form-group p-0">
                                                             <label for=""><?php echo e(__('Amount')); ?></label>
                                                             <input type="text" name="amount" class="form-control"
                                                                 placeholder="<?php echo e(__('Enter Amount')); ?>">
@@ -106,7 +131,7 @@
                                                     <button type="button" class="btn sp_btn_danger btn-danger"
                                                         data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
                                                     <button type="submit"
-                                                        class="btn main-btn btn-primary"><span><?php echo e(__('Invest Now')); ?></span></button>
+                                                        class="w-auto"><span><?php echo e(__('Invest Now')); ?></span></button>
                                                 </div>
                                             </div>
                                         </form>
