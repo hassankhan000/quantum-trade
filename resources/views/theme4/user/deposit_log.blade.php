@@ -78,7 +78,7 @@
                     <div class="components-preview">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                                <h5 class="mb-sm-0 mb-2">{{ __('Investment Log') }}</h5>
+                                <h5 class="mb-sm-0 mb-2">{{ __('Deposit Logs') }}</h5>
                                 <form action="" method="get">
                                     <div class="row g-3">
                                         <div class="col-auto">
