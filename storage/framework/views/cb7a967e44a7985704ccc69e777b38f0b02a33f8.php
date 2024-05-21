@@ -1,125 +1,26 @@
 <style>
-    #invoice-POS {
-        box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
-        padding: 2mm;
-        margin: 0 auto;
-        width: 100%;
-        background: #000000;
-        border-radius: 10px;
+    table {
+        background: #232721 !important;
+        border-radius: 13px !important;
     }
 
-    #invoice-POS ::selection {
-        background: #f31544;
-        color: #fff;
+    td, th{
+        padding: 0 !important;
     }
 
-    #invoice-POS ::moz-selection {
-        background: #f31544;
-        color: #fff;
+    .itemtext {
+        color: #aef32d !important;
+        font-size: 10px !important;
+        padding: 10px !important;
     }
 
-    #invoice-POS h1 {
-        font-size: 1.5em;
-        color: #222;
-    }
-
-    #invoice-POS h2 {
-        font-size: 0.9em;
-    }
-
-    #invoice-POS h3 {
-        font-size: 1.2em;
-        font-weight: 300;
-        line-height: 2em;
-    }
-
-    #invoice-POS p {
-        font-size: 0.7em;
-        color: #a6ff00;
-        line-height: 1.2em;
-    }
-
-    #invoice-POS #top,
-    #invoice-POS #mid,
-    #invoice-POS #bot {
-        /* Targets all id with 'col-' */
-        border-bottom: 1px solid #eeeeee33;
-    }
-
-    #invoice-POS #top {
-        padding-bottom: 10px;
-    }
-
-    #invoice-POS #mid {
-        min-height: 80px;
-    }
-
-    #invoice-POS #bot {
-        min-height: 50px;
-    }
-
-    #invoice-POS #top .logo {
-        height: 60px;
-        width: 60px;
-        background: url(https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif) no-repeat;
-        background-size: 100% 100%;
-        border-radius: 50%;
-    }
-
-    #invoice-POS .clientlogo {
-        float: left;
-        height: 60px;
-        width: 60px;
-        background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-        background-size: 60px 60px;
-        border-radius: 50px;
-    }
-
-    #invoice-POS .info {
-        display: block;
-        margin-left: 0;
-    }
-
-    #invoice-POS .title {
-        float: right;
-    }
-
-    #invoice-POS .title p {
-        text-align: right;
-    }
-
-    #invoice-POS table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #invoice-POS .tabletitle {
-        font-size: 0.5em;
-        background: #eee;
-    }
-
-    #invoice-POS .service {
-        border-bottom: 1px solid #aef32d54;
-    }
-
-    #invoice-POS .item {
-        width: 24mm;
-    }
-
-    #invoice-POS .itemtext {
-        font-size: 9px;
-    }
-
-    #invoice-POS #legalcopy {
-        margin-top: 5mm;
-    }
-
-    td,
-    th,
     .tableitem {
-        padding: 10px 5px !important;
+        padding: 0 !important;
     }
 
+    .nk-content.nk-content-fluid{
+    background: #293f00 !important; 
+}
     .loader7 {
         width: auto;
         height: 16px;
@@ -199,109 +100,104 @@
                 <div class="nk-content-body">
                     <div class="components-preview">
                         <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
-                            <h5 class="mb-sm-0 mb-2"><?php echo e(__('Trade Profit Log')); ?></h5>
+                            <h5 class="mb-sm-0 mb-2 text-light"><?php echo e(__('Trade Profit Log')); ?></h5>
                         </div>
                         <div class="nk-block nk-block-lg">
-                            <?php $__empty_1 = true; $__currentLoopData = $interestLogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $log): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <div class="card w-100">
-                                    <div id="invoice-POS">
-                                        <center id="top">
-                                            <div class="loader7">
-                                                <span></span>
-                                                <div class="greenlight"></div>
-                                            </div>
-                                        </center>
-                                        <div id="bot">
-                                            <div id="table">
-                                                <table>
-                                                    <tr class="service">
-                                                        <td class="tableitem">
-                                                            <p class="itemtext">
-                                                                <?php echo e(__('BOT NAME')); ?>
+                            <div class="row">
+                                <?php $__empty_1 = true; $__currentLoopData = $interestLogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $log): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                    <table class="my-1">
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    <?php echo e(__('BOT NAME')); ?>
 
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="itemtext">
-                                                                <?php echo e($log->payment->plan->plan_name); ?>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    <?php echo e($log->payment->plan->plan_name); ?>
 
-                                                        </td>
-                                                        </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="service">
-                                                        <td class="tableitem">
-                                                            <p class="itemtext">
-                                                                <?php echo e(__('Profit')); ?>
+                                            </td>
+                                            </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    <?php echo e(__('Profit')); ?>
 
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="itemtext">
-                                                                <?php echo e(number_format($log->interest_amount, 2)); ?>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <?php if($log->payment->next_payment_date): ?>
+                                                    <div class="loader7">
+                                                        <span></span>
+                                                        <div class="greenlight"></div>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <p class="itemtext">
+                                                        <?php echo e(number_format($log->interest_amount, 2)); ?>
 
-                                                                <?php echo e(@$general->site_currency); ?>
+                                                        <?php echo e(@$general->site_currency); ?>
 
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="service">
-                                                        <td class="tableitem">
-                                                            <p class="itemtext">
-                                                                <?php echo e(__('Initial Trade Amount')); ?>
+                                                    </p>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    <?php echo e(__('Initial Trade Amount')); ?>
 
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="itemtext">
-                                                                <?php echo e(number_format($log->payment->amount, 2)); ?>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    <?php echo e(number_format($log->payment->amount, 2)); ?>
 
-                                                                <?php echo e(@$general->site_currency); ?>
+                                                    <?php echo e(@$general->site_currency); ?>
 
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="service">
-                                                        <td class="tableitem">
-                                                            <p class="itemtext">
-                                                                <?php echo e(__('Trade Start Date')); ?>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    <?php echo e(__('Trade Start Date')); ?>
 
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="itemtext">
-                                                                <?php echo e($log->created_at); ?>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    <?php echo e($log->created_at); ?>
 
 
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="service">
-                                                        <td class="tableitem">
-                                                            <p class="itemtext">
-                                                                <?php echo e(__('Trade Status')); ?>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    <?php echo e(__('Trade Status')); ?>
 
-                                                            </p>
-                                                        </td>
-                                                        <td>
-                                                            <p class="itemtext">
-                                                                <?php echo e(isset($log->payment->next_payment_date) ? $log->payment->next_payment_date : 'Plan Expired'); ?>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    <?php echo e(isset($log->payment->next_payment_date) ? $log->payment->next_payment_date : 'Plan Expired'); ?>
 
 
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                                    <tr>
-                                                        <td class="text-center no-data-table" colspan="100%">
-                                                            <?php echo e(__('No Data Found')); ?></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <tr>
+                                            <td class="text-center no-data-table" colspan="100%">
+                                                <?php echo e(__('No Data Found')); ?></td>
+                                        </tr>
+                                    </table>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                     

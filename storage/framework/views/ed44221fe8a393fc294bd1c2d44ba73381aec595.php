@@ -1045,28 +1045,7 @@
             // FINAL
         })
     </script>
-    <script>
-        $(document).ready(function() {
 
-            //alert('here');
-
-            $('.tabs a').click(function() {
-
-                $('.panel').hide();
-                $('.tabs a.active').removeClass('active');
-                $(this).addClass('active');
-
-                var panel = $(this).attr('href');
-                $(panel).fadeIn(1000);
-
-                return false; // prevents link action
-
-            }); // end click
-
-            $('.tabs li:first a').click();
-
-        }); // end ready
-    </script>
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make(template() . 'layout.master2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\quantum-trade\resources\views/theme4/user/dashboard.blade.php ENDPATH**/ ?>

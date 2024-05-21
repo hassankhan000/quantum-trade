@@ -304,7 +304,7 @@
                                 </li> --}}
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ url('interest/log') }}" class="nk-menu-link"><span
-                                            class="nk-menu-text">Trade log</span></a>
+                                            class="nk-menu-text">Trade history</span></a>
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ url('transaction/log') }}" class="nk-menu-link"><span
