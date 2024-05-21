@@ -9,7 +9,7 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+        content="">
     <link rel="shortcut icon" href="../../images/favicon.png">
     <title>Login | quantum Admin Template</title>
     <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/quantume5ca.css')); ?>">
