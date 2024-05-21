@@ -256,89 +256,85 @@
                         <div class="nk-block nk-block-lg">
                             <div class="row">
                                 @forelse ($interestLogs as $log)
-                                    <div class="card w-100">
-                                        <div id="invoice-POS">
-                                            <table>
-                                                <tr class="service">
-                                                    <td class="tableitem">
-                                                        <p class="itemtext">
-                                                            {{ __('BOT NAME') }}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="itemtext">
-                                                            {{ $log->payment->plan->plan_name }}
-                                                    </td>
+                                    <table class="my-3">
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    {{ __('BOT NAME') }}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    {{ $log->payment->plan->plan_name }}
+                                            </td>
+                                            </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    {{ __('Profit') }}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                @if ($log->payment->next_payment_date)
+                                                    <div class="loader7">
+                                                        <span></span>
+                                                        <div class="greenlight"></div>
+                                                    </div>
+                                                @else
+                                                    <p class="itemtext">
+                                                        {{ number_format($log->interest_amount, 2) }}
+                                                        {{ @$general->site_currency }}
                                                     </p>
-                                                    </td>
-                                                </tr>
-                                                <tr class="service">
-                                                    <td class="tableitem">
-                                                        <p class="itemtext">
-                                                            {{ __('Profit') }}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        @if ($log->payment->next_payment_date)
-                                                            <div class="loader7">
-                                                                <span></span>
-                                                                <div class="greenlight"></div>
-                                                            </div>
-                                                        @else
-                                                            <p class="itemtext">
-                                                                {{ number_format($log->interest_amount, 2) }}
-                                                                {{ @$general->site_currency }}
-                                                            </p>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr class="service">
-                                                    <td class="tableitem">
-                                                        <p class="itemtext">
-                                                            {{ __('Initial Trade Amount') }}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="itemtext">
-                                                            {{ number_format($log->payment->amount, 2) }}
-                                                            {{ @$general->site_currency }}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr class="service">
-                                                    <td class="tableitem">
-                                                        <p class="itemtext">
-                                                            {{ __('Trade Start Date') }}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="itemtext">
-                                                            {{ $log->created_at }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    {{ __('Initial Trade Amount') }}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    {{ number_format($log->payment->amount, 2) }}
+                                                    {{ @$general->site_currency }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    {{ __('Trade Start Date') }}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    {{ $log->created_at }}
 
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr class="service">
-                                                    <td class="tableitem">
-                                                        <p class="itemtext">
-                                                            {{ __('Trade Status') }}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="itemtext">
-                                                            {{ isset($log->payment->next_payment_date) ? $log->payment->next_payment_date : 'Plan Expired' }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr class="service">
+                                            <td class="tableitem">
+                                                <p class="itemtext">
+                                                    {{ __('Trade Status') }}
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="itemtext">
+                                                    {{ isset($log->payment->next_payment_date) ? $log->payment->next_payment_date : 'Plan Expired' }}
 
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td class="text-center no-data-table" colspan="100%">
-                                                        {{ __('No Data Found') }}</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="text-center no-data-table" colspan="100%">
+                                                {{ __('No Data Found') }}</td>
+                                        </tr>
+                                    </table>
                                 @endforelse
                             </div>
                         </div>
