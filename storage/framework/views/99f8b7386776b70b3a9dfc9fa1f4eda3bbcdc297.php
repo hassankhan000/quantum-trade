@@ -79,7 +79,7 @@
                                                 <div class="modal-body p-0">
                                                     <div class="row">
                                                         <input type="hidden" name="id" value="">
-                                                        <div class="form-group">
+                                                        <div class="form-group p-0">
                                                             <label for=""><?php echo e(__('Amount')); ?></label>
                                                             <input type="text" name="amount"
                                                                 class="modal_amount mt-0 form-control"
