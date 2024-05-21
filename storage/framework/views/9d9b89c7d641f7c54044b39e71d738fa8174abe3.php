@@ -293,7 +293,7 @@
         }
     </style>
     <div class="col-md-4 plan-wrapper">
-        <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST quantum
+        <span class="text-white fw-bold d-flex align-items-center">CHOOSE WORLD'S BEST QUANTUM
             TRADING BOTS
             
         </span>
@@ -311,9 +311,9 @@
                         <img class="img-fluid"
                             src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/lock.png')); ?>"alt="">
                     </div>
-                    <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> quantum Trading Bot
+                    <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
                     </h4>
-                    <p class="">Trade With World's Best quantum Trading Bots</p>
+                    <p class="">Trade With World's Best Quantum Trading Bots</p>
                     <span class="plan-status"><?php echo e(__('Required VIP')); ?>
 
                         <?php echo e($plan->vip_status); ?>
@@ -499,7 +499,7 @@
                     <div class="d-flex align-items-baseline justify-content-between">
                         <p class="p-0 m-0">
                             Purchase
-                            quantum
+                            Quantum
                             Bot
                         </p>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -521,7 +521,7 @@
                                 <th>Bot
                                     Fee
                                 </th>
-                                <th>quantum
+                                <th>Quantum
                                     Tax
                                 </th>
                                 <th>Expected
@@ -598,98 +598,134 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-    <script>
-        $(function() {
-            'use strict'
-            $('.balance').on('click', function() {
-                const modal = $('#invest');
-                modal.find('input[name=plan_id]').val($(this).data('plan').id);
-                modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
-                modal.modal('show')
-            })
+<script>
+    $(function() {
+        'use strict'
+        $('.balance').on('click', function() {
+            const modal = $('#invest');
+            modal.find('input[name=plan_id]').val($(this).data('plan').id);
+            modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
+            modal.find('input[name=min_pay]').val($(this).data('min_amount'));
+            modal.find('input[name=max_pay]').val($(this).data('max_amount'));
+            modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
+            modal.modal('show')
         })
-    </script>
-    <script>
-        $('.modal-table').hide()
-        $('.submit-payment').attr('disabled', true)
-        $('.submit-payment').text('Enter Amount')
-        $('.modal_amount').keyup(function(e) {
-            if ($(this).val() < 1) {
-                $('.submit-payment').attr('disabled', true)
-            } else {
-                $('.submit-payment').attr('disabled', false)
-                $('.submit-payment').text('Invest')
-            }
-            let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
-                parseFloat($(this).val());
-            $('.exp-profit').text(`$${expected} to $${expected*2}`)
-            $('.bot-fee').text(`$${(expected / 2).toFixed(2)}`)
-            $('.modal-tax').text(`$${(expected / 3).toFixed(2)}`)
-            if ($(this).val().length > 0) {
-                $('.modal-table').slideDown()
-            } else {
-                $('.modal-table').slideUp()
-            }
-        });
-    </script>
-    <script>
-        let invest_form = $('.invest-form')
-        $('.success-img-wrapper').hide()
-        $('.payment-loading').hide()
+    })
+</script>
+<script>
+    $('.modal-table').hide()
+    $('.submit-payment').attr('disabled', true)
+    $('.submit-payment').text('Enter Amount')
+    var invest_form = $('.invest-form')
+    $('.modal_amount').keyup(function(e) {
 
-        $('.submit-payment').click(function(e) {
-            e.preventDefault();
-            $('.payment-loading').fadeIn()
-            $('.payment-loading h4').text('Loading ...')
-            setTimeout(function() {
-                $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
-            }, 3000);
-            setTimeout(function() {
-                // FETCHING SYMBOL
-                fetch('https://quantummtradeai.com/api/cryptoSymbols')
-                    .then(response => response.json())
-                    .then(data => {
-                        // FETCHING PRICE
-                        $.ajax({
-                            method: 'GET',
-                            url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
-                            headers: {
-                                'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
-                            },
-                            contentType: 'application/json',
-                            success: function(result) {
-                                invest_form.find('input[name=pair_name]').val(result.symbol)
-                                invest_form.find('input[name=pair_price]').val(result.price)
-                                invest_form.find('input[name=timestamp]').val(result
-                                    .timestamp)
+        // $(this).val()
+        // invest_form.find('input[name=min_pay]').val()
+        // invest_form.find('input[name=max_pay]').val()
+        // $('.submit-payment').attr('disabled', true);
+        // $('.submit-payment').text('Please Follow Limit');
+
+        // Function to parse value while ignoring commas
+        function parseValue(value) {
+            return parseFloat(value.replace(/,/g, ''));
+        }
+
+        var currentValue = parseValue($(this).val());
+        var minPay = parseValue(invest_form.find('input[name=min_pay]').val());
+        var maxPay = parseValue(invest_form.find('input[name=max_pay]').val());
+        var fixAmount = parseValue(invest_form.find('input[name=fix_amount]').val());
+        var modalMessage = $('.modal-error-message');
+
+        if (fixAmount > 0) {
+            if (currentValue != fixAmount) {
+                $('.submit-payment').prop('disabled', true);
+                $('.submit-payment').text('Please Follow Limit');
+                modalMessage.text(`Amount should have been equal to ${fixAmount}.`)
+                $('.modal-table').slideUp()
+            } else {
+                $('.submit-payment').prop('disabled', false);
+                $('.submit-payment').text('Submit');
+                modalMessage.text(``)
+                $('.modal-table').slideDown()
+            }
+        } else {
+            if (currentValue > maxPay || currentValue < minPay || currentValue < 1) {
+                $('.submit-payment').prop('disabled', true);
+                $('.submit-payment').text('Please Follow Limit');
+                modalMessage.text(`Amount must be between ${minPay} and ${maxPay}.`)
+                $('.modal-table').slideUp()
+            } else {
+                $('.submit-payment').prop('disabled', false);
+                $('.submit-payment').text('Submit');
+                modalMessage.text(``)
+                $('.modal-table').slideDown()
+            }
+        }
+
+        let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
+            parseFloat($(this).val());
+        $('.exp-profit').text(`$${expected} to $${(expected * 1 / 100) + expected}`)
+        $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2) / 2}`)
+    });
+</script>
+<script>
+    var invest_form = $('.invest-form')
+    $('.success-img-wrapper').hide()
+    $('.payment-loading').hide()
+
+    $('.submit-payment').click(function(e) {
+        e.preventDefault();
+        $('.payment-loading').fadeIn()
+        $('.payment-loading h4').text('Loading ...')
+        setTimeout(function() {
+            $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
+        }, 3000);
+        setTimeout(function() {
+            // FETCHING SYMBOL
+            fetch('https://quantummtradeai.com/api/cryptoSymbols')
+                .then(response => response.json())
+                .then(data => {
+                    // FETCHING PRICE
+                    $.ajax({
+                        method: 'GET',
+                        url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
+                        headers: {
+                            'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
+                        },
+                        contentType: 'application/json',
+                        success: function(result) {
+                            invest_form.find('input[name=pair_name]').val(result.symbol)
+                            invest_form.find('input[name=pair_price]').val(result.price)
+                            invest_form.find('input[name=timestamp]').val(result
+                                .timestamp)
+                            $('.payment-loading h4').text(
+                                `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
+                            );
+                            setTimeout(function() {
                                 $('.payment-loading h4').text(
-                                    `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
+                                    `Processing With ${result.symbol}, Please Wait ...`
                                 );
-                                setTimeout(function() {
-                                    $('.payment-loading h4').text(
-                                        `Processing With ${result.symbol}, Please Wait ...`
-                                    );
-                                }, 5000);
-                                setTimeout(function() {
-                                    $('.success-img-wrapper').hide()
-                                    $('.payment-loading').hide()
-                                    const modal = $('#invest');
-                                    modal.modal('hide')
-                                    invest_form.submit()
-                                }, 10000);
-                            },
-                            error: function ajaxError(jqXHR) {
-                                console.error('Error: ', jqXHR.responseText);
-                            }
-                        });
-                        // FETCHING PRICE
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-                // FETCH SYMBOL
-            }, 9000);
-            // FINAL
-        })
-    </script>
+                            }, 5000);
+                            setTimeout(function() {
+                                $('.success-img-wrapper').hide()
+                                $('.payment-loading').hide()
+                                const modal = $('#invest');
+                                modal.modal('hide')
+                                invest_form.submit()
+                            }, 10000);
+                        },
+                        error: function ajaxError(jqXHR) {
+                            console.error('Error: ', jqXHR.responseText);
+                        }
+                    });
+                    // FETCHING PRICE
+                })
+                .catch(error => console.error('Error fetching data:', error));
+            // FETCH SYMBOL
+        }, 9000);
+        // FINAL
+    })
+</script>
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make(template() . 'layout.master2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\quantum-trade\resources\views/theme4/pages/invest.blade.php ENDPATH**/ ?>

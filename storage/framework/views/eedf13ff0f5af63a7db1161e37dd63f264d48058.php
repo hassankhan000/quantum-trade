@@ -405,7 +405,8 @@
                                                             </div>
                                                         <?php else: ?>
                                                             <p class="itemtext text-warning">
-                                                                <?php echo e($transaction->interest_amount - $transaction->interest_amount * 0.005); ?>%
+                                                                $<?php echo e($transaction->interest_amount - ($transaction->interest_amount * 0.5) / 100); ?>
+
                                                             </p>
                                                         <?php endif; ?>
                                                     </td>
@@ -419,7 +420,7 @@
                                                     </td>
                                                     <td>
                                                         <p class="itemtext">
-                                                            <?php echo e($transaction->interest_amount * 0.005); ?>%
+                                                            <?php echo e(($transaction->interest_amount * 0.5) / 100); ?>%
                                                         </p>
                                                     </td>
                                                 </tr>

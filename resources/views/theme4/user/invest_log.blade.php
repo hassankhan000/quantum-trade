@@ -391,7 +391,7 @@
                                                             </div>
                                                         @else
                                                             <p class="itemtext text-warning">
-                                                                {{ $transaction->interest_amount - $transaction->interest_amount * 0.005 }}%
+                                                                ${{ $transaction->interest_amount - ($transaction->interest_amount * 0.5) / 100 }}
                                                             </p>
                                                         @endif
                                                     </td>
@@ -404,7 +404,7 @@
                                                     </td>
                                                     <td>
                                                         <p class="itemtext">
-                                                            {{ $transaction->interest_amount * 0.005 }}%
+                                                            {{ ($transaction->interest_amount * 0.5) / 100 }}%
                                                         </p>
                                                     </td>
                                                 </tr>
