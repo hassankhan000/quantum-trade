@@ -39,7 +39,15 @@ class UserController extends Controller
 
         $pageTitle = "Dashboard";
         $totalInvest = Payment::where('user_id', Auth::id())->where('payment_status', 1)->sum('amount');
-        $currentInvest = Payment::where('user_id', Auth::id())->where('payment_status', 1)->latest()->first('amount');
+        $currentInvest = Payment::where('user_id', Auth::id())
+            ->where('payment_status', 1)
+            ->where(
+                'next_payment_date',
+                '>=',
+                now()
+            )
+            ->latest()
+            ->first('amount');
         $currentPlan = Payment::with('plan')->where('user_id', Auth::id())->where('payment_status', 1)->latest()->first();
         $allPlan = Payment::with('plan')->where('user_id', Auth::id())->latest()->paginate(10, ['*'], 'plan');
         $withdraw = Withdraw::where('user_id', Auth::id())->where('status', 1)->sum('withdraw_amount');

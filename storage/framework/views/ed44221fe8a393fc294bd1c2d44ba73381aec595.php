@@ -649,403 +649,495 @@
                                         id="basic-addon2"><?php echo e(__('Copy')); ?></button>
                                 </div>
                             </div>
+                            <?php
+                                $reference = auth()->user()->refferals;
+
+                            ?>
+
+                            <?php
+                                $reference = auth()->user()->refferals;
+                            ?>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="mb-0"><?php echo e(__('Reference Tree')); ?></h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <?php if($reference->count() > 0): ?>
+                                                <ul class="sp-referral">
+                                                    <li class="single-child root-child">
+                                                        <p>
+                                                            <img src="<?php echo e(getFile('user', auth()->user()->image)); ?>">
+                                                            <span
+                                                                class="mb-0"><?php echo e(auth()->user()->full_name . ' - ' . currentPlan(auth()->user())); ?></span>
+                                                        </p>
+                                                        <ul class="sub-child-list step-2">
+                                                            <?php $__currentLoopData = $reference; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <li class="single-child">
+                                                                    <p>
+                                                                        <img src="<?php echo e(getFile('user', $user->image)); ?>">
+                                                                        <span
+                                                                            class="mb-0"><?php echo e($user->full_name . ' - ' . currentPlan($user)); ?></span>
+                                                                    </p>
+
+                                                                    <ul class="sub-child-list step-3">
+                                                                        <?php $__currentLoopData = $user->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                            <li class="single-child">
+                                                                                <p>
+                                                                                    <img
+                                                                                        src="<?php echo e(getFile('user', $ref->image)); ?>">
+                                                                                    <span
+                                                                                        class="mb-0"><?php echo e($ref->full_name . ' - ' . currentPlan($ref)); ?></span>
+                                                                                </p>
+
+                                                                                <ul class="sub-child-list step-4">
+                                                                                    <?php $__currentLoopData = $ref->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                        <li class="single-child">
+                                                                                            <p>
+                                                                                                <img
+                                                                                                    src="<?php echo e(getFile('user', $ref2->image)); ?>">
+                                                                                                <span
+                                                                                                    class="mb-0"><?php echo e($ref2->full_name . ' - ' . currentPlan($ref2)); ?></span>
+                                                                                            </p>
+                                                                                        </li>
+                                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                                </ul>
+
+                                                                            </li>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    </ul>
+                                                                </li>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            <?php else: ?>
+                                                <div class="col-md-12 text-center mt-5">
+                                                    <i class="far fa-sad-tear display-1"></i>
+                                                    <p class="mt-2">
+                                                        <?php echo e(__('No Reference User Found')); ?>
+
+                                                    </p>
+
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<?php $__env->stopSection(); ?>
+    <?php $__env->stopSection(); ?>
 
-<?php $__env->startPush('style'); ?>
-    <style>
-        .modal-backdrop.fade.show {
-            display: none;
-        }
+    <?php $__env->startPush('style'); ?>
+        <style>
+            .modal-backdrop.fade.show {
+                display: none;
+            }
 
-        @media (max-width: 991px) {
-            #header.header-inner-pages {
-                display: block;
-                background: transparent !important;
+            @media (max-width: 991px) {
+                #header.header-inner-pages {
+                    display: block;
+                    background: transparent !important;
+                    position: absolute;
+                }
+
+                .dashboard-body-part {
+                    padding-top: 80px;
+                }
+            }
+
+            .sp-referral .single-child {
+                padding: 6px 10px;
+                border-radius: 5px;
+            }
+
+            .sp-referral .single-child+.single-child {
+                margin-top: 15px;
+            }
+
+            .sp-referral .single-child p {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+            }
+
+            .sp-referral .single-child p img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                object-fit: cover;
+                -o-object-fit: cover;
+            }
+
+            .sp-referral .single-child p span {
+                width: calc(100% - 35px);
+                font-size: 14px;
+                padding-left: 10px;
+            }
+
+            .sp-referral>.single-child.root-child>p img {
+                border: 2px solid #5463ff;
+            }
+
+            .sub-child-list {
+                position: relative;
+                padding-left: 35px;
+            }
+
+            .sub-child-list::before {
                 position: absolute;
+                content: '';
+                top: 0;
+                left: 17px;
+                width: 1px;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.1);
             }
 
-            .dashboard-body-part {
-                padding-top: 80px;
+            .sp-referral>.single-child.root-child>.sub-child-list::before {
+                background-color: var(--main-color);
             }
-        }
 
-        .sp-referral .single-child {
-            padding: 6px 10px;
-            border-radius: 5px;
-        }
+            .sub-child-list>.single-child {
+                position: relative;
+            }
 
-        .sp-referral .single-child+.single-child {
-            margin-top: 15px;
-        }
+            .sub-child-list>.single-child::before {
+                position: absolute;
+                content: '';
+                left: -18px;
+                top: 21px;
+                width: 30px;
+                height: 5px;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 0 0 0 5px;
+            }
 
-        .sp-referral .single-child p {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0;
-        }
+            .sub-child-list.step-2>.single-child>p img {
+                border: 2px solid #0aa27c;
+            }
 
-        .sp-referral .single-child p img {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            object-fit: cover;
-            -o-object-fit: cover;
-        }
+            .sub-child-list.step-3>.single-child>p img {
+                border: 2px solid #a20a0a;
+            }
 
-        .sp-referral .single-child p span {
-            width: calc(100% - 35px);
-            font-size: 14px;
-            padding-left: 10px;
-        }
+            .sub-child-list.step-4>.single-child>p img {
+                border: 2px solid #f562e6;
+            }
 
-        .sp-referral>.single-child.root-child>p img {
-            border: 2px solid #c3c3c3;
-        }
+            .sub-child-list.step-5>.single-child>p img {
+                border: 2px solid #a20a0a;
+            }
+        </style>
+    <?php $__env->stopPush(); ?>
 
-        .sub-child-list {
-            position: relative;
-            padding-left: 35px;
-        }
-
-        .sub-child-list::before {
-            position: absolute;
-            content: '';
-            top: 0;
-            left: 17px;
-            width: 1px;
-            height: 100%;
-            background-color: #a1a1a1;
-        }
-
-        .sub-child-list>.single-child {
-            position: relative;
-        }
-
-        .sub-child-list>.single-child::before {
-            position: absolute;
-            content: '';
-            left: -18px;
-            top: 21px;
-            width: 30px;
-            height: 5px;
-            border-left: 1px solid #a1a1a1;
-            border-bottom: 1px solid #a1a1a1;
-            border-radius: 0 0 0 5px;
-        }
-
-        .sub-child-list>.single-child>p img {
-            border: 2px solid #c3c3c3;
-        }
-    </style>
-<?php $__env->stopPush(); ?>
-
-<div class="modal
+    <div class="modal
                                                                                                                             fade
                                                                                                                             bg-transparent"
-    id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form class="invest-form" style="width: 100%;" action="<?php echo e(route('user.investmentplan.submit')); ?>"
-            method="post">
-            <?php echo csrf_field(); ?>
-            <div class="modal-content p-3">
-                <div class="d-flex align-items-baseline justify-content-between">
-                    <p class="p-0 m-0">
-                        Purchase
-                        quantum
-                        Bot
-                    </p>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="form-group mb-1">
-                        <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
-                            class="form-control modal_amount">
-                        <p class="modal-table-p text-danger modal-error-message"></p>
-                        <input type="hidden" name="plan_id" class="form-control">
-                        <input type="hidden" name="plan_percentage" class="form-control">
-                        <input type="hidden" name="pair_price">
-                        <input type="hidden" name="pair_name">
-                        <input type="hidden" name="timestamp">
-                        <input type="hidden" name="min_pay">
-                        <input type="hidden" name="max_pay">
-                        <input type="hidden" name="fix_amount">
-                    </div>
-                    <table class="table mt-3 table-sm table-striped modal-table">
-                        <thead>
-                            <th>Bot
-                                Fee
-                            </th>
-                            <th>Expected
-                                Profit
-                            </th>
-                        </thead>
-                        <tbody>
-                            <td class="bot-fee">
-                                0.00
-                                to
-                                0.00
-                            </td>
-                            <td class="exp-profit">
-                                0.00
-                                to
-                                0.00
-                            </td>
-                        </tbody>
-                        <p class="modal-table-p">
-                            In
-                            initiating
-                            investment,
-                            AI
-                            bot
-                            trading
-                            shall
-                            commence
-                            for
-                            a
-                            day's
-                            duration,
-                            entailing
-                            profit
-                            accrual
-                            contingent
-                            upon
-                            the
-                            current
-                            valuation
-                            of
-                            the
-                            selected
-                            pair,
-                            with
-                            the
-                            invested
-                            capital
-                            remaining
-                            non-refundable
-                            and
-                            non-withdrawable
-                            thereafter.
+        id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="invest-form" style="width: 100%;" action="<?php echo e(route('user.investmentplan.submit')); ?>"
+                method="post">
+                <?php echo csrf_field(); ?>
+                <div class="modal-content p-3">
+                    <div class="d-flex align-items-baseline justify-content-between">
+                        <p class="p-0 m-0">
+                            Purchase
+                            quantum
+                            Bot
                         </p>
-                    </table>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="form-group mb-1">
+                            <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
+                                class="form-control modal_amount">
+                            <p class="modal-table-p text-danger modal-error-message"></p>
+                            <input type="hidden" name="plan_id" class="form-control">
+                            <input type="hidden" name="plan_percentage" class="form-control">
+                            <input type="hidden" name="pair_price">
+                            <input type="hidden" name="pair_name">
+                            <input type="hidden" name="timestamp">
+                            <input type="hidden" name="min_pay">
+                            <input type="hidden" name="max_pay">
+                            <input type="hidden" name="fix_amount">
+                        </div>
+                        <table class="table mt-3 table-sm table-striped modal-table">
+                            <thead>
+                                <th>Bot
+                                    Fee
+                                </th>
+                                <th>Expected
+                                    Profit
+                                </th>
+                            </thead>
+                            <tbody>
+                                <td class="bot-fee">
+                                    0.00
+                                    to
+                                    0.00
+                                </td>
+                                <td class="exp-profit">
+                                    0.00
+                                    to
+                                    0.00
+                                </td>
+                            </tbody>
+                            <p class="modal-table-p">
+                                In
+                                initiating
+                                investment,
+                                AI
+                                bot
+                                trading
+                                shall
+                                commence
+                                for
+                                a
+                                day's
+                                duration,
+                                entailing
+                                profit
+                                accrual
+                                contingent
+                                upon
+                                the
+                                current
+                                valuation
+                                of
+                                the
+                                selected
+                                pair,
+                                with
+                                the
+                                invested
+                                capital
+                                remaining
+                                non-refundable
+                                and
+                                non-withdrawable
+                                thereafter.
+                            </p>
+                        </table>
+                    </div>
+                    <button class="btn btn-light submit-payment w-auto"><span><?php echo e(__('Invest Now')); ?></span></button>
                 </div>
-                <button class="btn btn-light submit-payment w-auto"><span><?php echo e(__('Invest Now')); ?></span></button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<div class="payment-loading">
-    <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
-        class="img-fluid" alt="">
-    <h4>Loading...
-    </h4>
-</div>
-<div class="success-img-wrapper">
-    <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
-        class="img-fluid success-img" alt="">
-</div>
+    <div class="payment-loading">
+        <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
+            class="img-fluid" alt="">
+        <h4>Loading...
+        </h4>
+    </div>
+    <div class="success-img-wrapper">
+        <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
+            class="img-fluid success-img" alt="">
+    </div>
 
-<?php $__env->startPush('script'); ?>
-    <script>
-        $(function() {
-            'use strict'
-            $('.balance').on('click', function() {
-                const modal = $('#invest');
-                modal.find('input[name=plan_id]').val($(this).data('plan').id);
-                modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
-                modal.find('input[name=min_pay]').val($(this).data('min_amount'));
-                modal.find('input[name=max_pay]').val($(this).data('max_amount'));
-                modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
-                modal.modal('show')
+    <?php $__env->startPush('script'); ?>
+        <script>
+            $(function() {
+                'use strict'
+                $('.balance').on('click', function() {
+                    const modal = $('#invest');
+                    modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                    modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
+                    modal.find('input[name=min_pay]').val($(this).data('min_amount'));
+                    modal.find('input[name=max_pay]').val($(this).data('max_amount'));
+                    modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
+                    modal.modal('show')
+                })
             })
-        })
-    </script>
-    <script>
-        'use strict';
+        </script>
+        <script>
+            'use strict';
 
-        $('.planDelete').on('click', function() {
-            const modal = $('#planDelete');
+            $('.planDelete').on('click', function() {
+                const modal = $('#planDelete');
 
-            modal.find('form').attr('action', $(this).data('href'))
+                modal.find('form').attr('action', $(this).data('href'))
 
-            modal.modal('show')
-
-
-        })
-
-        var copyButton = document.querySelector('.copy');
-        var copyInput = document.querySelector('.copy-text');
-        copyButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            var text = copyInput.select();
-            document.execCommand('copy');
-        });
-        copyInput.addEventListener('click', function() {
-            this.select();
-        });
+                modal.modal('show')
 
 
-        $('.mobile-card-slider').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '60px',
-            arrows: false,
-            dots: false,
-            autoplay: false,
-            cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
-            speed: 1500,
-            autoplaySpeed: 1000,
-            responsive: [{
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 3
+            })
+
+            var copyButton = document.querySelector('.copy');
+            var copyInput = document.querySelector('.copy-text');
+            copyButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                var text = copyInput.select();
+                document.execCommand('copy');
+            });
+            copyInput.addEventListener('click', function() {
+                this.select();
+            });
+
+
+            $('.mobile-card-slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true,
+                centerPadding: '60px',
+                arrows: false,
+                dots: false,
+                autoplay: false,
+                cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+                speed: 1500,
+                autoplaySpeed: 1000,
+                responsive: [{
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1
+                        }
                     }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1
-                    }
+                ]
+            });
+        </script>
+        <script>
+            $('.plan-wrapper').hide()
+            $('.show-plans').click(function() {
+                $('.plan-wrapper').slideDown()
+            });
+        </script>
+        <script>
+            $('.modal-table').hide()
+            $('.submit-payment').attr('disabled', true)
+            $('.submit-payment').text('Enter Amount')
+            var invest_form = $('.invest-form')
+            $('.modal_amount').keyup(function(e) {
+
+                // $(this).val()
+                // invest_form.find('input[name=min_pay]').val()
+                // invest_form.find('input[name=max_pay]').val()
+                // $('.submit-payment').attr('disabled', true);
+                // $('.submit-payment').text('Please Follow Limit');
+
+                // Function to parse value while ignoring commas
+                function parseValue(value) {
+                    return parseFloat(value.replace(/,/g, ''));
                 }
-            ]
-        });
-    </script>
-    <script>
-        $('.plan-wrapper').hide()
-        $('.show-plans').click(function() {
-            $('.plan-wrapper').slideDown()
-        });
-    </script>
-    <script>
-        $('.modal-table').hide()
-        $('.submit-payment').attr('disabled', true)
-        $('.submit-payment').text('Enter Amount')
-        var invest_form = $('.invest-form')
-        $('.modal_amount').keyup(function(e) {
 
-            // $(this).val()
-            // invest_form.find('input[name=min_pay]').val()
-            // invest_form.find('input[name=max_pay]').val()
-            // $('.submit-payment').attr('disabled', true);
-            // $('.submit-payment').text('Please Follow Limit');
+                var currentValue = parseValue($(this).val());
+                var minPay = parseValue(invest_form.find('input[name=min_pay]').val());
+                var maxPay = parseValue(invest_form.find('input[name=max_pay]').val());
+                var fixAmount = parseValue(invest_form.find('input[name=fix_amount]').val());
+                var modalMessage = $('.modal-error-message');
 
-            // Function to parse value while ignoring commas
-            function parseValue(value) {
-                return parseFloat(value.replace(/,/g, ''));
-            }
-
-            var currentValue = parseValue($(this).val());
-            var minPay = parseValue(invest_form.find('input[name=min_pay]').val());
-            var maxPay = parseValue(invest_form.find('input[name=max_pay]').val());
-            var fixAmount = parseValue(invest_form.find('input[name=fix_amount]').val());
-            var modalMessage = $('.modal-error-message');
-
-            if (fixAmount > 0) {
-                if (currentValue != fixAmount) {
-                    $('.submit-payment').prop('disabled', true);
-                    $('.submit-payment').text('Please Follow Limit');
-                    modalMessage.text(`Amount should have been equal to ${fixAmount}.`)
-                    $('.modal-table').slideUp()
+                if (fixAmount > 0) {
+                    if (currentValue != fixAmount) {
+                        $('.submit-payment').prop('disabled', true);
+                        $('.submit-payment').text('Please Follow Limit');
+                        modalMessage.text(`Amount should have been equal to ${fixAmount}.`)
+                        $('.modal-table').slideUp()
+                    } else {
+                        $('.submit-payment').prop('disabled', false);
+                        $('.submit-payment').text('Submit');
+                        modalMessage.text(``)
+                        $('.modal-table').slideDown()
+                    }
                 } else {
-                    $('.submit-payment').prop('disabled', false);
-                    $('.submit-payment').text('Submit');
-                    modalMessage.text(``)
-                    $('.modal-table').slideDown()
+                    if (currentValue > maxPay || currentValue < minPay || currentValue < 1) {
+                        $('.submit-payment').prop('disabled', true);
+                        $('.submit-payment').text('Please Follow Limit');
+                        modalMessage.text(`Amount must be between ${minPay} and ${maxPay}.`)
+                        $('.modal-table').slideUp()
+                    } else {
+                        $('.submit-payment').prop('disabled', false);
+                        $('.submit-payment').text('Submit');
+                        modalMessage.text(``)
+                        $('.modal-table').slideDown()
+                    }
                 }
-            } else {
-                if (currentValue > maxPay || currentValue < minPay || currentValue < 1) {
-                    $('.submit-payment').prop('disabled', true);
-                    $('.submit-payment').text('Please Follow Limit');
-                    modalMessage.text(`Amount must be between ${minPay} and ${maxPay}.`)
-                    $('.modal-table').slideUp()
-                } else {
-                    $('.submit-payment').prop('disabled', false);
-                    $('.submit-payment').text('Submit');
-                    modalMessage.text(``)
-                    $('.modal-table').slideDown()
-                }
-            }
 
-            let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
-                parseFloat($(this).val());
-            $('.exp-profit').text(`$${expected} to $${(expected * 1 / 100) + expected}`)
-            $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2) / 2}`)
-        });
-    </script>
-    <script>
-        var invest_form = $('.invest-form')
-        $('.success-img-wrapper').hide()
-        $('.payment-loading').hide()
+                let expected = $(this).val() * $('#invest').find('input[name=plan_percentage]').val() / 100 +
+                    parseFloat($(this).val());
+                $('.exp-profit').text(`$${expected} to $${(expected * 1 / 100) + expected}`)
+                $('.bot-fee').text(`$${(expected * 1 / 100).toFixed(2) / 2}`)
+            });
+        </script>
+        <script>
+            var invest_form = $('.invest-form')
+            $('.success-img-wrapper').hide()
+            $('.payment-loading').hide()
 
-        $('.submit-payment').click(function(e) {
-            e.preventDefault();
-            $('.payment-loading').fadeIn()
-            $('.payment-loading h4').text('Loading ...')
-            setTimeout(function() {
-                $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
-            }, 3000);
-            setTimeout(function() {
-                // FETCHING SYMBOL
-                fetch('https://quantummtradeai.com/api/cryptoSymbols')
-                    .then(response => response.json())
-                    .then(data => {
-                        // FETCHING PRICE
-                        $.ajax({
-                            method: 'GET',
-                            url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
-                            headers: {
-                                'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
-                            },
-                            contentType: 'application/json',
-                            success: function(result) {
-                                invest_form.find('input[name=pair_name]').val(result.symbol)
-                                invest_form.find('input[name=pair_price]').val(result.price)
-                                invest_form.find('input[name=timestamp]').val(result
-                                    .timestamp)
-                                $('.payment-loading h4').text(
-                                    `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
-                                );
-                                setTimeout(function() {
+            $('.submit-payment').click(function(e) {
+                e.preventDefault();
+                $('.payment-loading').fadeIn()
+                $('.payment-loading h4').text('Loading ...')
+                setTimeout(function() {
+                    $('.payment-loading h4').text('Bot Is Finding Accurate Pair For You');
+                }, 3000);
+                setTimeout(function() {
+                    // FETCHING SYMBOL
+                    fetch('https://quantummtradeai.com/api/cryptoSymbols')
+                        .then(response => response.json())
+                        .then(data => {
+                            // FETCHING PRICE
+                            $.ajax({
+                                method: 'GET',
+                                url: 'https://api.api-ninjas.com/v1/cryptoprice?symbol=' + data,
+                                headers: {
+                                    'X-Api-Key': 'j/maOGmZgHTpjSrL7e+paA==GZJHhvIFnZGIa8zR'
+                                },
+                                contentType: 'application/json',
+                                success: function(result) {
+                                    invest_form.find('input[name=pair_name]').val(result.symbol)
+                                    invest_form.find('input[name=pair_price]').val(result.price)
+                                    invest_form.find('input[name=timestamp]').val(result
+                                        .timestamp)
                                     $('.payment-loading h4').text(
-                                        `Processing With ${result.symbol}, Please Wait ...`
+                                        `Bot Selected ${result.symbol} For You, The Initial Pair Price Is ${result.price}`
                                     );
-                                }, 5000);
-                                setTimeout(function() {
-                                    $('.success-img-wrapper').hide()
-                                    $('.payment-loading').hide()
-                                    const modal = $('#invest');
-                                    modal.modal('hide')
-                                    invest_form.submit()
-                                }, 10000);
-                            },
-                            error: function ajaxError(jqXHR) {
-                                console.error('Error: ', jqXHR.responseText);
-                            }
-                        });
-                        // FETCHING PRICE
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-                // FETCH SYMBOL
-            }, 9000);
-            // FINAL
-        })
-    </script>
-
-<?php $__env->stopPush(); ?>
+                                    setTimeout(function() {
+                                        $('.payment-loading h4').text(
+                                            `Processing With ${result.symbol}, Please Wait ...`
+                                        );
+                                    }, 5000);
+                                    setTimeout(function() {
+                                        $('.success-img-wrapper').hide()
+                                        $('.payment-loading').hide()
+                                        const modal = $('#invest');
+                                        modal.modal('hide')
+                                        invest_form.submit()
+                                    }, 10000);
+                                },
+                                error: function ajaxError(jqXHR) {
+                                    console.error('Error: ', jqXHR.responseText);
+                                }
+                            });
+                            // FETCHING PRICE
+                        })
+                        .catch(error => console.error('Error fetching data:', error));
+                    // FETCH SYMBOL
+                }, 9000);
+                // FINAL
+            })
+        </script>
+    <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make(template() . 'layout.master2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\quantum-trade\resources\views/theme4/user/dashboard.blade.php ENDPATH**/ ?>

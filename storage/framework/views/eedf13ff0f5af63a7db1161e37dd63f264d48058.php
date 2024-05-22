@@ -451,10 +451,11 @@
                                             </table>
 
 
+                                          
                                             <?php if($transactions->hasPages()): ?>
-                                                <?php echo e($transactions->links()); ?>
+                        <?php echo e($transactions->links()); ?>
 
-                                            <?php endif; ?>
+                    <?php endif; ?>
                                         </div><!--End Table-->
                                     </div><!--End InvoiceBot-->
                                 </div><!--End Invoice-->
