@@ -55,7 +55,7 @@
         }
 
         /*We need to remove left-right connectors from elements without
-                                                any siblings*/
+                                                    any siblings*/
         .tree li:only-child::after,
         .tree li:only-child::before {
             display: none;
@@ -67,7 +67,7 @@
         }
 
         /*Remove left connector from first child and
-                                                right connector from last child*/
+                                                    right connector from last child*/
         .tree li:first-child::before,
         .tree li:last-child::after {
             border: 0 none;
@@ -134,7 +134,7 @@
         }
 
         /*Thats all. I hope you enjoyed it.
-                                                Thanks :)*/
+                                                    Thanks :)*/
     </style>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
@@ -304,22 +304,19 @@
                                 <div class="tree pb-5">
                                     <ul>
                                         <li>
-                                            <a
-                                                href="#"><?php echo e(auth()->user()->full_name . ' - ' . currentPlan(auth()->user())); ?></a>
+                                            <a><?php echo e(auth()->user()->full_name . ' - ' . currentPlan(auth()->user())); ?></a>
                                             <ul>
                                                 <?php $__currentLoopData = $reference; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li>
-                                                        <a
-                                                            href="#"><?php echo e($user->full_name . ' - ' . currentPlan($user)); ?></a>
+                                                        <a><?php echo e($user->full_name . ' - ' . currentPlan($user)); ?></a>
                                                         <ul>
                                                             <?php $__currentLoopData = $user->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <li>
-                                                                    <a
-                                                                        href="#"><?php echo e($ref->full_name . ' - ' . currentPlan($ref)); ?></a>
+                                                                    <a><?php echo e($ref->full_name . ' - ' . currentPlan($ref)); ?></a>
                                                                     <ul>
                                                                         <?php $__currentLoopData = $ref->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                             <li>
-                                                                                <a href="#">
+                                                                                <a>
                                                                                     <?php echo e($ref2->full_name . ' - ' . currentPlan($ref2)); ?></a>
                                                                             </li>
                                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

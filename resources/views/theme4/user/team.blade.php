@@ -56,7 +56,7 @@
         }
 
         /*We need to remove left-right connectors from elements without
-                                                any siblings*/
+                                                    any siblings*/
         .tree li:only-child::after,
         .tree li:only-child::before {
             display: none;
@@ -68,7 +68,7 @@
         }
 
         /*Remove left connector from first child and
-                                                right connector from last child*/
+                                                    right connector from last child*/
         .tree li:first-child::before,
         .tree li:last-child::after {
             border: 0 none;
@@ -135,7 +135,7 @@
         }
 
         /*Thats all. I hope you enjoyed it.
-                                                Thanks :)*/
+                                                    Thanks :)*/
     </style>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
@@ -330,22 +330,19 @@
                                 <div class="tree pb-5">
                                     <ul>
                                         <li>
-                                            <a
-                                                href="#">{{ auth()->user()->full_name . ' - ' . currentPlan(auth()->user()) }}</a>
+                                            <a>{{ auth()->user()->full_name . ' - ' . currentPlan(auth()->user()) }}</a>
                                             <ul>
                                                 @foreach ($reference as $user)
                                                     <li>
-                                                        <a
-                                                            href="#">{{ $user->full_name . ' - ' . currentPlan($user) }}</a>
+                                                        <a>{{ $user->full_name . ' - ' . currentPlan($user) }}</a>
                                                         <ul>
                                                             @foreach ($user->refferals as $ref)
                                                                 <li>
-                                                                    <a
-                                                                        href="#">{{ $ref->full_name . ' - ' . currentPlan($ref) }}</a>
+                                                                    <a>{{ $ref->full_name . ' - ' . currentPlan($ref) }}</a>
                                                                     <ul>
                                                                         @foreach ($ref->refferals as $ref2)
                                                                             <li>
-                                                                                <a href="#">
+                                                                                <a>
                                                                                     {{ $ref2->full_name . ' - ' . currentPlan($ref2) }}</a>
                                                                             </li>
                                                                         @endforeach
