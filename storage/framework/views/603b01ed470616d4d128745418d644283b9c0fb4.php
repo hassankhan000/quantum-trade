@@ -8,8 +8,8 @@
     <meta name="cryptomus" content="e8265895" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>IKO - ICO & Crypto Landing Page Template</title>
-    <meta name="description" content="IKO - ICO & Crypto Landing Page Template">
+    <title>QTAI - HOME</title>
+    <meta name="description" content="Introducing First Quantum Trading Bot | Quantum Trade Ai">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">

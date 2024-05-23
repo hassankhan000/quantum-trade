@@ -8,6 +8,8 @@
 
     .nk-content {
         background: #232721 !important;
+        height: 100vh;
+        overflow: auto;
     }
 
     .modal_amount {

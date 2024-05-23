@@ -55,7 +55,7 @@
         }
 
         /*We need to remove left-right connectors from elements without
-                                                    any siblings*/
+                                                                        any siblings*/
         .tree li:only-child::after,
         .tree li:only-child::before {
             display: none;
@@ -67,7 +67,7 @@
         }
 
         /*Remove left connector from first child and
-                                                    right connector from last child*/
+                                                                        right connector from last child*/
         .tree li:first-child::before,
         .tree li:last-child::after {
             border: 0 none;
@@ -134,7 +134,7 @@
         }
 
         /*Thats all. I hope you enjoyed it.
-                                                    Thanks :)*/
+                                                                        Thanks :)*/
     </style>
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
@@ -148,27 +148,31 @@
                                         <h6 class="text-white fw-bold m-0">Total Deposit:
                                             <?php echo e(round($TotalTeamDeposit, 2)); ?></h6>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">Today Deposit: N/A</p>
+                                        <p class="text-light m-0 small-text">Today Deposit:
+                                            <?php echo e(round($totalTodayDeposit, 2)); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">This Month Deposit: N/A</p>
+                                        <p class="text-light m-0 small-text">This Month Deposit:
+                                            <?php echo e(round($totalThisMonthDeposit, 2)); ?></p>
                                     </div>
                                     <div class="col-4 border border-success p-3">
                                         <h6 class="text-white fw-bold m-0">Total Members:
                                             <?php echo e($TotalTeamMembers); ?></h6>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">Total Active: N/A</p>
+                                        <p class="text-light m-0 small-text">Total Active: <?php echo e($TotalTeamMembers); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">Today Active: N/A</p>
+                                        <p class="text-light m-0 small-text">Today Active: <?php echo e($totalTodayUsers); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">This Month: N/A</p>
+                                        <p class="text-light m-0 small-text">This Month: <?php echo e($totalThisMonthUsers); ?></p>
                                     </div>
                                     <div class="col-4 border border-success p-3">
                                         <h6 class="text-white fw-bold m-0">Total Commision:
                                             <?php echo e(round($totalTeamCom, 2)); ?></h6>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">Today Commission: N/A</p>
+                                        <p class="text-light m-0 small-text">Today Commission:
+                                            <?php echo e(round($totalTodayCommission, 2)); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-light m-0 small-text">This Month Commission: N/A</p>
+                                        <p class="text-light m-0 small-text">This Month Commission:
+                                            <?php echo e(round($totalmonthCommission, 2)); ?></p>
                                     </div>
                                 </div>
                                 
@@ -184,7 +188,8 @@
                                         <p class="text-white small-text m-0">Total Commission:
                                             <?php echo e(round($SumLvlOneComAmnt->total_com, 2)); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                        <p class="text-white small-text m-0">Today Commission:
+                                            <?php echo e(round($levelOneTodayComAmnt->total_com, 2)); ?></p>
                                     </div>
                                     <div class="col-4 border border-success p-3">
                                         <h6 class="fw-bold text-light">Level 2 Details</h6>
@@ -197,7 +202,8 @@
                                         <p class="text-white small-text m-0">Total Commission:
                                             <?php echo e(round($SumLvlTwoComAmnt->total_com, 2)); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                        <p class="text-white small-text m-0">Today Commission:
+                                            <?php echo e(round($levelTwoTodayComAmnt->total_com, 2)); ?></p>
                                     </div>
                                     <div class="col-4 border border-success p-3">
                                         <h6 class="fw-bold text-light">Level 3 Details</h6>
@@ -210,7 +216,8 @@
                                         <p class="text-white small-text m-0">Total Commission:
                                             <?php echo e(round($SumLvlThreeComAmnt->total_com, 2)); ?></p>
                                         <hr class="border-success">
-                                        <p class="text-white small-text m-0">Today Commission: N/A</p>
+                                        <p class="text-white small-text m-0">Today Commission:
+                                            <?php echo e(round($levelThreeTodayComAmnt->total_com, 2)); ?></p>
                                     </div>
                                 </div>
                                 <div class="mt-3">

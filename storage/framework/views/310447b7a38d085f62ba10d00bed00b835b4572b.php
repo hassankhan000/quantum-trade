@@ -9,7 +9,7 @@
         <meta name='description' content="<?php echo e(@$general->seo_description); ?>">
     <?php $__env->stopPush(); ?>
 
-
+    
     <div class="nk-wrap nk-wrap-nosidebar">
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
@@ -18,7 +18,7 @@
                             class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em
                                 class="icon ni ni-info"></em></a></div>
                     <div class="nk-block nk-block-middle nk-auth-body">
-                        <div class="brand-logo pb-2"><a href="../../index-2.html" class="logo-link"><img
+                        <div class="brand-logo pb-2"><a href="/" class="logo-link"><img
                                     src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/logo.png')); ?>"
                                     alt="logo" />
                             </a></div>

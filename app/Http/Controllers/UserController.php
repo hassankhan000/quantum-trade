@@ -22,7 +22,7 @@ use Purifier;
 use Auth;
 use Hash;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -412,19 +412,13 @@ class UserController extends Controller
 
     public function team()
     {
+        // total users
         $LvlOneUsers = Db::table('users')
             ->select('id')
             ->where('reffered_by', Auth::id())
-            ->where('status', 1) // Add this line
+            ->where('status', 1)
             ->pluck('id')
             ->toArray();
-
-
-        $SumLvlOneDepositAmnt = DB::table('deposits')
-            ->selectRaw('SUM(amount) AS total_amount')
-            ->whereIn('user_id', $LvlOneUsers)
-            ->where('payment_status', 1)
-            ->first();
 
         $LvlTwoUsers = DB::table('users')
             ->select('id')
@@ -433,41 +427,206 @@ class UserController extends Controller
             ->pluck('id')
             ->toArray();
 
-        $SumLvlTwoDepositAmnt = DB::table('deposits')
-            ->selectRaw('SUM(amount) AS total_amount')
-            ->whereIn('user_id', $LvlTwoUsers)
-            ->where('payment_status', 1)
-            ->first();
-
         $LvlThreeUsers = DB::table('users')
             ->select('id')
             ->whereIn('reffered_by', $LvlTwoUsers)
             ->where('status', 1)
             ->pluck('id')
             ->toArray();
+        // total users
+
+        // sum deposit
+        $SumLvlOneDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlOneUsers)
+            ->where('payment_status', 1)
+            ->first();
+
+        $SumLvlTwoDepositAmnt = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlTwoUsers)
+            ->where('payment_status', 1)
+            ->first();
 
         $SumLvlThreeDepositAmnt = DB::table('deposits')
             ->selectRaw('SUM(amount) AS total_amount')
             ->whereIn('user_id', $LvlThreeUsers)
             ->where('payment_status', 1)
             ->first();
+        // sum deposit
 
-
+        // sum commission
         $SumLvlOneComAmnt = DB::table('reffered_commissions')
             ->selectRaw('SUM(amount) AS total_com')
             ->whereIn('reffered_to', $LvlOneUsers)
             ->first();
+
         $SumLvlTwoComAmnt = DB::table('reffered_commissions')
             ->selectRaw('SUM(amount) AS total_com')
             ->whereIn('reffered_to', $LvlTwoUsers)
             ->first();
+
         $SumLvlThreeComAmnt = DB::table('reffered_commissions')
             ->selectRaw('SUM(amount) AS total_com')
             ->whereIn('reffered_to', $LvlThreeUsers)
             ->first();
+        // sum commission
+
+        // total
         $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
         $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
         $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
+        // total
+
+        // total Today Commission
+        $levelOneTodayComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlOneUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+
+        $levelTwoTodayComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlTwoUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+
+        $levelThreeTodayComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlThreeUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+        $totalTodayCommission = $levelOneTodayComAmnt->total_com ?? 0 + $levelTwoTodayComAmnt->total_com ?? 0 + $levelThreeTodayComAmnt->total_com ?? 0;
+        // totalToday Commission
+
+        // total this month comm
+        $levelOnemonthComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlOneUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->first();
+
+        $levelTwomonthComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlTwoUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->first();
+
+        $levelThreemonthComAmnt = DB::table('reffered_commissions')
+            ->selectRaw('SUM(amount) AS total_com')
+            ->whereIn('reffered_to', $LvlThreeUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->first();
+
+        $totalmonthCommission = $levelOnemonthComAmnt->total_com ?? 0 + $levelTwomonthComAmnt->total_com ?? 0 + $levelThreemonthComAmnt->total_com ?? 0;
+        // total this month comm
+
+        // Total Today's Deposit
+        $todayLevelOneDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlOneUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $todayLevelTwoDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlTwoUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $todayLevelThreeDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlThreeUsers)
+            ->whereDate('created_at', Carbon::today())
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $totalTodayDeposit = $todayLevelOneDeposit + $todayLevelTwoDeposit + $todayLevelThreeDeposit;
+        // Total Today's Deposit
+
+        // Total this month Deposit
+        $thisMonthLevelOneDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlOneUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $thisMonthLevelTwoDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlTwoUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $thisMonthLevelThreeDeposit = DB::table('deposits')
+            ->selectRaw('SUM(amount) AS total_amount')
+            ->whereIn('user_id', $LvlThreeUsers)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->where('payment_status', 1)
+            ->first()->total_amount ?? 0;
+
+        $totalThisMonthDeposit = $thisMonthLevelOneDeposit
+            + $thisMonthLevelTwoDeposit
+            + $thisMonthLevelThreeDeposit;
+        // Total this month Deposit
+
+        // Today User
+        $currentDate = Carbon::now();
+        $todayLvlOneCount = Db::table('users')
+            ->where('reffered_by', Auth::id())
+            ->where('status', 1)
+            ->whereDate('created_at', $currentDate)
+            ->count();
+
+        $todayLvlTwoCount = DB::table('users')
+            ->whereIn('reffered_by', $LvlOneUsers)
+            ->where('status', 1)
+            ->whereDate('created_at', $currentDate)
+            ->count();
+
+        $todayLvlThreeCount = DB::table('users')
+            ->whereIn('reffered_by', $LvlTwoUsers)
+            ->where('status', 1)
+            ->whereDate('created_at', $currentDate)
+            ->count();
+
+        $totalTodayUsers = $todayLvlOneCount + $todayLvlTwoCount + $todayLvlThreeCount;
+        // Today User
+
+        // This month User
+        $thisMonthLvlOneCount = Db::table('users')
+            ->where('reffered_by', Auth::id())
+            ->where('status', 1)
+            ->whereYear('created_at', $currentDate->year)
+            ->whereMonth('created_at', $currentDate->month)
+            ->count();
+
+        $thisMonthLvlTwoCount = DB::table('users')
+            ->whereIn('reffered_by', $LvlOneUsers)
+            ->where('status', 1)
+            ->whereYear('created_at', $currentDate->year)
+            ->whereMonth('created_at', $currentDate->month)
+            ->count();
+
+        $thisMonthLvlThreeCount = DB::table('users')
+            ->whereIn('reffered_by', $LvlTwoUsers)
+            ->where('status', 1)
+            ->whereYear('created_at', $currentDate->year)
+            ->whereMonth('created_at', $currentDate->month)
+            ->count();
+
+        $totalThisMonthUsers = $thisMonthLvlOneCount + $thisMonthLvlTwoCount + $thisMonthLvlThreeCount;
+        // This month User
+
         // perfomane chart work
         $pageTitle = 'My Team';
         return view($this->template . 'user.team', compact(
@@ -483,7 +642,16 @@ class UserController extends Controller
             'SumLvlThreeComAmnt',
             'TotalTeamDeposit',
             'TotalTeamMembers',
-            'totalTeamCom'
+            'totalTeamCom',
+            'levelOneTodayComAmnt',
+            'levelTwoTodayComAmnt',
+            'levelThreeTodayComAmnt',
+            'totalTodayDeposit',
+            'totalThisMonthDeposit',
+            'totalTodayUsers',
+            'totalThisMonthUsers',
+            'totalTodayCommission',
+            'totalmonthCommission'
         ));
     }
 
