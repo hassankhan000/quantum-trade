@@ -1,16 +1,13 @@
-
-
-
 <?php $__env->startSection('content'); ?>
     <div class="main-content">
         <section class="section">
-            
-            
+
+
             <div class="section-header pl-0 d-flex justify-content-between">
                 <h1 class="pl-0"><?php echo e(__($pageTitle)); ?></h1>
                 <h4>
                     <?php if(Schema::hasColumn('referrals', 'plan_id')): ?>
-                       
+
                     <?php else: ?>
                         <a class="btn btn-sm btn-primary" href="<?php echo e(route('admin.update-database')); ?>"><i
                                 data-feather="database"></i><span class="ml-2"><?php echo e(__('Update Database')); ?></span></a>
@@ -22,13 +19,13 @@
                 <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
                     <i class="bi-exclamation-triangle-fill"></i>
                     <strong class="mx-2">Warning!</strong> Please Update database
-                   
+
                 </div>
             <?php endif; ?>
-            
-            
-            
-            
+
+
+
+
 
             <div class="mb-4">
                 <code class="mb-2 d-inline-block text-dark">
@@ -44,15 +41,26 @@
                 </div>
             </div>
 
-            <div class="row"> 
+            <div class="row">
+                <div class="custom-xxxl-3 custom-xxl-4 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="card-stat gr-bg-7">
+                        <div class="icon">
+                            <i class="fas fa-money-bill-wave-alt"></i>
+                        </div>
+                        <div class="content">
+                            <p class="caption"><?php echo e(__('Total User\'s Balance')); ?></p>
+                            <h4 class="card-stat-amount"><?php echo e(number_format($totalUserBalance, 2) . ' ' . @$general->site_currency); ?></h4>
+                        </div>
+                    </div>
+                </div>
                 <div class="custom-xxxl-3 custom-xxl-4 col-md-6 col-sm-6 col-12 mb-4">
                     <div class="card-stat gr-bg-1">
                         <div class="icon">
                             <i class="fas fa-money-bill-wave-alt"></i>
                         </div>
                         <div class="content">
-                            <p class="caption"><?php echo e(__('Total Invest')); ?></p>
-                            <h4 class="card-stat-amount"><?php echo e(number_format($totalPayments, 2) . ' ' . @$general->site_currency); ?></h4>
+                            <p class="caption"><?php echo e(__('Total Deposit')); ?></p>
+                            <h4 class="card-stat-amount"><?php echo e(number_format($totaldeposit, 2) . ' ' . @$general->site_currency); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -62,8 +70,8 @@
                             <i class="fas fa-spinner"></i>
                         </div>
                         <div class="content">
-                            <p class="caption"><?php echo e(__('Total Pending Invest')); ?></p>
-                            <h4 class="card-stat-amount"><?php echo e(number_format($totalPendingPayments, 2) . ' ' . @$general->site_currency); ?></h4>
+                            <p class="caption"><?php echo e(__('Total Commission')); ?></p>
+                            <h4 class="card-stat-amount"><?php echo e(number_format($totalcommission, 2) . ' ' . @$general->site_currency); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -125,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="custom-xxxl-3 custom-xxl-4 col-md-6 col-sm-6 col-12 mb-4">
                     <div class="card-stat gr-bg-8">
                         <div class="icon">
@@ -206,7 +214,7 @@
                 </div>
             </div>
 
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6 col-12 col-lg-6">
                     <div class="card invest-report-card">
                         <div class="card-header gr-bg-1">
@@ -340,9 +348,9 @@
                     borderWidth: 2
                 }]
             },
-            options: { 
-                scales: { 
-                    y: { 
+            options: {
+                scales: {
+                    y: {
                         beginAtZero: true
                     }
                 }

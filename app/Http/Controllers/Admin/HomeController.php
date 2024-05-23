@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Gateway;
 use App\Models\MoneyTransfer;
 use App\Models\Payment;
+use App\Models\Deposit;
+use App\Models\RefferedCommission;
 use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\Subscriber;
@@ -26,7 +28,9 @@ class HomeController extends Controller
         $data['pageTitle'] = 'Dashboard';
         $data['navDashboardActiveClass'] = "active";
 
-        $data['totalPayments'] = Payment::where('payment_status', 1)->sum('final_amount');
+        $data['totaldeposit'] = Deposit::where('payment_status', 1)->sum('amount');
+        $data['totalcommission'] = RefferedCommission::select()->sum('amount');
+        $data['totalUserBalance'] = User::where('status', 1)->sum('balance');
         $data['totalPendingPayments'] = Payment::where('payment_status', 0)->sum('final_amount');
         $data['totalWithdraw'] = Withdraw::where('status', 1)->sum('withdraw_amount');
 
@@ -69,7 +73,7 @@ class HomeController extends Controller
         $data['totalWithdrawGateways'] = WithdrawGateway::where('status', 1)->count();
         $data['totalInterest'] = Payment::where('payment_status', 1)->sum('interest_amount');
         $data['pendignWithdraw'] = Withdraw::where('status', 0)->sum('withdraw_amount');
-        
+
 
 
         return view('backend.dashboard')->with($data);
@@ -91,7 +95,7 @@ class HomeController extends Controller
 
         $transactions = Transaction::query();
 
-        if($user){
+        if ($user) {
             $transactions->where('user_id', $user->id);
         }
 
@@ -122,18 +126,19 @@ class HomeController extends Controller
     {
         auth()->guard('admin')->user()
             ->unreadNotifications()
-            ->where('type',DepositNotification::class)
+            ->where('type', DepositNotification::class)
             ->get()
             ->markAsRead();
 
         return redirect()->back()->with('success', 'All Notifications are Marked');
     }
 
-    public function subscribers(){
+    public function subscribers()
+    {
 
-        $pageTitle="Newsletter Subscriber";
-        $subscribers=Subscriber::latest()->paginate();
-        return view ('backend.subscriber',compact('subscribers','pageTitle'));
+        $pageTitle = "Newsletter Subscriber";
+        $subscribers = Subscriber::latest()->paginate();
+        return view('backend.subscriber', compact('subscribers', 'pageTitle'));
     }
 
     public function MoneyTransfer(Request $request)
@@ -151,31 +156,31 @@ class HomeController extends Controller
 
     public function updateSystem()
     {
-        if(!file_exists(base_path().'/update/up1/update.json')){
-            return redirect()->back()->with('error','No directory Found');
+        if (!file_exists(base_path() . '/update/up1/update.json')) {
+            return redirect()->back()->with('error', 'No directory Found');
         }
-        
-        
+
+
         $updatePath = base_path();
-        
 
 
-        $json = json_decode(file_get_contents(base_path().'/update/up1/update.json'), true);
-        
 
-         if (!empty($json['files'])) {
+        $json = json_decode(file_get_contents(base_path() . '/update/up1/update.json'), true);
+
+
+        if (!empty($json['files'])) {
             foreach ($json['files'] as $file) {
 
-                copy($updatePath.'/'.$file['root_directory'] , base_path($file['update_directory']));
+                copy($updatePath . '/' . $file['root_directory'], base_path($file['update_directory']));
             }
         }
-        
-        
+
+
 
         if (!empty($json['folder'])) {
 
             foreach ($json['folder'] as $directory) {
-                File::copyDirectory($updatePath.'/'.$json['root_directory'], base_path($directory['update_directory']));
+                File::copyDirectory($updatePath . '/' . $json['root_directory'], base_path($directory['update_directory']));
             }
         }
 
@@ -186,16 +191,16 @@ class HomeController extends Controller
             }
         }
 
-       
 
 
-        return redirect()->back()->with('success','System Updated Successfully');
+
+        return redirect()->back()->with('success', 'System Updated Successfully');
     }
-    
+
     public function updateDb()
     {
 
-        $sql_path = base_path().'/update/up1/up1.sql';
+        $sql_path = base_path() . '/update/up1/up1.sql';
 
         DB::unprepared(file_get_contents($sql_path));
 
