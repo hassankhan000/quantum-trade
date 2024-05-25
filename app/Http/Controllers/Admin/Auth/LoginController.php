@@ -34,7 +34,6 @@ class LoginController extends Controller
         $remember = $request->remember == 'on' ? true : false;
 
         if (auth()->guard('admin')->attempt($data, $remember)) {
-            $userIp = $request->ip();
             AdminLogin::create([
                 'user_id' => auth()->guard('admin')->user()->id,
                 'login_time' => now(),

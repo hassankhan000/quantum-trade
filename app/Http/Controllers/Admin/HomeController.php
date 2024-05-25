@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $data['pageTitle'] = 'Dashboard';
         $data['navDashboardActiveClass'] = "active";

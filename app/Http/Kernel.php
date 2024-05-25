@@ -71,6 +71,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+        'checkAdminIP' => \App\Http\Middleware\CheckAdminIP::class,
         'admin.guest' => \App\Http\Middleware\RedirectIfAdmin::class,
         'tenant' => \App\Http\Middleware\Tenant::class,
         'SetSubDomainInEveryRoute' => \App\Http\Middleware\SetSubDomainInEveryRoute::class,

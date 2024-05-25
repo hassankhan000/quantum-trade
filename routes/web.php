@@ -53,9 +53,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return redirect()->route('admin.login');
     });
 
-    
+
     Route::get('login', [LoginController::class, 'loginPage'])->name('login');
-    
+
     Route::post('login', [LoginController::class, 'login']);
 
     Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.reset');
@@ -65,7 +65,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('password/reset/change', [ResetPasswordController::class, 'reset'])->name('password.change');
 
 
-    Route::middleware(['admin', 'demo'])->group(function () {
+    Route::middleware(['admin', 'demo', 'checkAdminIP'])->group(function () {
 
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('home');
 
@@ -87,11 +87,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
         // role Permission
-        
+
         Route::resource('roles', RoleController::class, ['except' => ['show', 'delete', 'edit']])->middleware('permission:manage-role,admin');
-        
+
         Route::resource('admins', AdminController::class)->middleware('permission:manage-admin,admin');
-        
+
         Route::middleware('permission:manage-ticket,admin')->group(function () {
             Route::get('pendingList', [AdminTicketController::class, 'pendingList'])->name('ticket.pendingList');
             Route::post('ticket/reply', [AdminTicketController::class, 'reply'])->name('ticket.reply');

@@ -75,7 +75,7 @@ class AdminController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
         $data['pageTitle'] = 'Manage Admins';
 
