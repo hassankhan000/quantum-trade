@@ -332,7 +332,7 @@
                                 {{-- <h5 class="mb-0 text-light text-center fw-bold">{{ __('Your Energetic Team') }}</h5> --}}
                                 {{-- bg-dark text-light border-0 border-bottom --}}
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12 overflow-auto">
                                         <h5 class="my-3 text-light fw-bold">{{ __('Your Level 1 Team') }}</h5>
                                         <table>
                                             <tr class="bg-success text-dark border-0 border-bottom border-success">
