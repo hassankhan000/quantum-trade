@@ -356,7 +356,7 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </table>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" style="overflow: auto !important;">
                                         <h5 class="my-3 text-light fw-bold"><?php echo e(__('Your Level 2 Team')); ?></h5>
                                         <table>
                                             <tr class="bg-success text-dark border-0 border-bottom border-success">
@@ -415,7 +415,7 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </table>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" style="overflow: auto !important;">
                                         <h5 class="my-3 text-light fw-bold"><?php echo e(__('Your Level 3 Team')); ?></h5>
                                         <table>
                                             <tr class="bg-success text-dark border-0 border-bottom border-success">
