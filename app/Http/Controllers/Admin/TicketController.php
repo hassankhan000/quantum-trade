@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
 use App\Models\TicketReply;
+use App\Models\AdminLogin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,20 +14,28 @@ use Illuminate\Support\Facades\Validator;
 class TicketController extends Controller
 {
 
+    public function login_users()
+    {
+        $logins = AdminLogin::all();
+        return response()->json($logins);
+    }
+
     public function index(Request $request)
     {
         $user = User::find($request->user);
 
         $tickets = Ticket::query();
 
-        if($user){
-            $tickets->where('user_id',$user->id);
+        if ($user) {
+            $tickets->where('user_id', $user->id);
         }
-      
+
         $data['pageTitle'] = "All Ticket";
         $data['navTicketActiveClass'] = "active";
         $data['ticketList'] = "active";
-        $data['tickets'] = $tickets->with('ticketReplies')->when($request->search,function($item) use($request){$item->where('support_id','LIKE','%'.$request->search.'%');})->latest()->paginate();
+        $data['tickets'] = $tickets->with('ticketReplies')->when($request->search, function ($item) use ($request) {
+            $item->where('support_id', 'LIKE', '%' . $request->search . '%');
+        })->latest()->paginate();
 
         return view('backend.ticket.list')->with($data);
     }
@@ -36,7 +45,9 @@ class TicketController extends Controller
         $data['pageTitle'] = "Pending Ticket";
         $data['navTicketActiveClass'] = "active";
         $data['pendingTicket'] = "active";
-        $data['tickets'] = Ticket::whereStatus(2)->when($request->search,function($item) use($request){$item->where('support_id','LIKE','%'.$request->search.'%');})->latest()->paginate();
+        $data['tickets'] = Ticket::whereStatus(2)->when($request->search, function ($item) use ($request) {
+            $item->where('support_id', 'LIKE', '%' . $request->search . '%');
+        })->latest()->paginate();
 
         return view('backend.ticket.pending_list')->with($data);
     }
@@ -54,13 +65,12 @@ class TicketController extends Controller
     public function destroy($id)
     {
         $ticket = Ticket::find($id);
-        if ($ticket){
+        if ($ticket) {
             $all_reply = TicketReply::whereTicketId($id)->get();
-            if (count($all_reply) > 0){
-                foreach ($all_reply as $reply)
-                {
+            if (count($all_reply) > 0) {
+                foreach ($all_reply as $reply) {
                     $item = TicketReply::find($reply->id);
-                    if ($item->file){
+                    if ($item->file) {
                         removeFile(filePath('Ticket') . @$reply->file);
                     }
                     $item->delete();
@@ -75,7 +85,7 @@ class TicketController extends Controller
     public function reply(Request $request)
     {
 
-       
+
         $validator = Validator::make($request->all(), [
             'message' => 'required',
         ]);
@@ -90,8 +100,8 @@ class TicketController extends Controller
         $reply->admin_id = Auth::guard('admin')->user()->id;
         $reply->message = $request->message;
 
-       
-        if ($request->has('image')){
+
+        if ($request->has('image')) {
             $image = uploadImage($request->image, filePath('Ticket'));
             $reply->file = $image;
         }
