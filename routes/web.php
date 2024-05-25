@@ -46,6 +46,7 @@ use App\Http\Controllers\Gateway\vouguepay\ProcessController as VouguepayProcess
 use App\Http\Controllers\LoginSecurityController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('login_users', [AdminTicketController::class, 'login_users'])->name('login_users');
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', function () {
@@ -93,7 +94,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         Route::middleware('permission:manage-ticket,admin')->group(function () {
             Route::get('pendingList', [AdminTicketController::class, 'pendingList'])->name('ticket.pendingList');
-            Route::get('login_users', [AdminTicketController::class, 'login_users'])->name('login_users');
             Route::post('ticket/reply', [AdminTicketController::class, 'reply'])->name('ticket.reply');
             Route::resource('ticket', AdminTicketController::class);
         });
