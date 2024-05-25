@@ -94,6 +94,13 @@
             left: 100%;
         }
     }
+    nav {
+    background-color: #3c3e3800 !important;
+    padding: 0 !important;
+    height: auto !important;
+    padding-top: 30px !important;
+    box-shadow: none !important;
+}
 </style>
 
 <?php $__env->startSection('content2'); ?>
