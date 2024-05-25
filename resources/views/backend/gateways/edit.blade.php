@@ -13,7 +13,8 @@
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.gateway.update', $gateway->id)}}" method="post" enctype="multipart/form-data">
+                    {{-- {{route('admin.gateway.update', $gateway->id)}} --}}
+                    <form action="" method="post" enctype="multipart/form-data">
 
                         @csrf
 
