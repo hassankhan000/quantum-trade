@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogin;
 use App\Models\AdminPasswordReset;
+use GeoIp2\Database\Reader;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -19,8 +21,7 @@ class LoginController extends Controller
 
         AdminPasswordReset::truncate();
 
-        return view('backend.auth.login',compact('pageTitle'));
-
+        return view('backend.auth.login', compact('pageTitle'));
     }
 
     public function login(Request $request)
@@ -30,20 +31,26 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-         $remember = $request->remember == 'on' ? true : false;
+        $remember = $request->remember == 'on' ? true : false;
 
-        if(auth()->guard('admin')->attempt($data, $remember)){
-            return redirect()->route('admin.home')->with('success','Login Successful');
+        if (auth()->guard('admin')->attempt($data, $remember)) {
+            $userIp = $request->ip();
+            AdminLogin::create([
+                'user_id' => auth()->guard('admin')->user()->id,
+                'login_time' => now(),
+                'city' => "unknown",
+                'ip' => $userIp
+            ]);
+            return redirect()->route('admin.home')->with('success', 'Login Successful');
         }
 
-        return redirect()->route('admin.login')->with('error','Invalid Credentials');
+        return redirect()->route('admin.login')->with('error', 'Invalid Credentials');
     }
 
     public function logout()
     {
         auth()->guard('admin')->logout();
 
-        return redirect()->route('admin.login')->with('success','Logout Successful');
+        return redirect()->route('admin.login')->with('success', 'Logout Successful');
     }
-
 }
