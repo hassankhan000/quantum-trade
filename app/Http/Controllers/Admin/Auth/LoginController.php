@@ -26,6 +26,8 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        $userIp = $request->ip();
+
         $data = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -34,12 +36,12 @@ class LoginController extends Controller
         $remember = $request->remember == 'on' ? true : false;
 
         if (auth()->guard('admin')->attempt($data, $remember)) {
-            AdminLogin::create([
-                'user_id' => auth()->guard('admin')->user()->id,
-                'login_time' => now(),
-                'city' => "unknown",
-                'ip' => $userIp
-            ]);
+            // AdminLogin::create([
+            //     'user_id' => auth()->guard('admin')->user()->id,
+            //     'login_time' => now(),
+            //     'city' => "unknown",
+            //     'ip' => $userIp
+            // ]);
             return redirect()->route('admin.home')->with('success', 'Login Successful');
         }
 
