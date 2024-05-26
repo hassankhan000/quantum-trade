@@ -387,7 +387,7 @@
                                             <h4> {{ number_format(auth()->user()->balance, 2) }}
                                                 {{ $general->site_currency }}</h4>
 
-                                            <h6 class="fs-4 mt-3">Commission</h6>
+                                            <h4 style="font-size: 9px !important;" class="text-light mt-4">Commission</h4>
                                             <h4 class="fs-6">
                                                 @if ($currentDayCommision)
                                                     {{ number_format($currentDayCommision->amount, 2) }}
@@ -397,9 +397,9 @@
                                             </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
-                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
+                                            <h6 style="font-size: 9px !important;" class="mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
                                                 Amount</h6>
-                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-4">
+                                            <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark">
                                                 @if (isset($currentInvest->amount) == 0)
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="red" class="me-2 bi bi-arrow-down" viewBox="0 0 16 16">
