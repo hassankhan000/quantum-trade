@@ -539,7 +539,7 @@
                                                                 data-fix_amount="{{ number_format($plan->amount, 2) }}"
                                                                 data-url=""><span>{{ __('Invest') }}</span></button>
                                                         @else
-                                                            <button class="balance btn-light"><span>{{ __('Insufficient balance') }}</span></button>
+                                                            <button disabled class="balance btn-light"><span>{{ __('Insufficient balance 😔') }}</span></button>
                                                         @endif
                                                     @endauth
                                                 @endif
