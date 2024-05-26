@@ -4,58 +4,6 @@
     <meta name='description' content="{{ @$general->seo_description }}">
 @endpush
 @section('content')
-    {{-- <section class="auth-section">
-        <div class="auth-wrapper">
-            <div class="auth-top-part">
-                <a href="{{ route('home') }}" class="auth-logo">
-                    <img class="img-fluid rounded sm-device-img text-align" src="{{ getFile('logo', @$general->whitelogo) }}"
-                        width="100%" alt="pp">
-                </a>
-                <p class="mb-0"><span class="me-2">{{ __('Haven\'t an Account?') }}</span> <a class="btn main-btn btn-sm" href="{{ route('user.register') }}">{{ __('Register') }}</a></p>
-            </div>
-            <div class="auth-body-part">
-                <div class="auth-form-wrapper">
-                    <h3 class="text-center mb-4">{{ __('Login Your Account') }}</h3>
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput">{{ __('Email') }}</label>
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email"
-                                placeholder="{{ __('Enter Your Email') }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formGroupExampleInput">{{ __('Pasword') }}</label>
-                            <input type="password" class="form-control" name="password" id="password"
-                                placeholder="{{ __('Enter Password') }}">
-                        </div>
-                        <p class="text-end"><a href="{{ route('user.forgot.password') }}"
-                                class="sp_text_dark">{{ __('Forget password?') }}</a></p>
-                        @if (@$general->allow_recaptcha == 1)
-                            <div class="col-md-12 my-3">
-                                <script src="https://www.google.com/recaptcha/api.js"></script>
-                                <div class="g-recaptcha" data-sitekey="{{ @$general->recaptcha_key }}"
-                                    data-callback="verifyCaptcha"></div>
-                                <div id="g-recaptcha-error"></div>
-                            </div>
-                        @endif
-                        <button class="btn main-btn w-100 mt-3" type="submit"> <span>{{ __('Log In') }} </span></button>
-                    </form>
-                </div>
-            </div>
-            <div class="auth-footer-part">
-                <p class="text-center mb-0">
-                    @if (@$general->copyright)
-                        {{ __(@$general->copyright) }}
-                    @endif
-                </p>
-            </div>
-        </div>
-        <div class="auth-thumb-area" style="background-image: url('{{ asset('asset/theme3/images/bg/plan.jpg') }}')">
-            <div class="auth-thumb">
-                <img src="{{ getFile('frontendlogin', @$general->frontend_login_image) }}" alt="image">
-            </div>
-        </div>
-    </section> --}}
     <div class="nk-wrap nk-wrap-nosidebar">
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
@@ -107,48 +55,7 @@
                     </div>
 
                 </div>
-                <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"
-                    data-toggle-body="true" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
-                    <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
-                        <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
-                                            srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-b.png"
-                                            srcset="/demo6/images/slides/promo-b2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-c.png"
-                                            srcset="/demo6/images/slides/promo-c2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>Quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-dots"></div>
-                        <div class="slider-arrows"></div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

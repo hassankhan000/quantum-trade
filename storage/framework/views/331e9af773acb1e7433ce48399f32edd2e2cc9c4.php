@@ -8,14 +8,14 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="">
+    <meta name="description" content="">
     <link rel="shortcut icon" href="../../images/favicon.png">
     <title>Login | Quantum Trade AI</title>
     <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/dashlitee5ca.css')); ?>">
     <link id="skin-default" rel="stylesheet"
         href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('asset/theme4/dashboard_assets/assets/css/iziToast.min.css')); ?>">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <style>
         .btn-primary {
             background-color: #395d00 !important;
@@ -105,6 +105,7 @@
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/scriptse5ca.js?ver=3.2.3')); ?>"></script>
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/demo-settingse5ca.js?ver=3.2.3')); ?>"></script>
     <script src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/js/iziToast.min.js')); ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <?php echo $__env->yieldPushContent('script'); ?>
     <?php if(@$general->twak_allow): ?>
         <script type="text/javascript">
@@ -122,48 +123,70 @@
         </script>
     <?php endif; ?>
 
-
-
     <?php if(Session::has('error')): ?>
         <script>
-            "use strict";
-            iziToast.error({
-                message: "<?php echo e(session('error')); ?>",
-                position: 'topRight'
-            });
+            // "use strict";
+            // iziToast.error({
+            //     message: "<?php echo e(session('error')); ?>",
+            //     position: 'topRight'
+            // });
+            Swal.fire({
+                title: 'Error!',
+                text: '<?php echo e(session('error')); ?>',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         </script>
     <?php endif; ?>
 
     <?php if(Session::has('success')): ?>
         <script>
-            "use strict";
-            iziToast.success({
-                message: "<?php echo e(session('success')); ?>",
-                position: 'topRight'
-            });
+            // "use strict";
+            // iziToast.success({
+            //     message: "<?php echo e(session('success')); ?>",
+            //     position: 'topRight'
+            // });
+            Swal.fire({
+                title: 'Success!',
+                text: '<?php echo e(session('success')); ?>',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
         </script>
     <?php endif; ?>
 
     <?php if(session()->has('notify')): ?>
         <?php $__currentLoopData = session('notify'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $msg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <script>
-                "use strict";
-                iziToast.<?php echo e($msg[0]); ?>({
-                    message: "<?php echo e(trans($msg[1])); ?>",
-                    position: "topRight"
-                });
+                // "use strict";
+                // iziToast.<?php echo e($msg[0]); ?>({
+                //     message: "<?php echo e(trans($msg[1])); ?>",
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: '<?php echo e($msg[0]); ?>',
+                    text: '<?php echo e(trans($msg[1])); ?>',
+                    icon: '<?php echo e($msg[0]); ?>',
+                    confirmButtonText: 'Ok'
+                })
             </script>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <?php endif; ?>
 
     <?php if(@$errors->any()): ?>
         <script>
-            "use strict";
+            // "use strict";
             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                iziToast.error({
-                    message: "<?php echo e(__($error)); ?>",
-                    position: "topRight"
-                });
+                // iziToast.error({
+                //     message: "<?php echo e(__($error)); ?>",
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: 'Error!',
+                    text: '<?php echo e(__($error)); ?>',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </script>
     <?php endif; ?>
@@ -171,8 +194,6 @@
 
     <script>
         'use strict';
-
-
 
         $(document).ready(function() {
             $('#trial_subscribe').on('click', function(e) {
@@ -196,7 +217,6 @@
 
                         if (response.fails) {
                             notify('error', response.errorMsg.email)
-
                         }
 
                         if (response.success) {

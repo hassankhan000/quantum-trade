@@ -128,7 +128,7 @@
                 "use strict";
                 iziToast.{{ $msg[0] }}({
                     message: "{{ trans($msg[1]) }}",
-                    position: "topRight"
+                    position: "topLeft"
                 });
             </script>
         @endforeach

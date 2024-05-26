@@ -5,16 +5,16 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <meta name="cryptomus" content="e8265895" />
+    <meta name="cryptomus" content="e8265895"  />
     <meta charset="utf-8" />
     <meta name="author" content="Softnio" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description"
-        content="" />
+    <meta name="description" content="" />
     <link rel="shortcut icon" href="images/favicon.png" />
     <title>QTAI - Dashboard</title>
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/dashlitee5ca.css') }}" />
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/iziToast.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <link id="skin-default" rel="stylesheet"
         href="{{ asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css') }}" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91615293-4"></script>
@@ -701,7 +701,8 @@
                 <a href="https://quantumtradeai.com/demo1/index.html">
                     <div class="nk-demo-image bg-blue">
                         <img class="bg-purple" src="../images/landing/layout-1d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-1d2x.jpg 2x" alt="Demo Layout 1" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-1d2x.jpg 2x"
+                            alt="Demo Layout 1" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 1</strong></span>
                 </a>
@@ -710,7 +711,8 @@
                 <a href="https://quantumtradeai.com/demo2/index.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/layout-2d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-2d2x.jpg 2x" alt="Demo Layout 2" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-2d2x.jpg 2x"
+                            alt="Demo Layout 2" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 2</strong></span>
                 </a>
@@ -719,7 +721,8 @@
                 <a href="https://quantumtradeai.com/demo3/index.html">
                     <div class="nk-demo-image bg-success">
                         <img src="../images/landing/layout-3d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-3d2x.jpg 2x" alt="Demo Layout 3" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-3d2x.jpg 2x"
+                            alt="Demo Layout 3" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 3</strong></span>
                 </a>
@@ -728,7 +731,8 @@
                 <a href="https://quantumtradeai.com/demo4/index.html">
                     <div class="nk-demo-image bg-indigo">
                         <img src="../images/landing/layout-4d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-4d2x.jpg 2x" alt="Demo Layout 4" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-4d2x.jpg 2x"
+                            alt="Demo Layout 4" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 4</strong></span>
                 </a>
@@ -737,7 +741,8 @@
                 <a href="https://quantumtradeai.com/demo5/index.html">
                     <div class="nk-demo-image bg-orange">
                         <img src="../images/landing/layout-5d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-5d2x.jpg 2x" alt="Demo Layout 5" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-5d2x.jpg 2x"
+                            alt="Demo Layout 5" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 5</strong></span>
                 </a>
@@ -746,7 +751,8 @@
                 <a href="index-2.html">
                     <div class="nk-demo-image bg-purple">
                         <img src="../images/landing/layout-6d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-6d2x.jpg 2x" alt="Demo Layout 6" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-6d2x.jpg 2x"
+                            alt="Demo Layout 6" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 6</strong></span>
                 </a>
@@ -755,7 +761,8 @@
                 <a href="https://quantumtradeai.com/demo7/index.html">
                     <div class="nk-demo-image bg-teal">
                         <img src="../images/landing/layout-7d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-7d2x.jpg 2x" alt="Demo Layout 7" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-7d2x.jpg 2x"
+                            alt="Demo Layout 7" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 7</strong></span>
                 </a>
@@ -764,7 +771,8 @@
                 <a href="https://quantumtradeai.com/demo8/index.html">
                     <div class="nk-demo-image bg-azure">
                         <img src="../images/landing/layout-8d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-8d2x.jpg 2x" alt="Demo Layout 8" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-8d2x.jpg 2x"
+                            alt="Demo Layout 8" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 8</strong></span>
                 </a>
@@ -773,7 +781,8 @@
                 <a href="https://quantumtradeai.com/demo9/index.html">
                     <div class="nk-demo-image bg-pink">
                         <img src="../images/landing/layout-9d.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/layout-9d2x.jpg 2x" alt="Demo Layout 9" />
+                            srcset="https://quantumtradeai.com/images/landing/layout-9d2x.jpg 2x"
+                            alt="Demo Layout 9" />
                     </div>
                     <span class="nk-demo-title"><strong>Demo Layout 9</strong></span>
                 </a>
@@ -888,7 +897,8 @@
                 <a href="https://quantumtradeai.com/demo1/hotel/index.html">
                     <div class="nk-demo-image bg-pink">
                         <img src="../images/landing/demo-hotel.jpg"
-                            srcset="https://quantumtradeai.com/images/landing/demo-hotel2x.jpg 2x" alt="Hotel Managemen" />
+                            srcset="https://quantumtradeai.com/images/landing/demo-hotel2x.jpg 2x"
+                            alt="Hotel Managemen" />
                     </div>
                     <span class="nk-demo-title"><em class="text-primary">Demo1</em><br /><strong>Hotel
                             Management</strong></span>
@@ -1165,6 +1175,7 @@
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/demo-settingse5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/charts/gd-investe5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/iziToast.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
     @php
         $content = content('contact.content');
@@ -1201,27 +1212,44 @@
             });
         </script> --}}
         <script>
-            "use strict";
-            alert('{{ session('error') }}');
+            // "use strict";
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         </script>
     @endif
     @if (Session::has('success'))
         <script>
-            "use strict";
-            iziToast.success({
-                message: "{{ session('success') }}",
-                position: 'topRight'
-            });
+            // "use strict";
+            // iziToast.success({
+            //     message: "{{ session('success') }}",
+            //     position: 'topRight'
+            // });
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
         </script>
     @endif
     @if (session()->has('notify'))
         @foreach (session('notify') as $msg)
             <script>
-                "use strict";
-                iziToast.{{ $msg[0] }}({
-                    message: "{{ trans($msg[1]) }}",
-                    position: "topRight"
-                });
+                // "use strict";
+                // iziToast.{{ $msg[0] }}({
+                //     message: "{{ trans($msg[1]) }}",
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: '{{ $msg[0] }}!',
+                    text: '{{ trans($msg[1]) }}',
+                    icon: '{{ $msg[0] }}',
+                    confirmButtonText: 'Ok'
+                })
             </script>
         @endforeach
     @endif
@@ -1229,10 +1257,16 @@
         <script>
             "use strict";
             @foreach ($errors->all() as $error)
-                iziToast.error({
-                    message: '{{ __($error) }}',
-                    position: "topRight"
-                });
+                // iziToast.error({
+                //     message: '{{ __($error) }}',
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ __($error) }}',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             @endforeach
         </script>
     @endif

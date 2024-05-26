@@ -2,19 +2,18 @@
     <meta name='description' content="<?php echo e(@$general->seo_description); ?>">
 <?php $__env->stopPush(); ?>
 <?php $__env->startSection('content'); ?>
-
     <div class="nk-wrap nk-wrap-nosidebar">
         <div class="nk-content ">
             <div class="nk-split nk-split-page nk-split-lg">
                 <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
-
+                    
                     <div class="nk-block nk-block-middle nk-auth-body">
-
+                        
                         <div class="nk-block-head">
                             <div class="nk-block-head-content">
                                 <h5 class="nk-block-title">Sign-In</h5>
                                 <div class="nk-block-des">
-                                    <p>Access the quantum Trade AI panel using your email and passcode.</p>
+                                    <p>Access the Quantum Trade AI panel using your email and passcode.</p>
                                 </div>
                             </div>
                         </div>
@@ -49,48 +48,7 @@
                     </div>
 
                 </div>
-                <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"
-                    data-toggle-body="true" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
-                    <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
-                        <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-a.png"
-                                            srcset="/demo6/images/slides/promo-a2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-b.png"
-                                            srcset="/demo6/images/slides/promo-b2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slider-item">
-                                <div class="nk-feature nk-feature-center">
-                                    <div class="nk-feature-img"><img class="round" src="../../images/slides/promo-c.png"
-                                            srcset="/demo6/images/slides/promo-c2x.png 2x" alt=""></div>
-                                    <div class="nk-feature-content py-4 p-sm-5">
-                                        <h4>quantum Trade AI</h4>
-                                        <p>You can start to create your products easily with its user-friendly
-                                            design & most completed responsive layout.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-dots"></div>
-                        <div class="slider-arrows"></div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

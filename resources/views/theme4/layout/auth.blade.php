@@ -8,14 +8,14 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="">
+    <meta name="description" content="">
     <link rel="shortcut icon" href="../../images/favicon.png">
     <title>Login | Quantum Trade AI</title>
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/dashlitee5ca.css') }}">
     <link id="skin-default" rel="stylesheet"
         href="{{ asset('asset/theme4/dashboard_assets/assets/css/themee5ca.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/theme4/dashboard_assets/assets/css/iziToast.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <style>
         .btn-primary {
             background-color: #395d00 !important;
@@ -105,6 +105,7 @@
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/scriptse5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/demo-settingse5ca.js?ver=3.2.3') }}"></script>
     <script src="{{ asset('asset/theme4/dashboard_assets/assets/js/iziToast.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     @stack('script')
     @if (@$general->twak_allow)
         <script type="text/javascript">
@@ -122,48 +123,70 @@
         </script>
     @endif
 
-
-
     @if (Session::has('error'))
         <script>
-            "use strict";
-            iziToast.error({
-                message: "{{ session('error') }}",
-                position: 'topRight'
-            });
+            // "use strict";
+            // iziToast.error({
+            //     message: "{{ session('error') }}",
+            //     position: 'topRight'
+            // });
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         </script>
     @endif
 
     @if (Session::has('success'))
         <script>
-            "use strict";
-            iziToast.success({
-                message: "{{ session('success') }}",
-                position: 'topRight'
-            });
+            // "use strict";
+            // iziToast.success({
+            //     message: "{{ session('success') }}",
+            //     position: 'topRight'
+            // });
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
         </script>
     @endif
 
     @if (session()->has('notify'))
         @foreach (session('notify') as $msg)
             <script>
-                "use strict";
-                iziToast.{{ $msg[0] }}({
-                    message: "{{ trans($msg[1]) }}",
-                    position: "topRight"
-                });
+                // "use strict";
+                // iziToast.{{ $msg[0] }}({
+                //     message: "{{ trans($msg[1]) }}",
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: '{{ $msg[0] }}',
+                    text: '{{ trans($msg[1]) }}',
+                    icon: '{{ $msg[0] }}',
+                    confirmButtonText: 'Ok'
+                })
             </script>
         @endforeach
     @endif
 
     @if (@$errors->any())
         <script>
-            "use strict";
+            // "use strict";
             @foreach ($errors->all() as $error)
-                iziToast.error({
-                    message: "{{ __($error) }}",
-                    position: "topRight"
-                });
+                // iziToast.error({
+                //     message: "{{ __($error) }}",
+                //     position: "topRight"
+                // });
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ __($error) }}',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             @endforeach
         </script>
     @endif
@@ -171,8 +194,6 @@
 
     <script>
         'use strict';
-
-
 
         $(document).ready(function() {
             $('#trial_subscribe').on('click', function(e) {
@@ -196,7 +217,6 @@
 
                         if (response.fails) {
                             notify('error', response.errorMsg.email)
-
                         }
 
                         if (response.success) {
