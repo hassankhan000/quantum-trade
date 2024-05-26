@@ -397,7 +397,8 @@
                                             </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
-                                            <h6 style="font-size: 9px !important;" class="mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
+                                            <h6 style="font-size: 9px !important;"
+                                                class="mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
                                                 Amount</h6>
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-1">
                                                 @if (isset($currentInvest->amount) == 0)
@@ -530,13 +531,15 @@
                                                     <span>{{ __('Invest Now') }}</span>
                                                 </a> --}}
                                                     @auth
-                                                        @if ($plan->vip_status <= auth()->user()->vip_status)
+                                                        @if (number_format(auth()->user()->balance, 2) > 0)
                                                             <button class="balance btn-light" data-plan="{{ $plan }}"
                                                                 data-plan_percentage="{{ number_format($plan->return_interest, 2) }}"
                                                                 data-min_amount="{{ number_format($plan->minimum_amount, 2) }}"
                                                                 data-max_amount="{{ number_format($plan->maximum_amount, 2) }}"
                                                                 data-fix_amount="{{ number_format($plan->amount, 2) }}"
                                                                 data-url=""><span>{{ __('Invest') }}</span></button>
+                                                        @else
+                                                            <button class="balance btn-light"><span>{{ __('Insufficient balance') }}</span></button>
                                                         @endif
                                                     @endauth
                                                 @endif

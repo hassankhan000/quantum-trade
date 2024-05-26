@@ -392,7 +392,8 @@
                                             </h4>
                                         </div>
                                         <div class="col-6 d-flex flex-column align-items-end justify-content-end">
-                                            <h6 style="font-size: 9px !important;" class="mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
+                                            <h6 style="font-size: 9px !important;"
+                                                class="mb-0 text-end d-flex align-items-center mt-4">In Trade Freeze
                                                 Amount</h6>
                                             <h6 class="fs-6 mb-0 text-end d-flex align-items-center text-dark mt-1">
                                                 <?php if(isset($currentInvest->amount) == 0): ?>
@@ -528,13 +529,15 @@
                                                 <?php else: ?>
                                                     
                                                     <?php if(auth()->guard()->check()): ?>
-                                                        <?php if($plan->vip_status <= auth()->user()->vip_status): ?>
+                                                        <?php if(number_format(auth()->user()->balance, 2) > 0): ?>
                                                             <button class="balance btn-light" data-plan="<?php echo e($plan); ?>"
                                                                 data-plan_percentage="<?php echo e(number_format($plan->return_interest, 2)); ?>"
                                                                 data-min_amount="<?php echo e(number_format($plan->minimum_amount, 2)); ?>"
                                                                 data-max_amount="<?php echo e(number_format($plan->maximum_amount, 2)); ?>"
                                                                 data-fix_amount="<?php echo e(number_format($plan->amount, 2)); ?>"
                                                                 data-url=""><span><?php echo e(__('Invest')); ?></span></button>
+                                                        <?php else: ?>
+                                                            <button class="balance btn-light"><span><?php echo e(__('Insufficient balance')); ?></span></button>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
