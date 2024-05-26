@@ -85,11 +85,11 @@
                                 </td>
                                 <td data-caption="{{ __('Charge') }}">
                                     @if ($withdrawlog->withdrawMethod->charge_type == 'percent')
-                                        
+
                                     {{ $withdrawlog->withdraw_amount * $withdrawlog->withdraw_charge / 100 .' '.$general->site_currency}}
-                                
+
                                 @else
-                                
+
                                 {{ number_format($withdrawlog->withdraw_charge, 2).' '.@$general->site_currency }}
                                 @endif
                                 </td>
@@ -175,7 +175,7 @@
                                                 <th>{{ __('TRX') }}</th>
                                                 <th>{{ __('Date') }}</th>
                                                 <th>{{ __('Method Name') }}</th>
-                                                <th>{{ __('Withdraw Amount') }}</th>
+                                                {{-- <th>{{ __('Withdraw Amount') }}</th> --}}
                                                 <th>{{ __('Getable Amount') }}</th>
                                                 <th>{{ __('Charge Type') }}</th>
                                                 <th>{{ __('Charge') }}</th>
@@ -189,29 +189,29 @@
                                                 <td data-caption="{{ __('Sl') }}">{{ $key + $withdrawlogs->firstItem() }}</td>
                                                 <td data-caption="{{ __('Date') }}">{{ __($withdrawlog->created_at->format('d F Y')) }}</td>
                                                 <td data-caption="{{ __('Method Name') }}">{{ __($withdrawlog->withdrawMethod->name) }}</td>
-                                                <td data-caption="{{__('Getable Amount')}}">{{ $general->currency_icon .
+                                                {{-- <td data-caption="{{__('Getable Amount')}}">{{ $general->currency_icon .
                                                     '  ' .
                                                     $withdrawlog->withdraw_amount +
                                                     ($withdrawlog->withdrawMethod->charge_type === 'percent'
                                                         ? ($withdrawlog->withdraw_amount * $withdrawlog->withdraw_charge) / 100
                                                         : $withdrawlog->withdraw_amount) }}
-                                                </td>
+                                                </td> --}}
                                                 <td>
-                
-                
+
+
                                                     {{ $withdrawlog->withdraw_amount }}
-                
+
                                                 </td>
                                                 <td data-caption="{{ __('Charge Type') }}">
                                                     {{ ucwords($withdrawlog->withdrawMethod->charge_type) }}
                                                 </td>
                                                 <td data-caption="{{ __('Charge') }}">
                                                     @if ($withdrawlog->withdrawMethod->charge_type == 'percent')
-                                                        
+
                                                     {{ $withdrawlog->withdraw_amount * $withdrawlog->withdraw_charge / 100 .' '.$general->site_currency}}
-                                                
+
                                                 @else
-                                                
+
                                                 {{ number_format($withdrawlog->withdraw_charge, 2).' '.@$general->site_currency }}
                                                 @endif
                                                 </td>
@@ -240,7 +240,7 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    
+
                                 </div>
                             </div>
                         </div>

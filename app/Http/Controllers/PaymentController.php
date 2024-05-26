@@ -200,55 +200,16 @@ class PaymentController extends Controller
             }
         }
 
+        // return response()->json([
+        //     "data" => [
+        //         "request" => $request,
+        //         "gateway" => $gateway,
+        //         "deposit->final_amount" => $deposit->final_amount,
+        //         "deposit" => $deposit
+        //     ]
+        // ]);
 
         $data = $new::process($request, $gateway, $deposit->final_amount, $deposit);
-
-        if ($gateway->gateway_name == 'mercadopago' ) {
-            return redirect()->to($data['redirect_url']);
-        }
-        
-
-
-        if (strstr($gateway->gateway_name, 'gourl')) {
-            return redirect()->to($data);
-        }
-
-        if ($gateway->gateway_name == 'nowpayments') {
-
-            return redirect()->to($data->invoice_url);
-        }
-
-        if ($gateway->gateway_name == 'mollie') {
-
-            return redirect()->to($data['redirect_url']);
-        }
-
-        if ($gateway->gateway_name == 'paghiper') {
-
-            if (isset($data['status']) && $data['status'] == false) {
-                return redirect()->route('user.investmentplan')->with('error', 'Something Went Wrong');
-            }
-
-            return redirect()->to($data);
-        }
-
-        if ($gateway->gateway_name == 'coinpayments') {
-
-         
-                return view($data['view'])->with($data);
-            
-        }
-
-        if ($gateway->gateway_name == 'paypal') {
-
-            $data = json_decode($data);
-
-            return redirect()->to($data->links[1]->href);
-        }
-        if ($gateway->gateway_name == 'paytm') {
-
-            return view($this->template.'user.gateway.auto',compact('data'));
-        }
 
         $notify[] = ['success', 'Your Payment is Successfully Recieved'];
         return redirect()->route('user.dashboard')->withNotify($notify);
@@ -276,7 +237,7 @@ class PaymentController extends Controller
         $deposit->save();
 
         if (!(session('type') == 'deposit')) {
-           
+
             refferMoney(auth()->id(), $deposit->user->refferedBy, 'invest', $deposit->amount, $deposit->plan->id);
         }
 

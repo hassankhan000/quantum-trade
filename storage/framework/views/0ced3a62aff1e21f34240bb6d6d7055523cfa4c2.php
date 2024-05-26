@@ -1,4 +1,3 @@
-
 <style>
     .dashboard-body-part {
         background: #232721 !important;

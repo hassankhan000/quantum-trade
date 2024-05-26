@@ -1,4 +1,3 @@
-
 <style>
 
 .dashboard-body-part {
@@ -157,7 +156,7 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
                                 <div class="form-group p-0">
-                                    <button class="btn main-btn" type="submit"><?php echo e(__('Deposit Now')); ?></button>
+                                    <button class="btn bg-warning text-dark w-100" type="submit"><?php echo e(__('Deposit Now')); ?></button>
                                 </div>
                             </div>
                         </form>
