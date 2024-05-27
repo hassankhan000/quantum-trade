@@ -349,7 +349,7 @@
                                                     Investment
                                                 </th>
                                                 <th class="bg-success text-dark border-0 border-bottom border-success">
-                                                    Uplainer
+                                                    Upliner
                                                 </th>
                                             </tr>
                                             @foreach ($reference as $user)
@@ -375,7 +375,7 @@
                                                                 ->where('id', $user->reffered_by)
                                                                 ->select('fname', 'lname')
                                                                 ->first();
-                                                                echo $referrer->fname . ' ' . $referrer->lname; 
+                                                                echo $referrer->fname . ' ' . $referrer->lname;
                                                         @endphp
                                                     </td>
                                                 </tr>
@@ -400,7 +400,7 @@
                                                     Investment
                                                 </th>
                                                 <th class="bg-success text-dark border-0 border-bottom border-success">
-                                                    Uplainer
+                                                    Upliner
                                                 </th>
                                             </tr>
                                             @foreach ($reference as $user)
@@ -433,7 +433,7 @@
                                                                 ->where('id', $ref->reffered_by)
                                                                 ->select('fname', 'lname')
                                                                 ->first();
-                                                                echo $referrer->fname . ' ' . $referrer->lname; 
+                                                                echo $referrer->fname . ' ' . $referrer->lname;
                                                             @endphp
                                                         </td>
                                                     </tr>
@@ -459,7 +459,7 @@
                                                     Investment
                                                 </th>
                                                 <th class="bg-success text-dark border-0 border-bottom border-success">
-                                                    Uplainer
+                                                    Upliner
                                                 </th>
                                             </tr>
                                             @foreach ($reference as $user)
@@ -494,7 +494,7 @@
                                                                 ->where('id', $ref2->reffered_by)
                                                                 ->select('fname', 'lname')
                                                                 ->first();
-                                                                echo $referrer->fname . ' ' . $referrer->lname; 
+                                                                echo $referrer->fname . ' ' . $referrer->lname;
                                                                 @endphp
                                                             </td>
                                                         </tr>

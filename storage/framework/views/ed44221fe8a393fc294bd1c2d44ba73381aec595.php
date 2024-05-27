@@ -537,7 +537,7 @@
                                                                 data-fix_amount="<?php echo e(number_format($plan->amount, 2)); ?>"
                                                                 data-url=""><span><?php echo e(__('Invest')); ?></span></button>
                                                         <?php else: ?>
-                                                            <button class="balance btn-light"><span><?php echo e(__('Insufficient balance')); ?></span></button>
+                                                            <button disabled class="balance btn-light"><span><?php echo e(__('Insufficient balance 😔')); ?></span></button>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
