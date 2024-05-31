@@ -6,26 +6,23 @@
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    <div class="components-preview">
+                    <div class="components-preview px-2">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
-                            <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-                                <h5 class="title">{{ __('Authentication') }}</h5>
-                                <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i>
-                                    {{ __('Back') }}</a>
-                            </div>
-
-                            <div class="d-flex flex-wrap justify-content-between mb-3">
-                                <h5>{{ __('Profile Setting') }}</h5>
-                                <a href="{{ route('user.change.password') }}" class="cmn-btn mb-2 sp_text_dark"><i
+                            <div class="card-header my-3 d-flex flex-wrap justify-content-between align-items-center">
+                                <h5 class="title p-0 m-0">{{ __('Authentication') }}</h5>
+                                {{-- <a href="{{ route('user.dashboard') }}" class="back-btn"><i class="bi bi-arrow-left"></i>
+                                    {{ __('Back') }}</a> --}}
+                                <a href="{{ route('user.change.password') }}" class="cmn-btn p-0 m-0 sp_text_dark"><i
                                         class="bi bi-shield-lock"></i> {{ __('Change Password') }}</a>
                             </div>
+                            <hr class="border-warning">
                             <div class="site-card">
                                 <div class="card-body">
                                     <form action="{{ route('user.profileupdate') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="row gy-4 justify-content-center">
-                                            <div class="col-md-4 pe-lg-5 pe-md-4 justify-content-center">
+                                            {{-- <div class="col-md-4 pe-lg-5 pe-md-4 justify-content-center">
                                                 <div class="img-choose-div">
                                                     <p>{{ __('Profile Picture') }}</p>
 
@@ -38,8 +35,8 @@
                                                     <label for="imageUpload"
                                                         class="editImg btn main-btn w-100"><span>{{ __('Choose file') }}</span></label>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-8">
+                                            </div> --}}
+                                            <div class="col-md-8 p-0">
                                                 <div class="update">
                                                     <div class="mb-3">
                                                         <label>{{ __('First Name') }}</label>
@@ -77,13 +74,13 @@
 
                                                 <div class="row">
 
-                                                    <div class="form-group col-md-6 mb-3 ">
+                                                    <div class="form-group px-0 col-md-6 mb-3">
                                                         <label>{{ __('Country') }}</label>
                                                         <input type="text" name="country" class="form-control"
                                                             value="{{ @Auth::user()->address->country }}">
                                                     </div>
 
-                                                    <div class="col-md-6 mb-3">
+                                                    <div class="col-md-6 p-0 mb-3">
 
                                                         <label>{{ __('city') }}</label>
                                                         <input type="text" name="city"
@@ -92,7 +89,7 @@
 
                                                     </div>
 
-                                                    <div class="col-md-6 mb-3">
+                                                    <div class="col-md-6 p-0 mb-3">
 
                                                         <label>{{ __('zip') }}</label>
                                                         <input type="text" name="zip"
@@ -101,7 +98,7 @@
 
                                                     </div>
 
-                                                    <div class="col-md-6 mb-3">
+                                                    <div class="col-md-6 p-0 mb-3">
 
                                                         <label>{{ __('state') }}</label>
                                                         <input type="text" name="state"
@@ -112,8 +109,8 @@
 
                                                 </div>
 
-                                                <button
-                                                    class="btn main-btn mt-3 btn-primary"><span>{{ __('Update') }}</span></button>
+                                                <button class="btn bg-success m-0 text-dark w-100"><span
+                                                        class="text-dark">{{ __('Update') }}</span></button>
                                             </div>
                                     </form>
                                 </div>
@@ -125,7 +122,6 @@
         </div>
     </div>
 @endsection
-
 
 @push('script')
     <script>

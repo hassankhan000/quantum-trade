@@ -162,7 +162,7 @@
         <div class="container-xl wide-xl pb-5">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    <div class="components-preview">
+                    <div class="components-preview px-2">
                         <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
                             <h5 class="mb-sm-0 mb-2 text-light">{{ __('Trade Profit Log') }}</h5>
                         </div>

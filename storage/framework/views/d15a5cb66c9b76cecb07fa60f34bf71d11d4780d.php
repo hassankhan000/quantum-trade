@@ -3,7 +3,7 @@
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    <div class="components-preview">
+                    <div class="components-preview px-2">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                                 <h5 class="mb-sm-0 mb-2"><?php echo e(__('Trasaction Log')); ?></h5>

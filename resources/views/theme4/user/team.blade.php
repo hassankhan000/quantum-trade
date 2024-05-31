@@ -138,7 +138,7 @@
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    <div class="components-preview">
+                    <div class="components-preview px-2">
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="col-md-6 col-xxl-4 py-3">
                                 <div class="row">
