@@ -313,8 +313,8 @@
             <div class="col-xl-4 col-md-6">
                 <div class="plan-card">
                     <div class="@if ($plan->vip_status <= auth()->user()->vip_status) nolock @else locked @endif">
-                        <img class="img-fluid" style="filter: hue-rotate(45deg);" src="{{ asset('asset/theme4/dashboard_assets/assets/images/lock.png') }}"
-                            alt="">
+                        <img class="img-fluid" style="filter: hue-rotate(45deg);"
+                            src="{{ asset('asset/theme4/dashboard_assets/assets/images/lock.png') }}" alt="">
                     </div>
                     <h4>Welcome To <span>{{ $plan->plan_name }}</span> Quantum Trading Bot
                     </h4>
@@ -393,211 +393,214 @@
                         <span>{{ __('Invest Now') }}</span>
                     </a> --}}
                         @auth
-                            @if ($plan->vip_status <= auth()->user()->vip_status)
+                            @if (number_format(auth()->user()->balance, 2) > 0)
                                 <button class="balance btn-light" data-plan="{{ $plan }}"
                                     data-plan_percentage="{{ number_format($plan->return_interest, 2) }}"
                                     data-url=""><span>{{ __('Invest') }}</span></button>
-                            @endif
+                            @else
+                                <button disabled
+                                    class="balance btn-light"><span>{{ __('Insufficient balance 😔') }}</span></button>
+                            @endauth
                         @endauth
                     @endif
-                </div>
             </div>
-        @empty
-        @endforelse
-    </div>
-    @push('style')
-        <style>
-            .modal-backdrop.fade.show {
-                display: none;
-            }
+        </div>
+    @empty
+    @endforelse
+</div>
+@push('style')
+    <style>
+        .modal-backdrop.fade.show {
+            display: none;
+        }
 
-            @media (max-width: 991px) {
-                #header.header-inner-pages {
-                    display: block;
-                    background: transparent !important;
-                    position: absolute;
-                }
-
-                .dashboard-body-part {
-                    padding-top: 80px;
-                }
-            }
-
-            .sp-referral .single-child {
-                padding: 6px 10px;
-                border-radius: 5px;
-            }
-
-            .sp-referral .single-child+.single-child {
-                margin-top: 15px;
-            }
-
-            .sp-referral .single-child p {
-                display: flex;
-                align-items: center;
-                margin-bottom: 0;
-            }
-
-            .sp-referral .single-child p img {
-                width: 35px;
-                height: 35px;
-                border-radius: 50%;
-                object-fit: cover;
-                -o-object-fit: cover;
-            }
-
-            .sp-referral .single-child p span {
-                width: calc(100% - 35px);
-                font-size: 14px;
-                padding-left: 10px;
-            }
-
-            .sp-referral>.single-child.root-child>p img {
-                border: 2px solid #c3c3c3;
-            }
-
-            .sub-child-list {
-                position: relative;
-                padding-left: 35px;
-            }
-
-            .sub-child-list::before {
+        @media (max-width: 991px) {
+            #header.header-inner-pages {
+                display: block;
+                background: transparent !important;
                 position: absolute;
-                content: '';
-                top: 0;
-                left: 17px;
-                width: 1px;
-                height: 100%;
-                background-color: #a1a1a1;
             }
 
-            .sub-child-list>.single-child {
-                position: relative;
+            .dashboard-body-part {
+                padding-top: 80px;
             }
+        }
 
-            .sub-child-list>.single-child::before {
-                position: absolute;
-                content: '';
-                left: -18px;
-                top: 21px;
-                width: 30px;
-                height: 5px;
-                border-left: 1px solid #a1a1a1;
-                border-bottom: 1px solid #a1a1a1;
-                border-radius: 0 0 0 5px;
-            }
+        .sp-referral .single-child {
+            padding: 6px 10px;
+            border-radius: 5px;
+        }
 
-            .sub-child-list>.single-child>p img {
-                border: 2px solid #c3c3c3;
-            }
-        </style>
-    @endpush
-    <div class="modal
+        .sp-referral .single-child+.single-child {
+            margin-top: 15px;
+        }
+
+        .sp-referral .single-child p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .sp-referral .single-child p img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            -o-object-fit: cover;
+        }
+
+        .sp-referral .single-child p span {
+            width: calc(100% - 35px);
+            font-size: 14px;
+            padding-left: 10px;
+        }
+
+        .sp-referral>.single-child.root-child>p img {
+            border: 2px solid #c3c3c3;
+        }
+
+        .sub-child-list {
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .sub-child-list::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 17px;
+            width: 1px;
+            height: 100%;
+            background-color: #a1a1a1;
+        }
+
+        .sub-child-list>.single-child {
+            position: relative;
+        }
+
+        .sub-child-list>.single-child::before {
+            position: absolute;
+            content: '';
+            left: -18px;
+            top: 21px;
+            width: 30px;
+            height: 5px;
+            border-left: 1px solid #a1a1a1;
+            border-bottom: 1px solid #a1a1a1;
+            border-radius: 0 0 0 5px;
+        }
+
+        .sub-child-list>.single-child>p img {
+            border: 2px solid #c3c3c3;
+        }
+    </style>
+@endpush
+<div class="modal
                                                                                                                             fade
                                                                                                                             bg-transparent"
-        id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form class="invest-form" style="width: 100%;" action="{{ route('user.investmentplan.submit') }}"
-                method="post">
-                @csrf
-                <div class="modal-content p-3">
-                    <div class="d-flex align-items-baseline justify-content-between">
-                        <p class="p-0 m-0">
-                            Purchase
-                            quantum
-                            Bot
-                        </p>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="form-group mb-1">
-                            <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
-                                class="form-control modal_amount">
-                            <p class="modal-table-p text-danger modal-error-message"></p>
-                            <input type="hidden" name="plan_id" class="form-control">
-                            <input type="hidden" name="plan_percentage" class="form-control">
-                            <input type="hidden" name="pair_price">
-                            <input type="hidden" name="pair_name">
-                            <input type="hidden" name="timestamp">
-                            <input type="hidden" name="min_pay">
-                            <input type="hidden" name="max_pay">
-                            <input type="hidden" name="fix_amount">
-                        </div>
-                        <table class="table mt-3 table-sm table-striped modal-table">
-                            <thead>
-                                <th>Bot
-                                    Fee
-                                </th>
-                                <th>Expected
-                                    Profit
-                                </th>
-                            </thead>
-                            <tbody>
-                                <td class="bot-fee">
-                                    0.00
-                                    to
-                                    0.00
-                                </td>
-                                <td class="exp-profit">
-                                    0.00
-                                    to
-                                    0.00
-                                </td>
-                            </tbody>
-                            <p class="modal-table-p">
-                                In
-                                initiating
-                                investment,
-                                AI
-                                bot
-                                trading
-                                shall
-                                commence
-                                for
-                                a
-                                day's
-                                duration,
-                                entailing
-                                profit
-                                accrual
-                                contingent
-                                upon
-                                the
-                                current
-                                valuation
-                                of
-                                the
-                                selected
-                                pair,
-                                with
-                                the
-                                invested
-                                capital
-                                remaining
-                                non-refundable
-                                and
-                                non-withdrawable
-                                thereafter.
-                            </p>
-                        </table>
-                    </div>
-                    <button class="btn btn-light submit-payment w-auto"><span>{{ __('Invest Now') }}</span></button>
+    id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="invest-form" style="width: 100%;" action="{{ route('user.investmentplan.submit') }}"
+            method="post">
+            @csrf
+            <div class="modal-content p-3">
+                <div class="d-flex align-items-baseline justify-content-between">
+                    <p class="p-0 m-0">
+                        Purchase
+                        quantum
+                        Bot
+                    </p>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
-        </div>
+                <div class="modal-body p-0">
+                    <div class="form-group mb-1">
+                        <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
+                            class="form-control modal_amount">
+                        <p class="modal-table-p text-danger modal-error-message"></p>
+                        <input type="hidden" name="plan_id" class="form-control">
+                        <input type="hidden" name="plan_percentage" class="form-control">
+                        <input type="hidden" name="pair_price">
+                        <input type="hidden" name="pair_name">
+                        <input type="hidden" name="timestamp">
+                        <input type="hidden" name="min_pay">
+                        <input type="hidden" name="max_pay">
+                        <input type="hidden" name="fix_amount">
+                    </div>
+                    <table class="table mt-3 table-sm table-striped modal-table">
+                        <thead>
+                            <th>Bot
+                                Fee
+                            </th>
+                            <th>Expected
+                                Profit
+                            </th>
+                        </thead>
+                        <tbody>
+                            <td class="bot-fee">
+                                0.00
+                                to
+                                0.00
+                            </td>
+                            <td class="exp-profit">
+                                0.00
+                                to
+                                0.00
+                            </td>
+                        </tbody>
+                        <p class="modal-table-p">
+                            In
+                            initiating
+                            investment,
+                            AI
+                            bot
+                            trading
+                            shall
+                            commence
+                            for
+                            a
+                            day's
+                            duration,
+                            entailing
+                            profit
+                            accrual
+                            contingent
+                            upon
+                            the
+                            current
+                            valuation
+                            of
+                            the
+                            selected
+                            pair,
+                            with
+                            the
+                            invested
+                            capital
+                            remaining
+                            non-refundable
+                            and
+                            non-withdrawable
+                            thereafter.
+                        </p>
+                    </table>
+                </div>
+                <button class="btn btn-light submit-payment w-auto"><span>{{ __('Invest Now') }}</span></button>
+            </div>
+        </form>
     </div>
-    <div class="payment-loading">
-        <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
-            class="img-fluid" alt="">
-        <h4>Loading...
-        </h4>
-    </div>
-    <div class="success-img-wrapper">
-        <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
-            class="img-fluid success-img" alt="">
-    </div>
+</div>
+<div class="payment-loading">
+    <img src="https://cdn.dribbble.com/userupload/10543014/file/original-4703d0ba72b72f87fa49a618a24a1f6d.gif"
+        class="img-fluid" alt="">
+    <h4>Loading...
+    </h4>
+</div>
+<div class="success-img-wrapper">
+    <img src="https://cdn.dribbble.com/users/5338201/screenshots/13804672/media/ce7ee9f720a36ac1a2782c79dc8f5728.gif"
+        class="img-fluid success-img" alt="">
+</div>
 @endsection
 
 @push('script')
