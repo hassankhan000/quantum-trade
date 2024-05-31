@@ -70,8 +70,32 @@
             margin-bottom: 1rem;
         }
 
+        .small-text {
+            font-size: 9px;
+        }
+
+        .nk-block-head-lg {
+            padding-bottom: 10px !important;
+        }
+
         .card-content {
             font-size: 0.9rem;
+        }
+
+        .nk-app-root {
+            background: #282828;
+        }
+
+        .components-preview h4,
+        .card-header h5,
+        h5,
+        input {
+            color: #9eff00 !important;
+        }
+
+        label,
+        span {
+            color: white !important;
         }
 
         .btn {
@@ -314,16 +338,16 @@
                                     <a href="{{ url('commision') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">Refferal log</span></a>
                                 </li>
-                                <li class="nk-menu-item has-sub">
+                                {{-- <li class="nk-menu-item has-sub">
                                     <a href="{{ url('2fa') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">2FA</span></a>
-                                </li>
+                                </li> --}}
                                 <li class="nk-menu-item has-sub">
                                     <a href="{{ url('ticket') }}" class="nk-menu-link"><span
                                             class="nk-menu-text">Support</span></a>
                                 </li>
-                                <li class="nk-menu-item has-sub">
-                                    <a href="{{ url('logout') }}" class="nk-menu-link"><span
+                                <li class="nk-menu-item has-sub px-3">
+                                    <a href="{{ url('logout') }}" class="bg-danger text-white nk-menu-link btn m-0"><span
                                             class="nk-menu-text">Logout</span></a>
                                 </li>
                             </ul>
@@ -459,10 +483,10 @@
                                         </div>
                                         <div class="dropdown-inner">
                                             <ul class="link-list">
-                                                <li>
+                                                {{-- <li>
                                                     <a href="{{ url('2fa') }}"><em
                                                             class="icon ni ni-user-alt"></em><span>2FA</span></a>
-                                                </li>
+                                                </li> --}}
                                                 <li>
                                                     <a href="{{ url('profile/setting') }}"><em
                                                             class="icon ni ni-setting-alt"></em><span>Setting</span></a>
@@ -1128,16 +1152,6 @@
             </div>
         </div>
     </div>
-    <div class="pmo-lv pmo-dark">
-        <a class="pmo-close" href="#"><em class="ni ni-cross"></em></a><a class="pmo-wrap" target="_blank"
-            href="https://softnio.com/get-early-access/">
-            <div class="pmo-text text-white">
-                Looking for functional script for Investment Platform? Check out
-                <em class="ni ni-arrow-long-right"></em>
-            </div>
-        </a>
-    </div>
-
 
     <ul class="bottom-nav">
         {{-- <div class="slider"></div> --}}

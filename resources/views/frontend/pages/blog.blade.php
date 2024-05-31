@@ -81,7 +81,7 @@
                     @if (Auth::user())
                         <div class=" mt-4">
                             <div class="card bg-second">
-                                <div class="card-header">
+                                <div class="card-header px-0">
                                     <h5 class="p-3">{{ __('Post a Comment') }}</h5>
                                 </div>
                                 <form action="{{ route('blogcomment', @$data->id) }}" method="post" role="form"
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-lg-4 ps-lg-5">
                     <div class="card bg-second">
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <h4 class="mb-0">{{ __('Recent Blogs') }}</h4>
                         </div>
                         <div class="card-body">

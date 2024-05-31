@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-xxl-6 xol-xl-8">
                 <div class="site-card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5 class="mb-0">{{ __('Change Password') }}</h5>
                     </div>
                     <div class="card-body">

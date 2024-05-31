@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __($pageTitle) }}</h4>
                                 <div class="card-header-form">
                                     <div class="d-flex justify-content-between">

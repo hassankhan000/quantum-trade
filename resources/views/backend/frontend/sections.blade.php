@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header px-0">
                     <h4>{{ __('Sections') }}</h4>
 
                 </div>

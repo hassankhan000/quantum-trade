@@ -16,7 +16,7 @@
                     
                     
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <form action="" method="GET">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control"  name="dates">

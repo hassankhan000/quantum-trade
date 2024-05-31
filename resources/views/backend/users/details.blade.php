@@ -99,7 +99,7 @@
                                             <i class="fas fa-wallet"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Balance') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -115,7 +115,7 @@
                                             <i class="fas fa-link"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Refferal') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -131,7 +131,7 @@
                                             <i class="fas fa-undo-alt"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Return Interest') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -147,7 +147,7 @@
                                             <i class="fas fa-funnel-dollar"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Commission') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -163,7 +163,7 @@
                                             <i class="fas fa-hand-holding-usd"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Withdraw') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -179,7 +179,7 @@
                                             <i class="far fa-credit-card"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Deposit') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -195,7 +195,7 @@
                                             <i class="fas fa-coins"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Invest amount') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -211,7 +211,7 @@
                                             <i class="fas fa-ticket-alt"></i>
                                         </div>
                                         <div class="card-wrap">
-                                            <div class="card-header">
+                                            <div class="card-header px-0">
                                                 <h4>{{ __('Total Ticket') }}</h4>
                                             </div>
                                             <div class="card-body">
@@ -337,7 +337,7 @@
                                     <input type="hidden" class="form-control" name="user_id"
                                         value="{{ $user->id }}">
                                     <input type="hidden" class="form-control" name="type" value="add">
-                                    <input type="number" class="form-control" name="balance" min="1"
+                                     <input type="number" class="form-control" name="balance" min="0" step="any"
                                         placeholder="add Balance">
                                     <button class="btn btn-outline-success px-4" type="submit" id="button-addon2"> <i
                                             class="fa fa-plus"></i> {{ __('Add Balance') }}</button>
@@ -349,7 +349,7 @@
                                     <input type="hidden" class="form-control" name="user_id"
                                         value="{{ $user->id }}">
                                     <input type="hidden" class="form-control" name="type" value="minus">
-                                    <input type="number" class="form-control" name="balance" min="1"
+                                    <input type="number" class="form-control" name="balance"min="0" step="any"
                                         placeholder="Subtract Balance">
                                     <button class="btn btn-outline-danger px-2" type="submit" id="button-addon2"> <i
                                             class="fa fa-minus mr-1"></i> {{ __('Subtruct Balance') }}</button>

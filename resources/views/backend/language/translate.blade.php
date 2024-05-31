@@ -8,7 +8,7 @@
         <div class="language-index-row">
             <div class="card">
 
-                <div class="card-header">
+                <div class="card-header px-0">
                     <div class="w-100">
                         <div class="input-group mb-3">
                             <select class="custom-select export selectric" id="inputGroupSelect02">

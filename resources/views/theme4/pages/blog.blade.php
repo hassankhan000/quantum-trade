@@ -65,7 +65,7 @@
                 @if (Auth::user())
                     <div class=" mt-5">
                         <div class="site-card">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __('Post a Comment') }}</h4>
                             </div>
                             <div class="card-body">

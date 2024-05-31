@@ -6,7 +6,7 @@
             <div class="col-xxl-6 col-xl-8">
 
                 <div class="card p-0">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h4 class="mb-0">{{ __('Two Factor Authentication') }}</h4>
                     </div>
                     <div class="card-body">

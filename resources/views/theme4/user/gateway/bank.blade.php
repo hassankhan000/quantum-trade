@@ -31,7 +31,7 @@
         <div class="row gy-4">
             <div class="col-xl-6">
                 <div class="site-card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5 class="mb-0">{{ __('Bank Payment Information') }}</h5>
                     </div>
                     <div class="card-body">
@@ -66,7 +66,7 @@
             </div>
             <div class="col-xl-6">
                 <div class="site-card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5 class="mb-0">{{ __('Payment Information') }}</h5>
                     </div>
 
@@ -102,7 +102,7 @@
 
             <div class="col-md-12">
                 <div class="site-card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5 class="mb-0">{{ __('Payment Proof') }}</h5>
                     </div>
                     <div class="card-body">

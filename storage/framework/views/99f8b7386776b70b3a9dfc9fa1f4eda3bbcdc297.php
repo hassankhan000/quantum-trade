@@ -1,4 +1,3 @@
-
 <style>
     .payment-box {
         background: #aef32d;
@@ -36,10 +35,10 @@
                         <div class="nk-block-head nk-block-head-lg wide-sm">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
 
-                                <div class="row g-sm-4 g-3 justify-content-center">
+                                <div class="row">
                                     <?php $__empty_1 = true; $__currentLoopData = $gateways; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gateway): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                         <div class="col-6 my-4">
-                                            <div class="payment-box text-center">
+                                            <div class="payment-box w-100 text-center">
                                                 <div class="payment-box-thumb">
                                                     <img src="<?php echo e(getFile('gateways', $gateway->gateway_image)); ?>"
                                                         alt="Lights" class="trans-img">

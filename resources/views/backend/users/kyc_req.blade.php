@@ -14,7 +14,7 @@
 
                     <div class="card">
 
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <div class="d-inline-flex">
 
 

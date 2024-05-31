@@ -5,7 +5,7 @@
         <div class="row gy-4">
             <div class="col-xxl-8 col-xl-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h4 class="mb-0">{{ __('Payment Preview') }}</h4>
                     </div>
                     <div class="card-body">

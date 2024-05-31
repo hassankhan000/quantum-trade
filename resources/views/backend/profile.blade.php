@@ -14,7 +14,7 @@
                     <div class="card">
                         <form method="post" action="{{ route('admin.change.password') }}">
                             @csrf
-                            <div class="card-header">
+                            <div class="card-header px-0">
 
                                 <h6>{{ __('Change Password') }}</h6>
 

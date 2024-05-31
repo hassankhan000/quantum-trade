@@ -23,7 +23,7 @@
 
         .nk-block-middle {
             margin-bottom: auto;
-            background: linear-gradient(#282828c7, #282828c7), url("https://img.freepik.com/premium-photo/abstract-background-design-generated-by-ai_349001-1687.jpg?w=360") !important;
+            background: linear-gradient(#282828c7, #282828c7), url("https://img.freepik.com/premium-photo/abstract-black-background-with-diagonal-design_1145069-13726.jpg?w=360") !important;
             background-size: cover !important;
             background-repeat: no-repeat !important;
             background-position: center center !important;

@@ -1,26 +1,23 @@
-
-
 <?php $__env->startSection('content2'); ?>
-    
     <div class="nk-content nk-content-fluid">
         <div class="container-xl wide-xl">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
                     <div class="nk-block-head nk-block-head-sm">
                         <div class="nk-block-between g-3">
-                            <div class="nk-block-head-content">
-                                <h3 class="nk-block-title page-title"><?php echo e(__('Withdraw')); ?></h3>
+                            <div class="nk-block-head-content w-100">
                                 <form action="" method="post">
                                     <?php echo csrf_field(); ?>
-                                    <div class="card-header">
-                                        <h5 class="mb-0">
-                                            <?php echo e(__('Current Balance: ')); ?> <span class="color-change"><?php echo e(number_format(auth()->user()->balance, 2) . ' ' . $general->site_currency); ?></span>
+                                    <div class="card-header px-0">
+                                        <h5 class="mb-3">
+                                            <?php echo e(__('Current Balance: ')); ?> <span
+                                                class="color-change"><?php echo e(number_format(auth()->user()->balance, 2) . ' ' . $general->site_currency); ?></span>
                                         </h5>
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group">
+                                        <div class="form-group mb-0">
                                             <label for=""><?php echo e(__('Withdraw Method')); ?></label>
-                                            <select name="method" id="" class="select form-select js-select2" >
+                                            <select name="method" id="" class="select form-select">
                                                 <option value="" selected><?php echo e(__('Select Method')); ?></option>
                                                 <?php $__currentLoopData = $withdraws; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $withdraw): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($withdraw->id); ?>"
@@ -34,9 +31,6 @@
                                 </form>
                                 <div class="col-xxl-4 col-lg-6 withdraw-ins">
                                     <div class="site-card">
-                                        <div class="card-header">
-                                            <h5 class="mb-0"><?php echo e(__('Withdraw Instruction')); ?></h5>
-                                        </div>
                                         <div class="card-body">
                                             <p class="instruction"></p>
                                         </div>
@@ -100,44 +94,45 @@
                         $('.instruction').html(response.withdraw_instruction)
                         let html = `
 
-                                <div class="col-md-12 mb-3 mt-3">
+                                <div class="col-md-12 p-0 mb-3 mt-3">
+                                    <h5 class="mb-3"><?php echo e(__('Withdraw Instruction')); ?></h5>
                                     <label for=""><?php echo e(__('Withdraw Amount')); ?> <span class="sp_text_danger">*</span></label>
                                     <input type="text" name="amount" class="form-control amount" required>
                                     <p class="text-small color-change mb-0 mt-1"><span><?php echo e(__('Min Amount & ')); ?>  ${Number.parseFloat(response.min_amount).toFixed(2)}</span> <span><?php echo e(__('Max Amount')); ?> ${Number.parseFloat(response.max_amount).toFixed(2)}</span></p>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 p-0 mb-3">
                                     <label><?php echo e(__('Withdraw Charge')); ?></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control charge" value="${Number.parseFloat(response.charge).toFixed(2)}" required disabled>
                                         <div class="input-group-text">
-                                            <span class="withdraw_charge_type">${response.charge_type}<span>
+                                            <span class="text-dark withdraw_charge_type">${response.charge_type}<span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 p-0 mb-3">
                                     <label for=""><?php echo e(__('Final Withdraw Amount')); ?> <span class="sp_text_danger">*</span></label>
                                     <input type="text" name="final_amo" class="form-control final_amo" required readonly>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 p-0 mb-3">
                                     <label for=""><?php echo e(__('Account Email / Wallet Address')); ?> <span class="sp_text_danger">*</span></label>
                                     <input type="text" name="email" class="form-control" required>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 p-0 mb-3">
                                     <label for=""><?php echo e(__('Account Information')); ?></label>
                                    <textarea class="form-control" name="account_information" row="5"></textarea>
                                 </div>
 
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 p-0 mb-3">
                                     <label for=""><?php echo e(__('Additional Note')); ?></label>
                                    <textarea class="form-control" name="note" row="5"></textarea>
                                 </div>
 
-                                <div class="col-md-12">
-                                   <button class="btn main-btn btn-primary mt-3 mb-2" type="submit"><?php echo e(__('Withdraw Now')); ?></button>
+                                <div class="col-md-12 p-0">
+                                   <button class="btn main-btn btn-primary bg-warning text-dark mt-3 mb-2" type="submit"><?php echo e(__('Withdraw Now')); ?></button>
                                 </div>
                    `;
 

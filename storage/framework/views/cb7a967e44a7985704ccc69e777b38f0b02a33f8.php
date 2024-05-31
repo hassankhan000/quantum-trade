@@ -94,19 +94,20 @@
             left: 100%;
         }
     }
+
     nav {
-    background-color: #3c3e3800 !important;
-    padding: 0 !important;
-    height: auto !important;
-    padding-top: 30px !important;
-    box-shadow: none !important;
-}
+        background-color: #3c3e3800 !important;
+        padding: 0 !important;
+        height: auto !important;
+        padding-top: 30px !important;
+        box-shadow: none !important;
+    }
 </style>
 
 <?php $__env->startSection('content2'); ?>
     
     <div class="nk-content nk-content-fluid">
-        <div class="container-xl wide-xl">
+        <div class="container-xl wide-xl pb-5">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
                     <div class="components-preview">
@@ -201,12 +202,9 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                        <tr>
-                                            <td class="text-center no-data-table" colspan="100%">
-                                                <?php echo e(__('No Data Found')); ?></td>
-                                        </tr>
                                     </table>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                    <?php echo e(__('No Data Found')); ?></td>
                                 <?php endif; ?>
                                 <table class="mt-3">
                                     <?php if($interestLogs->hasPages()): ?>

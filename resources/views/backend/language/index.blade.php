@@ -5,7 +5,7 @@
     <div class="main-content">
         <div class="manage-language">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header px-0">
                     <button class="btn btn-primary add">{{ __('Create Language') }}</button>
                 </div>
                 <div class="card-body p-0 table-responsive">

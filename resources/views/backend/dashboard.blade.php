@@ -156,7 +156,7 @@
                             <i class="fas fa-dungeon"></i>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __('Autometic Gateways') }}</h4>
                             </div>
                             <div class="card-body">
@@ -171,7 +171,7 @@
                             <i class="fas fa-dungeon"></i>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __('Withdraw Charge') }}</h4>
                             </div>
                             <div class="card-body">
@@ -186,7 +186,7 @@
                             <i class="fas fa-hand-holding-usd"></i>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __('Withdraw Gateways') }}</h4>
                             </div>
                             <div class="card-body">
@@ -201,7 +201,7 @@
                             <i class="fas fa-hand-holding-usd"></i>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4>{{ __('Withdraw Gateways') }}</h4>
                             </div>
                             <div class="card-body">
@@ -237,7 +237,7 @@
 
             <div class="row">
                 <div class="col-md-12  col-lg-12 col-12 all-users-table">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5>{{ __('All Users') }}</h5>
                     </div>
                     <div class="card">

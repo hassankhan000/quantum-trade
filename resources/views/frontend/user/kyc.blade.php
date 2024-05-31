@@ -6,7 +6,7 @@
         
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h4 class="mb-0">{{ __('KYC Verification') }}</h4>
                     </div>
 

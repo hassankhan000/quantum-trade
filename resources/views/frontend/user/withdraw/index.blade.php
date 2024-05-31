@@ -7,7 +7,7 @@
                 <div class="card">
                     <form action="" method="post">
                         @csrf
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <h4 class="mb-0">
                                 {{ __('Current Balance: ') }} <span class="color-change">{{ number_format(auth()->user()->balance, 2) . ' ' . $general->site_currency }}</span>
                             </h4>
@@ -32,7 +32,7 @@
 
             <div class="col-xxl-4 col-lg-6 withdraw-ins">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h4 class="mb-0">{{ __('Withdraw Instruction') }}</h4>
                     </div>
                     <div class="card-body">

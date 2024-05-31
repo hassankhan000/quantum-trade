@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12 stretch-card">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <a href="{{ route('admin.plan.index') }}" class="btn btn-primary"><i
                                     class="fa fa-arrow-left mr-2"></i>{{ __('Back') }}</a>
                         </div>

@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-wrapper">
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <div class="project-status-top">
                                 <h6 class="project-status-heading"> {{ __('Customer') }}: {{ @$ticket->user->fullname }}
                                 </h6>

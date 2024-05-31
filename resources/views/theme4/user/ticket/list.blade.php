@@ -3,7 +3,7 @@
 @section('content2')
     <div class="dashboard-body-part"> 
         <div class="site-card">
-            <div class="card-header">
+            <div class="card-header px-0">
                 <div class="row gy-4"> 
                     <div class="col-md-8 text-md-start text-center"> 
                         <div class="tab-btn-group mt-5"> 

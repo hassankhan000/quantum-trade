@@ -6,7 +6,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-4">
                         <div class="card card-primary login">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4 class="text-white">{{ __('Verfiy Using Code') }}</h4>
                             </div>
 

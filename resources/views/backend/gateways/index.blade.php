@@ -11,7 +11,7 @@
 
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header px-0">
                             <a href="{{route('admin.gateway.create')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> {{__('Create Gateway')}}</a>
                         </div>
                         <div class="card-body p-0 table-responsive">

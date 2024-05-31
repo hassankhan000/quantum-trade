@@ -133,7 +133,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h5 class="mb-0">{{ __('Reference Tree') }}</h5>
                     </div>
                     <div class="card-body">

@@ -6,7 +6,7 @@
         <div class="row withdraw-row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header px-0">
                         <h4>
                             <button class="btn btn-primary add"><i class="fa fa-plus"></i>
                                 {{ __('Add Withdraw Method') }}</button>

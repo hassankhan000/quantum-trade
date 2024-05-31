@@ -12,7 +12,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h5>{{ __('Variables Meaning') }}</h5>
                             </div>
                             <div class="table-responsive">

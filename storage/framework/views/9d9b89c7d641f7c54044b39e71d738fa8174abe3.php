@@ -130,7 +130,7 @@
 
         .plan-card .plan-status {
             background: #fab913;
-            color: hsl(128.89deg 55.09% 19.9%);
+            color: hsl(128.89deg 55.09% 19.9%) !important;
             position: absolute;
             top: -11px;
             padding: 3px 6px;
@@ -308,8 +308,8 @@
             <div class="col-xl-4 col-md-6">
                 <div class="plan-card">
                     <div class="<?php if($plan->vip_status <= auth()->user()->vip_status): ?> nolock <?php else: ?> locked <?php endif; ?>">
-                        <img class="img-fluid"
-                            src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/lock.png')); ?>"alt="">
+                        <img class="img-fluid" style="filter: hue-rotate(45deg);" src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/images/lock.png')); ?>"
+                            alt="">
                     </div>
                     <h4>Welcome To <span><?php echo e($plan->plan_name); ?></span> Quantum Trading Bot
                     </h4>
@@ -489,8 +489,10 @@
             }
         </style>
     <?php $__env->stopPush(); ?>
-    <div class="modal fade bg-transparent" id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
+    <div class="modal
+                                                                                                                            fade
+                                                                                                                            bg-transparent"
+        id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form class="invest-form" style="width: 100%;" action="<?php echo e(route('user.investmentplan.submit')); ?>"
                 method="post">
@@ -499,7 +501,7 @@
                     <div class="d-flex align-items-baseline justify-content-between">
                         <p class="p-0 m-0">
                             Purchase
-                            Quantum
+                            quantum
                             Bot
                         </p>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -510,19 +512,20 @@
                         <div class="form-group mb-1">
                             <input type="number" placeholder="Enter the amount you want to invest:" name="amount"
                                 class="form-control modal_amount">
+                            <p class="modal-table-p text-danger modal-error-message"></p>
                             <input type="hidden" name="plan_id" class="form-control">
                             <input type="hidden" name="plan_percentage" class="form-control">
                             <input type="hidden" name="pair_price">
                             <input type="hidden" name="pair_name">
                             <input type="hidden" name="timestamp">
+                            <input type="hidden" name="min_pay">
+                            <input type="hidden" name="max_pay">
+                            <input type="hidden" name="fix_amount">
                         </div>
                         <table class="table mt-3 table-sm table-striped modal-table">
                             <thead>
                                 <th>Bot
                                     Fee
-                                </th>
-                                <th>Quantum
-                                    Tax
                                 </th>
                                 <th>Expected
                                     Profit
@@ -532,9 +535,6 @@
                                 <td class="bot-fee">
                                     0.00
                                     to
-                                    0.00
-                                </td>
-                                <td class="modal-tax">
                                     0.00
                                 </td>
                                 <td class="exp-profit">

@@ -106,7 +106,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4> <a href="{{ route('admin.frontend.element', request()->name) }}"
                                         class="btn btn-icon icon-left btn-primary add-page"> <i class="fa fa-plus"></i>
                                         {{ __('Add ' . request()->name) }}</a></h4>

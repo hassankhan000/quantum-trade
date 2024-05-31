@@ -95,13 +95,14 @@
             left: 100%;
         }
     }
+
     nav {
-    background-color: #3c3e3800 !important;
-    padding: 0 !important;
-    height: auto !important;
-    padding-top: 30px !important;
-    box-shadow: none !important;
-}
+        background-color: #3c3e3800 !important;
+        padding: 0 !important;
+        height: auto !important;
+        padding-top: 30px !important;
+        box-shadow: none !important;
+    }
 </style>
 
 @section('content2')
@@ -158,7 +159,7 @@
         </div>
     </div> --}}
     <div class="nk-content nk-content-fluid">
-        <div class="container-xl wide-xl">
+        <div class="container-xl wide-xl pb-5">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
                     <div class="components-preview">
@@ -241,12 +242,9 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td class="text-center no-data-table" colspan="100%">
-                                                {{ __('No Data Found') }}</td>
-                                        </tr>
                                     </table>
+                                @empty
+                                    {{ __('No Data Found') }}</td>
                                 @endforelse
                                 <table class="mt-3">
                                     @if ($interestLogs->hasPages())

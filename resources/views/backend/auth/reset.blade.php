@@ -10,7 +10,7 @@
 
 
                         <div class="card card-primary login">
-                            <div class="card-header">
+                            <div class="card-header px-0">
                                 <h4 class="text-white">{{ __('Reset Your Password') }}</h4>
                             </div>
 
