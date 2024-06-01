@@ -183,7 +183,6 @@ class PaymentController extends Controller
         if (session('type') == 'deposit') {
             $deposit = Deposit::where('transaction_id', session('trx'))->firstOrFail();
         } else {
-
             $deposit = Payment::where('transaction_id', session('trx'))->firstOrFail();
         }
 
