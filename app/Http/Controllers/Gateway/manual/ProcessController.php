@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\Controllers\Gateway\manual;
 
 use App\Http\Controllers\Controller;
@@ -8,9 +8,28 @@ use App\Notifications\DepositNotification;
 
 class ProcessController extends Controller
 {
-    public static function process($request, $amount , $deposit)
+    public static function process($request, $gateway, $amount , $deposit)
     {
         $validation = [];
+        if ($gateway->user_proof_param != null) {
+            foreach ($gateway->user_proof_param as $params) {
+                if ($params['type'] == 'text' || $params['type'] == 'textarea') {
+
+                    $key = strtolower(str_replace(' ', '_', $params['field_name']));
+
+                    $validationRules = $params['validation'] == 'required' ? 'required' : 'sometimes';
+
+                    $validation[$key] = $validationRules;
+                } else {
+
+                    $key = strtolower(str_replace(' ', '_', $params['field_name']));
+
+                    $validationRules = ($params['validation'] == 'required' ? 'required' : 'sometimes') . "|image|mimes:jpg,png,jpeg|max:2048";
+
+                    $validation[$key] = $validationRules;
+                }
+            }
+        }
 
         $data = $request->validate($validation);
 

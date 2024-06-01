@@ -1321,7 +1321,7 @@ class ManageGatewayController extends Controller
     {
         $booking = Deposit::where('transaction_id', $request->trx)->firstOrFail();
         $general = GeneralSetting::first();
-        $gateway = Gateway::where('gateway_name', 'USDT')->first();
+        $gateway = Gateway::where('gateway_name', 'bank')->first();
 
         $firstDeposit = Deposit::where('user_id', $booking->user_id)
             ->where('payment_status', 1)

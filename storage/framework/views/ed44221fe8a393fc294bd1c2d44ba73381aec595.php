@@ -537,7 +537,8 @@
                                                                 data-fix_amount="<?php echo e(number_format($plan->amount, 2)); ?>"
                                                                 data-url=""><span><?php echo e(__('Invest')); ?></span></button>
                                                         <?php else: ?>
-                                                            <button disabled class="balance btn-light"><span><?php echo e(__('Insufficient balance 😔')); ?></span></button>
+                                                            <button disabled
+                                                                class="balance btn-light"><span><?php echo e(__('Insufficient balance 😔')); ?></span></button>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
@@ -873,20 +874,6 @@
 
     <?php $__env->startPush('script'); ?>
         <script>
-            $(function() {
-                'use strict'
-                $('.balance').on('click', function() {
-                    const modal = $('#invest');
-                    modal.find('input[name=plan_id]').val($(this).data('plan').id);
-                    modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
-                    modal.find('input[name=min_pay]').val($(this).data('min_amount'));
-                    modal.find('input[name=max_pay]').val($(this).data('max_amount'));
-                    modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
-                    modal.modal('show')
-                })
-            })
-        </script>
-        <script>
             'use strict';
 
             $('.planDelete').on('click', function() {
@@ -948,6 +935,20 @@
             $('.show-plans').click(function() {
                 $('.plan-wrapper').slideDown()
             });
+        </script>
+        <script>
+            $(function() {
+                'use strict'
+                $('.balance').on('click', function() {
+                    const modal = $('#invest');
+                    modal.find('input[name=plan_id]').val($(this).data('plan').id);
+                    modal.find('input[name=plan_percentage]').val($(this).data('plan_percentage'));
+                    modal.find('input[name=min_pay]').val($(this).data('min_amount'));
+                    modal.find('input[name=max_pay]').val($(this).data('max_amount'));
+                    modal.find('input[name=fix_amount]').val($(this).data('fix_amount'));
+                    modal.modal('show')
+                })
+            })
         </script>
         <script>
             $('.modal-table').hide()
