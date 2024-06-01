@@ -178,7 +178,6 @@ class PaymentController extends Controller
 
     public function gatewayRedirect(Request $request, $id)
     {
-
         $gateway = Gateway::where('status', 1)->findOrFail($id);
 
         if (session('type') == 'deposit') {
